@@ -1,42 +1,42 @@
 "use strict";
 
-/* Mini-economía local (no depende de nada) */
-const Economy = (() => {
-  const KEY = "psycase_demo_econ_v1";
-  const state = JSON.parse(localStorage.getItem(KEY) || '{"coins":0,"xp":0}');
-  function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
-  function add(coins=0, xp=0){ state.coins += coins; state.xp += xp; save(); }
-  function getCoins(){ return state.coins; }
-  function getRank(){
-    const xp = state.xp;
-    if (xp >= 600) return "Jefe";
-    if (xp >= 300) return "Adjunto";
-    if (xp >= 150) return "R2";
-    if (xp >= 50) return "R1";
-    return "Interno";
-  }
-  return { add, getCoins, getRank };
-})();
+const GAME_CONFIG = {
+  maxLives: 3,
+  turnSeconds: 30,
+  modalDelayMs: 450
+};
 
 /* Avatares (placeholder simple). Si ya tienes SVGs, sustitúyelos aquí. */
 const Avatars = {
   resident(name, mood="normal"){
-    const face = mood === "happy" ? "😄" : mood === "shock" ? "😱" : "🙂";
+    const faces = {
+      happy: "😄",
+      shock: "😱",
+      normal: "🙂"
+    };
+    const face = faces[mood] || faces.normal;
     return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:30px;">${face}</div>`;
   },
   boss(mood="normal"){
-    const face = mood === "angry" ? "😡" : "🧐";
+    const faces = {
+      angry: "😡",
+      normal: "🧐"
+    };
+    const face = faces[mood] || faces.normal;
     return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:30px;">${face}</div>`;
   }
 };
 
 const Game = (() => {
   const state = {
-    lives: 3,
-    timeLeft: 30,
+    lives: GAME_CONFIG.maxLives,
+    timeLeft: GAME_CONFIG.turnSeconds,
     timer: null,
+    timerStart: 0,
     current: null,
-    resident: "Aguilar"
+    resident: "Aguilar",
+    casesReady: false,
+    useGenerator: false
   };
 
   const $ = (sel) => document.querySelector(sel);
@@ -64,21 +64,21 @@ const Game = (() => {
             <div class="subLogo">KAWAII VICE CITY</div>
           </div>
           <div class="hudRow">
-            <div class="hudBox">
-              <div>
-                <div class="badge">Rango</div>
-                <div class="value">${escapeHtml(Economy.getRank())}</div>
-              </div>
+          <div class="hudBox">
+            <div>
+              <div class="badge">Rango</div>
+              <div class="value">${escapeHtml(Economy.getRank())}</div>
             </div>
+          </div>
             <div class="hudBox">
               <div>
                 <div class="badge">Efectivo</div>
-                <div class="value">🪙 ${Economy.getCoins()}</div>
-              </div>
+              <div class="value">🪙 ${Economy.getCoins()}</div>
             </div>
-            <button class="btn-action" id="btnStart">Iniciar turno</button>
           </div>
+          <button class="btn-action" id="btnStart">Iniciar turno</button>
         </div>
+      </div>
       `;
     }
 
@@ -97,10 +97,26 @@ const Game = (() => {
     if (btn) btn.onclick = () => startTurn();
   }
 
+  async function ensureCasesLoaded(){
+    if (state.casesReady) return true;
+    try {
+      await CaseDB.init();
+      state.casesReady = true;
+      state.useGenerator = false;
+      return true;
+    } catch (err) {
+      if (typeof logDebug === "function") {
+        logDebug(`[cases] init failed: ${String(err)}`);
+      }
+      state.useGenerator = true;
+      return false;
+    }
+  }
+
   async function startTurn(){
-    state.lives = 3;
-    await CaseDB.loadAll();
-    nextCase();
+    state.lives = GAME_CONFIG.maxLives;
+    await ensureCasesLoaded();
+    await nextCase();
   }
 
   function renderHUD(){
@@ -185,11 +201,13 @@ const Game = (() => {
 
   function startTimer(){
     clearInterval(state.timer);
-    state.timeLeft = 30;
+    state.timeLeft = GAME_CONFIG.turnSeconds;
+    state.timerStart = Date.now();
 
     state.timer = setInterval(() => {
-      state.timeLeft -= 0.1;
-      const pct = Math.max(0, (state.timeLeft / 30) * 100);
+      const elapsed = (Date.now() - state.timerStart) / 1000;
+      state.timeLeft = Math.max(0, GAME_CONFIG.turnSeconds - elapsed);
+      const pct = Math.max(0, (state.timeLeft / GAME_CONFIG.turnSeconds) * 100);
       const b = $("#tBar");
       if (b) b.style.width = pct + "%";
 
@@ -202,11 +220,23 @@ const Game = (() => {
     }, 100);
   }
 
-  function nextCase(){
+  async function nextCase(){
     if (state.lives <= 0) return renderMenu();
 
     state.resident = Math.random() > 0.5 ? "Aguilar" : "Solis";
-    state.current = CaseDB.pickRandomCase({}); // si quieres filtros, los conectamos luego
+    try {
+      if (state.useGenerator) {
+        state.current = Generator.createCase();
+      } else {
+        state.current = await CaseDB.pickRandomCase({}); // si quieres filtros, los conectamos luego
+      }
+    } catch (err) {
+      if (typeof logDebug === "function") {
+        logDebug(`[cases] pick failed: ${String(err)}`);
+      }
+      state.useGenerator = true;
+      state.current = Generator.createCase();
+    }
 
     renderHUD();
     renderCase();
@@ -260,7 +290,9 @@ const Game = (() => {
     renderHUD();
 
     if (state.lives <= 0) return renderMenu();
-    setTimeout(() => showModal(ok, task), 450);
+    setTimeout(() => {
+      if (state.lives > 0) showModal(ok, task);
+    }, GAME_CONFIG.modalDelayMs);
   }
 
   function init(){
