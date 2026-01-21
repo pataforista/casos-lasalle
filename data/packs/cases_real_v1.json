@@ -1,0 +1,1374 @@
+[
+  {
+    "case_id": "REAL_GEN_SCH_001_A",
+    "title": "Caso Clínico: Schizophrenia (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "baja",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "schizophrenia",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "SCH_001",
+        "text_content": "La esquizofrenia es un trastorno mental grave que implica una distorsión significativa de la realidad. Se caracteriza por síntomas positivos (alucinaciones, delirios, desorganización conductual), síntomas negativos (aplanamiento afectivo, alogia, avolición) y déficits cognitivos. Para el diagnóstico, los signos deben persistir al menos 6 meses, con un mes de síntomas activos, causando un deterioro marcado en el funcionamiento social o laboral.",
+        "labels": {
+          "clinical_stage": [
+            "inicio"
+          ],
+          "hitop": [
+            "thought_disorder"
+          ],
+          "rdoc": [
+            "Cognitive Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_0_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "alteraciones del curso y contenido del pensamiento",
+        "distractors": [
+          "insomnio de conciliación",
+          "crisis de pánico",
+          "compulsiones de limpieza"
+        ]
+      },
+      {
+        "task_id": "TR_0_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "thought_disorder"
+        ],
+        "distractors": [
+          "internalizante",
+          "externalizante",
+          "neurocognitivo"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_SCH_002_A",
+    "title": "Caso Clínico: Schizophrenia (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "schizophrenia",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "SCH_002",
+        "text_content": "La clínica es heterogénea: los síntomas positivos reflejan una exageración de funciones normales, mientras que los negativos implican una pérdida de capacidades. El deterioro cognitivo (atención, memoria de trabajo, funciones ejecutivas) es un predictor clave del pronóstico funcional. El diagnóstico requiere excluir causas orgánicas y trastornos del estado de ánimo con características psicóticas, como el trastorno esquizoafectivo o bipolar.",
+        "labels": {
+          "clinical_stage": [
+            "establecido"
+          ],
+          "hitop": [
+            "thought_disorder"
+          ],
+          "rdoc": [
+            "Cognitive Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_1_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "contenido delirante",
+        "distractors": [
+          "insomnio de conciliación",
+          "crisis de pánico",
+          "compulsiones de limpieza"
+        ]
+      },
+      {
+        "task_id": "TR_1_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "thought_disorder"
+        ],
+        "distractors": [
+          "internalizante",
+          "externalizante",
+          "neurocognitivo"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_SCH_002_B",
+    "title": "Caso Clínico: Schizophrenia (B - Avanzado)",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "schizophrenia",
+      "variant": "Razonamiento_Clinico"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "SCH_002",
+        "text_content": "La clínica es heterogénea: los síntomas positivos reflejan una exageración de funciones normales, mientras que los negativos implican una pérdida de capacidades. El deterioro cognitivo (atención, memoria de trabajo, funciones ejecutivas) es un predictor clave del pronóstico funcional. El diagnóstico requiere excluir causas orgánicas y trastornos del estado de ánimo con características psicóticas, como el trastorno esquizoafectivo o bipolar.",
+        "labels": {
+          "clinical_stage": [
+            "establecido"
+          ],
+          "hitop": [
+            "thought_disorder"
+          ],
+          "rdoc": [
+            "Cognitive Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_1_B_1",
+        "type": "criterio_diagnostico",
+        "instruction": "Señale un criterio diagnóstico diferencial clave.",
+        "expected_answer": "Deterioro funcional y persistencia (6 meses)",
+        "distractors": [
+          "Síntomas transitorios (<1 semana)",
+          "Presencia de fiebre",
+          "Alteración exclusiva del sueño"
+        ]
+      },
+      {
+        "task_id": "TR_1_B_2",
+        "type": "rdoc_domain_mapping",
+        "instruction": "Identifique el dominio RDoC primario asociado.",
+        "expected_answer": "Cognitive Systems",
+        "distractors": [
+          "Negative Valence Systems",
+          "Arousal Systems"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_SUI_001_A",
+    "title": "Caso Clínico: Suicide (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "suicide",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "SUI_001",
+        "text_content": "El suicidio es un problema de salud pública mayor. Clínicamente, es crucial diferenciar entre: ideación suicida (pensamientos de muerte), planificación (método y oportunidad) e intento (conducta autolesiva con intención letal). Trastornos psiquiátricos como la depresión mayor, el trastorno bipolar y la esquizofrenia aumentan drásticamente el riesgo, especialmente en fases agudas.",
+        "labels": {
+          "clinical_stage": [
+            "riesgo"
+          ],
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_2_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "ideación autolítica",
+        "distractors": [
+          "hipervigilancia",
+          "fatiga crónica",
+          "logorrea"
+        ]
+      },
+      {
+        "task_id": "TR_2_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "internalizing"
+        ],
+        "distractors": [
+          "externalizante",
+          "neurocognitivo",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_SUI_002_A",
+    "title": "Caso Clínico: Suicide (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "suicide",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "SUI_002",
+        "text_content": "La evaluación del riesgo distingue factores estáticos (historia de intentos, género) de dinámicos (desesperanza, acceso a medios letales, intoxicación). Los factores protectores incluyen redes de apoyo social y habilidades de afrontamiento. La prevención prioriza la restricción de medios letales, la intervención en crisis y el tratamiento asertivo de la patología de base.",
+        "labels": {
+          "clinical_stage": [
+            "riesgo"
+          ],
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_3_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "vulnerabilidad emocional",
+        "distractors": [
+          "hipervigilancia",
+          "fatiga crónica",
+          "logorrea"
+        ]
+      },
+      {
+        "task_id": "TR_3_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "internalizing"
+        ],
+        "distractors": [
+          "externalizante",
+          "neurocognitivo",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_DEP_001_A",
+    "title": "Caso Clínico: Trastorno Depresivo (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "baja",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "trastorno_depresivo",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "DEP_001",
+        "text_content": "El Trastorno Depresivo Mayor se define por la presencia de al menos 5 síntomas durante un mínimo de 2 semanas, incluyendo obligatoriamente estado de ánimo deprimido o anhedonia. Otros síntomas incluyen cambios en peso/apetito, insomnio/hipersomnia, agitación/retraso psicomotor, fatiga, culpa excesiva y disfunción ejecutiva. La etiología abarca factores monoaminérgicos, inflamatorios y neuroendocrinos.",
+        "labels": {
+          "clinical_stage": [
+            "episodio"
+          ],
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_4_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "estado de ánimo deprimido",
+        "distractors": [
+          "déficit de atención",
+          "tics motores",
+          "ecolalia"
+        ]
+      },
+      {
+        "task_id": "TR_4_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "internalizing"
+        ],
+        "distractors": [
+          "externalizante",
+          "neurocognitivo",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_ADHD_001_A",
+    "title": "Caso Clínico: TDAH (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "baja",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "tdah",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "ADHD_001",
+        "text_content": "El TDAH es un trastorno del neurodesarrollo caracterizado por patrones persistentes de inatención (desviación de tareas, falta de persistencia) y/o hiperactividad-impulsividad que interfieren con el funcionamiento. Aunque inicia en la infancia, los síntomas frecuentemente persisten en la adultez, donde la hiperactividad motora puede transformarse en una sensación de inquietud interna.",
+        "labels": {
+          "clinical_stage": [
+            "desarrollo"
+          ],
+          "hitop": [
+            "externalizing"
+          ],
+          "rdoc": [
+            "Cognitive Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_5_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "dificultad para sostener la atención",
+        "distractors": [
+          "alucinaciones auditivas",
+          "delirio persecutorio",
+          "anhedonia"
+        ]
+      },
+      {
+        "task_id": "TR_5_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "externalizing"
+        ],
+        "distractors": [
+          "internalizante",
+          "neurocognitivo",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_ADHD_002_A",
+    "title": "Caso Clínico: TDAH (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "tdah",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "ADHD_002",
+        "text_content": "La etiología incluye alta heredabilidad y desregulación de circuitos frontoestriatales (dopamina/noradrenalina). Para el diagnóstico, los síntomas deben presentarse en dos o más contextos (ej. casa y escuela) y no explicarse mejor por otro trastorno. No existen biomarcadores definitivos; la evaluación se basa en la historia clínica y escalas estandarizadas.",
+        "labels": {
+          "clinical_stage": [
+            "desarrollo"
+          ],
+          "hitop": [
+            "externalizing"
+          ],
+          "rdoc": [
+            "Cognitive Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_6_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "déficits en funciones ejecutivas",
+        "distractors": [
+          "hipervigilancia",
+          "fatiga crónica",
+          "logorrea"
+        ]
+      },
+      {
+        "task_id": "TR_6_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "externalizing"
+        ],
+        "distractors": [
+          "internalizante",
+          "neurocognitivo",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_ADHD_002_B",
+    "title": "Caso Clínico: TDAH (B - Avanzado)",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "tdah",
+      "variant": "Razonamiento_Clinico"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "ADHD_002",
+        "text_content": "La etiología incluye alta heredabilidad y desregulación de circuitos frontoestriatales (dopamina/noradrenalina). Para el diagnóstico, los síntomas deben presentarse en dos o más contextos (ej. casa y escuela) y no explicarse mejor por otro trastorno. No existen biomarcadores definitivos; la evaluación se basa en la historia clínica y escalas estandarizadas.",
+        "labels": {
+          "clinical_stage": [
+            "desarrollo"
+          ],
+          "hitop": [
+            "externalizing"
+          ],
+          "rdoc": [
+            "Cognitive Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_6_B_1",
+        "type": "etiologia_identificacion",
+        "instruction": "Identifique el mecanismo etiológico o neurobiológico descrito.",
+        "expected_answer": "Desregulación frontoestriatal",
+        "distractors": [
+          "Atrofia hipocampal",
+          "Exceso de serotonina",
+          "Lesión parietal"
+        ]
+      },
+      {
+        "task_id": "TR_6_B_2",
+        "type": "rdoc_domain_mapping",
+        "instruction": "Identifique el dominio RDoC primario asociado.",
+        "expected_answer": "Cognitive Systems",
+        "distractors": [
+          "Negative Valence Systems",
+          "Arousal Systems"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_DELIR_001_A",
+    "title": "Caso Clínico: Delirium (A)",
+    "educational_level": "posgrado",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "delirium",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "DELIR_001",
+        "text_content": "El delirium es una alteración aguda de la atención (capacidad reducida para dirigir, centrar y mantener la atención) y la conciencia. Se distingue por su inicio rápido (horas a días) y su curso fluctuante durante el día. Es una urgencia médica frecuente, precipitada por enfermedades sistémicas, fármacos, o abstinencia de sustancias.",
+        "labels": {
+          "clinical_stage": [
+            "agudo"
+          ],
+          "hitop": [
+            "neurocognitive"
+          ],
+          "rdoc": [
+            "Arousal/Regulatory Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_7_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "fluctuación del nivel de conciencia",
+        "distractors": [
+          "hipervigilancia",
+          "fatiga crónica",
+          "logorrea"
+        ]
+      },
+      {
+        "task_id": "TR_7_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "neurocognitive"
+        ],
+        "distractors": [
+          "internalizante",
+          "externalizante",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_DELIR_002_A",
+    "title": "Caso Clínico: Delirium (A)",
+    "educational_level": "posgrado",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "delirium",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "DELIR_002",
+        "text_content": "La fisiopatología del delirium implica desequilibrios en neurotransmisores (ej. déficit de acetilcolina, exceso de dopamina), neuroinflamación y estrés oxidativo. El manejo es etiológico: identificar y tratar la causa médica subyacente, asegurar medidas de soporte (hidratación, orientación) y minimizar estresores ambientales.",
+        "labels": {
+          "clinical_stage": [
+            "agudo"
+          ],
+          "hitop": [
+            "neurocognitive"
+          ],
+          "rdoc": [
+            "Arousal/Regulatory Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_8_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "alteración global del estado mental",
+        "distractors": [
+          "hipervigilancia",
+          "fatiga crónica",
+          "logorrea"
+        ]
+      },
+      {
+        "task_id": "TR_8_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "neurocognitive"
+        ],
+        "distractors": [
+          "internalizante",
+          "externalizante",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_DELIR_002_B",
+    "title": "Caso Clínico: Delirium (B - Avanzado)",
+    "educational_level": "posgrado",
+    "difficulty": "alta",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "delirium",
+      "variant": "Razonamiento_Clinico"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "DELIR_002",
+        "text_content": "La fisiopatología del delirium implica desequilibrios en neurotransmisores (ej. déficit de acetilcolina, exceso de dopamina), neuroinflamación y estrés oxidativo. El manejo es etiológico: identificar y tratar la causa médica subyacente, asegurar medidas de soporte (hidratación, orientación) y minimizar estresores ambientales.",
+        "labels": {
+          "clinical_stage": [
+            "agudo"
+          ],
+          "hitop": [
+            "neurocognitive"
+          ],
+          "rdoc": [
+            "Arousal/Regulatory Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_8_B_1",
+        "type": "tratamiento_seleccion",
+        "instruction": "Identifique el enfoque terapéutico principal mencionado.",
+        "expected_answer": "Tratamiento de la causa subyacente",
+        "distractors": [
+          "Contención mecánica exclusiva",
+          "Benzodiacepinas a altas dosis",
+          "Psicoanálisis"
+        ]
+      },
+      {
+        "task_id": "TR_8_B_2",
+        "type": "rdoc_domain_mapping",
+        "instruction": "Identifique el dominio RDoC primario asociado.",
+        "expected_answer": "Arousal/Regulatory Systems",
+        "distractors": [
+          "Cognitive Systems",
+          "Negative Valence Systems",
+          "Arousal Systems"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_BIP_001_A",
+    "title": "Caso Clínico: Trastorno Bipolar (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "trastorno_bipolar",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "BIP_001",
+        "text_content": "El Trastorno Bipolar se caracteriza por la alternancia de episodios anímicos. El Tipo I requiere al menos un episodio de Manía (ánimo elevado/irritable ≥1 semana, con deterioro funcional grave). El Tipo II implica episodios de Hipomanía (≥4 días, cambio observable sin deterioro grave) y Depresión Mayor. La distinción entre manía e hipomanía es crítica para el diagnóstico.",
+        "labels": {
+          "clinical_stage": [
+            "episodio"
+          ],
+          "hitop": [
+            "internalizing",
+            "thought_disorder"
+          ],
+          "rdoc": [
+            "Positive Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_9_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "elevación patológica del estado de ánimo",
+        "distractors": [
+          "déficit de atención",
+          "tics motores",
+          "ecolalia"
+        ]
+      },
+      {
+        "task_id": "TR_9_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "internalizing",
+          "thought_disorder"
+        ],
+        "distractors": [
+          "externalizante",
+          "neurocognitivo",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_BIP_002_A",
+    "title": "Caso Clínico: Trastorno Bipolar (A)",
+    "educational_level": "posgrado",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "trastorno_bipolar",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "BIP_002",
+        "text_content": "Los modelos neurobiológicos implican desregulación de sistemas monoaminérgicos, alteraciones en ritmos circadianos y señalización intracelular. El Litio sigue siendo el tratamiento estándar (\"gold standard\"), junto con otros estabilizadores del ánimo y antipsicóticos atípicos, esenciales tanto para el manejo agudo de la manía como para el mantenimiento y prevención de recaídas.",
+        "labels": {
+          "clinical_stage": [
+            "mantenimiento"
+          ],
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Positive Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_10_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "inestabilidad afectiva",
+        "distractors": [
+          "déficit de atención",
+          "tics motores",
+          "ecolalia"
+        ]
+      },
+      {
+        "task_id": "TR_10_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "internalizing"
+        ],
+        "distractors": [
+          "externalizante",
+          "neurocognitivo",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_BIP_002_B",
+    "title": "Caso Clínico: Trastorno Bipolar (B - Avanzado)",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "trastorno_bipolar",
+      "variant": "Razonamiento_Clinico"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "BIP_002",
+        "text_content": "Los modelos neurobiológicos implican desregulación de sistemas monoaminérgicos, alteraciones en ritmos circadianos y señalización intracelular. El Litio sigue siendo el tratamiento estándar (\"gold standard\"), junto con otros estabilizadores del ánimo y antipsicóticos atípicos, esenciales tanto para el manejo agudo de la manía como para el mantenimiento y prevención de recaídas.",
+        "labels": {
+          "clinical_stage": [
+            "mantenimiento"
+          ],
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Positive Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_10_B_1",
+        "type": "tratamiento_seleccion",
+        "instruction": "Identifique el enfoque terapéutico principal mencionado.",
+        "expected_answer": "Estabilizadores del ánimo (Litio)",
+        "distractors": [
+          "Antidepresivos en monoterapia",
+          "Terapia de aversión",
+          "Sedación profunda"
+        ]
+      },
+      {
+        "task_id": "TR_10_B_2",
+        "type": "rdoc_domain_mapping",
+        "instruction": "Identifique el dominio RDoC primario asociado.",
+        "expected_answer": "Positive Valence Systems",
+        "distractors": [
+          "Cognitive Systems",
+          "Negative Valence Systems",
+          "Arousal Systems"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_ASD_001_A",
+    "title": "Caso Clínico: Autismo (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "baja",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "autismo",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "ASD_001",
+        "text_content": "El Trastorno del Espectro Autista (TEA) es una condición del neurodesarrollo definida por déficits persistentes en dos dominios centrales: 1) Comunicación e interacción social (reciprocidad emocional, comunicación no verbal), y 2) Patrones de comportamiento, intereses o actividades restringidos y repetitivos (rigidez a cambios, hiper/hiporreactividad sensorial).",
+        "labels": {
+          "clinical_stage": [
+            "desarrollo"
+          ],
+          "hitop": [
+            "neurodevelopmental"
+          ],
+          "rdoc": [
+            "Systems for Social Processes"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_11_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "dificultades persistentes en interacción social",
+        "distractors": [
+          "hipervigilancia",
+          "fatiga crónica",
+          "logorrea"
+        ]
+      },
+      {
+        "task_id": "TR_11_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "neurodevelopmental"
+        ],
+        "distractors": [
+          "internalizante",
+          "externalizante",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_ASD_002_A",
+    "title": "Caso Clínico: Autismo (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "autismo",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "ASD_002",
+        "text_content": "La etiología del TEA destaca una fuerte contribución genética interactuando con factores prenatales y perinatales. Los hallazgos neurobiológicos incluyen conectividad cerebral atípica y alteraciones en el procesamiento sensorial. La identificación temprana y la intervención conductual intensiva se asocian con mejores resultados en el desarrollo adaptativo.",
+        "labels": {
+          "clinical_stage": [
+            "desarrollo"
+          ],
+          "hitop": [
+            "neurodevelopmental"
+          ],
+          "rdoc": [
+            "Systems for Social Processes"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_12_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "procesamiento sensorial atípico",
+        "distractors": [
+          "hipervigilancia",
+          "fatiga crónica",
+          "logorrea"
+        ]
+      },
+      {
+        "task_id": "TR_12_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "neurodevelopmental"
+        ],
+        "distractors": [
+          "internalizante",
+          "externalizante",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_ASD_002_B",
+    "title": "Caso Clínico: Autismo (B - Avanzado)",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "autismo",
+      "variant": "Razonamiento_Clinico"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "ASD_002",
+        "text_content": "La etiología del TEA destaca una fuerte contribución genética interactuando con factores prenatales y perinatales. Los hallazgos neurobiológicos incluyen conectividad cerebral atípica y alteraciones en el procesamiento sensorial. La identificación temprana y la intervención conductual intensiva se asocian con mejores resultados en el desarrollo adaptativo.",
+        "labels": {
+          "clinical_stage": [
+            "desarrollo"
+          ],
+          "hitop": [
+            "neurodevelopmental"
+          ],
+          "rdoc": [
+            "Systems for Social Processes"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_12_B_1",
+        "type": "tratamiento_seleccion",
+        "instruction": "Identifique el enfoque terapéutico principal mencionado.",
+        "expected_answer": "Intervención conductual temprana",
+        "distractors": [
+          "Dieta libre de gluten",
+          "Quelación",
+          "Terapia asistida con animales"
+        ]
+      },
+      {
+        "task_id": "TR_12_B_2",
+        "type": "rdoc_domain_mapping",
+        "instruction": "Identifique el dominio RDoC primario asociado.",
+        "expected_answer": "Systems for Social Processes",
+        "distractors": [
+          "Cognitive Systems",
+          "Negative Valence Systems",
+          "Arousal Systems"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_PTSD_001_A",
+    "title": "Caso Clínico: TEPT (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "ptsd",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "PTSD_001",
+        "text_content": "El TEPT surge tras la exposición a muerte, lesiones graves o violencia sexual. Los síntomas duran más de un mes y se agrupan en cuatro clusters: 1) Intrusión (flashbacks, pesadillas), 2) Evitación persistente de estímulos asociados, 3) Alteraciones cognitivas y del ánimo negativas (creencias distorsionadas, desapego), y 4) Alteración de la alerta y reactividad (hipervigilancia).",
+        "labels": {
+          "clinical_stage": [
+            "cronico"
+          ],
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_13_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "recuerdos intrusivos",
+        "distractors": [
+          "hipervigilancia",
+          "fatiga crónica",
+          "logorrea"
+        ]
+      },
+      {
+        "task_id": "TR_13_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "internalizing"
+        ],
+        "distractors": [
+          "externalizante",
+          "neurocognitivo",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_PTSD_002_A",
+    "title": "Caso Clínico: TEPT (A)",
+    "educational_level": "posgrado",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "ptsd",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "PTSD_002",
+        "text_content": "Los correlatos neurobiológicos del TEPT incluyen hiperactividad de la amígdala (respuesta al miedo) y regulación prefrontal deficiente. El tratamiento basado en evidencia prioriza psicoterapias focalizadas en el trauma (ej. Terapia de Exposición Prolongada, CPT) y farmacología (ISRS) para síntomas comórbidos de ansiedad o depresión.",
+        "labels": {
+          "clinical_stage": [
+            "cronico"
+          ],
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_14_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "dificultad para regular la respuesta emocional",
+        "distractors": [
+          "hipervigilancia",
+          "fatiga crónica",
+          "logorrea"
+        ]
+      },
+      {
+        "task_id": "TR_14_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "internalizing"
+        ],
+        "distractors": [
+          "externalizante",
+          "neurocognitivo",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_PTSD_002_B",
+    "title": "Caso Clínico: TEPT (B - Avanzado)",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "ptsd",
+      "variant": "Razonamiento_Clinico"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "PTSD_002",
+        "text_content": "Los correlatos neurobiológicos del TEPT incluyen hiperactividad de la amígdala (respuesta al miedo) y regulación prefrontal deficiente. El tratamiento basado en evidencia prioriza psicoterapias focalizadas en el trauma (ej. Terapia de Exposición Prolongada, CPT) y farmacología (ISRS) para síntomas comórbidos de ansiedad o depresión.",
+        "labels": {
+          "clinical_stage": [
+            "cronico"
+          ],
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_14_B_1",
+        "type": "tratamiento_seleccion",
+        "instruction": "Identifique el enfoque terapéutico principal mencionado.",
+        "expected_answer": "Psicoterapia focalizada en trauma",
+        "distractors": [
+          "Terapia de sueño",
+          "Hipnosis regresiva",
+          "Vitaminoterapia"
+        ]
+      },
+      {
+        "task_id": "TR_14_B_2",
+        "type": "rdoc_domain_mapping",
+        "instruction": "Identifique el dominio RDoC primario asociado.",
+        "expected_answer": "Negative Valence Systems",
+        "distractors": [
+          "Cognitive Systems",
+          "Arousal Systems",
+          "Social Processes"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_SLEEP_001_A",
+    "title": "Caso Clínico: Parasomnias (A)",
+    "educational_level": "posgrado",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "parasomnias",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "SLEEP_001",
+        "text_content": "Las parasomnias son eventos físicos o experiencias indeseables que ocurren durante la entrada al sueño, dentro del sueño o al despertar. Incluyen trastornos del despertar NREM (sonambulismo, terrores nocturnos), trastorno del comportamiento del sueño REM y pesadillas. El diagnóstico preciso requiere historia clínica detallada y, a menudo, polisomnografía para descartar convulsiones u otras patologías.",
+        "labels": {
+          "clinical_stage": [
+            "cronico"
+          ],
+          "hitop": [
+            "neurocognitive"
+          ],
+          "rdoc": [
+            "Arousal/Regulatory Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_15_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "conductas automáticas durante el sueño",
+        "distractors": [
+          "hipervigilancia",
+          "fatiga crónica",
+          "logorrea"
+        ]
+      },
+      {
+        "task_id": "TR_15_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "neurocognitive"
+        ],
+        "distractors": [
+          "internalizante",
+          "externalizante",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_SEX_001_A",
+    "title": "Caso Clínico: Disfunciones Sexuales (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "disfunciones_sexuales",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "SEX_001",
+        "text_content": "Las disfunciones sexuales implican alteraciones clínicamente significativas en la capacidad de responder sexualmente o experimentar placer. Abarcan problemas en el deseo, excitación, orgasmo o dolor asociado. La etiología suele ser biopsicosocial (médica, farmacológica, psicológica, relacional), por lo que una evaluación integral es esencial para el manejo efectivo.",
+        "labels": {
+          "clinical_stage": [
+            "variable"
+          ],
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Positive Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_16_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "dificultades en la respuesta sexual",
+        "distractors": [
+          "alucinaciones visuales",
+          "fuga de ideas",
+          "bradipsiquia"
+        ]
+      },
+      {
+        "task_id": "TR_16_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [
+          "internalizing"
+        ],
+        "distractors": [
+          "externalizante",
+          "neurocognitivo",
+          "desorden del pensamiento"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_HIST_001_A",
+    "title": "Caso Clínico: Historia Psiquiatria (A)",
+    "educational_level": "licenciatura",
+    "difficulty": "baja",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "historia_psiquiatria",
+      "variant": "Conceptos_Basicos"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "HIST_001",
+        "text_content": "La historia de la psiquiatría refleja la evolución de las concepciones de la enfermedad mental, influenciada por cambios culturales y científicos. Desde explicaciones morales y sobrenaturales tempranas, hasta los modelos biomédicos y psicosociales contemporáneos, la teoría y práctica psiquiátrica han experimentado una profunda transformación hacia la medicina basada en evidencia y los derechos humanos.",
+        "labels": {
+          "clinical_stage": [],
+          "hitop": [],
+          "rdoc": []
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_17_A_1",
+        "type": "phenomenology_identification",
+        "instruction": "Identifique el descriptor fenomenológico más relevante.",
+        "expected_answer": "Concepto general",
+        "distractors": [
+          "hipervigilancia",
+          "fatiga crónica",
+          "logorrea"
+        ]
+      },
+      {
+        "task_id": "TR_17_A_2",
+        "type": "framework_mapping",
+        "instruction": "Clasifique según el espectro HiTOP.",
+        "expected_hitop": [],
+        "distractors": [
+          "internalizante",
+          "externalizante",
+          "neurocognitivo"
+        ]
+      }
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_HIST_001_B",
+    "title": "Caso Clínico: Historia Psiquiatria (B - Avanzado)",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "case_type": "documento_educativo",
+    "metadata": {
+      "source_generator": "PsyCase_Factory_V2",
+      "is_real_data": true,
+      "original_doc_id": "historia_psiquiatria",
+      "variant": "Razonamiento_Clinico"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "HIST_001",
+        "text_content": "La historia de la psiquiatría refleja la evolución de las concepciones de la enfermedad mental, influenciada por cambios culturales y científicos. Desde explicaciones morales y sobrenaturales tempranas, hasta los modelos biomédicos y psicosociales contemporáneos, la teoría y práctica psiquiátrica han experimentado una profunda transformación hacia la medicina basada en evidencia y los derechos humanos.",
+        "labels": {
+          "clinical_stage": [],
+          "hitop": [],
+          "rdoc": []
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "TR_17_B_1",
+        "type": "tratamiento_seleccion",
+        "instruction": "Identifique el enfoque terapéutico principal mencionado.",
+        "expected_answer": "Manejo sintomático específico",
+        "distractors": [
+          "Observación",
+          "Alta",
+          "Derivación"
+        ]
+      },
+      {
+        "task_id": "TR_17_B_2",
+        "type": "rdoc_domain_mapping",
+        "instruction": "Identifique el dominio RDoC primario asociado.",
+        "expected_answer": "N/A",
+        "distractors": [
+          "Cognitive Systems",
+          "Negative Valence Systems",
+          "Arousal Systems"
+        ]
+      }
+    ]
+  }
+]

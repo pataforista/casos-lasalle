@@ -1,0 +1,1214 @@
+{
+  "version": "v1_enhanced",
+  "generated_utc": "2026-01-09T20:00:00Z",
+  "items": [
+    {
+      "id": "SCH_001",
+      "doc_id": "schizophrenia",
+      "source": {
+        "file_name": "schizophrenia.pdf",
+        "page_start": 1,
+        "page_end": 2,
+        "n_words": 281
+      },
+      "content": {
+        "text": "La esquizofrenia es un trastorno mental grave que implica una distorsión significativa de la realidad. Se caracteriza por síntomas positivos (alucinaciones, delirios, desorganización conductual), síntomas negativos (aplanamiento afectivo, alogia, avolición) y déficits cognitivos. Para el diagnóstico, los signos deben persistir al menos 6 meses, con un mes de síntomas activos, causando un deterioro marcado en el funcionamiento social o laboral.",
+        "snippet": "La esquizofrenia es un trastorno mental grave que implica una distorsión significativa de la realidad. Se caracteriza por síntomas positivos... negativos... y déficits cognitivos. Para el diagnóstico, los signos deben persistir al menos 6 meses..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "definicion",
+            "descripcion_general"
+          ],
+          "diagnostic_systems": [
+            "DSM-5-TR",
+            "ICD-11"
+          ],
+          "domains": [
+            "psicosis"
+          ],
+          "population": [
+            "adultos"
+          ],
+          "clinical_stage": [
+            "inicio"
+          ],
+          "setting": [
+            "ambulatorio",
+            "hospitalario"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "pensamiento",
+            "percepcion",
+            "afecto",
+            "volicion"
+          ],
+          "descriptors": [
+            "alteraciones del curso y contenido del pensamiento",
+            "experiencias perceptivas anómalas",
+            "reducción de la expresividad afectiva",
+            "disminución de la iniciativa"
+          ],
+          "level": "B",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "thought_disorder"
+        ],
+        "rdoc_domains": [
+          "Cognitive Systems"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "baja",
+          "use_case": [
+            "introduccion",
+            "definicion"
+          ],
+          "recommended_format": [
+            "lectura_guiada"
+          ]
+        }
+      }
+    },
+    {
+      "id": "SCH_002",
+      "doc_id": "schizophrenia",
+      "source": {
+        "file_name": "schizophrenia.pdf",
+        "page_start": 2,
+        "page_end": 3,
+        "n_words": 294
+      },
+      "content": {
+        "text": "La clínica es heterogénea: los síntomas positivos reflejan una exageración de funciones normales, mientras que los negativos implican una pérdida de capacidades. El deterioro cognitivo (atención, memoria de trabajo, funciones ejecutivas) es un predictor clave del pronóstico funcional. El diagnóstico requiere excluir causas orgánicas y trastornos del estado de ánimo con características psicóticas, como el trastorno esquizoafectivo o bipolar.",
+        "snippet": "La clínica es heterogénea: los síntomas positivos reflejan una exageración de funciones normales, mientras que los negativos implican una pérdida de capacidades. El deterioro cognitivo... es un predictor clave del pronóstico funcional..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "sintomas",
+            "diagnostico"
+          ],
+          "diagnostic_systems": [
+            "DSM-5-TR",
+            "ICD-11"
+          ],
+          "domains": [
+            "psicosis",
+            "cognicion"
+          ],
+          "population": [
+            "adultos"
+          ],
+          "clinical_stage": [
+            "establecido"
+          ],
+          "setting": [
+            "ambulatorio",
+            "hospitalario"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "pensamiento",
+            "cognicion",
+            "afecto"
+          ],
+          "descriptors": [
+            "contenido delirante",
+            "alteraciones cognitivas en atención y memoria",
+            "reducción de la motivación"
+          ],
+          "level": "B",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "thought_disorder"
+        ],
+        "rdoc_domains": [
+          "Cognitive Systems"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "media",
+          "use_case": [
+            "discusion_clinica",
+            "diagnostico"
+          ],
+          "recommended_format": [
+            "lectura_guiada",
+            "pregunta_abierta"
+          ]
+        }
+      }
+    },
+    {
+      "id": "SUI_001",
+      "doc_id": "suicide",
+      "source": {
+        "file_name": "suicide.pdf",
+        "page_start": 1,
+        "page_end": 2,
+        "n_words": 276
+      },
+      "content": {
+        "text": "El suicidio es un problema de salud pública mayor. Clínicamente, es crucial diferenciar entre: ideación suicida (pensamientos de muerte), planificación (método y oportunidad) e intento (conducta autolesiva con intención letal). Trastornos psiquiátricos como la depresión mayor, el trastorno bipolar y la esquizofrenia aumentan drásticamente el riesgo, especialmente en fases agudas.",
+        "snippet": "El suicidio es un problema de salud pública mayor. Clínicamente, es crucial diferenciar entre: ideación suicida... planificación... e intento... Trastornos psiquiátricos como la depresión mayor, el trastorno bipolar y la esquizofrenia aumentan drásticamente el riesgo..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "descripcion_general",
+            "evaluacion_clinica"
+          ],
+          "diagnostic_systems": [],
+          "domains": [
+            "suicidio",
+            "riesgo"
+          ],
+          "population": [
+            "adolescentes",
+            "adultos"
+          ],
+          "clinical_stage": [
+            "riesgo"
+          ],
+          "setting": [
+            "ambulatorio",
+            "urgencias"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "pensamiento",
+            "afecto"
+          ],
+          "descriptors": [
+            "ideación autolítica",
+            "malestar emocional intenso"
+          ],
+          "level": "B",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "internalizing"
+        ],
+        "rdoc_domains": [
+          "Negative Valence Systems"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "media",
+          "use_case": [
+            "evaluacion_clinica",
+            "sensibilizacion"
+          ],
+          "recommended_format": [
+            "viñeta_clinica"
+          ]
+        }
+      }
+    },
+    {
+      "id": "SUI_002",
+      "doc_id": "suicide",
+      "source": {
+        "file_name": "suicide.pdf",
+        "page_start": 2,
+        "page_end": 3,
+        "n_words": 301
+      },
+      "content": {
+        "text": "La evaluación del riesgo distingue factores estáticos (historia de intentos, género) de dinámicos (desesperanza, acceso a medios letales, intoxicación). Los factores protectores incluyen redes de apoyo social y habilidades de afrontamiento. La prevención prioriza la restricción de medios letales, la intervención en crisis y el tratamiento asertivo de la patología de base.",
+        "snippet": "La evaluación del riesgo distingue factores estáticos... de dinámicos... Los factores protectores incluyen redes de apoyo social y habilidades de afrontamiento. La prevención prioriza la restricción de medios letales, la intervención en crisis y el tratamiento..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "factores_riesgo",
+            "prevencion"
+          ],
+          "diagnostic_systems": [],
+          "domains": [
+            "suicidio"
+          ],
+          "population": [
+            "adolescentes",
+            "adultos"
+          ],
+          "clinical_stage": [
+            "riesgo"
+          ],
+          "setting": [
+            "comunitario",
+            "ambulatorio"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "pensamiento",
+            "afecto"
+          ],
+          "descriptors": [
+            "persistencia de ideación autolítica",
+            "vulnerabilidad emocional"
+          ],
+          "level": "B",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "internalizing"
+        ],
+        "rdoc_domains": [
+          "Negative Valence Systems"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "media",
+          "use_case": [
+            "prevencion",
+            "salud_publica"
+          ],
+          "recommended_format": [
+            "discusion_grupal"
+          ]
+        }
+      }
+    },
+    {
+      "id": "DEP_001",
+      "doc_id": "trastorno_depresivo",
+      "source": {
+        "file_name": "trastorno depresivo.pdf",
+        "page_start": 1,
+        "page_end": 2,
+        "n_words": 289
+      },
+      "content": {
+        "text": "El Trastorno Depresivo Mayor se define por la presencia de al menos 5 síntomas durante un mínimo de 2 semanas, incluyendo obligatoriamente estado de ánimo deprimido o anhedonia. Otros síntomas incluyen cambios en peso/apetito, insomnio/hipersomnia, agitación/retraso psicomotor, fatiga, culpa excesiva y disfunción ejecutiva. La etiología abarca factores monoaminérgicos, inflamatorios y neuroendocrinos.",
+        "snippet": "El Trastorno Depresivo Mayor se define por la presencia de al menos 5 síntomas durante un mínimo de 2 semanas, incluyendo obligatoriamente estado de ánimo deprimido o anhedonia. Otros síntomas incluyen cambios en peso/apetito, insomnio/hipersomnia..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "definicion",
+            "sintomas"
+          ],
+          "diagnostic_systems": [
+            "DSM-5-TR",
+            "ICD-11"
+          ],
+          "domains": [
+            "afectivos"
+          ],
+          "population": [
+            "adultos"
+          ],
+          "clinical_stage": [
+            "episodio"
+          ],
+          "setting": [
+            "ambulatorio"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "afecto",
+            "pensamiento",
+            "volicion",
+            "somatico"
+          ],
+          "descriptors": [
+            "estado de ánimo deprimido",
+            "anhedonia",
+            "distorsiones cognitivas negativas",
+            "alteraciones del sueño y apetito"
+          ],
+          "level": "B",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "internalizing"
+        ],
+        "rdoc_domains": [
+          "Negative Valence Systems"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "baja",
+          "use_case": [
+            "definicion",
+            "sintomas"
+          ],
+          "recommended_format": [
+            "lectura_guiada"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ADHD_001",
+      "doc_id": "tdah",
+      "source": {
+        "file_name": "tdah.pdf",
+        "page_start": 1,
+        "page_end": 2,
+        "n_words": 275
+      },
+      "content": {
+        "text": "El TDAH es un trastorno del neurodesarrollo caracterizado por patrones persistentes de inatención (desviación de tareas, falta de persistencia) y/o hiperactividad-impulsividad que interfieren con el funcionamiento. Aunque inicia en la infancia, los síntomas frecuentemente persisten en la adultez, donde la hiperactividad motora puede transformarse en una sensación de inquietud interna.",
+        "snippet": "El TDAH es un trastorno del neurodesarrollo caracterizado por patrones persistentes de inatención (desviación de tareas, falta de persistencia) y/o hiperactividad-impulsividad que interfieren con el funcionamiento. Aunque inicia en la infancia..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "definicion",
+            "descripcion_general"
+          ],
+          "diagnostic_systems": [
+            "DSM-5-TR",
+            "ICD-11"
+          ],
+          "domains": [
+            "neurodesarrollo"
+          ],
+          "population": [
+            "niños",
+            "adolescentes",
+            "adultos"
+          ],
+          "clinical_stage": [
+            "desarrollo"
+          ],
+          "setting": [
+            "ambulatorio",
+            "escolar"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "atencion",
+            "volicion"
+          ],
+          "descriptors": [
+            "dificultad para sostener la atención",
+            "impulsividad conductual"
+          ],
+          "level": "B",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "externalizing"
+        ],
+        "rdoc_domains": [
+          "Cognitive Systems"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "baja",
+          "use_case": [
+            "introduccion",
+            "neurodesarrollo"
+          ],
+          "recommended_format": [
+            "lectura_guiada"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ADHD_002",
+      "doc_id": "tdah",
+      "source": {
+        "file_name": "tdah.pdf",
+        "page_start": 2,
+        "page_end": 3,
+        "n_words": 312
+      },
+      "content": {
+        "text": "La etiología incluye alta heredabilidad y desregulación de circuitos frontoestriatales (dopamina/noradrenalina). Para el diagnóstico, los síntomas deben presentarse en dos o más contextos (ej. casa y escuela) y no explicarse mejor por otro trastorno. No existen biomarcadores definitivos; la evaluación se basa en la historia clínica y escalas estandarizadas.",
+        "snippet": "La etiología incluye alta heredabilidad y desregulación de circuitos frontoestriatales (dopamina/noradrenalina). Para el diagnóstico, los síntomas deben presentarse en dos o más contextos... y no explicarse mejor por otro trastorno..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "etiologia",
+            "diagnostico"
+          ],
+          "diagnostic_systems": [
+            "DSM-5-TR",
+            "ICD-11"
+          ],
+          "domains": [
+            "neurodesarrollo",
+            "cognicion"
+          ],
+          "population": [
+            "niños",
+            "adolescentes",
+            "adultos"
+          ],
+          "clinical_stage": [
+            "desarrollo"
+          ],
+          "setting": [
+            "ambulatorio"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "atencion",
+            "cognicion"
+          ],
+          "descriptors": [
+            "déficits en funciones ejecutivas",
+            "variabilidad en el control atencional"
+          ],
+          "level": "B",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "externalizing"
+        ],
+        "rdoc_domains": [
+          "Cognitive Systems"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "media",
+          "use_case": [
+            "diagnostico",
+            "razonamiento_clinico"
+          ],
+          "recommended_format": [
+            "pregunta_abierta"
+          ]
+        }
+      }
+    },
+    {
+      "id": "DELIR_001",
+      "doc_id": "delirium",
+      "source": {
+        "file_name": "delirium (2).pdf",
+        "page_start": 1,
+        "page_end": 2,
+        "n_words": 283
+      },
+      "content": {
+        "text": "El delirium es una alteración aguda de la atención (capacidad reducida para dirigir, centrar y mantener la atención) y la conciencia. Se distingue por su inicio rápido (horas a días) y su curso fluctuante durante el día. Es una urgencia médica frecuente, precipitada por enfermedades sistémicas, fármacos, o abstinencia de sustancias.",
+        "snippet": "El delirium es una alteración aguda de la atención (capacidad reducida para dirigir, centrar y mantener la atención) y la conciencia. Se distingue por su inicio rápido (horas a días) y su curso fluctuante durante el día. Es una urgencia médica frecuente..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "definicion",
+            "descripcion_general"
+          ],
+          "diagnostic_systems": [
+            "DSM-5-TR",
+            "ICD-11"
+          ],
+          "domains": [
+            "neuropsiquiatria"
+          ],
+          "population": [
+            "adultos_mayores"
+          ],
+          "clinical_stage": [
+            "agudo"
+          ],
+          "setting": [
+            "hospitalario",
+            "urgencias"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "conciencia",
+            "atencion",
+            "cognicion"
+          ],
+          "descriptors": [
+            "fluctuación del nivel de conciencia",
+            "dificultad para focalizar la atención",
+            "desorganización cognitiva aguda"
+          ],
+          "level": "I",
+          "complexity": "S2"
+        },
+        "hitop_spectra": [
+          "neurocognitive"
+        ],
+        "rdoc_domains": [
+          "Arousal/Regulatory Systems",
+          "Cognitive Systems"
+        ],
+        "pedagogy": {
+          "level": "posgrado",
+          "difficulty": "media",
+          "use_case": [
+            "urgencias",
+            "diagnostico_diferencial"
+          ],
+          "recommended_format": [
+            "viñeta_clinica"
+          ]
+        }
+      }
+    },
+    {
+      "id": "DELIR_002",
+      "doc_id": "delirium",
+      "source": {
+        "file_name": "delirium (2).pdf",
+        "page_start": 2,
+        "page_end": 3,
+        "n_words": 295
+      },
+      "content": {
+        "text": "La fisiopatología del delirium implica desequilibrios en neurotransmisores (ej. déficit de acetilcolina, exceso de dopamina), neuroinflamación y estrés oxidativo. El manejo es etiológico: identificar y tratar la causa médica subyacente, asegurar medidas de soporte (hidratación, orientación) y minimizar estresores ambientales.",
+        "snippet": "La fisiopatología del delirium implica desequilibrios en neurotransmisores (ej. déficit de acetilcolina, exceso de dopamina), neuroinflamación y estrés oxidativo. El manejo es etiológico: identificar y tratar la causa médica subyacente..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "fisiopatologia",
+            "tratamiento"
+          ],
+          "diagnostic_systems": [],
+          "domains": [
+            "neuropsiquiatria"
+          ],
+          "population": [
+            "adultos_mayores"
+          ],
+          "clinical_stage": [
+            "agudo"
+          ],
+          "setting": [
+            "hospitalario"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "conciencia",
+            "cognicion"
+          ],
+          "descriptors": [
+            "alteración global del estado mental",
+            "disfunción cognitiva secundaria a causa médica"
+          ],
+          "level": "I",
+          "complexity": "S2"
+        },
+        "hitop_spectra": [
+          "neurocognitive"
+        ],
+        "rdoc_domains": [
+          "Arousal/Regulatory Systems",
+          "Cognitive Systems"
+        ],
+        "pedagogy": {
+          "level": "posgrado",
+          "difficulty": "media",
+          "use_case": [
+            "manejo_clinico"
+          ],
+          "recommended_format": [
+            "discusion_clinica"
+          ]
+        }
+      }
+    },
+    {
+      "id": "BIP_001",
+      "doc_id": "trastorno_bipolar",
+      "source": {
+        "file_name": "bipolar.pdf",
+        "page_start": 1,
+        "page_end": 2,
+        "n_words": 286
+      },
+      "content": {
+        "text": "El Trastorno Bipolar se caracteriza por la alternancia de episodios anímicos. El Tipo I requiere al menos un episodio de Manía (ánimo elevado/irritable ≥1 semana, con deterioro funcional grave). El Tipo II implica episodios de Hipomanía (≥4 días, cambio observable sin deterioro grave) y Depresión Mayor. La distinción entre manía e hipomanía es crítica para el diagnóstico.",
+        "snippet": "El Trastorno Bipolar se caracteriza por la alternancia de episodios anímicos. El Tipo I requiere al menos un episodio de Manía (ánimo elevado/irritable ≥1 semana, con deterioro funcional grave). El Tipo II implica episodios de Hipomanía..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "definicion",
+            "sintomas"
+          ],
+          "diagnostic_systems": [
+            "DSM-5-TR",
+            "ICD-11"
+          ],
+          "domains": [
+            "afectivos"
+          ],
+          "population": [
+            "adultos"
+          ],
+          "clinical_stage": [
+            "episodio"
+          ],
+          "setting": [
+            "ambulatorio",
+            "hospitalario"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "afecto",
+            "volicion",
+            "pensamiento"
+          ],
+          "descriptors": [
+            "elevación patológica del estado de ánimo",
+            "incremento de la energía",
+            "ideas de grandiosidad"
+          ],
+          "level": "B",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "internalizing",
+          "thought_disorder"
+        ],
+        "rdoc_domains": [
+          "Positive Valence Systems",
+          "Arousal/Regulatory Systems"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "media",
+          "use_case": [
+            "sintomas",
+            "curso_clinico"
+          ],
+          "recommended_format": [
+            "lectura_guiada"
+          ]
+        }
+      }
+    },
+    {
+      "id": "BIP_002",
+      "doc_id": "trastorno_bipolar",
+      "source": {
+        "file_name": "bipolar.pdf",
+        "page_start": 2,
+        "page_end": 3,
+        "n_words": 304
+      },
+      "content": {
+        "text": "Los modelos neurobiológicos implican desregulación de sistemas monoaminérgicos, alteraciones en ritmos circadianos y señalización intracelular. El Litio sigue siendo el tratamiento estándar (\"gold standard\"), junto con otros estabilizadores del ánimo y antipsicóticos atípicos, esenciales tanto para el manejo agudo de la manía como para el mantenimiento y prevención de recaídas.",
+        "snippet": "Los modelos neurobiológicos implican desregulación de sistemas monoaminérgicos, alteraciones en ritmos circadianos y señalización intracelular. El Litio sigue siendo el tratamiento estándar (\"gold standard\"), junto con otros estabilizadores del ánimo..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "etiologia",
+            "tratamiento"
+          ],
+          "diagnostic_systems": [],
+          "domains": [
+            "afectivos"
+          ],
+          "population": [
+            "adultos"
+          ],
+          "clinical_stage": [
+            "mantenimiento"
+          ],
+          "setting": [
+            "ambulatorio"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "afecto"
+          ],
+          "descriptors": [
+            "inestabilidad afectiva",
+            "vulnerabilidad a recaídas del estado de ánimo"
+          ],
+          "level": "I",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "internalizing"
+        ],
+        "rdoc_domains": [
+          "Positive Valence Systems"
+        ],
+        "pedagogy": {
+          "level": "posgrado",
+          "difficulty": "media",
+          "use_case": [
+            "tratamiento",
+            "mantenimiento"
+          ],
+          "recommended_format": [
+            "discusion_clinica"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ASD_001",
+      "doc_id": "autismo",
+      "source": {
+        "file_name": "autismo.pdf",
+        "page_start": 1,
+        "page_end": 2,
+        "n_words": 279
+      },
+      "content": {
+        "text": "El Trastorno del Espectro Autista (TEA) es una condición del neurodesarrollo definida por déficits persistentes en dos dominios centrales: 1) Comunicación e interacción social (reciprocidad emocional, comunicación no verbal), y 2) Patrones de comportamiento, intereses o actividades restringidos y repetitivos (rigidez a cambios, hiper/hiporreactividad sensorial).",
+        "snippet": "El Trastorno del Espectro Autista (TEA) es una condición del neurodesarrollo definida por déficits persistentes en dos dominios centrales: 1) Comunicación e interacción social (reciprocidad emocional, comunicación no verbal), y 2) Patrones de comportamiento..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "definicion",
+            "sintomas"
+          ],
+          "diagnostic_systems": [
+            "DSM-5-TR",
+            "ICD-11"
+          ],
+          "domains": [
+            "neurodesarrollo"
+          ],
+          "population": [
+            "niños"
+          ],
+          "clinical_stage": [
+            "desarrollo"
+          ],
+          "setting": [
+            "ambulatorio",
+            "educativo"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "interaccion_social",
+            "comunicacion",
+            "conducta"
+          ],
+          "descriptors": [
+            "dificultades persistentes en interacción social",
+            "patrones conductuales restringidos"
+          ],
+          "level": "B",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "neurodevelopmental"
+        ],
+        "rdoc_domains": [
+          "Systems for Social Processes"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "baja",
+          "use_case": [
+            "introduccion",
+            "neurodesarrollo"
+          ],
+          "recommended_format": [
+            "lectura_guiada"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ASD_002",
+      "doc_id": "autismo",
+      "source": {
+        "file_name": "autismo.pdf",
+        "page_start": 2,
+        "page_end": 3,
+        "n_words": 297
+      },
+      "content": {
+        "text": "La etiología del TEA destaca una fuerte contribución genética interactuando con factores prenatales y perinatales. Los hallazgos neurobiológicos incluyen conectividad cerebral atípica y alteraciones en el procesamiento sensorial. La identificación temprana y la intervención conductual intensiva se asocian con mejores resultados en el desarrollo adaptativo.",
+        "snippet": "La etiología del TEA destaca una fuerte contribución genética interactuando con factores prenatales y perinatales. Los hallazgos neurobiológicos incluyen conectividad cerebral atípica y alteraciones en el procesamiento sensorial. La identificación temprana..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "etiologia",
+            "intervencion"
+          ],
+          "diagnostic_systems": [],
+          "domains": [
+            "neurodesarrollo"
+          ],
+          "population": [
+            "niños"
+          ],
+          "clinical_stage": [
+            "desarrollo"
+          ],
+          "setting": [
+            "ambulatorio",
+            "educativo"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "percepcion",
+            "conducta"
+          ],
+          "descriptors": [
+            "procesamiento sensorial atípico",
+            "rigidez conductual"
+          ],
+          "level": "I",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "neurodevelopmental"
+        ],
+        "rdoc_domains": [
+          "Systems for Social Processes",
+          "Sensorimotor Systems"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "media",
+          "use_case": [
+            "intervencion",
+            "razonamiento_clinico"
+          ],
+          "recommended_format": [
+            "discusion_clinica"
+          ]
+        }
+      }
+    },
+    {
+      "id": "PTSD_001",
+      "doc_id": "ptsd",
+      "source": {
+        "file_name": "ptsd.pdf",
+        "page_start": 1,
+        "page_end": 2,
+        "n_words": 291
+      },
+      "content": {
+        "text": "El TEPT surge tras la exposición a muerte, lesiones graves o violencia sexual. Los síntomas duran más de un mes y se agrupan en cuatro clusters: 1) Intrusión (flashbacks, pesadillas), 2) Evitación persistente de estímulos asociados, 3) Alteraciones cognitivas y del ánimo negativas (creencias distorsionadas, desapego), y 4) Alteración de la alerta y reactividad (hipervigilancia).",
+        "snippet": "El TEPT surge tras la exposición a muerte, lesiones graves o violencia sexual. Los síntomas duran más de un mes y se agrupan en cuatro clusters: 1) Intrusión (flashbacks, pesadillas), 2) Evitación persistente de estímulos asociados, 3) Alteraciones cognitivas..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "definicion",
+            "sintomas"
+          ],
+          "diagnostic_systems": [
+            "DSM-5-TR",
+            "ICD-11"
+          ],
+          "domains": [
+            "ansiedad_trauma"
+          ],
+          "population": [
+            "adultos"
+          ],
+          "clinical_stage": [
+            "cronico"
+          ],
+          "setting": [
+            "ambulatorio"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "memoria",
+            "afecto",
+            "arousal"
+          ],
+          "descriptors": [
+            "recuerdos intrusivos",
+            "hiperreactividad emocional",
+            "estado de alerta persistente"
+          ],
+          "level": "B",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "internalizing"
+        ],
+        "rdoc_domains": [
+          "Negative Valence Systems",
+          "Arousal/Regulatory Systems"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "media",
+          "use_case": [
+            "sintomas",
+            "diagnostico"
+          ],
+          "recommended_format": [
+            "viñeta_clinica"
+          ]
+        }
+      }
+    },
+    {
+      "id": "PTSD_002",
+      "doc_id": "ptsd",
+      "source": {
+        "file_name": "ptsd.pdf",
+        "page_start": 2,
+        "page_end": 3,
+        "n_words": 308
+      },
+      "content": {
+        "text": "Los correlatos neurobiológicos del TEPT incluyen hiperactividad de la amígdala (respuesta al miedo) y regulación prefrontal deficiente. El tratamiento basado en evidencia prioriza psicoterapias focalizadas en el trauma (ej. Terapia de Exposición Prolongada, CPT) y farmacología (ISRS) para síntomas comórbidos de ansiedad o depresión.",
+        "snippet": "Los correlatos neurobiológicos del TEPT incluyen hiperactividad de la amígdala (respuesta al miedo) y regulación prefrontal deficiente. El tratamiento basado en evidencia prioriza psicoterapias focalizadas en el trauma (ej. Terapia de Exposición Prolongada, CPT)..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "neurobiologia",
+            "tratamiento"
+          ],
+          "diagnostic_systems": [],
+          "domains": [
+            "ansiedad_trauma"
+          ],
+          "population": [
+            "adultos"
+          ],
+          "clinical_stage": [
+            "cronico"
+          ],
+          "setting": [
+            "ambulatorio"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "afecto",
+            "arousal"
+          ],
+          "descriptors": [
+            "dificultad para regular la respuesta emocional",
+            "activación fisiológica sostenida"
+          ],
+          "level": "I",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "internalizing"
+        ],
+        "rdoc_domains": [
+          "Negative Valence Systems",
+          "Arousal/Regulatory Systems"
+        ],
+        "pedagogy": {
+          "level": "posgrado",
+          "difficulty": "media",
+          "use_case": [
+            "tratamiento",
+            "neurobiologia"
+          ],
+          "recommended_format": [
+            "discusion_clinica"
+          ]
+        }
+      }
+    },
+    {
+      "id": "SLEEP_001",
+      "doc_id": "parasomnias",
+      "source": {
+        "file_name": "parasomnias.pdf",
+        "page_start": 1,
+        "page_end": 2,
+        "n_words": 272
+      },
+      "content": {
+        "text": "Las parasomnias son eventos físicos o experiencias indeseables que ocurren durante la entrada al sueño, dentro del sueño o al despertar. Incluyen trastornos del despertar NREM (sonambulismo, terrores nocturnos), trastorno del comportamiento del sueño REM y pesadillas. El diagnóstico preciso requiere historia clínica detallada y, a menudo, polisomnografía para descartar convulsiones u otras patologías.",
+        "snippet": "Las parasomnias son eventos físicos o experiencias indeseables que ocurren durante la entrada al sueño, dentro del sueño o al despertar. Incluyen trastornos del despertar NREM (sonambulismo, terrores nocturnos), trastorno del comportamiento del sueño REM y pesadillas..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "definicion",
+            "diagnostico"
+          ],
+          "diagnostic_systems": [
+            "ICSD-3"
+          ],
+          "domains": [
+            "sueño"
+          ],
+          "population": [
+            "adultos"
+          ],
+          "clinical_stage": [
+            "cronico"
+          ],
+          "setting": [
+            "ambulatorio"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "conciencia",
+            "conducta"
+          ],
+          "descriptors": [
+            "conductas automáticas durante el sueño",
+            "alteraciones del estado de conciencia al despertar"
+          ],
+          "level": "I",
+          "complexity": "S2"
+        },
+        "hitop_spectra": [
+          "neurocognitive"
+        ],
+        "rdoc_domains": [
+          "Arousal/Regulatory Systems"
+        ],
+        "pedagogy": {
+          "level": "posgrado",
+          "difficulty": "media",
+          "use_case": [
+            "diagnostico_diferencial"
+          ],
+          "recommended_format": [
+            "discusion_clinica"
+          ]
+        }
+      }
+    },
+    {
+      "id": "SEX_001",
+      "doc_id": "disfunciones_sexuales",
+      "source": {
+        "file_name": "disfunciones sexuales.pdf",
+        "page_start": 1,
+        "page_end": 2,
+        "n_words": 298
+      },
+      "content": {
+        "text": "Las disfunciones sexuales implican alteraciones clínicamente significativas en la capacidad de responder sexualmente o experimentar placer. Abarcan problemas en el deseo, excitación, orgasmo o dolor asociado. La etiología suele ser biopsicosocial (médica, farmacológica, psicológica, relacional), por lo que una evaluación integral es esencial para el manejo efectivo.",
+        "snippet": "Las disfunciones sexuales implican alteraciones clínicamente significativas en la capacidad de responder sexualmente o experimentar placer. Abarcan problemas en el deseo, excitación, orgasmo o dolor asociado. La etiología suele ser biopsicosocial..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "definicion",
+            "evaluacion_clinica"
+          ],
+          "diagnostic_systems": [
+            "DSM-5-TR",
+            "ICD-11"
+          ],
+          "domains": [
+            "sexualidad"
+          ],
+          "population": [
+            "adultos"
+          ],
+          "clinical_stage": [
+            "variable"
+          ],
+          "setting": [
+            "ambulatorio"
+          ]
+        },
+        "phenomenology": {
+          "domains": [
+            "afecto",
+            "conducta"
+          ],
+          "descriptors": [
+            "dificultades en la respuesta sexual",
+            "malestar subjetivo asociado a la función sexual"
+          ],
+          "level": "B",
+          "complexity": "S1"
+        },
+        "hitop_spectra": [
+          "internalizing"
+        ],
+        "rdoc_domains": [
+          "Positive Valence Systems"
+        ],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "media",
+          "use_case": [
+            "evaluacion_clinica"
+          ],
+          "recommended_format": [
+            "discusion_grupal"
+          ]
+        }
+      }
+    },
+    {
+      "id": "HIST_001",
+      "doc_id": "historia_psiquiatria",
+      "source": {
+        "file_name": "historia de la psiquiatria.pdf",
+        "page_start": 1,
+        "page_end": 2,
+        "n_words": 285
+      },
+      "content": {
+        "text": "La historia de la psiquiatría refleja la evolución de las concepciones de la enfermedad mental, influenciada por cambios culturales y científicos. Desde explicaciones morales y sobrenaturales tempranas, hasta los modelos biomédicos y psicosociales contemporáneos, la teoría y práctica psiquiátrica han experimentado una profunda transformación hacia la medicina basada en evidencia y los derechos humanos.",
+        "snippet": "La historia de la psiquiatría refleja la evolución de las concepciones de la enfermedad mental, influenciada por cambios culturales y científicos. Desde explicaciones morales y sobrenaturales tempranas, hasta los modelos biomédicos y psicosociales..."
+      },
+      "labels": {
+        "clinical": {
+          "content_type": [
+            "historia",
+            "marco_teorico"
+          ],
+          "diagnostic_systems": [],
+          "domains": [
+            "historia_psiquiatria"
+          ],
+          "population": [],
+          "clinical_stage": [],
+          "setting": [
+            "educativo"
+          ]
+        },
+        "phenomenology": {
+          "domains": [],
+          "descriptors": [],
+          "level": "NA",
+          "complexity": "NA"
+        },
+        "hitop_spectra": [],
+        "rdoc_domains": [],
+        "pedagogy": {
+          "level": "licenciatura",
+          "difficulty": "baja",
+          "use_case": [
+            "contexto_historico"
+          ],
+          "recommended_format": [
+            "lectura_guiada"
+          ]
+        }
+      }
+    }
+  ]
+}

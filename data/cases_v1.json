@@ -1,0 +1,2396 @@
+[
+  {
+    "case_id": "REAL_GEN_SCH_001_A",
+    "title": "Esquizofrenia: Fenomenología y Criterios",
+    "educational_level": "licenciatura",
+    "difficulty": "baja",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_SCH_001_A",
+        "text_content": "La esquizofrenia es un trastorno mental grave que implica una distorsión significativa de la realidad. Se caracteriza por síntomas positivos (alucinaciones, delirios, desorganización conductual), síntomas negativos (aplanamiento afectivo, alogia, avolición) y déficits cognitivos. Para el diagnóstico, los signos deben persistir al menos 6 meses, con un mes de síntomas activos, causando un deterioro marcado en el funcionamiento social o laboral."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_SCH_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el descriptor fenomenológico más relevante asociado a los síntomas positivos de la esquizofrenia.",
+        "expected_answer": "Alteraciones del curso y contenido del pensamiento",
+        "distractors": [
+          "Insomnio de conciliación",
+          "Crisis de pánico",
+          "Compulsiones de limpieza"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La esquizofrenia se define centralmente por la distorsión de la realidad. Las 'alteraciones del contenido del pensamiento' (delirios) y del curso (desorganización) son la base de los síntomas positivos descritos.",
+      "evidence_chunks": [
+        "CH_SCH_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Insomnio de conciliación",
+          "reason": "Es un síntoma inespecífico presente en ansiedad, depresión y múltiples condiciones médicas, no definitorio de psicosis."
+        },
+        {
+          "option": "Crisis de pánico",
+          "reason": "Corresponde a trastornos de ansiedad; aunque puede haber ansiedad en psicosis, no es el rasgo nuclear."
+        },
+        {
+          "option": "Compulsiones de limpieza",
+          "reason": "Son características del Trastorno Obsesivo-Compulsivo (TOC), no de la desorganización conductual psicótica."
+        }
+      ],
+      "take_home": "El diagnóstico requiere la presencia de distorsión de la realidad (síntomas positivos) y persistencia temporal (>6 meses)."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_SCH_002_A",
+    "title": "Esquizofrenia: Heterogeneidad Clínica",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_SCH_002_A",
+        "text_content": "La clínica es heterogénea: los síntomas positivos reflejan una exageración de funciones normales, mientras que los negativos implican una pérdida de capacidades. El deterioro cognitivo (atención, memoria de trabajo, funciones ejecutivas) es un predictor clave del pronóstico funcional. El diagnóstico requiere excluir causas orgánicas y trastornos del estado de ánimo con características psicóticas."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_SCH_002_A_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué hallazgo clínico representa la 'exageración de funciones normales' (síntomas positivos) descrita en el texto?",
+        "expected_answer": "Contenido delirante",
+        "distractors": [
+          "Insomnio de conciliación",
+          "Crisis de pánico",
+          "Compulsiones de limpieza"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Los síntomas positivos se definen como la presencia de fenómenos que no deberían estar ahí (exageración/distorsión). El contenido delirante es la producción de creencias falsas, ajustándose a esta definición.",
+      "evidence_chunks": [
+        "CH_SCH_002_A"
+      ],
+      "why_not": [
+        {
+          "option": "Insomnio de conciliación",
+          "reason": "Es una alteración del sueño, no un síntoma psicótico nuclear."
+        },
+        {
+          "option": "Crisis de pánico",
+          "reason": "Es una descarga autonómica aguda, no una distorsión cognitiva de la realidad."
+        },
+        {
+          "option": "Compulsiones de limpieza",
+          "reason": "Son conductas repetitivas dirigidas a reducir ansiedad, típicas del espectro obsesivo."
+        }
+      ],
+      "take_home": "Diferenciar síntomas positivos (exceso/distorsión) de negativos (déficit) y cognitivos es esencial, ya que estos últimos predicen mejor la funcionalidad."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_SCH_002_B",
+    "title": "Esquizofrenia: Diagnóstico Diferencial y RDoC",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_SCH_002_B",
+        "text_content": "La clínica es heterogénea. El deterioro cognitivo (atención, memoria de trabajo, funciones ejecutivas) es un predictor clave del pronóstico funcional. El diagnóstico requiere excluir causas orgánicas y trastornos del estado de ánimo con características psicóticas (esquizoafectivo o bipolar)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_SCH_002_B_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál es el criterio temporal y funcional que diferencia la Esquizofrenia de una Psicosis Reactiva Breve o Esquizofreniforme?",
+        "expected_answer": "Deterioro funcional y persistencia > 6 meses",
+        "distractors": [
+          "Síntomas transitorios (<1 semana)",
+          "Presencia de fiebre",
+          "Alteración exclusiva del sueño"
+        ]
+      },
+      {
+        "task_id": "T_SCH_002_B_2",
+        "type": "mcq_single_best",
+        "instruction": "Según el texto, ¿a qué dominio RDoC pertenecen los predictores del pronóstico funcional (memoria de trabajo, atención)?",
+        "expected_answer": "Cognitive Systems",
+        "distractors": [
+          "Negative Valence Systems",
+          "Arousal Systems",
+          "Social Processes"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Para T1: La cronicidad (6 meses) es el umbral arbitrario pero clínico que separa la esquizofrenia de otros espectros psicóticos. Para T2: Las funciones ejecutivas y memoria son el núcleo del dominio Cognitive Systems.",
+      "evidence_chunks": [
+        "CH_SCH_002_B"
+      ],
+      "why_not": [
+        {
+          "option": "Síntomas transitorios (<1 semana)",
+          "reason": "Esto sugeriría Psicosis Reactiva Breve, no Esquizofrenia."
+        },
+        {
+          "option": "Presencia de fiebre",
+          "reason": "Obliga a descartar causas orgánicas (infección, encefalitis), no es criterio de esquizofrenia."
+        },
+        {
+          "option": "Negative Valence Systems",
+          "reason": "Se refiere a sistemas de miedo, ansiedad y pérdida, no a procesamiento de información."
+        }
+      ],
+      "take_home": "En psicosis, el tiempo de evolución dicta el diagnóstico (Breve <1m, Esquizofreniforme 1-6m, Esquizofrenia >6m). El deterioro cognitivo no responde bien a antipsicóticos."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_SUI_001_A",
+    "title": "Suicidio: Fenomenología y Definiciones",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_SUI_001_A",
+        "text_content": "El suicidio es un problema de salud pública. Clínicamente, es crucial diferenciar entre: ideación suicida (pensamientos de muerte), planificación (método y oportunidad) e intento (conducta autolesiva con intención letal). Trastornos como depresión mayor y bipolaridad aumentan el riesgo en fases agudas."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_SUI_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el descriptor fenomenológico que corresponde a 'pensamientos de muerte' sin conducta activa.",
+        "expected_answer": "Ideación autolítica",
+        "distractors": [
+          "Hipervigilancia",
+          "Fatiga crónica",
+          "Logorrea"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La ideación autolítica se refiere exclusivamente al contenido del pensamiento (deseo de morir o matarse) antes de que exista un acto conductual.",
+      "evidence_chunks": [
+        "CH_SUI_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Hipervigilancia",
+          "reason": "Es un estado de alerta sensorial aumentado, típico de ansiedad o TEPT."
+        },
+        {
+          "option": "Fatiga crónica",
+          "reason": "Es un síntoma somático/energético de la depresión, no un pensamiento suicida per se."
+        },
+        {
+          "option": "Logorrea",
+          "reason": "Es un aumento en el flujo del habla, típico de la manía."
+        }
+      ],
+      "take_home": "Es vital distinguir ideación (pensamiento) de intento (acción), ya que la presencia de planificación marca la transición a alto riesgo."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_SUI_002_A",
+    "title": "Suicidio: Factores de Riesgo",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_SUI_002_A",
+        "text_content": "La evaluación del riesgo distingue factores estáticos (historia, género) de dinámicos (desesperanza, acceso a medios, intoxicación). La prevención prioriza la restricción de medios letales y el tratamiento de la patología de base."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_SUI_002_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el factor de riesgo dinámico (modificable) mencionado en el texto.",
+        "expected_answer": "Desesperanza",
+        "distractors": [
+          "Historial de intentos previos",
+          "Género masculino",
+          "Antecedentes familiares"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La desesperanza es un estado cognitivo-emocional fluido que puede cambiar con intervención terapéutica, clasificándose como factor dinámico, a diferencia de la historia personal que es inmutable.",
+      "evidence_chunks": [
+        "CH_SUI_002_A"
+      ],
+      "why_not": [
+        {
+          "option": "Historial de intentos previos",
+          "reason": "Es un factor estático (histórico); no se puede borrar lo que ya ocurrió."
+        },
+        {
+          "option": "Género masculino",
+          "reason": "Se considera un factor demográfico estático en los modelos de riesgo tradicionales."
+        },
+        {
+          "option": "Antecedentes familiares",
+          "reason": "Es un factor genético/histórico inmutable."
+        }
+      ],
+      "take_home": "La intervención en crisis se enfoca en los factores dinámicos (desesperanza, acceso a armas, intoxicación) porque son los únicos que podemos modificar en agudo."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_DEP_001_A",
+    "title": "Trastorno Depresivo Mayor: Criterios Diagnósticos",
+    "educational_level": "licenciatura",
+    "difficulty": "baja",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_DEP_001_A",
+        "text_content": "El Trastorno Depresivo Mayor se define por la presencia de al menos 5 síntomas durante un mínimo de 2 semanas, incluyendo obligatoriamente estado de ánimo deprimido o anhedonia. Otros síntomas incluyen cambios en peso/apetito, insomnio/hipersomnia, agitación/retraso psicomotor, fatiga, culpa excesiva y disfunción ejecutiva. La etiología abarca factores monoaminérgicos, inflamatorios y neuroendocrinos."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_DEP_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el síntoma cardinal obligatorio para el diagnóstico según los criterios mencionados.",
+        "expected_answer": "Estado de ánimo deprimido",
+        "distractors": [
+          "Déficit de atención",
+          "Tics motores",
+          "Ecolalia"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Para diagnosticar TDM, es requisito indispensable ('sine qua non') la presencia de ánimo deprimido o anhedonia (pérdida de interés). Sin uno de estos, no se cumple el criterio A.",
+      "evidence_chunks": [
+        "CH_DEP_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Déficit de atención",
+          "reason": "Es un síntoma cognitivo frecuente (disfunción ejecutiva), pero no es obligatorio ni definitorio por sí mismo."
+        },
+        {
+          "option": "Tics motores",
+          "reason": "Sugieren Trastorno de Tourette o efectos extrapiramidales, no depresión."
+        },
+        {
+          "option": "Ecolalia",
+          "reason": "Es un síntoma de desorganización del lenguaje asociado a psicosis o autismo."
+        }
+      ],
+      "take_home": "Regla de oro: 5 síntomas por 2 semanas, y uno DEBE ser tristeza o anhedonia."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_ADHD_001_A",
+    "title": "TDAH: Fenotipo y Evolución",
+    "educational_level": "licenciatura",
+    "difficulty": "baja",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_ADHD_001_A",
+        "text_content": "El TDAH es un trastorno del neurodesarrollo caracterizado por patrones persistentes de inatención (desviación de tareas, falta de persistencia) y/o hiperactividad-impulsividad que interfieren con el funcionamiento. Aunque inicia en la infancia, los síntomas frecuentemente persisten en la adultez, donde la hiperactividad motora puede transformarse en una sensación de inquietud interna."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_ADHD_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el descriptor fenomenológico asociado a la dimensión de inatención.",
+        "expected_answer": "Dificultad para sostener la atención",
+        "distractors": [
+          "Alucinaciones auditivas",
+          "Delirio persecutorio",
+          "Anhedonia"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El texto define la inatención como desviación de tareas y falta de persistencia, lo cual equivale clínicamente a la dificultad para sostener la atención (vigilancia).",
+      "evidence_chunks": [
+        "CH_ADHD_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Alucinaciones auditivas",
+          "reason": "Son alteraciones sensoperceptivas (Psicosis), no atencionales."
+        },
+        {
+          "option": "Delirio persecutorio",
+          "reason": "Es una alteración del contenido del pensamiento (Psicosis)."
+        },
+        {
+          "option": "Anhedonia",
+          "reason": "Es la incapacidad de disfrutar (Depresión/Esquizofrenia)."
+        }
+      ],
+      "take_home": "En adultos, la hiperactividad se internaliza (inquietud), pero la inatención suele manifestarse como desorganización y falta de persistencia."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_ADHD_002_A",
+    "title": "TDAH: Diagnóstico y Circuitos",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_ADHD_002_A",
+        "text_content": "La etiología incluye alta heredabilidad y desregulación de circuitos frontoestriatales (dopamina/noradrenalina). Para el diagnóstico, los síntomas deben presentarse en dos o más contextos (ej. casa y escuela) y no explicarse mejor por otro trastorno. No existen biomarcadores definitivos; la evaluación se basa en la historia clínica y escalas estandarizadas."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_ADHD_002_A_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué consecuencia clínica se deriva directamente de la desregulación de los circuitos frontoestriatales mencionados?",
+        "expected_answer": "Déficits en funciones ejecutivas",
+        "distractors": [
+          "Hipervigilancia autonómica",
+          "Fatiga crónica",
+          "Logorrea"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Los circuitos frontoestriatales gobiernan las funciones ejecutivas (memoria de trabajo, inhibición, planificación). Su disfunción es la base neurobiológica del TDAH.",
+      "evidence_chunks": [
+        "CH_ADHD_002_A"
+      ],
+      "why_not": [
+        {
+          "option": "Hipervigilancia autonómica",
+          "reason": "Asociada a ansiedad y circuitos de la amígdala/locus coeruleus."
+        },
+        {
+          "option": "Fatiga crónica",
+          "reason": "Síntoma inespecífico de depresión o condiciones médicas."
+        },
+        {
+          "option": "Logorrea",
+          "reason": "Síntoma de manía (aceleración del pensamiento)."
+        }
+      ],
+      "take_home": "El TDAH es un trastorno de las funciones ejecutivas. El diagnóstico es estrictamente clínico y requiere afectación transversal (varios contextos)."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_ADHD_002_B",
+    "title": "TDAH: Neurobiología y RDoC",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_ADHD_002_B",
+        "text_content": "La etiología incluye alta heredabilidad y desregulación de circuitos frontoestriatales (dopamina/noradrenalina). Para el diagnóstico, los síntomas deben presentarse en dos o más contextos (ej. casa y escuela) y no explicarse mejor por otro trastorno. No existen biomarcadores definitivos; la evaluación se basa en la historia clínica y escalas estandarizadas."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_ADHD_002_B_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el mecanismo etiológico o neurobiológico descrito.",
+        "expected_answer": "Desregulación frontoestriatal",
+        "distractors": [
+          "Atrofia hipocampal",
+          "Exceso de serotonina",
+          "Lesión parietal"
+        ]
+      },
+      {
+        "task_id": "T_ADHD_002_B_2",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el dominio RDoC primario asociado a la regulación cognitiva y control inhibitorio.",
+        "expected_answer": "Cognitive Systems",
+        "distractors": [
+          "Negative Valence Systems",
+          "Arousal Systems",
+          "Social Processes"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El TDAH se asienta en la disfunción de redes dopaminérgicas/noradrenérgicas que conectan el córtex prefrontal con el estriado, afectando el control cognitivo (Cognitive Systems en RDoC).",
+      "evidence_chunks": [
+        "CH_ADHD_002_B"
+      ],
+      "why_not": [
+        {
+          "option": "Atrofia hipocampal",
+          "reason": "Marcador de Enfermedad de Alzheimer o depresión crónica."
+        },
+        {
+          "option": "Exceso de serotonina",
+          "reason": "Causa Síndrome Serotoninérgico, no TDAH."
+        },
+        {
+          "option": "Negative Valence Systems",
+          "reason": "Dominio relacionado con miedo, ansiedad y respuesta a amenaza."
+        }
+      ],
+      "take_home": "RDoC conceptualiza el TDAH como un fallo en los sistemas de control cognitivo y recompensa, más allá de la simple 'falta de atención'."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_DELIR_001_A",
+    "title": "Delirium: Fenomenología Aguda",
+    "educational_level": "posgrado",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_DELIR_001_A",
+        "text_content": "El delirium es una alteración aguda de la atención (capacidad reducida para dirigir, centrar y mantener la atención) y la conciencia. Se distingue por su inicio rápido (horas a días) y su curso fluctuante durante el día. Es una urgencia médica frecuente, precipitada por enfermedades sistémicas, fármacos, o abstinencia de sustancias."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_DELIR_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el descriptor fenomenológico cardinal que distingue al delirium de la demencia.",
+        "expected_answer": "Inicio agudo y fluctuación del nivel de conciencia",
+        "distractors": [
+          "Hipervigilancia aislada",
+          "Fatiga crónica",
+          "Deterioro de memoria a largo plazo"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La clave diagnóstica es el perfil temporal: inicio súbito (agudo) y fluctuación (aparece y desaparece en el día). Esto lo separa de procesos neurocognitivos crónicos y estables.",
+      "evidence_chunks": [
+        "CH_DELIR_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Hipervigilancia aislada",
+          "reason": "Puede verse en delirium hiperactivo, pero no es el rasgo definitorio universal (existe el hipoactivo)."
+        },
+        {
+          "option": "Fatiga crónica",
+          "reason": "Síntoma constitucional inespecífico de larga evolución."
+        },
+        {
+          "option": "Deterioro de memoria a largo plazo",
+          "reason": "Característico de demencias (Alzheimer), no del delirium primario."
+        }
+      ],
+      "take_home": "Ante una alteración de conciencia aguda y fluctuante, piensa en Delirium (urgencia médica) antes que en Demencia o Psiquiatría."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_DELIR_002_A",
+    "title": "Delirium: Fisiopatología y Manejo",
+    "educational_level": "posgrado",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_DELIR_002_A",
+        "text_content": "La fisiopatología del delirium implica desequilibrios en neurotransmisores (ej. déficit de acetilcolina, exceso de dopamina), neuroinflamación y estrés oxidativo. El manejo es etiológico: identificar y tratar la causa médica subyacente, asegurar medidas de soporte (hidratación, orientación) y minimizar estresores ambientales."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_DELIR_002_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Basado en el texto, ¿cuál es el pilar fundamental del manejo del delirium?",
+        "expected_answer": "Identificar y tratar la causa médica subyacente",
+        "distractors": [
+          "Uso rutinario de antipsicóticos",
+          "Contención física inmediata",
+          "Psicoterapia intensiva"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Dado que el delirium es secundario a una noxa médica (infección, fármaco), la resolución depende de tratar esa causa. El manejo sintomático es secundario.",
+      "evidence_chunks": [
+        "CH_DELIR_002_A"
+      ],
+      "why_not": [
+        {
+          "option": "Uso rutinario de antipsicóticos",
+          "reason": "Solo se indican si hay agitación severa; no tratan la causa y pueden empeorar el cuadro."
+        },
+        {
+          "option": "Contención física inmediata",
+          "reason": "Medida de último recurso por riesgo de lesiones y aumento de agitación."
+        },
+        {
+          "option": "Psicoterapia intensiva",
+          "reason": "El paciente no tiene capacidad atencional para participar en psicoterapia."
+        }
+      ],
+      "take_home": "El delirium no es una enfermedad en sí misma, sino un signo de disfunción cerebral aguda. Busca la causa."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_DELIR_002_B",
+    "title": "Delirium: Mecanismos y RDoC",
+    "educational_level": "posgrado",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_DELIR_002_B",
+        "text_content": "La fisiopatología del delirium implica desequilibrios en neurotransmisores (ej. déficit de acetilcolina, exceso de dopamina), neuroinflamación y estrés oxidativo. El manejo es etiológico: identificar y tratar la causa médica subyacente, asegurar medidas de soporte (hidratación, orientación) y minimizar estresores ambientales."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_DELIR_002_B_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el enfoque terapéutico principal mencionado.",
+        "expected_answer": "Tratamiento de la causa subyacente",
+        "distractors": [
+          "Contención mecánica exclusiva",
+          "Benzodiacepinas a altas dosis",
+          "Psicoanálisis"
+        ]
+      },
+      {
+        "task_id": "T_DELIR_002_B_2",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el dominio RDoC primario asociado a la regulación de la vigilia y conciencia.",
+        "expected_answer": "Arousal/Regulatory Systems",
+        "distractors": [
+          "Cognitive Systems",
+          "Negative Valence Systems",
+          "Social Processes"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El delirium representa un fallo agudo en los sistemas de Arousal (despertar/alerta). Las benzodiacepinas (distractor) suelen empeorar el delirium salvo en abstinencia.",
+      "evidence_chunks": [
+        "CH_DELIR_002_B"
+      ],
+      "why_not": [
+        {
+          "option": "Benzodiacepinas a altas dosis",
+          "reason": "Son delirogénicas en ancianos; su uso se restringe a delirium por abstinencia alcohólica."
+        },
+        {
+          "option": "Cognitive Systems",
+          "reason": "Aunque la cognición falla, el déficit primario es el nivel de conciencia (Arousal)."
+        },
+        {
+          "option": "Negative Valence Systems",
+          "reason": "Se refiere a sistemas de amenaza/miedo, no al estado de conciencia."
+        }
+      ],
+      "take_home": "La hipótesis colinérgica (déficit) y dopaminérgica (exceso) explica por qué los anticolinérgicos precipitan delirium y los antipsicóticos pueden controlarlo."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_BIP_001_A",
+    "title": "Trastorno Bipolar: Definiciones",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_BIP_001_A",
+        "text_content": "El Trastorno Bipolar se caracteriza por la alternancia de episodios anímicos. El Tipo I requiere al menos un episodio de Manía (ánimo elevado/irritable ≥1 semana, con deterioro funcional grave). El Tipo II implica episodios de Hipomanía (≥4 días, cambio observable sin deterioro grave) y Depresión Mayor. La distinción entre manía e hipomanía es crítica para el diagnóstico."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_BIP_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el descriptor fenomenológico central de la fase maníaca.",
+        "expected_answer": "Elevación patológica del estado de ánimo",
+        "distractors": [
+          "Déficit de atención",
+          "Tics motores",
+          "Ecolalia"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El núcleo de la manía es la alteración del ánimo (elevado, expansivo o irritable). Sin esto, no hay diagnóstico de bipolaridad.",
+      "evidence_chunks": [
+        "CH_BIP_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Déficit de atención",
+          "reason": "Puede haber distractibilidad en manía, pero es secundario a la taquipsiquia, no el síntoma central."
+        },
+        {
+          "option": "Tics motores",
+          "reason": "Síntoma neurológico/Tourette."
+        },
+        {
+          "option": "Ecolalia",
+          "reason": "Repetición patológica del habla, inespecífico (autismo/catatonia)."
+        }
+      ],
+      "take_home": "La diferencia clave entre Bipolar I y II es la intensidad de la elevación: Manía (grave, >1 semana, hospitalización) vs Hipomanía (leve, >4 días, funcional)."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_BIP_002_A",
+    "title": "Trastorno Bipolar: Neurobiología y Manejo",
+    "educational_level": "posgrado",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_BIP_002_A",
+        "text_content": "Los modelos neurobiológicos implican desregulación de sistemas monoaminérgicos, alteraciones en ritmos circadianos y señalización intracelular. El Litio sigue siendo el tratamiento estándar ('gold standard'), junto con otros estabilizadores del ánimo y antipsicóticos atípicos, esenciales tanto para el manejo agudo de la manía como para el mantenimiento y prevención de recaídas."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_BIP_002_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Basado en el texto, ¿cuál es el fármaco considerado estándar de oro para el mantenimiento y prevención de recaídas?",
+        "expected_answer": "Litio",
+        "distractors": [
+          "Benzodiacepinas",
+          "Antidepresivos Tricíclicos",
+          "Estimulantes"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El texto explicita que el Litio es el 'gold standard'. Clínicamente, es el único fármaco con evidencia robusta antisuicida y preventiva a largo plazo en TB.",
+      "evidence_chunks": [
+        "CH_BIP_002_A"
+      ],
+      "why_not": [
+        {
+          "option": "Benzodiacepinas",
+          "reason": "Son coadyuvantes para agitación aguda o sueño, pero no estabilizan el ánimo ni previenen recaídas a largo plazo."
+        },
+        {
+          "option": "Antidepresivos Tricíclicos",
+          "reason": "Pueden inducir viraje a manía (switch) y no son la primera línea de mantenimiento."
+        },
+        {
+          "option": "Estimulantes",
+          "reason": "Están contraindicados en manía aguda ya que empeoran el cuadro."
+        }
+      ],
+      "take_home": "En Trastorno Bipolar, la prioridad es la estabilización del ánimo; el Litio es el pilar del tratamiento preventivo."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_BIP_002_B",
+    "title": "Trastorno Bipolar: RDoC y Mecanismos",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_BIP_002_B",
+        "text_content": "Los modelos neurobiológicos implican desregulación de sistemas monoaminérgicos y señalización intracelular. En el marco RDoC, la manía se asocia a una hiperactivación de los sistemas de aproximación y recompensa."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_BIP_002_B_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el dominio RDoC primario asociado a la búsqueda excesiva de objetivos y recompensa en la manía.",
+        "expected_answer": "Positive Valence Systems",
+        "distractors": [
+          "Negative Valence Systems",
+          "Cognitive Systems",
+          "Arousal/Regulatory Systems"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El dominio de 'Sistemas de Valencia Positiva' abarca la respuesta a la recompensa, el aprendizaje de refuerzo y el hábito, procesos centralmente alterados en la manía.",
+      "evidence_chunks": [
+        "CH_BIP_002_B"
+      ],
+      "why_not": [
+        {
+          "option": "Negative Valence Systems",
+          "reason": "Se refiere a sistemas de amenaza, miedo y pérdida (más asociado a ansiedad/depresión)."
+        },
+        {
+          "option": "Cognitive Systems",
+          "reason": "Aunque hay déficits cognitivos, el núcleo impulsivo de la manía es la recompensa."
+        },
+        {
+          "option": "Arousal/Regulatory Systems",
+          "reason": "Afecta el sueño y energía, pero la motivación hacia metas es Valencia Positiva."
+        }
+      ],
+      "take_home": "RDoC conceptualiza la manía no solo como 'ánimo alto', sino como una desregulación de los circuitos de recompensa y motivación."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_ASD_001_A",
+    "title": "Autismo: Dominios Nucleares",
+    "educational_level": "licenciatura",
+    "difficulty": "baja",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_ASD_001_A",
+        "text_content": "El Trastorno del Espectro Autista (TEA) se define por déficits persistentes en dos dominios: 1) Comunicación e interacción social (reciprocidad emocional, comunicación no verbal), y 2) Patrones restringidos y repetitivos de comportamiento (rigidez, intereses fijos)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_ASD_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el descriptor clínico correspondiente al primer dominio diagnóstico mencionado.",
+        "expected_answer": "Dificultades persistentes en la reciprocidad socioemocional",
+        "distractors": [
+          "Hipervigilancia autonómica",
+          "Fatiga crónica",
+          "Logorrea"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El Criterio A del DSM-5 para TEA exige déficits en la comunicación e interacción social, siendo la reciprocidad (ida y vuelta emocional) un componente clave.",
+      "evidence_chunks": [
+        "CH_ASD_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Hipervigilancia autonómica",
+          "reason": "Es un síntoma de ansiedad o TEPT."
+        },
+        {
+          "option": "Fatiga crónica",
+          "reason": "Inespecífico, común en depresión o condiciones médicas."
+        },
+        {
+          "option": "Logorrea",
+          "reason": "Habla acelerada típica de episodios maníacos."
+        }
+      ],
+      "take_home": "El TEA se diagnostica por la díada: Déficit Social + Conductas Repetitivas/Restringidas."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_ASD_002_A",
+    "title": "Autismo: Neurobiología y Clínica",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_ASD_002_A",
+        "text_content": "La etiología del TEA es genética y ambiental. Los hallazgos incluyen conectividad atípica y alteraciones en el procesamiento sensorial (hiper o hiporreactividad a estímulos). La intervención temprana mejora el pronóstico."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_ASD_002_A_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué manifestación clínica se deriva directamente de las alteraciones en el procesamiento sensorial descritas?",
+        "expected_answer": "Hiper o hiporreactividad a estímulos sensoriales",
+        "distractors": [
+          "Alucinaciones auditivas complejas",
+          "Delirios de control",
+          "Aplanamiento afectivo"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Las alteraciones sensoriales (ej. molestia extrema con ruidos, fascinación con luces) son parte del Criterio B del TEA y reflejan la conectividad atípica.",
+      "evidence_chunks": [
+        "CH_ASD_002_A"
+      ],
+      "why_not": [
+        {
+          "option": "Alucinaciones auditivas complejas",
+          "reason": "Son percepciones sin objeto (psicosis), distintas de la percepción alterada de un estímulo real (TEA)."
+        },
+        {
+          "option": "Delirios de control",
+          "reason": "Síntoma de primer rango de esquizofrenia."
+        },
+        {
+          "option": "Aplanamiento afectivo",
+          "reason": "Síntoma negativo de esquizofrenia; en TEA hay dificultad expresiva, no necesariamente falta de vivencia afectiva."
+        }
+      ],
+      "take_home": "La desregulación sensorial es tan prevalente en TEA que se incorporó formalmente como criterio diagnóstico en el DSM-5."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_ASD_002_B",
+    "title": "Autismo: Intervención Avanzada",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_ASD_002_B",
+        "text_content": "La identificación temprana y la intervención conductual intensiva (basada en análisis de conducta) se asocian con mejores resultados adaptativos. RDoC vincula los déficits sociales al dominio 'Systems for Social Processes'."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_ASD_002_B_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál es la intervención terapéutica con mayor evidencia para mejorar el funcionamiento adaptativo descrita?",
+        "expected_answer": "Intervención conductual temprana e intensiva",
+        "distractors": [
+          "Dieta libre de gluten",
+          "Quelación",
+          "Psicoanálisis clásico"
+        ]
+      },
+      {
+        "task_id": "T_ASD_002_B_2",
+        "type": "mcq_single_best",
+        "instruction": "En RDoC, ¿qué dominio explica la dificultad en comunicación no verbal y reciprocidad?",
+        "expected_answer": "Systems for Social Processes",
+        "distractors": [
+          "Cognitive Systems",
+          "Arousal Systems",
+          "Sensorimotor Systems"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Las terapias conductuales (ej. ABA, Denver) son el estándar de manejo. RDoC 'Social Processes' cubre percepción y comunicación social.",
+      "evidence_chunks": [
+        "CH_ASD_002_B"
+      ],
+      "why_not": [
+        {
+          "option": "Dieta libre de gluten",
+          "reason": "No tiene evidencia científica robusta como tratamiento nuclear del TEA."
+        },
+        {
+          "option": "Quelación",
+          "reason": "Peligrosa y sin base científica (teoría desmentida de metales pesados)."
+        },
+        {
+          "option": "Psicoanálisis clásico",
+          "reason": "Históricamente culpabilizaba a los padres ('madre nevera'); no es el tratamiento de elección actual."
+        }
+      ],
+      "take_home": "El tratamiento del TEA es educativo y conductual; los fármacos solo tratan comorbilidades."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_PTSD_001_A",
+    "title": "TEPT: Clusters Sintomáticos",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_PTSD_001_A",
+        "text_content": "El TEPT implica síntomas por >1 mes tras trauma. Clusters: 1) Intrusión (flashbacks, pesadillas), 2) Evitación, 3) Alteraciones cognitivas/anímicas negativas, 4) Hiperalerta (hipervigilancia)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_PTSD_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique un síntoma característico del clúster de 'Intrusión'.",
+        "expected_answer": "Recuerdos angustiosos recurrentes (flashbacks)",
+        "distractors": [
+          "Aplanamiento afectivo",
+          "Fuga de ideas",
+          "Verborrea"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La intrusión se define como la reexperimentación involuntaria del evento traumático. Los flashbacks son la forma más severa de intrusión.",
+      "evidence_chunks": [
+        "CH_PTSD_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Aplanamiento afectivo",
+          "reason": "Más asociado a esquizofrenia o al cluster de evitación/anestesia emocional, no intrusión."
+        },
+        {
+          "option": "Fuga de ideas",
+          "reason": "Síntoma cardinal de la manía."
+        },
+        {
+          "option": "Verborrea",
+          "reason": "Aumento del flujo del habla, típico de ansiedad o manía."
+        }
+      ],
+      "take_home": "Para diagnosticar TEPT se requiere al menos un síntoma de intrusión; es la 'huella' del trauma que invade el presente."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_PTSD_002_A",
+    "title": "TEPT: Neurobiología y Emoción",
+    "educational_level": "posgrado",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_PTSD_002_A",
+        "text_content": "La neurobiología del TEPT muestra hiperactividad de la amígdala (miedo) y fallo en la regulación prefrontal (freno). Esto explica la dificultad para regular la respuesta emocional y la extinción del miedo."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_PTSD_002_A_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué manifestación clínica resulta de la falla en la regulación prefrontal sobre la amígdala?",
+        "expected_answer": "Dificultad para regular la respuesta emocional (disregulación)",
+        "distractors": [
+          "Aplanamiento afectivo total",
+          "Euforia persistente",
+          "Amnesia anterógrada"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El córtex prefrontal normalmente inhibe la amígdala. Si falla, la respuesta de miedo/emoción se vuelve descontrolada y persistente.",
+      "evidence_chunks": [
+        "CH_PTSD_002_A"
+      ],
+      "why_not": [
+        {
+          "option": "Aplanamiento afectivo total",
+          "reason": "El TEPT suele cursar con *exceso* de reactividad emocional (o alternancia con entumecimiento), no aplanamiento constante."
+        },
+        {
+          "option": "Euforia persistente",
+          "reason": "Característica de la manía."
+        },
+        {
+          "option": "Amnesia anterógrada",
+          "reason": "Dificultad para crear memorias nuevas (ej. Korsakoff), no típica de TEPT (donde hay amnesia del trauma)."
+        }
+      ],
+      "take_home": "El TEPT es una falla en los mecanismos de extinción del miedo; el cerebro 'no aprende' que ya está a salvo."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_PTSD_002_B",
+    "title": "TEPT: Terapéutica y RDoC",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_PTSD_002_B",
+        "text_content": "El tratamiento de primera línea incluye psicoterapias focalizadas en el trauma (Exposición Prolongada). En RDoC, se asocia a los Sistemas de Valencia Negativa (Amenaza)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_PTSD_002_B_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál es el enfoque psicoterapéutico de primera línea mencionado?",
+        "expected_answer": "Psicoterapia focalizada en el trauma (ej. Exposición)",
+        "distractors": [
+          "Terapia de sueño aislada",
+          "Hipnosis regresiva",
+          "Terapia de apoyo inespecífica"
+        ]
+      },
+      {
+        "task_id": "T_PTSD_002_B_2",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué dominio RDoC engloba las respuestas a amenazas agudas (miedo) y potenciales (ansiedad)?",
+        "expected_answer": "Negative Valence Systems",
+        "distractors": [
+          "Cognitive Systems",
+          "Positive Valence Systems",
+          "Social Processes"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La exposición (confrontar el recuerdo) es necesaria para la habituación y reprocesamiento. El miedo es la emoción central de la Valencia Negativa.",
+      "evidence_chunks": [
+        "CH_PTSD_002_B"
+      ],
+      "why_not": [
+        {
+          "option": "Hipnosis regresiva",
+          "reason": "Riesgo de implantar falsos recuerdos; no es primera línea."
+        },
+        {
+          "option": "Terapia de apoyo inespecífica",
+          "reason": "Menos efectiva que las terapias focalizadas en trauma para reducir síntomas nucleares."
+        },
+        {
+          "option": "Positive Valence Systems",
+          "reason": "Se refiere a recompensa y motivación, lo opuesto a la amenaza."
+        }
+      ],
+      "take_home": "Evitar el recuerdo perpetúa el TEPT; el tratamiento efectivo requiere acercarse al trauma de forma segura."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_SLEEP_001_A",
+    "title": "Parasomnias: Fenomenología",
+    "educational_level": "posgrado",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_SLEEP_001_A",
+        "text_content": "Las parasomnias son eventos físicos indeseables al dormir. Incluyen sonambulismo (NREM) y trastorno conductual del sueño REM (actuación de sueños). Se manifiestan como conductas automáticas o complejas durante el sueño."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_SLEEP_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el descriptor fenomenológico central de las parasomnias descrito.",
+        "expected_answer": "Conductas automáticas o complejas durante el sueño",
+        "distractors": [
+          "Hipervigilancia nocturna",
+          "Hipersomnia diurna aislada",
+          "Parálisis total al despertar"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Lo definitorio de la parasomnia es la 'conducta' o 'experiencia' superpuesta al sueño, no la cantidad de sueño (insomnio/hipersomnia).",
+      "evidence_chunks": [
+        "CH_SLEEP_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Hipervigilancia nocturna",
+          "reason": "Síntoma de insomnio o ansiedad."
+        },
+        {
+          "option": "Hipersomnia diurna aislada",
+          "reason": "Sugiere Narcolepsia o Apnea, no parasomnia primariamente."
+        },
+        {
+          "option": "Parálisis total al despertar",
+          "reason": "Es la parálisis del sueño, un tipo específico, pero 'conductas automáticas' abarca mejor el grupo descrito (sonambulismo/REM)."
+        }
+      ],
+      "take_home": "Es crucial distinguir parasomnias NREM (confusión, amnesia, infancia) de REM (actuación de sueños, riesgo neurodegenerativo)."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_SEX_001_A",
+    "title": "Disfunciones Sexuales: Definición",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_SEX_001_A",
+        "text_content": "Las disfunciones sexuales son alteraciones clínicamente significativas en la capacidad de responder sexualmente o experimentar placer (deseo, excitación, orgasmo). Etiología biopsicosocial."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_SEX_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el descriptor fenomenológico esencial de la disfunción sexual.",
+        "expected_answer": "Dificultades en la respuesta sexual o el placer",
+        "distractors": [
+          "Alucinaciones visuales",
+          "Fuga de ideas",
+          "Compulsiones"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La definición nuclear es la falla en el ciclo de respuesta sexual humana (Deseo-Excitación-Orgasmo).",
+      "evidence_chunks": [
+        "CH_SEX_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Alucinaciones visuales",
+          "reason": "Psicosis."
+        },
+        {
+          "option": "Fuga de ideas",
+          "reason": "Manía."
+        },
+        {
+          "option": "Compulsiones",
+          "reason": "TOC (salvo que sea compulsión sexual, pero eso es adicción/impulsos, no disfunción por déficit)."
+        }
+      ],
+      "take_home": "Para ser trastorno, la disfunción debe causar malestar clínicamente significativo; si no hay distrés, es una variación, no una patología."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_HIST_001_A",
+    "title": "Historia de la Psiquiatría: Evolución Conceptual",
+    "educational_level": "licenciatura",
+    "difficulty": "baja",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HIST_001_A",
+        "text_content": "La historia de la psiquiatría refleja la evolución de las concepciones de la enfermedad mental, influenciada por cambios culturales y científicos. Desde explicaciones morales y sobrenaturales tempranas, hasta los modelos biomédicos y psicosociales contemporáneos, la teoría y práctica psiquiátrica han experimentado una profunda transformación hacia la medicina basada en evidencia y los derechos humanos."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HIST_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el paradigma integrador dominante en la práctica psiquiátrica actual descrito en el texto.",
+        "expected_answer": "Modelo biomédico y psicosocial basado en evidencia",
+        "distractors": [
+          "Modelo sobrenatural y moral",
+          "Institucionalización asilar exclusiva",
+          "Enfoque puramente psicodinámico"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El texto describe una transición histórica que culmina en la integración de modelos ('biomédicos y psicosociales') y la adopción de la 'medicina basada en evidencia' como estándar actual.",
+      "evidence_chunks": [
+        "CH_HIST_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Modelo sobrenatural y moral",
+          "reason": "Corresponde a etapas 'tempranas' de la historia, no a la práctica contemporánea."
+        },
+        {
+          "option": "Institucionalización asilar exclusiva",
+          "reason": "Es un modelo histórico de custodia que ha sido reemplazado por la atención comunitaria y derechos humanos."
+        },
+        {
+          "option": "Enfoque puramente psicodinámico",
+          "reason": "Aunque relevante, el modelo actual es integrador (biopsicosocial), no restringido a una sola escuela."
+        }
+      ],
+      "take_home": "La psiquiatría moderna no rechaza lo biológico ni lo social, sino que los integra bajo el paraguas de la evidencia científica."
+    }
+  },
+  {
+    "case_id": "REAL_GEN_HIST_001_B",
+    "title": "Historia de la Psiquiatría: Derechos Humanos",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HIST_001_B",
+        "text_content": "La historia de la psiquiatría refleja la evolución hacia la medicina basada en evidencia y los derechos humanos. Este cambio implica abandonar prácticas coercitivas innecesarias y centrarse en la autonomía del paciente y la recuperación funcional."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HIST_001_B_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el enfoque ético-terapéutico principal que guía la psiquiatría contemporánea.",
+        "expected_answer": "Medicina basada en evidencia y derechos humanos",
+        "distractors": [
+          "Paternalismo médico estricto",
+          "Contención mecánica rutinaria",
+          "Segregación permanente"
+        ]
+      },
+      {
+        "task_id": "T_HIST_001_B_2",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el dominio RDoC primario asociado (si aplica).",
+        "expected_answer": "N/A (Contexto Histórico/Ético)",
+        "distractors": [
+          "Cognitive Systems",
+          "Negative Valence Systems",
+          "Arousal Systems"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La transformación profunda mencionada se orienta hacia los 'derechos humanos', lo que implica un cambio desde el control asilar hacia la autonomía y la evidencia.",
+      "evidence_chunks": [
+        "CH_HIST_001_B"
+      ],
+      "why_not": [
+        {
+          "option": "Paternalismo médico estricto",
+          "reason": "Contrario al enfoque de derechos y autonomía del paciente."
+        },
+        {
+          "option": "Segregación permanente",
+          "reason": "Opuesto a la inclusión y recuperación funcional buscada actualmente."
+        }
+      ],
+      "take_home": "La evolución psiquiátrica no es solo técnica (fármacos), sino fundamentalmente ética (derechos humanos)."
+    }
+  },
+  {
+    "case_id": "EDU_01_HIST",
+    "title": "Evaluación: Signos de Psicosis Activa",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_01_A",
+        "text_content": "Paciente de 28 años. Motivo: 'mis vecinos me vigilan'. Evolución: 5 meses de deterioro funcional. Observación: higiene deficiente, contacto visual pobre, actitud suspicaz. Conducta: hipervigilante."
+      },
+      {
+        "chunk_id": "CH_EDU_01_B",
+        "text_content": "Pensamiento: contenido con ideas de autorreferencia ('cuando la gente ríe, es por mí'). Niega alucinaciones. Signos vitales estables."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_01_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué hallazgo del examen mental apoya con mayor especificidad un proceso psicótico activo?",
+        "expected_answer": "Ideas de autorreferencia con suspicacia",
+        "distractors": [
+          "Higiene deficiente",
+          "Latencia del discurso",
+          "Contacto visual pobre"
+        ]
+      },
+      {
+        "task_id": "T_EDU_01_2",
+        "type": "mcq_single_best",
+        "instruction": "Estudios iniciales para descartar causa orgánica (médica/neurológica):",
+        "expected_answer": "Biometría hemática, TSH/T4 y tamiz toxicológico",
+        "distractors": [
+          "Resonancia magnética funcional (fMRI)",
+          "Punción lumbar inmediata",
+          "Electroencefalograma (EEG) de rutina"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Las ideas de autorreferencia son un síntoma positivo (distorsión del contenido del pensamiento) inequívoco de psicosis. La higiene y el contacto visual son signos de deterioro inespecíficos.",
+      "evidence_chunks": [
+        "CH_EDU_01_B"
+      ],
+      "why_not": [
+        {
+          "option": "Higiene deficiente",
+          "reason": "Puede verse en depresión grave, demencia o autismo."
+        },
+        {
+          "option": "fMRI",
+          "reason": "Es una herramienta de investigación, no de diagnóstico clínico rutinario."
+        },
+        {
+          "option": "Punción lumbar",
+          "reason": "Invasiva; se reserva para sospecha de infección (fiebre, rigidez nuca) que este paciente no tiene."
+        }
+      ],
+      "take_home": "En un primer episodio psicótico, prioriza descartar causas metabólicas (tiroides) y tóxicas antes que buscar causas estructurales raras."
+    }
+  },
+  {
+    "case_id": "EDU_02_CLASS",
+    "title": "Clasificaciones: HiTOP y RDoC",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_02_A",
+        "text_content": "Paciente con ansiedad social marcada, evitación y perfeccionismo. HiTOP agrupa estos síntomas en espectros dimensionales para evitar comorbilidad artificial."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_02_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál es el espectro dominante según HiTOP para este patrón de síntomas (ansiedad/evitación)?",
+        "expected_answer": "Internalización (Internalizing)",
+        "distractors": [
+          "Trastorno del Pensamiento (Thought Disorder)",
+          "Externalización (Externalizing)",
+          "Antagonismo"
+        ]
+      },
+      {
+        "task_id": "T_EDU_02_2",
+        "type": "mcq_single_best",
+        "instruction": "En RDoC, ¿qué dominio se relaciona más con la respuesta a la amenaza y la evitación?",
+        "expected_answer": "Negative Valence Systems",
+        "distractors": [
+          "Positive Valence Systems",
+          "Social Processes",
+          "Arousal Systems"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La ansiedad y la depresión comparten la dimensión de 'Internalización' (dirigir el malestar hacia adentro). La evitación por miedo es una respuesta a la Amenaza (Valencia Negativa).",
+      "evidence_chunks": [
+        "CH_EDU_02_A"
+      ],
+      "why_not": [
+        {
+          "option": "Externalización",
+          "reason": "Implica impulsividad, agresión o consumo de sustancias (dirigir malestar hacia afuera)."
+        },
+        {
+          "option": "Positive Valence Systems",
+          "reason": "Regula la búsqueda de recompensa y motivación, no el miedo."
+        }
+      ],
+      "take_home": "Los nuevos modelos (HiTOP/RDoC) explican por qué un paciente tiene 'muchos diagnósticos' (comorbilidad): en realidad tiene una alteración en una dimensión subyacente compartida."
+    }
+  },
+  {
+    "case_id": "EDU_03_AFECTO",
+    "title": "Depresión: Rasgos Melancólicos",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_03_A",
+        "text_content": "50 años. 6 semanas de ánimo bajo y anhedonia. Empeoramiento matutino ('peor por las mañanas'). Despertar precoz (3:00 am). Pérdida de peso significativa y culpa excesiva."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_03_1",
+        "type": "mcq_single_best",
+        "instruction": "Identifique el especificador del episodio depresivo más probable.",
+        "expected_answer": "Con rasgos melancólicos",
+        "distractors": [
+          "Con rasgos atípicos",
+          "Con ansiedad",
+          "Patrón estacional"
+        ]
+      },
+      {
+        "task_id": "T_EDU_03_2",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué síntoma sería característico de rasgos ATÍPICOS (opuesto al caso descrito)?",
+        "expected_answer": "Hipersomnia y aumento de apetito/peso",
+        "distractors": [
+          "Despertar precoz",
+          "Variación diurna matutina",
+          "Anhedonia absoluta"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La tríada de insomnio terminal (despertar precoz), variación diurna (peor am) y anorexia/pérdida de peso define la Melancolía biológica clásica.",
+      "evidence_chunks": [
+        "CH_EDU_03_A"
+      ],
+      "why_not": [
+        {
+          "option": "Con rasgos atípicos",
+          "reason": "Se caracteriza por reactividad del humor, parálisis plúmbea y síntomas vegetativos inversos (comer/dormir mucho)."
+        },
+        {
+          "option": "Patrón estacional",
+          "reason": "Requiere relación temporal recurrente con estaciones del año (ej. invierno)."
+        }
+      ],
+      "take_home": "Identificar melancolía es crucial porque suele responder mejor a fármacos duales o tricíclicos que a psicoterapia sola."
+    }
+  },
+  {
+    "case_id": "EDU_04_ANSIEDAD",
+    "title": "Ansiedad: Diagnóstico Diferencial Orgánico",
+    "educational_level": "licenciatura",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_04_A",
+        "text_content": "Mujer de 32 años con 'pánico'. Palpitaciones, intolerancia al calor, pérdida de peso. Bocio leve, exoftalmos y temblor fino. TA 155/95, FC 128, febrícula (37.8°C)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_04_1",
+        "type": "mcq_single_best",
+        "instruction": "Diagnóstico médico prioritario a descartar antes de confirmar crisis de pánico:",
+        "expected_answer": "Tirotoxicosis / Tormenta Tiroidea",
+        "distractors": [
+          "Trastorno de Estrés Postraumático",
+          "Simulación",
+          "Trastorno de personalidad"
+        ]
+      },
+      {
+        "task_id": "T_EDU_04_2",
+        "type": "mcq_single_best",
+        "instruction": "Estudio inicial confirmatorio:",
+        "expected_answer": "Perfil tiroideo (TSH, T4 libre)",
+        "distractors": [
+          "Prueba de provocación con CO2",
+          "Resonancia magnética",
+          "Electroencefalograma"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La presencia de bocio, exoftalmos y fiebre asociada a taquicardia son signos de organicidad (tiroides). El Pánico es un diagnóstico de exclusión.",
+      "evidence_chunks": [
+        "CH_EDU_04_A"
+      ],
+      "why_not": [
+        {
+          "option": "TEPT",
+          "reason": "No explica la fiebre, el bocio ni el exoftalmos."
+        },
+        {
+          "option": "Simulación",
+          "reason": "No se pueden simular signos vitales alterados (fiebre, taquicardia) ni hallazgos anatómicos (bocio)."
+        },
+        {
+          "option": "Prueba de provocación con CO2",
+          "reason": "Usada en investigación de pánico, pero aquí la prioridad es la causa metabólica."
+        }
+      ],
+      "take_home": "Taquicardia + Pérdida de Peso + Calor = Piensa en Tiroides. No psiquiatrices síntomas vitales alterados."
+    }
+  },
+  {
+    "case_id": "EDU_05_TEPT",
+    "title": "TEPT: Diagnóstico Sindromático",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_05_A",
+        "text_content": "Tras asalto hace 2 meses. Flashbacks, pesadillas, evitación e hipervigilancia. Disfunción laboral."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_05_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué síntoma corresponde al clúster de Intrusión?",
+        "expected_answer": "Flashbacks (reexperimentación)",
+        "distractors": [
+          "Evitación de lugares",
+          "Irritabilidad",
+          "Anhedonia"
+        ]
+      },
+      {
+        "task_id": "T_EDU_05_2",
+        "type": "mcq_single_best",
+        "instruction": "Diagnóstico sindromático más probable con 2 meses de evolución:",
+        "expected_answer": "Trastorno de Estrés Postraumático (TEPT)",
+        "distractors": [
+          "Trastorno de Estrés Agudo",
+          "Trastorno de Adaptación",
+          "Fobia específica"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El TEPT requiere >1 mes de síntomas. Los flashbacks son la marca distintiva de la intrusión traumática.",
+      "evidence_chunks": [
+        "CH_EDU_05_A"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno de Estrés Agudo",
+          "reason": "Solo válido durante el primer mes (3 días a 4 semanas) post-trauma."
+        },
+        {
+          "option": "Trastorno de Adaptación",
+          "reason": "Se usa cuando no se cumplen criterios completos de TEPT (ej. faltan flashbacks) o el estresor es menor."
+        },
+        {
+          "option": "Evitación",
+          "reason": "Es un clúster separado (esfuerzos para no pensar/sentir/visitar)."
+        }
+      ],
+      "take_home": "La cronología define el diagnóstico: Reacción normal (<3 días) -> Estrés Agudo (<1 mes) -> TEPT (>1 mes)."
+    }
+  },
+  {
+    "case_id": "EDU_06_NEURO",
+    "title": "Neurodesarrollo: TEA Nivel 1 en Adultos",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_06_A",
+        "text_content": "Ingeniero de 35 años. Dificultad persistente en reciprocidad social, literalidad extrema en el lenguaje, problemas para leer indirectas. Patrones restrictivos: rituales rígidos de organización; distrés notable si se alteran. Intereses circunscritos, colecciona datos de un tema específico."
+      },
+      {
+        "chunk_id": "CH_EDU_06_B",
+        "text_content": "Historia: reporta 'siempre fui así', pocos amigos en infancia, preferencias por rutinas. No hay historia de delirios, alucinaciones ni deterioro cognitivo progresivo."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_06_1",
+        "type": "mcq_single_best",
+        "instruction": "Diagnóstico principal basado en la presentación clínica:",
+        "expected_answer": "Trastorno del Espectro Autista (Nivel 1)",
+        "distractors": [
+          "Trastorno de Personalidad Obsesivo-Compulsiva",
+          "Esquizofrenia",
+          "TDAH exclusivamente"
+        ]
+      },
+      {
+        "task_id": "T_EDU_06_2",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué elemento anamnéstico es indispensable para confirmar el diagnóstico en la adultez?",
+        "expected_answer": "Historia de déficits sociales y rigidez desde la infancia temprana",
+        "distractors": [
+          "Conflicto laboral reciente",
+          "Respuesta a ISRS",
+          "Puntaje alto en escala de tamizaje aislada"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El TEA se define por la díada de déficit social + patrones restrictivos presentes desde el desarrollo temprano. Aunque comparte rigidez con el TPOC, los déficits en la reciprocidad socioemocional son específicos de TEA.",
+      "evidence_chunks": [
+        "CH_EDU_06_B"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno de Personalidad Obsesivo-Compulsiva",
+          "reason": "El TPOC se centra en el orden y control, pero no presenta necesariamente déficits en la lectura de señales sociales o literalidad."
+        },
+        {
+          "option": "Esquizofrenia",
+          "reason": "No hay síntomas psicóticos (delirios/alucinaciones) y el curso es estable desde la infancia, no deteriorante."
+        }
+      ],
+      "take_home": "En adultos 'funcionales', busca la literalidad y la historia infantil para diferenciar TEA de trastornos de personalidad."
+    }
+  },
+  {
+    "case_id": "EDU_07_TDAH",
+    "title": "TDAH: Fenotipo Adulto",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_07_A",
+        "text_content": "Femenina con fallas crónicas en funciones ejecutivas: procrastinación, olvidos y dificultad para sostener atención. Refiere impulsividad verbal. Describe 'inquietud interna' desde adolescencia; no necesariamente hiperactividad motora franca."
+      },
+      {
+        "chunk_id": "CH_EDU_07_B",
+        "text_content": "Impacto: proyectos inconclusos, retrasos. Niega episodios de ánimo elevado (manía) o disminución de sueño sin fatiga. Ansiedad presente, secundaria a desorganización."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_07_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál es la manifestación clínica típica de la hiperactividad en el adulto?",
+        "expected_answer": "Inquietud subjetiva interna",
+        "distractors": [
+          "Correr y saltar excesivamente",
+          "Agresividad física",
+          "Somnolencia diurna"
+        ]
+      },
+      {
+        "task_id": "T_EDU_07_2",
+        "type": "mcq_single_best",
+        "instruction": "Dato clave para diferenciar TDAH de Trastorno Bipolar en este caso:",
+        "expected_answer": "Ausencia de episodios de euforia y curso crónico estable",
+        "distractors": [
+          "Presencia de distracción",
+          "Quejas de memoria",
+          "Inquietud motora"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La hiperactividad motora infantil evoluciona hacia una sensación de desasosiego interno en el adulto. La ausencia de ciclicidad anímica descarta bipolaridad primaria.",
+      "evidence_chunks": [
+        "CH_EDU_07_A",
+        "CH_EDU_07_B"
+      ],
+      "why_not": [
+        {
+          "option": "Correr y saltar excesivamente",
+          "reason": "Típico de la infancia, raro en adultos por maduración y normas sociales."
+        },
+        {
+          "option": "Presencia de distracción",
+          "reason": "Síntoma compartido por ambos trastornos (en manía/depresión también hay inatención), no discrimina por sí solo."
+        }
+      ],
+      "take_home": "El TDAH es un trastorno del 'hacer' (ejecución), no del 'saber'. En adultos, la desorganización crónica es el sello distintivo."
+    }
+  },
+  {
+    "case_id": "EDU_08_IMPULSOS",
+    "title": "Control de Impulsos: Trastorno Explosivo Intermitente",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_08_A",
+        "text_content": "Masculino con estallidos de ira desproporcionados ante provocaciones mínimas (tráfico, filas). Episodios breves (<30 min), seguidos de culpa/remordimiento inmediatamente."
+      },
+      {
+        "chunk_id": "CH_EDU_08_B",
+        "text_content": "No hay ganancia instrumental (no busca dinero ni poder). Niega consumo agudo de sustancias ni episodios maníacos."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_08_1",
+        "type": "mcq_single_best",
+        "instruction": "Diagnóstico más probable ante la desproporción y falta de intencionalidad:",
+        "expected_answer": "Trastorno Explosivo Intermitente",
+        "distractors": [
+          "Trastorno de Personalidad Antisocial",
+          "Manía aguda",
+          "Trastorno Límite de la Personalidad"
+        ]
+      },
+      {
+        "task_id": "T_EDU_08_2",
+        "type": "mcq_single_best",
+        "instruction": "Intervención de seguridad prioritaria ante riesgo de agresión:",
+        "expected_answer": "Plan de seguridad: identificar disparadores y retirar acceso a armas",
+        "distractors": [
+          "Ignorar el riesgo por la presencia de culpa",
+          "Sedación forzada preventiva",
+          "Confrontación directa durante la crisis"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El TEI se caracteriza por la falla en resistir impulsos agresivos que son desproporcionados y no premeditados (impulsivos, no instrumentales).",
+      "evidence_chunks": [
+        "CH_EDU_08_A",
+        "CH_EDU_08_B"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno de Personalidad Antisocial",
+          "reason": "Utiliza la agresión de forma instrumental (para obtener algo) y típicamente carece de remordimiento."
+        },
+        {
+          "option": "Manía aguda",
+          "reason": "La irritabilidad sería sostenida y acompañada de grandiosidad/insomnio, no episódica y breve."
+        }
+      ],
+      "take_home": "La presencia de remordimiento genuino post-episodio es un diferenciador clave entre TEI y psicopatía/antisocial."
+    }
+  },
+  {
+    "case_id": "EDU_09_TOC",
+    "title": "TOC: Función de la Compulsión",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_09_A",
+        "text_content": "Paciente con obsesiones de contaminación (intrusivas, egodistónicas). Realiza lavado de manos 4 horas al día hasta sangrar (daño físico)."
+      },
+      {
+        "chunk_id": "CH_EDU_09_B",
+        "text_content": "Reconoce que la probabilidad de contagio es baja (insight conservado), pero la ansiedad lo obliga a continuar. Deterioro laboral severo."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_09_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál es la función conductual primaria de la compulsión en el ciclo del TOC?",
+        "expected_answer": "Neutralizar la ansiedad provocada por la obsesión (refuerzo negativo)",
+        "distractors": [
+          "Obtener placer directo (refuerzo positivo)",
+          "Higiene real necesaria",
+          "Confirmar una idea delirante"
+        ]
+      },
+      {
+        "task_id": "T_EDU_09_2",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué dato indica gravedad clínica severa en este caso?",
+        "expected_answer": "Tiempo invertido (>1 hora/día) y presencia de daño físico",
+        "distractors": [
+          "El contenido de contaminación (es común)",
+          "La presencia de insight",
+          "El lavado post-comida"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Las compulsiones son conductas repetitivas impulsadas por la necesidad de reducir el distrés de la obsesión, no por placer. El daño tisular indica una severidad que requiere tratamiento intensivo.",
+      "evidence_chunks": [
+        "CH_EDU_09_A"
+      ],
+      "why_not": [
+        {
+          "option": "Obtener placer directo",
+          "reason": "Característica de las adicciones o impulsos, no del TOC (donde es egodistónico)."
+        },
+        {
+          "option": "Confirmar una idea delirante",
+          "reason": "El paciente reconoce que es excesivo (insight), lo que lo diferencia de la psicosis."
+        }
+      ],
+      "take_home": "El ciclo del TOC se mantiene por refuerzo negativo: la compulsión alivia la ansiedad momentáneamente, reforzando la conducta."
+    }
+  },
+  {
+    "case_id": "EDU_10_SUBST",
+    "title": "Urgencias: Delirium Tremens",
+    "educational_level": "licenciatura",
+    "difficulty": "trampa",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_10_A",
+        "text_content": "Alcohólico crónico, suspende consumo hace 48h. Presenta agitación, temblor, micropsias (alucinaciones visuales) y desorientación."
+      },
+      {
+        "chunk_id": "CH_EDU_10_B",
+        "text_content": "Signos vitales: TA 160/100, FC 120, Temp 38.2°C (inestabilidad autonómica). Antecedente de convulsión reciente."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_10_1",
+        "type": "mcq_single_best",
+        "instruction": "Diagnóstico de urgencia médica más probable:",
+        "expected_answer": "Delirium Tremens",
+        "distractors": [
+          "Encefalopatía de Wernicke",
+          "Esquizofrenia paranoide",
+          "Intoxicación aguda por cocaína"
+        ]
+      },
+      {
+        "task_id": "T_EDU_10_2",
+        "type": "mcq_single_best",
+        "instruction": "Pilar del manejo farmacológico agudo:",
+        "expected_answer": "Benzodiacepinas a dosis respuesta",
+        "distractors": [
+          "Antipsicóticos en monoterapia",
+          "Antidepresivos",
+          "Betabloqueadores aislados"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El Delirium Tremens es la forma más grave de abstinencia, definida por alteración de conciencia + hiperactividad autonómica severa (fiebre, taquicardia) + alucinaciones. Mortalidad alta sin tratamiento.",
+      "evidence_chunks": [
+        "CH_EDU_10_B"
+      ],
+      "why_not": [
+        {
+          "option": "Encefalopatía de Wernicke",
+          "reason": "Se presenta con confusión, ataxia y oftalmoplejia, pero no típicamente con la tormenta autonómica del DT."
+        },
+        {
+          "option": "Esquizofrenia paranoide",
+          "reason": "No cursa con desorientación, fiebre ni taquicardia severa; las alucinaciones del DT son visuales (zoopsias/micropsias)."
+        }
+      ],
+      "take_home": "Ante un paciente agitado con fiebre y taquicardia tras dejar el alcohol, trata como DT: Benzodiacepinas + Tiamina."
+    }
+  },
+  {
+    "case_id": "EDU_11_PSIC",
+    "title": "Psicosis: Fenomenología y HiTOP",
+    "educational_level": "licenciatura",
+    "difficulty": "baja",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_11_A",
+        "text_content": "19 años. 7 meses de voces críticas y creencia de mensajes cifrados (delirios de referencia). Afecto restringido, aislamiento y deterioro escolar."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_11_1",
+        "type": "mcq_single_best",
+        "instruction": "Ejemplo de síntoma positivo presente en el caso:",
+        "expected_answer": "Ideas delirantes de referencia y alucinaciones auditivas",
+        "distractors": [
+          "Afecto restringido",
+          "Aislamiento social",
+          "Deterioro escolar"
+        ]
+      },
+      {
+        "task_id": "T_EDU_11_2",
+        "type": "mcq_single_best",
+        "instruction": "¿En qué espectro HiTOP se ubica principalmente esta sintomatología?",
+        "expected_answer": "Thought Disorder (Trastorno del Pensamiento)",
+        "distractors": [
+          "Internalización",
+          "Externalización",
+          "Somatoformo"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Los síntomas positivos (voces, delirios) son la esencia del 'Thought Disorder' en HiTOP. El afecto restringido corresponde a síntomas negativos.",
+      "evidence_chunks": [
+        "CH_EDU_11_A"
+      ],
+      "why_not": [
+        {
+          "option": "Afecto restringido",
+          "reason": "Es un síntoma negativo (déficit), no positivo (producción)."
+        },
+        {
+          "option": "Internalización",
+          "reason": "Domina en ansiedad/depresión, no en psicosis franca."
+        }
+      ],
+      "take_home": "HiTOP reclasifica la 'esquizofrenia' dentro del espectro de Trastornos del Pensamiento, reconociendo la dimensionalidad de los síntomas psicóticos."
+    }
+  },
+  {
+    "case_id": "EDU_12_ORG",
+    "title": "Psiquiatría de Enlace: Delirium Infeccioso",
+    "educational_level": "licenciatura",
+    "difficulty": "trampa",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_12_A",
+        "text_content": "85 años con demencia previa. Cambio súbito (horas) de conducta: agitación, desorientación y fiebre (38.8°C). Atención fluctuante. Disuria reciente."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_12_1",
+        "type": "mcq_single_best",
+        "instruction": "Conducta inicial prioritaria ante el cambio agudo:",
+        "expected_answer": "Buscar y tratar foco infeccioso (prob. urinario)",
+        "distractors": [
+          "Sedación profunda inmediata",
+          "Ingreso a unidad psiquiátrica",
+          "Aumentar dosis de memantina"
+        ]
+      },
+      {
+        "task_id": "T_EDU_12_2",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué dato distingue este cuadro de la progresión de su demencia?",
+        "expected_answer": "Inicio agudo (horas) y fluctuación de la atención",
+        "distractors": [
+          "La edad del paciente",
+          "La presencia de desorientación",
+          "El antecedente de Alzheimer"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Un cambio mental agudo con fiebre en un anciano es delirium (causa médica) hasta demostrar lo contrario. La infección urinaria es la causa más común.",
+      "evidence_chunks": [
+        "CH_EDU_12_A"
+      ],
+      "why_not": [
+        {
+          "option": "Ingreso a unidad psiquiátrica",
+          "reason": "Es un error grave; el paciente requiere manejo médico/hospitalario por la sepsis potencial, no psiquiátrico."
+        },
+        {
+          "option": "Aumentar dosis de memantina",
+          "reason": "No trata la causa aguda y podría no ser efectivo en agudo."
+        }
+      ],
+      "take_home": "En geriatría: Agitación súbita = Delirium. Busca la infección, el fármaco o la deshidratación."
+    }
+  },
+  {
+    "case_id": "EDU_16_URGENCIAS",
+    "title": "Urgencias: Síndrome Serotoninérgico",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_16_A",
+        "text_content": "Paciente que tomó fluoxetina + tramadol. Presenta clonus ocular y patelar, hiperreflexia generalizada, midriasis y ruidos intestinales aumentados."
+      },
+      {
+        "chunk_id": "CH_EDU_16_B",
+        "text_content": "SIGNOS VITALES: TA 160/95 | Temp 39.0°C | FC 118. Diaforesis profusa."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_16_1",
+        "type": "mcq_single_best",
+        "instruction": "Diagnóstico más probable ante la combinación farmacológica y clínica:",
+        "expected_answer": "Síndrome Serotoninérgico",
+        "distractors": [
+          "Síndrome Neuroléptico Maligno (SNM)",
+          "Crisis hipertensiva primaria",
+          "Meningitis bacteriana"
+        ]
+      },
+      {
+        "task_id": "T_EDU_16_2",
+        "type": "mcq_single_best",
+        "instruction": "Hallazgo clínico que distingue fuertemente el Síndrome Serotoninérgico del SNM:",
+        "expected_answer": "Clonus e hiperreflexia (neuromuscular hiperactivo)",
+        "distractors": [
+          "Rigidez en tubo de plomo",
+          "Bradicinesia marcada",
+          "Hiporreflexia"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El tramadol tiene actividad serotoninérgica y, combinado con ISRS, precipita toxicidad. La tríada de Hunter (clonus, agitación, diaforesis/hipertermia) es diagnóstica.",
+      "evidence_chunks": [
+        "CH_EDU_16_A",
+        "CH_EDU_16_B"
+      ],
+      "why_not": [
+        {
+          "option": "Síndrome Neuroléptico Maligno",
+          "reason": "Cursa con rigidez severa ('tubo de plomo') e hiporreflexia, y se asocia a antipsicóticos, no a ISRS+Tramadol."
+        },
+        {
+          "option": "Meningitis bacteriana",
+          "reason": "Aunque hay fiebre, el clonus y la historia farmacológica clara apuntan a toxidrome, no a infección meníngea."
+        }
+      ],
+      "take_home": "Hiperreflexia + Clonus = Serotonina. Rigidez + Hiporreflexia = Dopamina (SNM). Ambos matan por hipertermia."
+    }
+  },
+  {
+    "case_id": "EDU_17_SEXUAL",
+    "title": "Sexualidad: Disfunción por ISRS",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_17_A",
+        "text_content": "Paciente en tratamiento con sertralina. Depresión mejoró, pero presenta anorgasmia y disminución de libido desde el inicio del fármaco."
+      },
+      {
+        "chunk_id": "CH_EDU_17_B",
+        "text_content": "No hay disfunción eréctil previa. Niega síntomas depresivos actuales (eutimia). TSH normal."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_17_1",
+        "type": "mcq_single_best",
+        "instruction": "Mecanismo fisiopatológico más probable:",
+        "expected_answer": "Efecto adverso serotoninérgico (estimulación 5-HT2)",
+        "distractors": [
+          "Recaída depresiva",
+          "Hipogonadismo primario",
+          "Simulación"
+        ]
+      },
+      {
+        "task_id": "T_EDU_17_2",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué dato descartaría la 'recaída depresiva' como causa principal?",
+        "expected_answer": "La ausencia de anhedonia y tristeza (eutimia)",
+        "distractors": [
+          "La presencia de anorgasmia",
+          "El uso de sertralina",
+          "La duración del tratamiento"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La disfunción sexual es un efecto adverso muy común de los ISRS (hasta 60%). La secuencia temporal (inicio con fármaco) y la mejoría anímica descartan que sea síntoma de depresión.",
+      "evidence_chunks": [
+        "CH_EDU_17_A",
+        "CH_EDU_17_B"
+      ],
+      "why_not": [
+        {
+          "option": "Recaída depresiva",
+          "reason": "El paciente está eutímico ('depresión mejoró')."
+        },
+        {
+          "option": "Hipogonadismo primario",
+          "reason": "Poco probable que inicie súbitamente coincidiendo con la toma del fármaco sin otros signos."
+        }
+      ],
+      "take_home": "Pregunta siempre por la esfera sexual en pacientes con ISRS; muchos abandonan el tratamiento por este efecto silente."
+    }
+  },
+  {
+    "case_id": "EDU_18_TCA",
+    "title": "TCA: Criterios de Ingreso en Anorexia",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_18_A",
+        "text_content": "Adolescente con amenorrea, lanugo, restricción severa y miedo a ganar peso."
+      },
+      {
+        "chunk_id": "CH_EDU_18_B",
+        "text_content": "SIGNOS VITALES: FC 42 lpm (bradicardia) | TA 80/50 | Temp 35.5°C."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_18_1",
+        "type": "mcq_single_best",
+        "instruction": "Criterio absoluto de hospitalización médica identificado:",
+        "expected_answer": "Bradicardia severa (<45 lpm) e inestabilidad hemodinámica",
+        "distractors": [
+          "Presencia de lanugo",
+          "Amenorrea secundaria",
+          "Deseo de hacer ejercicio"
+        ]
+      },
+      {
+        "task_id": "T_EDU_18_2",
+        "type": "mcq_single_best",
+        "instruction": "Riesgo principal al iniciar realimentación rápida sin supervisión:",
+        "expected_answer": "Síndrome de Realimentación (hipofosfatemia, falla cardíaca)",
+        "distractors": [
+          "Ganancia de peso excesiva inmediata",
+          "Desarrollo de diabetes tipo 2",
+          "Hipotiroidismo"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La bradicardia extrema y la hipotermia indican que el cuerpo está en 'modo ahorro' crítico. El riesgo de paro cardíaco es real.",
+      "evidence_chunks": [
+        "CH_EDU_18_B"
+      ],
+      "why_not": [
+        {
+          "option": "Amenorrea",
+          "reason": "Es un síntoma común y diagnóstico, pero no indica riesgo de muerte inminente por sí solo."
+        },
+        {
+          "option": "Presencia de lanugo",
+          "reason": "Signo de desnutrición crónica, no de inestabilidad aguda."
+        }
+      ],
+      "take_home": "La Anorexia Nervosa tiene la mayor mortalidad de todos los trastornos psiquiátricos. Los signos vitales son la brújula de la urgencia."
+    }
+  },
+  {
+    "case_id": "EDU_19_PERS",
+    "title": "Personalidad: Trastorno Límite (TLP)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_19_A",
+        "text_content": "Mujer con relaciones inestables, miedo al abandono y sensación crónica de vacío. Historial de autolesiones no suicidas."
+      },
+      {
+        "chunk_id": "CH_EDU_19_B",
+        "text_content": "Impulsividad (gastos), ira intensa. Ideación paranoide transitoria bajo estrés. Niega psicosis persistente."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_19_1",
+        "type": "mcq_single_best",
+        "instruction": "Dimensión psicopatológica dominante (HiTOP):",
+        "expected_answer": "Desregulación emocional y Desinhibición (Externalización)",
+        "distractors": [
+          "Trastorno del Pensamiento puro",
+          "Aplanamiento afectivo",
+          "Antagonismo exclusivo"
+        ]
+      },
+      {
+        "task_id": "T_EDU_19_2",
+        "type": "mcq_single_best",
+        "instruction": "Intervención de seguridad inicial ante autolesiones:",
+        "expected_answer": "Evaluar riesgo suicida y crear Plan de Seguridad",
+        "distractors": [
+          "Ignorar para no reforzar la conducta",
+          "Hospitalización involuntaria inmediata",
+          "Prescribir benzodiacepinas sin límite"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El TLP se define por la inestabilidad en afecto, autoimagen y relaciones. La ideación paranoide es reactiva al estrés, no una psicosis estructural.",
+      "evidence_chunks": [
+        "CH_EDU_19_B"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno del Pensamiento puro",
+          "reason": "Corresponde a esquizofrenia; en TLP la prueba de realidad se conserva fuera de crisis."
+        },
+        {
+          "option": "Ignorar para no reforzar",
+          "reason": "Peligroso; siempre se debe evaluar la letalidad médica y la intención suicida."
+        }
+      ],
+      "take_home": "Las autolesiones en TLP suelen tener función de regulación emocional (alivio de tensión), no siempre intención de muerte, pero el riesgo suicida es alto."
+    }
+  },
+  {
+    "case_id": "EDU_20_TALLER",
+    "title": "Catatonia: Diagnóstico y Manejo",
+    "educational_level": "residencia",
+    "difficulty": "alta",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_20_A",
+        "text_content": "Paciente inmóvil, mutista, con flexibilidad cérea y negativismo. Ingesta pobre."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_20_1",
+        "type": "mcq_single_best",
+        "instruction": "Prueba diagnóstica y terapéutica de primera línea:",
+        "expected_answer": "Prueba de desafío con Lorazepam (Benzodiacepina)",
+        "distractors": [
+          "Administración de Haloperidol",
+          "Antidepresivos",
+          "Estimulación magnética"
+        ]
+      },
+      {
+        "task_id": "T_EDU_20_2",
+        "type": "mcq_single_best",
+        "instruction": "Riesgo de administrar antipsicóticos en catatonia no tratada:",
+        "expected_answer": "Empeoramiento y precipitación de Síndrome Neuroléptico Maligno",
+        "distractors": [
+          "Sedación excesiva solamente",
+          "Mejoría inmediata del cuadro",
+          "Aumento de peso"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La catatonia responde espectacularmente a benzodiacepinas (GABA). Los antipsicóticos (bloqueo DA) pueden empeorarla gravemente si no se ha resuelto la inmovilidad.",
+      "evidence_chunks": [
+        "CH_EDU_20_A"
+      ],
+      "why_not": [
+        {
+          "option": "Administración de Haloperidol",
+          "reason": "Contraindicado de inicio; riesgo alto de SNM."
+        },
+        {
+          "option": "Antidepresivos",
+          "reason": "No resuelven el síndrome motor agudo y tardan semanas en actuar."
+        }
+      ],
+      "take_home": "Ante un paciente psiquiátrico inmóvil y mudo: 1) Piensa en Catatonia, 2) No des antipsicóticos, 3) Prueba Lorazepam."
+    }
+  },
+  {
+    "case_id": "EDU_21_ANSIEDAD_GAD",
+    "title": "Ansiedad Generalizada (TAG): Diferencial",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_EDU_21_A",
+        "text_content": "27 años. 8 meses de preocupación excesiva y difusa ('por todo'). Fatiga, tensión muscular, irritabilidad. Niega pánico o síntomas físicos de hipertiroidismo."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_EDU_21_1",
+        "type": "mcq_single_best",
+        "instruction": "Diagnóstico clínico más probable:",
+        "expected_answer": "Trastorno de Ansiedad Generalizada (TAG)",
+        "distractors": [
+          "Trastorno de Pánico",
+          "Depresión Melancólica",
+          "Tirotoxicosis"
+        ]
+      },
+      {
+        "task_id": "T_EDU_21_2",
+        "type": "mcq_single_best",
+        "instruction": "Síntoma cardinal que define al TAG frente a otros trastornos de ansiedad:",
+        "expected_answer": "Preocupación (worry) difícil de controlar y persistente",
+        "distractors": [
+          "Miedo a morir inminente",
+          "Compulsiones",
+          "Evitación social"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El TAG es el trastorno de la 'preocupación crónica'. La ausencia de crisis súbitas descarta Pánico; la ausencia de signos físicos descarta Tiroides.",
+      "evidence_chunks": [
+        "CH_EDU_21_A"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno de Pánico",
+          "reason": "Requiere ataques súbitos e inesperados con miedo a morir/enloquecer."
+        },
+        {
+          "option": "Depresión Melancólica",
+          "reason": "Predominaría la tristeza/anhedonia, no la preocupación ansiosa activa."
+        }
+      ],
+      "take_home": "El TAG suele ser crónico y se manifiesta somáticamente como 'tensión y fatiga'; mentalmente como '¿y si pasa algo malo?'."
+    }
+  }
+]
