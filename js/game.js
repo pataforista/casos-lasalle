@@ -6,6 +6,19 @@ const GAME_CONFIG = {
   modalDelayMs: 450
 };
 
+const NARRATIVE = {
+  title: "Guardia crítica",
+  intro: "Estás de guardia. No eres observador: decides con información incompleta en un servicio saturado.",
+  premise: "Aquí no se resuelven casos perfectos. Se decide bajo presión clínica real.",
+  residents: [
+    "“No tengo tiempo para revisar todo, dime qué hacemos.”",
+    "“Esto puede esperar… o no. Tú decides.”",
+    "“Si lo mandamos a casa y se complica, va a rebotar.”"
+  ],
+  boss: "Dr. Celada evalúa resultados, no intenciones.",
+  consequence: "El error honesto pesa menos que una decisión mal razonada."
+};
+
 const Avatars = {
   _generate(emoji, color, animation, badge = "") {
     return `
@@ -95,12 +108,14 @@ const Game = (() => {
     }
 
     if (caseRoot) {
+      const residentQuote = NARRATIVE.residents[Math.floor(Math.random() * NARRATIVE.residents.length)];
       caseRoot.innerHTML = `
         <div class="miami-card">
-          <div style="color:rgba(0,243,255,.9);font-weight:900;">Demo integrada (modo modular)</div>
-          <div style="color:rgba(255,255,255,.75);margin-top:8px;">
-            Inicia un turno para ver HUD, timer, vidas, feedback y economía como en tu demo.
-          </div>
+          <div class="narrative-title">${escapeHtml(NARRATIVE.title)}</div>
+          <div class="narrative-body">${escapeHtml(NARRATIVE.intro)}</div>
+          <div class="narrative-body">${escapeHtml(NARRATIVE.premise)}</div>
+          <div class="narrative-quote">${escapeHtml(residentQuote)}</div>
+          <div class="narrative-footer">${escapeHtml(NARRATIVE.boss)}</div>
         </div>
       `;
     }
@@ -203,6 +218,7 @@ const Game = (() => {
     const text = chunks.map(x => x.text_content).filter(Boolean).join("\n\n") || "";
 
     const task = pickTask(c);
+    const consequenceText = state.streak >= 3 ? NARRATIVE.consequence : "";
 
     const options = [
       { t: task.expected_answer, ok: true },
@@ -213,6 +229,7 @@ const Game = (() => {
       <div class="miami-card">
         <div class="caseTitle">${escapeHtml(c.title || c.case_id || "Caso")}</div>
         <div class="caseBody">${escapeHtml(text || task.instruction || "")}</div>
+        ${consequenceText ? `<div class="caseAside">${escapeHtml(consequenceText)}</div>` : ""}
       </div>
       <div class="options">
         ${options.map(o => `<button class="option-btn" data-ok="${o.ok ? "1":"0"}">${escapeHtml(String(o.t))}</button>`).join("")}
@@ -279,6 +296,7 @@ const Game = (() => {
           <div style="font-weight:900; font-size:36px; font-style:italic; color:${ok ? "rgba(120,255,140,.95)" : "rgba(255,80,80,.95)"}">
             ${ok ? "BRILLANTE" : "ERROR"}
           </div>
+          <div class="modalNote">${escapeHtml(ok ? "Decisión defendible con la información disponible." : "La omisión también es una decisión.")}</div>
           <div style="margin-top:12px; color:rgba(255,255,255,.82); line-height:1.5; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10); padding:12px; border-radius:18px;">
             ${escapeHtml(task.rationale || "")}
           </div>

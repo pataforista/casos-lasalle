@@ -67,7 +67,8 @@ const Generator = (() => {
           task_id: `T_${Date.now()}`,
           instruction: "¿Cuál es la conducta clínica más adecuada?",
           expected_answer: t.correct,
-          distractors: t.distractors
+          distractors: t.distractors,
+          rationale: `Explicación: ${t.correct} es la conducta más apropiada para este caso clínico.`
         }
       ]
     };
