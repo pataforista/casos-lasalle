@@ -42,32 +42,33 @@
        Carga de pack (lazy, con cache)
        ------------------------------------------------------------ */
     async function loadPack(packPath) {
-      if (loadedPacks.has(packPath)) {
-        return loadedPacks.get(packPath);
+      const cleanPath = String(packPath).replace(/^\.?\//, "").replace(/^data\//, "");
+      if (loadedPacks.has(cleanPath)) {
+        return loadedPacks.get(cleanPath);
       }
   
       const packPromise = (async () => {
-        const res = await fetch(`./data/${packPath}`);
+        const res = await fetch(`./data/${cleanPath}`);
         if (!res.ok) {
-          throw new Error(`No se pudo cargar pack: ${packPath}`);
+          throw new Error(`No se pudo cargar pack: ${cleanPath}`);
         }
   
         const cases = await res.json();
         if (!Array.isArray(cases)) {
-          throw new Error(`Pack inválido: ${packPath}`);
+          throw new Error(`Pack inválido: ${cleanPath}`);
         }
   
         return cases;
       })();
   
-      loadedPacks.set(packPath, packPromise);
+      loadedPacks.set(cleanPath, packPromise);
   
       try {
         const cases = await packPromise;
-        loadedPacks.set(packPath, cases);
+        loadedPacks.set(cleanPath, cases);
         return cases;
       } catch (err) {
-        loadedPacks.delete(packPath);
+        loadedPacks.delete(cleanPath);
         throw err;
       }
     }
@@ -94,25 +95,31 @@
         throw new Error("No hay casos que cumplan los filtros");
       }
   
-      const meta = pool[Math.floor(Math.random() * pool.length)];
+      let remaining = [...pool];
+      while (remaining.length) {
+        const meta = remaining[Math.floor(Math.random() * remaining.length)];
   
-      if (!meta.pack) {
-        throw new Error(`Caso ${meta.case_id} sin campo pack`);
+        if (!meta.pack) {
+          throw new Error(`Caso ${meta.case_id} sin campo pack`);
+        }
+  
+        const packCases = await loadPack(meta.pack);
+        const fullCase = packCases.find(c => c.case_id === meta.case_id);
+  
+        if (fullCase) {
+          return {
+            ...meta,
+            ...fullCase
+          };
+        }
+  
+        if (typeof logDebug === "function") {
+          logDebug(`[cases] Caso ${meta.case_id} no encontrado en ${meta.pack}. Buscando otro...`);
+        }
+        remaining = remaining.filter(c => c.case_id !== meta.case_id);
       }
   
-      const packCases = await loadPack(meta.pack);
-      const fullCase = packCases.find(c => c.case_id === meta.case_id);
-  
-      if (!fullCase) {
-        throw new Error(
-          `Caso ${meta.case_id} no encontrado en ${meta.pack}`
-        );
-      }
-  
-      return {
-        ...meta,
-        ...fullCase
-      };
+      throw new Error("No se encontró un caso válido en los packs disponibles");
     }
   
     /* ------------------------------------------------------------
@@ -123,4 +130,5 @@
       pickRandomCase
     };
   })();
+  
   

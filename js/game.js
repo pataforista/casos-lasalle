@@ -75,6 +75,17 @@ const Game = (() => {
       .replaceAll("'","&#039;");
   }
 
+  function getBriefFeedback(task) {
+    const raw = String(task?.rationale || "").trim();
+    if (!raw) {
+      return "Evalúa el riesgo inmediato y prioriza lo defendible con la información disponible.";
+    }
+    const match = raw.match(/[^.!?]+[.!?]/);
+    const sentence = match ? match[0] : raw;
+    const trimmed = sentence.length > 160 ? `${sentence.slice(0, 157)}…` : sentence;
+    return trimmed;
+  }
+
   function renderMenu(){
     const hud = $("#hudRoot");
     const caseRoot = $("#caseRoot");
@@ -288,6 +299,7 @@ const Game = (() => {
   function showModal(ok, task){
     const modal = $("#modalRoot");
     if (!modal) return;
+    const briefFeedback = getBriefFeedback(task);
 
     modal.innerHTML = `
       <div class="modal">
@@ -297,6 +309,7 @@ const Game = (() => {
             ${ok ? "BRILLANTE" : "ERROR"}
           </div>
           <div class="modalNote">${escapeHtml(ok ? "Decisión defendible con la información disponible." : "La omisión también es una decisión.")}</div>
+          <div class="modalFeedback">${escapeHtml(briefFeedback)}</div>
           <div style="margin-top:12px; color:rgba(255,255,255,.82); line-height:1.5; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10); padding:12px; border-radius:18px;">
             ${escapeHtml(task.rationale || "")}
           </div>
