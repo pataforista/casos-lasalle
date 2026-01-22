@@ -6,24 +6,34 @@ const GAME_CONFIG = {
   modalDelayMs: 450
 };
 
-/* Avatares (placeholder simple). Si ya tienes SVGs, sustitúyelos aquí. */
 const Avatars = {
-  resident(name, mood="normal"){
-    const faces = {
-      happy: "😄",
-      shock: "😱",
-      normal: "🙂"
-    };
-    const face = faces[mood] || faces.normal;
-    return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:30px;">${face}</div>`;
+  _generate(emoji, color, animation, badge = "") {
+    return `
+      <div class="kawaii-avatar" style="background: ${color}; animation-name: ${animation};">
+        ${emoji}
+        ${badge ? `<div class="kawaii-tag">${badge}</div>` : ""}
+      </div>
+    `;
   },
-  boss(mood="normal"){
-    const faces = {
-      angry: "😡",
-      normal: "🧐"
+  resident(name, mood = "normal") {
+    const moodConfig = {
+      happy: { emoji: "🥰", color: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)", anim: "float" },
+      shock: { emoji: "😱", color: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)", anim: "shake" },
+      normal: { emoji: "😺", color: "linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)", anim: "float" },
+      sad: { emoji: "🥺", color: "linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%)", anim: "float" }
     };
-    const face = faces[mood] || faces.normal;
-    return `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:30px;">${face}</div>`;
+    const config = moodConfig[mood] || moodConfig.normal;
+    const initial = name ? name[0].toUpperCase() : "R";
+    return this._generate(config.emoji, config.color, config.anim, initial);
+  },
+  boss(mood = "normal") {
+    const moodConfig = {
+      angry: { emoji: "🤬", color: "linear-gradient(135deg, #ff0844 0%, #ffb199 100%)", anim: "shake" },
+      normal: { emoji: "😎", color: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)", anim: "float" },
+      sus: { emoji: "🧐", color: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)", anim: "pulse" }
+    };
+    const config = moodConfig[mood] || moodConfig.normal;
+    return this._generate(config.emoji, config.color, config.anim, "👑");
   }
 };
 
