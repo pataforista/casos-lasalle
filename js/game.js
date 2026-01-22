@@ -46,7 +46,9 @@ const Game = (() => {
     current: null,
     resident: "Aguilar",
     casesReady: false,
-    useGenerator: false
+    useGenerator: false,
+    streak: 0,
+    maxStreak: 0
   };
 
   const $ = (sel) => document.querySelector(sel);
@@ -125,6 +127,8 @@ const Game = (() => {
 
   async function startTurn(){
     state.lives = GAME_CONFIG.maxLives;
+    state.streak = 0;
+    state.maxStreak = 0;
     await ensureCasesLoaded();
     await nextCase();
   }
@@ -136,6 +140,7 @@ const Game = (() => {
     const hearts = "💖".repeat(state.lives);
     const bossMood = state.lives <= 1 ? "angry" : "normal";
     const resMood = "normal";
+    const streakLabel = state.streak >= 3 ? "RACHA" : "COMBO";
 
     hud.innerHTML = `
       <div class="miami-card">
@@ -159,6 +164,16 @@ const Game = (() => {
               <div style="color:rgba(255,43,214,.9);font-weight:900;">🪙 ${Economy.getCoins()} · ${escapeHtml(Economy.getRank())}</div>
             </div>
             <div class="avatar" id="bossBox">${Avatars.boss(bossMood)}</div>
+          </div>
+        </div>
+        <div class="hudMeta">
+          <div class="combo-chip">
+            <span class="combo-label">${streakLabel}</span>
+            <span class="combo-value">x${state.streak}</span>
+          </div>
+          <div class="combo-chip combo-chip--alt">
+            <span class="combo-label">MEJOR</span>
+            <span class="combo-value">x${state.maxStreak}</span>
           </div>
         </div>
       </div>
@@ -285,12 +300,16 @@ const Game = (() => {
 
     if (ok) {
       btn.classList.add("correct");
-      Economy.add(25, 50);
+      state.streak += 1;
+      state.maxStreak = Math.max(state.maxStreak, state.streak);
+      const bonus = Math.min(75, state.streak * 5);
+      Economy.add(25 + bonus, 50);
       const resBox = $("#resBox");
       if (resBox) resBox.innerHTML = Avatars.resident(state.resident, "happy");
     } else {
       btn.classList.add("incorrect");
       state.lives -= 1;
+      state.streak = 0;
       const resBox = $("#resBox");
       if (resBox) resBox.innerHTML = Avatars.resident(state.resident, "shock");
       const bossBox = $("#bossBox");
