@@ -61,23 +61,23 @@ const Avatars = {
   },
   _renderAvatar(type) {
     const faces = {
-      "resident-neutral": { mouth: "M20 28h20", brow: "", eyes: "M16 20h6M38 20h6" },
-      "resident-smile": { mouth: "M18 26c4 6 20 6 24 0", brow: "", eyes: "M16 20h6M38 20h6" },
-      "resident-shock": { mouth: "M28 26a6 6 0 1 0 12 0a6 6 0 1 0 -12 0", brow: "M14 16h10M38 16h10", eyes: "M18 20h4M40 20h4" },
-      "resident-sad": { mouth: "M18 30c4-4 20-4 24 0", brow: "M14 18h12M36 18h12", eyes: "M16 22h6M38 22h6" },
-      "boss-cool": { mouth: "M18 30h28", brow: "M12 18h16M36 18h16", eyes: "M16 22h10M36 22h10" },
-      "boss-angry": { mouth: "M18 30h28", brow: "M12 20l16-4M36 16l16 4", eyes: "M16 24h8M40 24h8" },
-      "boss-sus": { mouth: "M20 30h24", brow: "M12 18h16M36 14h16", eyes: "M16 22h8M40 22h8" }
+      "resident-neutral": { mouth: "M20 32h24", brow: "", eyes: "M18 24q4-4 8 0M38 24q4-4 8 0", blush: true },
+      "resident-smile": { mouth: "M18 30c6 8 22 8 28 0", brow: "", eyes: "M18 24q4-4 8 0M38 24q4-4 8 0", blush: true },
+      "resident-shock": { mouth: "M28 30a6 6 0 1 0 12 0a6 6 0 1 0 -12 0", brow: "M14 18h14M36 18h14", eyes: "M20 24h6M40 24h6" },
+      "resident-sad": { mouth: "M18 34c6-6 22-6 28 0", brow: "M14 20h14M36 20h14", eyes: "M18 26q4-4 8 0M38 26q4-4 8 0", blush: true },
+      "boss-cool": { mouth: "M18 34h28", brow: "M12 20h18M34 20h18", eyes: "M18 26q4-4 8 0M38 26q4-4 8 0" },
+      "boss-angry": { mouth: "M18 34h28", brow: "M12 22l16-6M36 16l16 6", eyes: "M18 28h8M40 28h8" },
+      "boss-sus": { mouth: "M20 34h24", brow: "M12 20h16M36 16h16", eyes: "M18 26q4-4 8 0M38 24q4-2 8 2" }
     };
     const face = faces[type] || faces["resident-neutral"];
     return `
       <svg class="avatar-svg" viewBox="0 0 64 64" role="img" aria-hidden="true">
         <circle cx="32" cy="32" r="26" fill="rgba(255,255,255,0.2)"></circle>
-        <circle cx="24" cy="26" r="4" fill="rgba(255,255,255,0.9)"></circle>
-        <circle cx="40" cy="26" r="4" fill="rgba(255,255,255,0.9)"></circle>
-        <path d="${face.eyes}" stroke="rgba(0,0,0,0.7)" stroke-width="2" stroke-linecap="round" fill="none"></path>
-        <path d="${face.brow}" stroke="rgba(0,0,0,0.6)" stroke-width="2" stroke-linecap="round" fill="none"></path>
-        <path d="${face.mouth}" stroke="rgba(0,0,0,0.7)" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+        <circle cx="22" cy="38" r="4" fill="${face.blush ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.2)"}"></circle>
+        <circle cx="42" cy="38" r="4" fill="${face.blush ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.2)"}"></circle>
+        <path d="${face.eyes}" stroke="rgba(0,0,0,0.75)" stroke-width="2.4" stroke-linecap="round" fill="none"></path>
+        <path d="${face.brow}" stroke="rgba(0,0,0,0.65)" stroke-width="2.2" stroke-linecap="round" fill="none"></path>
+        <path d="${face.mouth}" stroke="rgba(0,0,0,0.75)" stroke-width="2.6" stroke-linecap="round" fill="none"></path>
       </svg>
     `;
   }
@@ -91,6 +91,8 @@ const Game = (() => {
     timerStart: 0,
     current: null,
     resident: "Aguilar",
+    residentIndex: 0,
+    residents: ["Aguilar", "Solis"],
     casesReady: false,
     useGenerator: false,
     streak: 0,
@@ -134,6 +136,26 @@ const Game = (() => {
       .replace(/\s+\)/g, ")")
       .replace(/\(\s+/g, "(")
       .trim();
+  }
+
+  function splitCaseText(text) {
+    const clean = normalizeCaseText(text);
+    if (!clean) return { summary: "", details: "" };
+
+    const sentences = clean.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [];
+    let summary = sentences.slice(0, 2).join(" ").trim();
+    let details = sentences.slice(2).join(" ").trim();
+
+    if (!summary) summary = clean;
+    if (!details && clean.length > 240) {
+      summary = `${clean.slice(0, 240).trim()}…`;
+      details = clean.slice(240).trim();
+    }
+    if (summary.length > 280) {
+      summary = `${summary.slice(0, 277).trim()}…`;
+    }
+
+    return { summary, details };
   }
 
   function renderMenu(){
@@ -213,6 +235,7 @@ const Game = (() => {
     state.streak = 0;
     state.maxStreak = 0;
     state.recentCases = [];
+    state.residentIndex = 0;
     await ensureCasesLoaded();
     await nextCase();
   }
@@ -293,6 +316,9 @@ const Game = (() => {
       .join("\n\n") || "";
 
     const task = pickTask(c);
+    const bodyText = text || task.instruction || "";
+    const { summary, details } = splitCaseText(bodyText);
+    const questionText = normalizeCaseText(task.question || task.instruction || "");
     const consequenceText = state.streak >= 3 ? NARRATIVE.consequence : "";
 
     const options = [
@@ -300,15 +326,36 @@ const Game = (() => {
       ...(Array.isArray(task.distractors) ? task.distractors : []).map(d => ({ t: d, ok:false }))
     ].sort(() => Math.random() - 0.5);
 
+    const caseNumber = state.recentCases.length || 1;
+
     root.innerHTML = `
-      <div class="miami-card">
-        <div class="caseTitle">${escapeHtml(getCaseTitle(c))}</div>
-        <div class="caseBody">${escapeHtml(text || task.instruction || "")}</div>
+      <div class="miami-card case-card">
+        <div class="caseHeader">
+          <div class="caseTitle">${escapeHtml(getCaseTitle(c))}</div>
+          <div class="caseBadge">Caso ${caseNumber}</div>
+        </div>
+        <div class="caseSummary">
+          <div class="caseLabel">Lectura rápida</div>
+          <div class="caseBody">${escapeHtml(summary || bodyText)}</div>
+        </div>
+        ${details ? `
+          <details class="caseDetails">
+            <summary>Ver detalles clínicos</summary>
+            <div class="caseBody">${escapeHtml(details)}</div>
+          </details>
+        ` : ""}
+        ${questionText ? `<div class="caseQuestion">${escapeHtml(questionText)}</div>` : ""}
         ${consequenceText ? `<div class="caseAside">${escapeHtml(consequenceText)}</div>` : ""}
       </div>
       <div class="options">
-        ${options.map(o => `<button class="option-btn" data-ok="${o.ok ? "1":"0"}">${escapeHtml(String(o.t))}</button>`).join("")}
+        ${options.map((o, idx) => `
+          <button class="option-btn" data-ok="${o.ok ? "1":"0"}" data-index="${idx + 1}">
+            <span class="option-index">${idx + 1}</span>
+            <span class="option-text">${escapeHtml(String(o.t))}</span>
+          </button>
+        `).join("")}
       </div>
+      <div class="options-hint">Atajos: teclas 1-4 para responder rápido.</div>
     `;
 
     root.querySelectorAll(".option-btn").forEach(btn => {
@@ -340,7 +387,8 @@ const Game = (() => {
   async function nextCase(){
     if (state.lives <= 0) return renderMenu();
 
-    state.resident = Math.random() > 0.5 ? "Aguilar" : "Solis";
+    state.resident = state.residents[state.residentIndex];
+    state.residentIndex = (state.residentIndex + 1) % state.residents.length;
     try {
       if (state.useGenerator) {
         state.current = Generator.createCase();
@@ -381,9 +429,12 @@ const Game = (() => {
           </div>
           <div class="modalNote">${escapeHtml(ok ? "Decisión defendible con la información disponible." : "La omisión también es una decisión.")}</div>
           <div class="modalFeedback">${escapeHtml(briefFeedback)}</div>
-          <div style="margin-top:12px; color:rgba(255,255,255,.82); line-height:1.5; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.10); padding:12px; border-radius:18px;">
-            ${escapeHtml(task.rationale || "")}
-          </div>
+          ${task.rationale ? `
+            <details class="modalDetails">
+              <summary>Ver explicación completa</summary>
+              <div class="modalFull">${escapeHtml(task.rationale)}</div>
+            </details>
+          ` : ""}
           <button class="btn-action" id="btnContinue">Continuar</button>
         </div>
       </div>
@@ -428,6 +479,15 @@ const Game = (() => {
 
   function init(){
     renderMenu();
+    window.addEventListener("keydown", (event) => {
+      if (event.key.toLowerCase() === "d") return;
+      const modal = $("#modalRoot");
+      if (modal && modal.querySelector(".modal")) return;
+      const targetIndex = parseInt(event.key, 10);
+      if (Number.isNaN(targetIndex)) return;
+      const btn = document.querySelector(`.option-btn[data-index="${targetIndex}"]`);
+      if (btn && !btn.disabled) btn.click();
+    });
   }
 
   return { init };
