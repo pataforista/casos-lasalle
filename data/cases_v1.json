@@ -180,7 +180,7 @@
         "task_id": "T_SUI_001_A_1",
         "type": "mcq_single_best",
         "instruction": "Identifique el descriptor fenomenológico que corresponde a 'pensamientos de muerte' sin conducta activa.",
-        "expected_answer": "Ideación autolítica",
+        "expected_answer": "Ideación lesiva",
         "distractors": [
           "Hipervigilancia",
           "Fatiga crónica",
@@ -189,7 +189,7 @@
       }
     ],
     "explanation": {
-      "rationale": "La ideación autolítica se refiere exclusivamente al contenido del pensamiento (deseo de morir o matarse) antes de que exista un acto conductual.",
+      "rationale": "La ideación lesiva se refiere exclusivamente al contenido del pensamiento (deseo de morir o matarse) antes de que exista un acto conductual.",
       "evidence_chunks": [
         "CH_SUI_001_A"
       ],
