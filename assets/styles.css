@@ -40,6 +40,12 @@
   animation-iteration-count: infinite;
 }
 
+.avatar-svg {
+  width: 36px;
+  height: 36px;
+  display: block;
+}
+
 .kawaii-tag {
   position: absolute;
   bottom: -5px;
@@ -87,6 +93,38 @@ body {
   margin-bottom: 16px;
 }
 
+.welcome-title {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.welcome-subtitle {
+  margin-top: 8px;
+  color: rgba(0, 243, 255, 0.8);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.rules-list {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.rules-list li {
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(0, 243, 255, 0.08);
+  border: 1px solid rgba(0, 243, 255, 0.25);
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 600;
+}
+
 .narrative-title {
   color: rgba(0, 243, 255, 0.9);
   font-weight: 900;
@@ -126,6 +164,16 @@ body {
   border: 1px solid rgba(255, 0, 85, 0.3);
   color: rgba(255, 255, 255, 0.8);
   font-weight: 600;
+}
+
+.caseQuestion {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(0, 243, 255, 0.08);
+  border: 1px solid rgba(0, 243, 255, 0.25);
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 700;
 }
 
 .hudMeta {

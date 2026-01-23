@@ -10,43 +10,76 @@ const NARRATIVE = {
   title: "Guardia crítica",
   intro: "Estás de guardia. No eres observador: decides con información incompleta en un servicio saturado.",
   premise: "Aquí no se resuelven casos perfectos. Se decide bajo presión clínica real.",
+  welcomeTitle: "Bienvenida a la guardia",
+  welcomeSubtitle: "Reglas rápidas antes de empezar.",
+  rules: [
+    "Decide con la información disponible: no siempre tendrás el panorama completo.",
+    "El tiempo y las vidas importan: cada demora cuesta.",
+    "Una decisión defendible pesa más que una respuesta perfecta.",
+    "Las rachas aumentan tu recompensa; los errores cortan el ritmo.",
+    "Lee la retroalimentación breve para ajustar tu criterio clínico."
+  ],
   residents: [
     "“No tengo tiempo para revisar todo, dime qué hacemos.”",
     "“Esto puede esperar… o no. Tú decides.”",
     "“Si lo mandamos a casa y se complica, va a rebotar.”"
   ],
-  boss: "Dr. Celada evalúa resultados, no intenciones.",
+  boss: "Dr. Celada evalúa resultados, no intenciones. No pregunta: espera que sepas decidir.",
   consequence: "El error honesto pesa menos que una decisión mal razonada."
 };
 
 const Avatars = {
-  _generate(emoji, color, animation, badge = "") {
+  _generate(avatar, color, animation, badge = "") {
     return `
       <div class="kawaii-avatar" style="background: ${color}; animation-name: ${animation};">
-        ${emoji}
+        ${avatar}
         ${badge ? `<div class="kawaii-tag">${badge}</div>` : ""}
       </div>
     `;
   },
   resident(name, mood = "normal") {
     const moodConfig = {
-      happy: { emoji: "🥰", color: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)", anim: "float" },
-      shock: { emoji: "😱", color: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)", anim: "shake" },
-      normal: { emoji: "😺", color: "linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)", anim: "float" },
-      sad: { emoji: "🥺", color: "linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%)", anim: "float" }
+      happy: { avatar: "resident-smile", color: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)", anim: "float" },
+      shock: { avatar: "resident-shock", color: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)", anim: "shake" },
+      normal: { avatar: "resident-neutral", color: "linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)", anim: "float" },
+      sad: { avatar: "resident-sad", color: "linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%)", anim: "float" }
     };
     const config = moodConfig[mood] || moodConfig.normal;
     const initial = name ? name[0].toUpperCase() : "R";
-    return this._generate(config.emoji, config.color, config.anim, initial);
+    const svg = this._renderAvatar(config.avatar);
+    return this._generate(svg, config.color, config.anim, initial);
   },
   boss(mood = "normal") {
     const moodConfig = {
-      angry: { emoji: "🤬", color: "linear-gradient(135deg, #ff0844 0%, #ffb199 100%)", anim: "shake" },
-      normal: { emoji: "😎", color: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)", anim: "float" },
-      sus: { emoji: "🧐", color: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)", anim: "pulse" }
+      angry: { avatar: "boss-angry", color: "linear-gradient(135deg, #ff0844 0%, #ffb199 100%)", anim: "shake" },
+      normal: { avatar: "boss-cool", color: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)", anim: "float" },
+      sus: { avatar: "boss-sus", color: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)", anim: "pulse" }
     };
     const config = moodConfig[mood] || moodConfig.normal;
-    return this._generate(config.emoji, config.color, config.anim, "👑");
+    const svg = this._renderAvatar(config.avatar);
+    return this._generate(svg, config.color, config.anim, "👑");
+  },
+  _renderAvatar(type) {
+    const faces = {
+      "resident-neutral": { mouth: "M20 28h20", brow: "", eyes: "M16 20h6M38 20h6" },
+      "resident-smile": { mouth: "M18 26c4 6 20 6 24 0", brow: "", eyes: "M16 20h6M38 20h6" },
+      "resident-shock": { mouth: "M28 26a6 6 0 1 0 12 0a6 6 0 1 0 -12 0", brow: "M14 16h10M38 16h10", eyes: "M18 20h4M40 20h4" },
+      "resident-sad": { mouth: "M18 30c4-4 20-4 24 0", brow: "M14 18h12M36 18h12", eyes: "M16 22h6M38 22h6" },
+      "boss-cool": { mouth: "M18 30h28", brow: "M12 18h16M36 18h16", eyes: "M16 22h10M36 22h10" },
+      "boss-angry": { mouth: "M18 30h28", brow: "M12 20l16-4M36 16l16 4", eyes: "M16 24h8M40 24h8" },
+      "boss-sus": { mouth: "M20 30h24", brow: "M12 18h16M36 14h16", eyes: "M16 22h8M40 22h8" }
+    };
+    const face = faces[type] || faces["resident-neutral"];
+    return `
+      <svg class="avatar-svg" viewBox="0 0 64 64" role="img" aria-hidden="true">
+        <circle cx="32" cy="32" r="26" fill="rgba(255,255,255,0.2)"></circle>
+        <circle cx="24" cy="26" r="4" fill="rgba(255,255,255,0.9)"></circle>
+        <circle cx="40" cy="26" r="4" fill="rgba(255,255,255,0.9)"></circle>
+        <path d="${face.eyes}" stroke="rgba(0,0,0,0.7)" stroke-width="2" stroke-linecap="round" fill="none"></path>
+        <path d="${face.brow}" stroke="rgba(0,0,0,0.6)" stroke-width="2" stroke-linecap="round" fill="none"></path>
+        <path d="${face.mouth}" stroke="rgba(0,0,0,0.7)" stroke-width="2.5" stroke-linecap="round" fill="none"></path>
+      </svg>
+    `;
   }
 };
 
@@ -61,7 +94,8 @@ const Game = (() => {
     casesReady: false,
     useGenerator: false,
     streak: 0,
-    maxStreak: 0
+    maxStreak: 0,
+    recentCases: []
   };
 
   const $ = (sel) => document.querySelector(sel);
@@ -84,6 +118,22 @@ const Game = (() => {
     const sentence = match ? match[0] : raw;
     const trimmed = sentence.length > 160 ? `${sentence.slice(0, 157)}…` : sentence;
     return trimmed;
+  }
+
+  function getCaseTitle(caseObj) {
+    const fallback = "Caso clínico";
+    if (!caseObj) return fallback;
+    if (caseObj.display_title) return String(caseObj.display_title);
+    return fallback;
+  }
+
+  function normalizeCaseText(text) {
+    return String(text || "")
+      .replace(/\s+/g, " ")
+      .replace(/\s+([,.;:!?])/g, "$1")
+      .replace(/\s+\)/g, ")")
+      .replace(/\(\s+/g, "(")
+      .trim();
   }
 
   function renderMenu(){
@@ -122,6 +172,13 @@ const Game = (() => {
       const residentQuote = NARRATIVE.residents[Math.floor(Math.random() * NARRATIVE.residents.length)];
       caseRoot.innerHTML = `
         <div class="miami-card">
+          <div class="welcome-title">${escapeHtml(NARRATIVE.welcomeTitle)}</div>
+          <div class="welcome-subtitle">${escapeHtml(NARRATIVE.welcomeSubtitle)}</div>
+          <ul class="rules-list">
+            ${NARRATIVE.rules.map(rule => `<li>${escapeHtml(rule)}</li>`).join("")}
+          </ul>
+        </div>
+        <div class="miami-card">
           <div class="narrative-title">${escapeHtml(NARRATIVE.title)}</div>
           <div class="narrative-body">${escapeHtml(NARRATIVE.intro)}</div>
           <div class="narrative-body">${escapeHtml(NARRATIVE.premise)}</div>
@@ -155,6 +212,7 @@ const Game = (() => {
     state.lives = GAME_CONFIG.maxLives;
     state.streak = 0;
     state.maxStreak = 0;
+    state.recentCases = [];
     await ensureCasesLoaded();
     await nextCase();
   }
@@ -209,15 +267,18 @@ const Game = (() => {
   function pickTask(caseObj){
     // Tomamos la 1a tarea si existe; si no, fabricamos una “tarea demo” mínima
     const t = (caseObj.tasks && caseObj.tasks[0]) ? caseObj.tasks[0] : null;
-    if (!t) {
-      return {
-        instruction: "Elige la opción más probable.",
-        expected_answer: "Respuesta correcta (demo)",
-        distractors: ["Distractor A", "Distractor B", "Distractor C"],
-        rationale: "Explicación demo: aquí va la racional clínica."
-      };
-    }
-    return t;
+    const base = {
+      instruction: "Analiza el caso y responde según la información disponible.",
+      expected_answer: "Conducta más adecuada",
+      distractors: ["Distractor A", "Distractor B", "Distractor C"],
+      rationale: "Justificación breve basada en signos clínicos, contexto y riesgo."
+    };
+    if (!t) return base;
+    return {
+      ...base,
+      ...t,
+      question: t.question || ""
+    };
   }
 
   function renderCase(){
@@ -226,7 +287,10 @@ const Game = (() => {
 
     const c = state.current;
     const chunks = Array.isArray(c.source_chunks) ? c.source_chunks : [];
-    const text = chunks.map(x => x.text_content).filter(Boolean).join("\n\n") || "";
+    const text = chunks
+      .map(x => normalizeCaseText(x.text_content))
+      .filter(Boolean)
+      .join("\n\n") || "";
 
     const task = pickTask(c);
     const consequenceText = state.streak >= 3 ? NARRATIVE.consequence : "";
@@ -238,7 +302,7 @@ const Game = (() => {
 
     root.innerHTML = `
       <div class="miami-card">
-        <div class="caseTitle">${escapeHtml(c.title || c.case_id || "Caso")}</div>
+        <div class="caseTitle">${escapeHtml(getCaseTitle(c))}</div>
         <div class="caseBody">${escapeHtml(text || task.instruction || "")}</div>
         ${consequenceText ? `<div class="caseAside">${escapeHtml(consequenceText)}</div>` : ""}
       </div>
@@ -281,7 +345,9 @@ const Game = (() => {
       if (state.useGenerator) {
         state.current = Generator.createCase();
       } else {
-        state.current = await CaseDB.pickRandomCase({}); // si quieres filtros, los conectamos luego
+        state.current = await CaseDB.pickRandomCase({
+          excludeCaseIds: state.recentCases
+        }); // si quieres filtros, los conectamos luego
       }
     } catch (err) {
       if (typeof logDebug === "function") {
@@ -289,6 +355,11 @@ const Game = (() => {
       }
       state.useGenerator = true;
       state.current = Generator.createCase();
+    }
+
+    if (state.current?.case_id) {
+      state.recentCases.unshift(state.current.case_id);
+      state.recentCases = state.recentCases.slice(0, 8);
     }
 
     renderHUD();

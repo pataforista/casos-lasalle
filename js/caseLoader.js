@@ -82,6 +82,7 @@
       }
   
       let pool = manifestIndex;
+      const excludeCaseIds = new Set(filters.excludeCaseIds || []);
   
       if (filters.onlyReal === true) {
         pool = pool.filter(c => c.metadata?.is_real_data === true);
@@ -89,6 +90,10 @@
   
       if (filters.onlySynthetic === true) {
         pool = pool.filter(c => c.metadata?.is_real_data === false);
+      }
+  
+      if (excludeCaseIds.size) {
+        pool = pool.filter(c => !excludeCaseIds.has(c.case_id));
       }
   
       if (!pool.length) {
