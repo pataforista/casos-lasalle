@@ -8,20 +8,6 @@
   },
   "index": [
     {
-      "case_id": "SYN_GEN_BASE_001",
-      "title": "Caso Clínico Base (Sintético)",
-      "difficulty": "baja",
-      "educational_level": "licenciatura",
-      "case_type": "documento_educativo",
-      "metadata": {
-        "is_real_data": false
-      },
-      "hitop": ["thought_disorder"],
-      "rdoc": ["Cognitive Systems"],
-      "pack": "cases_v1.json"
-    },
-
-    {
       "case_id": "REAL_GEN_SCH_001_A",
       "title": "Caso Clínico: Schizophrenia (A)",
       "difficulty": "baja",
@@ -30,11 +16,14 @@
       "metadata": {
         "is_real_data": true
       },
-      "hitop": ["thought_disorder"],
-      "rdoc": ["Cognitive Systems"],
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
       "pack": "packs/cases_real_v1.json"
     },
-
     {
       "case_id": "REAL_GEN_SCH_002_A",
       "title": "Caso Clínico: Schizophrenia (A)",
@@ -44,11 +33,14 @@
       "metadata": {
         "is_real_data": true
       },
-      "hitop": ["thought_disorder"],
-      "rdoc": ["Cognitive Systems"],
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
       "pack": "packs/cases_real_v1.json"
     },
-
     {
       "case_id": "REAL_GEN_SCH_002_B",
       "title": "Caso Clínico: Schizophrenia (B - Avanzado)",
@@ -58,11 +50,14 @@
       "metadata": {
         "is_real_data": true
       },
-      "hitop": ["thought_disorder"],
-      "rdoc": ["Cognitive Systems"],
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
       "pack": "packs/cases_real_v1.json"
     },
-
     {
       "case_id": "REAL_GEN_SUI_001_A",
       "title": "Caso Clínico: Suicide (A)",
@@ -72,11 +67,14 @@
       "metadata": {
         "is_real_data": true
       },
-      "hitop": ["internalizing"],
-      "rdoc": ["Negative Valence Systems"],
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
       "pack": "packs/cases_real_v1.json"
     },
-
     {
       "case_id": "REAL_GEN_DEP_001_A",
       "title": "Caso Clínico: Trastorno Depresivo (A)",
@@ -86,11 +84,14 @@
       "metadata": {
         "is_real_data": true
       },
-      "hitop": ["internalizing"],
-      "rdoc": ["Negative Valence Systems"],
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
       "pack": "packs/cases_real_v1.json"
     },
-
     {
       "case_id": "REAL_GEN_ADHD_001_A",
       "title": "Caso Clínico: TDAH (A)",
@@ -100,11 +101,14 @@
       "metadata": {
         "is_real_data": true
       },
-      "hitop": ["externalizing"],
-      "rdoc": ["Cognitive Systems"],
+      "hitop": [
+        "externalizing"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
       "pack": "packs/cases_real_v1.json"
     },
-
     {
       "case_id": "REAL_GEN_DELIR_001_A",
       "title": "Caso Clínico: Delirium (A)",
@@ -114,8 +118,12 @@
       "metadata": {
         "is_real_data": true
       },
-      "hitop": ["neurocognitive"],
-      "rdoc": ["Arousal/Regulatory Systems"],
+      "hitop": [
+        "neurocognitive"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
       "pack": "packs/cases_real_v1.json"
     }
   ]
