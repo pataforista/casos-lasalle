@@ -61,22 +61,35 @@ const Avatars = {
   },
   _renderAvatar(type) {
     const faces = {
-      "resident-neutral": { mouth: "M20 32h24", brow: "", eyes: "M18 24q4-4 8 0M38 24q4-4 8 0", blush: true },
-      "resident-smile": { mouth: "M18 30c6 8 22 8 28 0", brow: "", eyes: "M18 24q4-4 8 0M38 24q4-4 8 0", blush: true },
-      "resident-shock": { mouth: "M28 30a6 6 0 1 0 12 0a6 6 0 1 0 -12 0", brow: "M14 18h14M36 18h14", eyes: "M20 24h6M40 24h6" },
-      "resident-sad": { mouth: "M18 34c6-6 22-6 28 0", brow: "M14 20h14M36 20h14", eyes: "M18 26q4-4 8 0M38 26q4-4 8 0", blush: true },
-      "boss-cool": { mouth: "M18 34h28", brow: "M12 20h18M34 20h18", eyes: "M18 26q4-4 8 0M38 26q4-4 8 0" },
-      "boss-angry": { mouth: "M18 34h28", brow: "M12 22l16-6M36 16l16 6", eyes: "M18 28h8M40 28h8" },
-      "boss-sus": { mouth: "M20 34h24", brow: "M12 20h16M36 16h16", eyes: "M18 26q4-4 8 0M38 24q4-2 8 2" }
+      "resident-neutral": { mouth: "M20 32h24", brow: "", eyeType: "normal", blush: true, hair: "M16 18c4-10 28-10 32 0" },
+      "resident-smile": { mouth: "M18 30c6 8 22 8 28 0", brow: "", eyeType: "smile", blush: true, hair: "M16 18c4-10 28-10 32 0" },
+      "resident-shock": { mouth: "M28 30a6 6 0 1 0 12 0a6 6 0 1 0 -12 0", brow: "M14 18h14M36 18h14", eyeType: "wide", hair: "M16 18c4-10 28-10 32 0" },
+      "resident-sad": { mouth: "M18 34c6-6 22-6 28 0", brow: "M14 20h14M36 20h14", eyeType: "sad", blush: true, hair: "M16 18c4-10 28-10 32 0" },
+      "boss-cool": { mouth: "M18 34h28", brow: "M12 20h18M34 20h18", eyeType: "normal", hair: "M14 20c6-12 30-12 36 0" },
+      "boss-angry": { mouth: "M18 34h28", brow: "M12 22l16-6M36 16l16 6", eyeType: "narrow", hair: "M14 20c6-12 30-12 36 0" },
+      "boss-sus": { mouth: "M20 34h24", brow: "M12 20h16M36 16h16", eyeType: "wink", hair: "M14 20c6-12 30-12 36 0" }
     };
     const face = faces[type] || faces["resident-neutral"];
+    const eyeMap = {
+      normal: { rx: 6, ry: 6, pupil: 2.4 },
+      wide: { rx: 7, ry: 7, pupil: 2.8 },
+      narrow: { rx: 6, ry: 3.2, pupil: 2.2 },
+      smile: { rx: 6, ry: 4, pupil: 2.2 },
+      sad: { rx: 6, ry: 5, pupil: 2.3 },
+      wink: { rx: 6, ry: 2.6, pupil: 0 }
+    };
+    const eye = eyeMap[face.eyeType] || eyeMap.normal;
     return `
       <svg class="avatar-svg" viewBox="0 0 64 64" role="img" aria-hidden="true">
-        <circle cx="32" cy="32" r="26" fill="rgba(255,255,255,0.2)"></circle>
-        <circle cx="22" cy="38" r="4" fill="${face.blush ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.2)"}"></circle>
-        <circle cx="42" cy="38" r="4" fill="${face.blush ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.2)"}"></circle>
-        <path d="${face.eyes}" stroke="rgba(0,0,0,0.75)" stroke-width="2.4" stroke-linecap="round" fill="none"></path>
-        <path d="${face.brow}" stroke="rgba(0,0,0,0.65)" stroke-width="2.2" stroke-linecap="round" fill="none"></path>
+        <circle cx="32" cy="32" r="26" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.35)" stroke-width="2"></circle>
+        ${face.hair ? `<path d="${face.hair}" stroke="rgba(0,0,0,0.35)" stroke-width="4" stroke-linecap="round"></path>` : ""}
+        <circle cx="22" cy="38" r="4" fill="${face.blush ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)"}"></circle>
+        <circle cx="42" cy="38" r="4" fill="${face.blush ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)"}"></circle>
+        <ellipse cx="22" cy="26" rx="${eye.rx}" ry="${eye.ry}" fill="rgba(255,255,255,0.9)"></ellipse>
+        <ellipse cx="42" cy="26" rx="${eye.rx}" ry="${eye.ry}" fill="rgba(255,255,255,0.9)"></ellipse>
+        ${eye.pupil ? `<circle cx="22" cy="26" r="${eye.pupil}" fill="rgba(0,0,0,0.7)"></circle>` : ""}
+        ${eye.pupil ? `<circle cx="42" cy="26" r="${eye.pupil}" fill="rgba(0,0,0,0.7)"></circle>` : ""}
+        <path d="${face.brow}" stroke="rgba(0,0,0,0.6)" stroke-width="2.2" stroke-linecap="round" fill="none"></path>
         <path d="${face.mouth}" stroke="rgba(0,0,0,0.75)" stroke-width="2.6" stroke-linecap="round" fill="none"></path>
       </svg>
     `;
@@ -120,6 +133,30 @@ const Game = (() => {
     const sentence = match ? match[0] : raw;
     const trimmed = sentence.length > 160 ? `${sentence.slice(0, 157)}…` : sentence;
     return trimmed;
+  }
+
+  function getExplanationPayload(caseObj, task, selectedText, ok) {
+    const explanation = caseObj?.explanation || {};
+    const rationale = String(explanation.rationale || task?.rationale || "").trim();
+    const takeHome = String(explanation.take_home || "").trim();
+    const whyNot = Array.isArray(explanation.why_not) ? explanation.why_not : [];
+    let reason = "";
+
+    if (!ok && selectedText) {
+      const cleanSelected = normalizeCaseText(selectedText);
+      const match = whyNot.find(item => normalizeCaseText(item.option || "") === cleanSelected);
+      reason = String(match?.reason || "").trim();
+    }
+
+    if (ok && !reason) {
+      reason = rationale;
+    }
+
+    return {
+      reason,
+      rationale,
+      takeHome
+    };
   }
 
   function getCaseTitle(caseObj) {
@@ -166,27 +203,20 @@ const Game = (() => {
 
     if (hud) {
       hud.innerHTML = `
-        <div class="miami-card">
-          <div>
-            <h1 class="titleLogo">PsyCase</h1>
-            <div class="subLogo">KAWAII VICE CITY</div>
-          </div>
-          <div class="hudRow">
-          <div class="hudBox">
-            <div>
-              <div class="badge">Rango</div>
-              <div class="value">${escapeHtml(Economy.getRank())}</div>
-            </div>
-          </div>
-            <div class="hudBox">
-              <div>
-                <div class="badge">Efectivo</div>
-              <div class="value">🪙 ${Economy.getCoins()}</div>
-            </div>
+        <div class="miami-card hero-card">
+          <div class="hero-title">PsyCase</div>
+          <div class="hero-subtitle">Guardia crítica · decide en segundos</div>
+          <div class="hero-grid">
+            <div class="hero-pill">⏱️ Tiempo real</div>
+            <div class="hero-pill">🩺 Decisiones clínicas</div>
+            <div class="hero-pill">🔥 Rachas y recompensas</div>
           </div>
           <button class="btn-action" id="btnStart">Iniciar turno</button>
+          <div class="hero-meta">
+            <span>Rango: ${escapeHtml(Economy.getRank())}</span>
+            <span>🪙 ${Economy.getCoins()}</span>
+          </div>
         </div>
-      </div>
       `;
     }
 
@@ -194,16 +224,14 @@ const Game = (() => {
       const residentQuote = NARRATIVE.residents[Math.floor(Math.random() * NARRATIVE.residents.length)];
       caseRoot.innerHTML = `
         <div class="miami-card">
-          <div class="welcome-title">${escapeHtml(NARRATIVE.welcomeTitle)}</div>
-          <div class="welcome-subtitle">${escapeHtml(NARRATIVE.welcomeSubtitle)}</div>
-          <ul class="rules-list">
-            ${NARRATIVE.rules.map(rule => `<li>${escapeHtml(rule)}</li>`).join("")}
-          </ul>
-        </div>
-        <div class="miami-card">
           <div class="narrative-title">${escapeHtml(NARRATIVE.title)}</div>
           <div class="narrative-body">${escapeHtml(NARRATIVE.intro)}</div>
-          <div class="narrative-body">${escapeHtml(NARRATIVE.premise)}</div>
+          <details class="caseDetails">
+            <summary>Ver reglas rápidas</summary>
+            <ul class="rules-list">
+              ${NARRATIVE.rules.map(rule => `<li>${escapeHtml(rule)}</li>`).join("")}
+            </ul>
+          </details>
           <div class="narrative-quote">${escapeHtml(residentQuote)}</div>
           <div class="narrative-footer">${escapeHtml(NARRATIVE.boss)}</div>
         </div>
@@ -231,6 +259,8 @@ const Game = (() => {
   }
 
   async function startTurn(){
+    ensureAudio();
+    playTone(520, 0.08);
     state.lives = GAME_CONFIG.maxLives;
     state.streak = 0;
     state.maxStreak = 0;
@@ -262,6 +292,7 @@ const Game = (() => {
 
           <div class="track" aria-label="tiempo">
             <div class="bar" id="tBar" style="width:100%"></div>
+            <div class="track-label">TIEMPO</div>
           </div>
 
           <div class="hudBox">
@@ -374,6 +405,10 @@ const Game = (() => {
       const pct = Math.max(0, (state.timeLeft / GAME_CONFIG.turnSeconds) * 100);
       const b = $("#tBar");
       if (b) b.style.width = pct + "%";
+      const track = b ? b.closest(".track") : null;
+      if (track) {
+        track.classList.toggle("track--danger", state.timeLeft <= 5);
+      }
 
       if (state.timeLeft <= 0) {
         clearInterval(state.timer);
@@ -415,26 +450,34 @@ const Game = (() => {
     startTimer();
   }
 
-  function showModal(ok, task){
+  function showModal(ok, task, selectedText){
     const modal = $("#modalRoot");
     if (!modal) return;
     const briefFeedback = getBriefFeedback(task);
+    const details = getExplanationPayload(state.current, task, selectedText, ok);
+    const reasonText = details.reason || briefFeedback;
 
     modal.innerHTML = `
       <div class="modal">
         <div class="modalCard" style="border-color:${ok ? "rgba(120,255,140,.55)" : "rgba(255,80,80,.65)"}">
-          <div style="font-size:64px; margin-bottom:10px;">${ok ? "💎" : "⚠️"}</div>
-          <div style="font-weight:900; font-size:36px; font-style:italic; color:${ok ? "rgba(120,255,140,.95)" : "rgba(255,80,80,.95)"}">
-            ${ok ? "BRILLANTE" : "ERROR"}
+          <div class="modalContent">
+            <div style="font-size:64px; margin-bottom:10px;">${ok ? "💎" : "⚠️"}</div>
+            <div style="font-weight:900; font-size:36px; font-style:italic; color:${ok ? "rgba(120,255,140,.95)" : "rgba(255,80,80,.95)"}">
+              ${ok ? "BRILLANTE" : "ERROR"}
+            </div>
+            <div class="modalNote">${escapeHtml(ok ? "Decisión defendible con la información disponible." : "La omisión también es una decisión.")}</div>
+            <div class="modalSection">
+              <div class="modalSectionTitle">Razón</div>
+              <div class="modalFeedback">${escapeHtml(reasonText)}</div>
+            </div>
+            ${details.rationale ? `
+              <details class="modalDetails">
+                <summary>Ver explicación completa</summary>
+                <div class="modalFull">${escapeHtml(details.rationale)}</div>
+              </details>
+            ` : ""}
+            ${details.takeHome ? `<div class="take-home">Take home: ${escapeHtml(details.takeHome)}</div>` : ""}
           </div>
-          <div class="modalNote">${escapeHtml(ok ? "Decisión defendible con la información disponible." : "La omisión también es una decisión.")}</div>
-          <div class="modalFeedback">${escapeHtml(briefFeedback)}</div>
-          ${task.rationale ? `
-            <details class="modalDetails">
-              <summary>Ver explicación completa</summary>
-              <div class="modalFull">${escapeHtml(task.rationale)}</div>
-            </details>
-          ` : ""}
           <button class="btn-action" id="btnContinue">Continuar</button>
         </div>
       </div>
@@ -450,6 +493,7 @@ const Game = (() => {
   function checkAnswer(btn, ok, task){
     clearInterval(state.timer);
     document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
+    const selectedText = btn?.querySelector(".option-text")?.textContent || btn?.textContent || "";
 
     if (ok) {
       btn.classList.add("correct");
@@ -459,6 +503,7 @@ const Game = (() => {
       Economy.add(25 + bonus, 50);
       const resBox = $("#resBox");
       if (resBox) resBox.innerHTML = Avatars.resident(state.resident, "happy");
+      playTone(880, 0.12);
     } else {
       btn.classList.add("incorrect");
       state.lives -= 1;
@@ -467,13 +512,14 @@ const Game = (() => {
       if (resBox) resBox.innerHTML = Avatars.resident(state.resident, "shock");
       const bossBox = $("#bossBox");
       if (bossBox) bossBox.innerHTML = Avatars.boss("angry");
+      playTone(220, 0.16);
     }
 
     renderHUD();
 
     if (state.lives <= 0) return renderMenu();
     setTimeout(() => {
-      if (state.lives > 0) showModal(ok, task);
+      if (state.lives > 0) showModal(ok, task, selectedText);
     }, GAME_CONFIG.modalDelayMs);
   }
 
@@ -488,6 +534,31 @@ const Game = (() => {
       const btn = document.querySelector(`.option-btn[data-index="${targetIndex}"]`);
       if (btn && !btn.disabled) btn.click();
     });
+  }
+
+  let audioContext = null;
+
+  function ensureAudio() {
+    if (audioContext) return;
+    const Context = window.AudioContext || window.webkitAudioContext;
+    if (!Context) return;
+    audioContext = new Context();
+  }
+
+  function playTone(freq, duration = 0.12) {
+    ensureAudio();
+    if (!audioContext) return;
+    const osc = audioContext.createOscillator();
+    const gain = audioContext.createGain();
+    osc.type = "triangle";
+    osc.frequency.value = freq;
+    gain.gain.value = 0.0001;
+    osc.connect(gain);
+    gain.connect(audioContext.destination);
+    osc.start();
+    gain.gain.exponentialRampToValueAtTime(0.08, audioContext.currentTime + 0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + duration);
+    osc.stop(audioContext.currentTime + duration + 0.02);
   }
 
   return { init };

@@ -1,129 +1,489 @@
 {
   "version": "v1",
-  "updated": "2026-01-14",
+  "updated": "2026-01-24",
   "counts": {
-    "total": 50,
-    "real": 25,
-    "synthetic": 25
+    "total": 43,
+    "real": 43,
+    "synthetic": 0,
+    "synth_packs": 0,
+    "pack_size": 25
+  },
+  "packs": {
+    "real": "packs/cases_real_v1.json",
+    "synth": []
   },
   "index": [
     {
       "case_id": "REAL_GEN_SCH_001_A",
-      "title": "Caso Clínico: Schizophrenia (A)",
-      "difficulty": "baja",
+      "title": "Esquizofrenia: Fenomenología y Criterios",
+      "difficulty": "facil",
       "educational_level": "licenciatura",
-      "case_type": "documento_educativo",
-      "metadata": {
-        "is_real_data": true
-      },
-      "hitop": [
-        "thought_disorder"
-      ],
-      "rdoc": [
-        "Cognitive Systems"
-      ],
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
       "pack": "packs/cases_real_v1.json"
     },
     {
       "case_id": "REAL_GEN_SCH_002_A",
-      "title": "Caso Clínico: Schizophrenia (A)",
+      "title": "Esquizofrenia: Heterogeneidad Clínica",
       "difficulty": "media",
       "educational_level": "licenciatura",
-      "case_type": "documento_educativo",
-      "metadata": {
-        "is_real_data": true
-      },
-      "hitop": [
-        "thought_disorder"
-      ],
-      "rdoc": [
-        "Cognitive Systems"
-      ],
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
       "pack": "packs/cases_real_v1.json"
     },
     {
       "case_id": "REAL_GEN_SCH_002_B",
-      "title": "Caso Clínico: Schizophrenia (B - Avanzado)",
-      "difficulty": "alta",
+      "title": "Esquizofrenia: Diagnóstico Diferencial y RDoC",
+      "difficulty": "dificil",
       "educational_level": "residencia",
-      "case_type": "documento_educativo",
-      "metadata": {
-        "is_real_data": true
-      },
-      "hitop": [
-        "thought_disorder"
-      ],
-      "rdoc": [
-        "Cognitive Systems"
-      ],
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
       "pack": "packs/cases_real_v1.json"
     },
     {
       "case_id": "REAL_GEN_SUI_001_A",
-      "title": "Caso Clínico: Suicide (A)",
+      "title": "Suicidio: Fenomenología y Definiciones",
       "difficulty": "media",
       "educational_level": "licenciatura",
-      "case_type": "documento_educativo",
-      "metadata": {
-        "is_real_data": true
-      },
-      "hitop": [
-        "internalizing"
-      ],
-      "rdoc": [
-        "Negative Valence Systems"
-      ],
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SUI_002_A",
+      "title": "Suicidio: Factores de Riesgo",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
       "pack": "packs/cases_real_v1.json"
     },
     {
       "case_id": "REAL_GEN_DEP_001_A",
-      "title": "Caso Clínico: Trastorno Depresivo (A)",
-      "difficulty": "baja",
+      "title": "Trastorno Depresivo Mayor: Criterios Diagnósticos",
+      "difficulty": "facil",
       "educational_level": "licenciatura",
-      "case_type": "documento_educativo",
-      "metadata": {
-        "is_real_data": true
-      },
-      "hitop": [
-        "internalizing"
-      ],
-      "rdoc": [
-        "Negative Valence Systems"
-      ],
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
       "pack": "packs/cases_real_v1.json"
     },
     {
       "case_id": "REAL_GEN_ADHD_001_A",
-      "title": "Caso Clínico: TDAH (A)",
-      "difficulty": "baja",
+      "title": "TDAH: Fenotipo y Evolución",
+      "difficulty": "facil",
       "educational_level": "licenciatura",
-      "case_type": "documento_educativo",
-      "metadata": {
-        "is_real_data": true
-      },
-      "hitop": [
-        "externalizing"
-      ],
-      "rdoc": [
-        "Cognitive Systems"
-      ],
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ADHD_002_A",
+      "title": "TDAH: Diagnóstico y Circuitos",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ADHD_002_B",
+      "title": "TDAH: Neurobiología y RDoC",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
       "pack": "packs/cases_real_v1.json"
     },
     {
       "case_id": "REAL_GEN_DELIR_001_A",
-      "title": "Caso Clínico: Delirium (A)",
+      "title": "Delirium: Fenomenología Aguda",
       "difficulty": "media",
-      "educational_level": "posgrado",
-      "case_type": "documento_educativo",
-      "metadata": {
-        "is_real_data": true
-      },
-      "hitop": [
-        "neurocognitive"
-      ],
-      "rdoc": [
-        "Arousal/Regulatory Systems"
-      ],
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_DELIR_002_A",
+      "title": "Delirium: Fisiopatología y Manejo",
+      "difficulty": "media",
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_DELIR_002_B",
+      "title": "Delirium: Mecanismos y RDoC",
+      "difficulty": "dificil",
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_BIP_001_A",
+      "title": "Trastorno Bipolar: Definiciones",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_BIP_002_A",
+      "title": "Trastorno Bipolar: Neurobiología y Manejo",
+      "difficulty": "media",
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_BIP_002_B",
+      "title": "Trastorno Bipolar: RDoC y Mecanismos",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ASD_001_A",
+      "title": "Autismo: Dominios Nucleares",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ASD_002_A",
+      "title": "Autismo: Neurobiología y Clínica",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ASD_002_B",
+      "title": "Autismo: Intervención Avanzada",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_PTSD_001_A",
+      "title": "TEPT: Clusters Sintomáticos",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_PTSD_002_A",
+      "title": "TEPT: Neurobiología y Emoción",
+      "difficulty": "media",
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_PTSD_002_B",
+      "title": "TEPT: Terapéutica y RDoC",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SLEEP_001_A",
+      "title": "Parasomnias: Fenomenología",
+      "difficulty": "media",
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SEX_001_A",
+      "title": "Disfunciones Sexuales: Definición",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_HIST_001_A",
+      "title": "Historia de la Psiquiatría: Evolución Conceptual",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_HIST_001_B",
+      "title": "Historia de la Psiquiatría: Derechos Humanos",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_01_HIST",
+      "title": "Evaluación: Signos de Psicosis Activa",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_02_CLASS",
+      "title": "Clasificaciones: HiTOP y RDoC",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_03_AFECTO",
+      "title": "Depresión: Rasgos Melancólicos",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_04_ANSIEDAD",
+      "title": "Ansiedad: Diagnóstico Diferencial Orgánico",
+      "difficulty": "dificil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_05_TEPT",
+      "title": "TEPT: Diagnóstico Sindromático",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_06_NEURO",
+      "title": "Neurodesarrollo: TEA Nivel 1 en Adultos",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_07_TDAH",
+      "title": "TDAH: Fenotipo Adulto",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_08_IMPULSOS",
+      "title": "Control de Impulsos: Trastorno Explosivo Intermitente",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_09_TOC",
+      "title": "TOC: Función de la Compulsión",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_10_SUBST",
+      "title": "Urgencias: Delirium Tremens",
+      "difficulty": "dificil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_11_PSIC",
+      "title": "Psicosis: Fenomenología y HiTOP",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_12_ORG",
+      "title": "Psiquiatría de Enlace: Delirium Infeccioso",
+      "difficulty": "dificil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_16_URGENCIAS",
+      "title": "Urgencias: Síndrome Serotoninérgico",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_17_SEXUAL",
+      "title": "Sexualidad: Disfunción por ISRS",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_18_TCA",
+      "title": "TCA: Criterios de Ingreso en Anorexia",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_19_PERS",
+      "title": "Personalidad: Trastorno Límite (TLP)",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_20_TALLER",
+      "title": "Catatonia: Diagnóstico y Manejo",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_21_ANSIEDAD_GAD",
+      "title": "Ansiedad Generalizada (TAG): Diferencial",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
       "pack": "packs/cases_real_v1.json"
     }
   ]
