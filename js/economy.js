@@ -33,6 +33,7 @@ const Economy = (() => {
 
   return {
     init: () => { data = load(); }, // Ensure fresh load
+    load: () => { data = load(); }, // Alias for compatibility
     getCoins: () => data.coins,
     getXP: () => data.xp,
     getStats: () => ({ ...data }), // Read-only copy
