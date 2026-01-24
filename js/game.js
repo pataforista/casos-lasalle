@@ -33,7 +33,7 @@ const Avatars = {
     // Unique ID for gradients to prevent conflicts if multiple avatars render
     const uid = Math.random().toString(36).substr(2, 5);
     const gradId = `grad_${uid}`;
-    
+
     // Gradient definitions based on type
     const gradients = {
       resident: `
@@ -98,7 +98,7 @@ const Avatars = {
 
     const config = faces[mood] || faces.normal;
     const initial = name ? name[0].toUpperCase() : "R";
-    
+
     const svgContent = `
       <!-- Eyes -->
       ${config.eyes}
@@ -153,18 +153,20 @@ const Game = (() => {
     useGenerator: false,
     streak: 0,
     maxStreak: 0,
-    recentCases: []
+    recentCases: [],
+    residentMood: "normal",
+    bossMood: "normal"
   };
 
   const $ = (sel) => document.querySelector(sel);
 
-  function escapeHtml(str){
+  function escapeHtml(str) {
     return String(str)
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
   }
 
   function getBriefFeedback(task) {
@@ -206,6 +208,7 @@ const Game = (() => {
     const fallback = "Caso clínico";
     if (!caseObj) return fallback;
     if (caseObj.display_title) return String(caseObj.display_title);
+    if (caseObj.title) return String(caseObj.title);
     return fallback;
   }
 
@@ -238,7 +241,7 @@ const Game = (() => {
     return { summary, details };
   }
 
-  function renderMenu(){
+  function renderMenu() {
     const hud = $("#hudRoot");
     const caseRoot = $("#caseRoot");
     const modal = $("#modalRoot");
@@ -285,7 +288,7 @@ const Game = (() => {
     if (btn) btn.onclick = () => startTurn();
   }
 
-  async function ensureCasesLoaded(){
+  async function ensureCasesLoaded() {
     if (state.casesReady) return true;
     try {
       await CaseDB.init();
@@ -301,7 +304,7 @@ const Game = (() => {
     }
   }
 
-  async function startTurn(){
+  async function startTurn() {
     ensureAudio();
     playTone(520, 0.08);
     state.lives = GAME_CONFIG.maxLives;
@@ -313,7 +316,7 @@ const Game = (() => {
     await nextCase();
   }
 
-  function renderHUD(){
+  function renderHUD() {
     const hud = $("#hudRoot");
     if (!hud) return;
 
@@ -326,7 +329,7 @@ const Game = (() => {
       <div class="miami-card">
         <div class="hudRow">
           <div class="hudBox">
-            <div class="avatar" id="resBox">${Avatars.resident(state.resident, resMood)}</div>
+            <div class="avatar" id="resBox">${Avatars.resident(state.resident, state.residentMood)}</div>
             <div>
               <div class="badge">Dra. ${escapeHtml(state.resident)}</div>
               <div style="font-weight:900;">${hearts}</div>
@@ -344,7 +347,7 @@ const Game = (() => {
               <div style="font-weight:900; font-style:italic;">${state.lives <= 1 ? "¡FURIOSO!" : "VIGILANDO"}</div>
               <div style="color:rgba(255,43,214,.9);font-weight:900;">🪙 ${Economy.getCoins()} · ${escapeHtml(Economy.getRank())}</div>
             </div>
-            <div class="avatar" id="bossBox">${Avatars.boss(bossMood)}</div>
+            <div class="avatar" id="bossBox">${Avatars.boss(state.bossMood)}</div>
           </div>
         </div>
         <div class="hudMeta">
@@ -361,7 +364,7 @@ const Game = (() => {
     `;
   }
 
-  function pickTask(caseObj){
+  function pickTask(caseObj) {
     // Tomamos la 1a tarea si existe; si no, fabricamos una “tarea demo” mínima
     const t = (caseObj.tasks && caseObj.tasks[0]) ? caseObj.tasks[0] : null;
     const base = {
@@ -378,7 +381,7 @@ const Game = (() => {
     };
   }
 
-  function renderCase(){
+  function renderCase() {
     const root = $("#caseRoot");
     if (!root || !state.current) return;
 
@@ -397,7 +400,7 @@ const Game = (() => {
 
     const options = [
       { t: task.expected_answer, ok: true },
-      ...(Array.isArray(task.distractors) ? task.distractors : []).map(d => ({ t: d, ok:false }))
+      ...(Array.isArray(task.distractors) ? task.distractors : []).map(d => ({ t: d, ok: false }))
     ].sort(() => Math.random() - 0.5);
 
     const caseNumber = state.recentCases.length || 1;
@@ -423,7 +426,7 @@ const Game = (() => {
       </div>
       <div class="options">
         ${options.map((o, idx) => `
-          <button class="option-btn" data-ok="${o.ok ? "1":"0"}" data-index="${idx + 1}">
+          <button class="option-btn" data-ok="${o.ok ? "1" : "0"}" data-index="${idx + 1}">
             <span class="option-index">${idx + 1}</span>
             <span class="option-text">${escapeHtml(String(o.t))}</span>
           </button>
@@ -437,7 +440,7 @@ const Game = (() => {
     });
   }
 
-  function startTimer(){
+  function startTimer() {
     clearInterval(state.timer);
     state.timeLeft = GAME_CONFIG.turnSeconds;
     state.timerStart = Date.now();
@@ -462,11 +465,15 @@ const Game = (() => {
     }, 100);
   }
 
-  async function nextCase(){
+  async function nextCase() {
     if (state.lives <= 0) return renderMenu();
 
     state.resident = state.residents[state.residentIndex];
     state.residentIndex = (state.residentIndex + 1) % state.residents.length;
+    // Reset moods for new case
+    state.residentMood = "normal";
+    state.bossMood = state.lives <= 1 ? "angry" : "normal";
+
     try {
       if (state.useGenerator) {
         state.current = Generator.createCase();
@@ -493,7 +500,7 @@ const Game = (() => {
     startTimer();
   }
 
-  function showModal(ok, task, selectedText){
+  function showModal(ok, task, selectedText) {
     const modal = $("#modalRoot");
     if (!modal) return;
     const briefFeedback = getBriefFeedback(task);
@@ -533,7 +540,7 @@ const Game = (() => {
     };
   }
 
-  function checkAnswer(btn, ok, task){
+  function checkAnswer(btn, ok, task) {
     clearInterval(state.timer);
     document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
     const selectedText = btn?.querySelector(".option-text")?.textContent || btn?.textContent || "";
@@ -544,17 +551,19 @@ const Game = (() => {
       state.maxStreak = Math.max(state.maxStreak, state.streak);
       const bonus = Math.min(75, state.streak * 5);
       Economy.add(25 + bonus, 50);
-      const resBox = $("#resBox");
-      if (resBox) resBox.innerHTML = Avatars.resident(state.resident, "happy");
+
+      state.residentMood = "happy";
+      state.bossMood = state.lives <= 1 ? "angry" : "normal"; // Boss stays angry if low lives
+
       playTone(880, 0.12);
     } else {
       btn.classList.add("incorrect");
       state.lives -= 1;
       state.streak = 0;
-      const resBox = $("#resBox");
-      if (resBox) resBox.innerHTML = Avatars.resident(state.resident, "shock");
-      const bossBox = $("#bossBox");
-      if (bossBox) bossBox.innerHTML = Avatars.boss("angry");
+
+      state.residentMood = "shock";
+      state.bossMood = "angry";
+
       playTone(220, 0.16);
     }
 
@@ -566,7 +575,7 @@ const Game = (() => {
     }, GAME_CONFIG.modalDelayMs);
   }
 
-  function init(){
+  function init() {
     renderMenu();
     window.addEventListener("keydown", (event) => {
       if (event.key.toLowerCase() === "d") return;

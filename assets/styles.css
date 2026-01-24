@@ -71,6 +71,35 @@
   }
 }
 
+@keyframes bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* Animation Utility Classes */
+.float {
+  animation-name: float;
+}
+
+.pulse {
+  animation-name: pulse;
+}
+
+.shake {
+  animation-name: shake;
+}
+
+.bounce {
+  animation-name: bounce;
+}
+
 .kawaii-avatar {
   width: 72px;
   height: 72px;
