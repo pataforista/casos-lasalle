@@ -29,70 +29,113 @@ const NARRATIVE = {
 };
 
 const Avatars = {
-  _generate(avatar, color, animation, badge = "") {
+  _generate(svgContent, gradientId, animation, badge) {
+    // Unique ID for gradients to prevent conflicts if multiple avatars render
+    const uid = Math.random().toString(36).substr(2, 5);
+    const gradId = `grad_${uid}`;
+    
+    // Gradient definitions based on type
+    const gradients = {
+      resident: `
+        <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#84fab0" />
+          <stop offset="100%" stop-color="#8fd3f4" />
+        </linearGradient>`,
+      resident_happy: `
+        <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#fccb90" />
+          <stop offset="100%" stop-color="#d57eeb" />
+        </linearGradient>`,
+      resident_error: `
+        <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#e0c3fc" />
+          <stop offset="100%" stop-color="#8ec5fc" />
+        </linearGradient>`,
+      boss: `
+        <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#f5576c" />
+          <stop offset="100%" stop-color="#f093fb" />
+        </linearGradient>`
+    };
+
+    const selectedGrad = gradients[gradientId] || gradients.resident;
+
     return `
-      <div class="kawaii-avatar" style="background: ${color}; animation-name: ${animation};">
-        ${avatar}
+      <div class="kawaii-avatar ${animation ? animation : ''}" style="background: transparent;">
+        <svg viewBox="0 0 100 100" class="avatar-svg" style="width:100%; height:100%; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
+          <defs>${selectedGrad}</defs>
+          <!-- Face Base -->
+          <rect x="10" y="10" width="80" height="80" rx="25" fill="url(#${gradId})" stroke="rgba(255,255,255,0.8)" stroke-width="3" />
+          ${svgContent}
+        </svg>
         ${badge ? `<div class="kawaii-tag">${badge}</div>` : ""}
       </div>
     `;
   },
+
   resident(name, mood = "normal") {
-    const moodConfig = {
-      happy: { avatar: "resident-smile", color: "linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%)", anim: "float" },
-      shock: { avatar: "resident-shock", color: "linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%)", anim: "shake" },
-      normal: { avatar: "resident-neutral", color: "linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%)", anim: "float" },
-      sad: { avatar: "resident-sad", color: "linear-gradient(135deg, #cfd9df 0%, #e2ebf0 100%)", anim: "float" }
-    };
-    const config = moodConfig[mood] || moodConfig.normal;
-    const initial = name ? name[0].toUpperCase() : "R";
-    const svg = this._renderAvatar(config.avatar);
-    return this._generate(svg, config.color, config.anim, initial);
-  },
-  boss(mood = "normal") {
-    const moodConfig = {
-      angry: { avatar: "boss-angry", color: "linear-gradient(135deg, #ff0844 0%, #ffb199 100%)", anim: "shake" },
-      normal: { avatar: "boss-cool", color: "linear-gradient(135deg, #f6d365 0%, #fda085 100%)", anim: "float" },
-      sus: { avatar: "boss-sus", color: "linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)", anim: "pulse" }
-    };
-    const config = moodConfig[mood] || moodConfig.normal;
-    const svg = this._renderAvatar(config.avatar);
-    return this._generate(svg, config.color, config.anim, "👑");
-  },
-  _renderAvatar(type) {
     const faces = {
-      "resident-neutral": { mouth: "M20 32h24", brow: "", eyeType: "normal", blush: true, hair: "M16 18c4-10 28-10 32 0" },
-      "resident-smile": { mouth: "M18 30c6 8 22 8 28 0", brow: "", eyeType: "smile", blush: true, hair: "M16 18c4-10 28-10 32 0" },
-      "resident-shock": { mouth: "M28 30a6 6 0 1 0 12 0a6 6 0 1 0 -12 0", brow: "M14 18h14M36 18h14", eyeType: "wide", hair: "M16 18c4-10 28-10 32 0" },
-      "resident-sad": { mouth: "M18 34c6-6 22-6 28 0", brow: "M14 20h14M36 20h14", eyeType: "sad", blush: true, hair: "M16 18c4-10 28-10 32 0" },
-      "boss-cool": { mouth: "M18 34h28", brow: "M12 20h18M34 20h18", eyeType: "normal", hair: "M14 20c6-12 30-12 36 0" },
-      "boss-angry": { mouth: "M18 34h28", brow: "M12 22l16-6M36 16l16 6", eyeType: "narrow", hair: "M14 20c6-12 30-12 36 0" },
-      "boss-sus": { mouth: "M20 34h24", brow: "M12 20h16M36 16h16", eyeType: "wink", hair: "M14 20c6-12 30-12 36 0" }
+      normal: {
+        eyes: `<circle cx="35" cy="45" r="5" fill="#111"/><circle cx="65" cy="45" r="5" fill="#111"/>`,
+        mouth: `<path d="M40 65 Q50 70 60 65" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>`,
+        grad: "resident"
+      },
+      happy: { // Acierto
+        eyes: `<path d="M30 45 Q35 40 40 45" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
+               <path d="M60 45 Q65 40 70 45" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>`,
+        mouth: `<path d="M35 60 Q50 75 65 60" fill="#ff6b6b" stroke="none"/>`, // Open mouth smile
+        grad: "resident_happy",
+        anim: "bounce" // CSS class expected
+      },
+      shock: { // Error
+        eyes: `<line x1="30" y1="40" x2="40" y2="50" stroke="#111" stroke-width="3"/><line x1="40" y1="40" x2="30" y2="50" stroke="#111" stroke-width="3"/>
+               <line x1="60" y1="40" x2="70" y2="50" stroke="#111" stroke-width="3"/><line x1="70" y1="40" x2="60" y2="50" stroke="#111" stroke-width="3"/>`,
+        mouth: `<circle cx="50" cy="65" r="6" fill="none" stroke="#111" stroke-width="3"/>`,
+        grad: "resident_error",
+        anim: "shake"
+      }
     };
-    const face = faces[type] || faces["resident-neutral"];
-    const eyeMap = {
-      normal: { rx: 6, ry: 6, pupil: 2.4 },
-      wide: { rx: 7, ry: 7, pupil: 2.8 },
-      narrow: { rx: 6, ry: 3.2, pupil: 2.2 },
-      smile: { rx: 6, ry: 4, pupil: 2.2 },
-      sad: { rx: 6, ry: 5, pupil: 2.3 },
-      wink: { rx: 6, ry: 2.6, pupil: 0 }
-    };
-    const eye = eyeMap[face.eyeType] || eyeMap.normal;
-    return `
-      <svg class="avatar-svg" viewBox="0 0 64 64" role="img" aria-hidden="true">
-        <circle cx="32" cy="32" r="26" fill="rgba(255,255,255,0.25)" stroke="rgba(255,255,255,0.35)" stroke-width="2"></circle>
-        ${face.hair ? `<path d="${face.hair}" stroke="rgba(0,0,0,0.35)" stroke-width="4" stroke-linecap="round"></path>` : ""}
-        <circle cx="22" cy="38" r="4" fill="${face.blush ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)"}"></circle>
-        <circle cx="42" cy="38" r="4" fill="${face.blush ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.18)"}"></circle>
-        <ellipse cx="22" cy="26" rx="${eye.rx}" ry="${eye.ry}" fill="rgba(255,255,255,0.9)"></ellipse>
-        <ellipse cx="42" cy="26" rx="${eye.rx}" ry="${eye.ry}" fill="rgba(255,255,255,0.9)"></ellipse>
-        ${eye.pupil ? `<circle cx="22" cy="26" r="${eye.pupil}" fill="rgba(0,0,0,0.7)"></circle>` : ""}
-        ${eye.pupil ? `<circle cx="42" cy="26" r="${eye.pupil}" fill="rgba(0,0,0,0.7)"></circle>` : ""}
-        <path d="${face.brow}" stroke="rgba(0,0,0,0.6)" stroke-width="2.2" stroke-linecap="round" fill="none"></path>
-        <path d="${face.mouth}" stroke="rgba(0,0,0,0.75)" stroke-width="2.6" stroke-linecap="round" fill="none"></path>
-      </svg>
+
+    const config = faces[mood] || faces.normal;
+    const initial = name ? name[0].toUpperCase() : "R";
+    
+    const svgContent = `
+      <!-- Eyes -->
+      ${config.eyes}
+      <!-- Cheeks -->
+      <circle cx="25" cy="55" r="4" fill="rgba(255,100,100,0.3)" />
+      <circle cx="75" cy="55" r="4" fill="rgba(255,100,100,0.3)" />
+      <!-- Mouth -->
+      ${config.mouth}
     `;
+
+    return this._generate(svgContent, config.grad, config.anim, initial);
+  },
+
+  boss(mood = "normal") {
+    const faces = {
+      normal: {
+        eyes: `<rect x="25" y="42" width="50" height="8" rx="2" fill="#111"/>`, // Visor
+        mouth: `<line x1="40" y1="70" x2="60" y2="70" stroke="#111" stroke-width="3" stroke-linecap="round"/>`
+      },
+      angry: { // Error grave
+        eyes: `<rect x="25" y="42" width="50" height="8" rx="2" fill="#ff0044"/>
+               <path d="M25 35 L50 45 L75 35" fill="none" stroke="#111" stroke-width="2"/>`, // Angry brows
+        mouth: `<path d="M40 70 Q50 65 60 70" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>`
+      }
+    };
+
+    const config = faces[mood] || faces.normal;
+    // Boss uses same gradient always for consistency, or we could vary it
+    const svgContent = `
+      <!-- Boss Visor/Eyes -->
+      ${config.eyes}
+      ${mood === 'normal' ? '' : '<path d="M85 20 L95 10" stroke="#ff0044" stroke-width="4" />'} <!-- Stress mark -->
+      <!-- Mouth -->
+      ${config.mouth}
+    `;
+
+    return this._generate(svgContent, "boss", mood === 'angry' ? 'shake' : '', "BOSS");
   }
 };
 
