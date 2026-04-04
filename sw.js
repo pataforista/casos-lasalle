@@ -5,13 +5,14 @@
    - Limpieza de caches: borra TODO lo que no sea el cache actual
    ============================================================================ */
 
-   const CACHE_VERSION = "psycase-v1.0.3";
+   const CACHE_VERSION = "psycase-v1.0.6";
    const CACHE_NAME = `psycase-${CACHE_VERSION}`;
    
    const APP_SHELL = [
      "./",
      "./index.html",
      "./manifest.webmanifest",
+     "./assets/styles.css",
    
      "./js/economy.js",
      "./js/caseLoader.js",
@@ -21,8 +22,9 @@
      "./assets/icons/icon-192.png",
      "./assets/icons/icon-512.png",
    
-     // En tu zip existen:
-     "./data/manifest_v1.json"
+     "./data/manifest_v1.json",
+     "./data/items_v1.json",
+     "./data/packs/cases_real_v1.json"
    ];
    
    /* ----------------------------- INSTALL ----------------------------- */
@@ -76,16 +78,25 @@
    
      const url = new URL(req.url);
    
-     // Solo manejamos same-origin para evitar rarezas con CDNs (tailwind/fonts)
-     if (url.origin !== self.location.origin) return;
-   
      // 1) Todo lo que esté en /data/ (manifest + packs + jsons)
-     if (url.pathname.includes("/data/")) {
-       event.respondWith(staleWhileRevalidate(req));
-       return;
-     }
-   
-     // 2) App shell y estáticos
-     event.respondWith(cacheFirst(req));
+    if (url.pathname.includes("/data/")) {
+      event.respondWith(staleWhileRevalidate(req));
+      return;
+    }
+
+    // 2) CDN Externos (Fuentes y Tailwind) para soporte offline real
+    const EXTERNAL_WHITELIST = [
+      "fonts.googleapis.com",
+      "fonts.gstatic.com",
+      "cdn.tailwindcss.com"
+    ];
+    if (EXTERNAL_WHITELIST.includes(url.hostname)) {
+      event.respondWith(staleWhileRevalidate(req));
+      return;
+    }
+
+    // 3) App shell y estáticos locales
+    if (url.origin === self.location.origin) {
+      event.respondWith(cacheFirst(req));
+    }
    });
-   

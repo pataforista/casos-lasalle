@@ -48,6 +48,7 @@ const CaseDB = (() => {
     }
 
     const packPromise = (async () => {
+      // Si la ruta ya empieza con packs/, se asume relativa a /data/
       const res = await fetch(`./data/${cleanPath}`);
       if (!res.ok) {
         throw new Error(`No se pudo cargar pack: ${cleanPath}`);

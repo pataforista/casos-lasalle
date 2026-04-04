@@ -2435,5 +2435,1833 @@
       ],
       "take_home": "El TAG suele ser crónico y se manifiesta somáticamente como 'tensión y fatiga'; mentalmente como '¿y si pasa algo malo?'."
     }
+  },
+  {
+    "case_id": "CLIN_001_PANICO",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno de Pánico: Crisis vs. Ansiedad Generalizada",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_001",
+        "text_content": "El trastorno de pánico se caracteriza por crisis recurrentes e inesperadas de miedo intenso que alcanzan su máxima expresión en minutos. Los síntomas incluyen palpitaciones, sudoración, sensación de ahogo, miedo a morir o a perder el control. Para el diagnóstico, debe haber preocupación persistente por nuevas crisis o cambios conductuales maladaptativos durante al menos un mes."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_001_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué elemento distingue una crisis de pánico de la ansiedad basal del Trastorno de Ansiedad Generalizada (TAG)?",
+        "expected_answer": "Inicio súbito y alcanza máxima intensidad en minutos",
+        "distractors": [
+          "Presencia de preocupación excesiva",
+          "Duración de al menos 6 meses",
+          "Síntomas exclusivamente físicos sin componente cognitivo"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La crisis de pánico es paroxística y alcanza su pico rápidamente (usualmente <10 minutos), mientras que la ansiedad del TAG es crónica, persistente y fluctuante a lo largo del día.",
+      "evidence_chunks": [
+        "CH_CLIN_001"
+      ],
+      "why_not": [
+        {
+          "option": "Presencia de preocupación excesiva",
+          "reason": "La preocupación excesiva es el sello del TAG, no del pánico aislado."
+        },
+        {
+          "option": "Duración de al menos 6 meses",
+          "reason": "Ese criterio temporal aplica para TAG, no para definir una crisis de pánico."
+        }
+      ],
+      "take_home": "Pánico = crisis aguda, breve e inesperada. TAG = preocupación crónica y difusa. Ambos pueden coexistir."
+    }
+  },
+  {
+    "case_id": "CLIN_002_FOBIA_SOCIAL",
+    "case_type": "razonamiento_clinico",
+    "title": "Fobia Social: Ansiedad de Actuación",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_002",
+        "text_content": "La fobia social (trastorno de ansiedad social) implica miedo intenso a ser evaluado negativamente por otros en situaciones sociales o de actuación. El individuo teme mostrar síntomas de ansiedad (sonrojarse, temblar) que sean juzgados como débiles o ridículos. Las situaciones se evitan o se soportan con gran malestar."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_002_1",
+        "type": "mcq_single_best",
+        "instruction": "Un estudiante refiere que cada vez que debe exponer en clase, su corazón late muy rápido, tiembla y siente que todos notan su miedo. Evita presentaciones orales a toda costa. ¿Cuál es el diagnóstico más probable?",
+        "expected_answer": "Trastorno de ansiedad social (fobia social) de tipo actuación",
+        "distractors": [
+          "Trastorno de pánico con agorafobia",
+          "Trastorno de ansiedad generalizada",
+          "Mutismo selectivo"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El miedo a ser evaluado negativamente en situaciones de actuación (exponer en clase) con evitación activa es el núcleo de la fobia social, especialmente el especificador de 'solo actuación'.",
+      "evidence_chunks": [
+        "CH_CLIN_002"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno de pánico con agorafobia",
+          "reason": "No hay crisis de pánico inesperadas ni miedo a lugares abiertos o cerrados per se, sino miedo a la evaluación social."
+        },
+        {
+          "option": "Mutismo selectivo",
+          "reason": "Es un trastorno de la infancia que implica no hablar en contextos específicos, no necesariamente por miedo a la evaluación."
+        }
+      ],
+      "take_home": "La fobia social es más que timidez: causa deterioro funcional y se asocia a alto riesgo de depresión secundaria."
+    }
+  },
+  {
+    "case_id": "CLIN_003_ANOREXIA",
+    "case_type": "razonamiento_clinico",
+    "title": "Anorexia Nerviosa: Criterios Diagnósticos",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_003",
+        "text_content": "La anorexia nerviosa se define por: 1) Restricción de ingesta que lleva a peso corporal significativamente bajo (<85% del esperado o IMC <17.5), 2) Miedo intenso a ganar peso o a la obesidad, incluso con bajo peso, y 3) Distorsión de la imagen corporal (verse 'gordo' a pesar de la delgadez)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_003_1",
+        "type": "mcq_single_best",
+        "instruction": "Adolescente femenina de 15 años con IMC 16.0. Refiere que 'se ve gorda' y hace ejercicio excesivo. ¿Qué criterio de anorexia nerviosa está ejemplificado por la percepción de verse gorda a pesar de estar bajo peso?",
+        "expected_answer": "Distorsión de la imagen corporal (alteración en la percepción del peso)",
+        "distractors": [
+          "Miedo intenso a ganar peso",
+          "Restricción de la ingesta",
+          "Amenorrea"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La distorsión de la imagen corporal (Criterio C del DSM-5) es la alteración en la forma en que el paciente experimenta su propio peso o figura, como 'sentirse gordo' cuando está objetivamente delgado.",
+      "evidence_chunks": [
+        "CH_CLIN_003"
+      ],
+      "why_not": [
+        {
+          "option": "Miedo intenso a ganar peso",
+          "reason": "Ese es el Criterio B, pero la frase 'se ve gorda' apunta a la distorsión perceptual, no al miedo."
+        },
+        {
+          "option": "Amenorrea",
+          "reason": "Ya no es criterio obligatorio en DSM-5 (fue retirado)."
+        }
+      ],
+      "take_home": "La anorexia no es solo dieta; es un trastorno perceptual donde el espejo miente."
+    }
+  },
+  {
+    "case_id": "CLIN_004_BULIMIA",
+    "case_type": "razonamiento_clinico",
+    "title": "Bulimia Nerviosa: Ciclo Atracón-Compensación",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_004",
+        "text_content": "La bulimia nerviosa se caracteriza por episodios recurrentes de atracones (ingesta de gran cantidad de alimento en poco tiempo con sensación de pérdida de control), seguidos de conductas compensatorias inapropiadas (vómito, laxantes, ayuno, ejercicio excesivo). El paciente tiene un peso normal o sobrepeso."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_004_1",
+        "type": "mcq_single_best",
+        "instruction": "Mujer de 22 años, IMC 23. Refiere que dos veces por semana come grandes cantidades de comida en 1 hora, siente que no puede parar y luego se provoca el vómito. ¿Qué elemento confirma que no se trata de anorexia nerviosa?",
+        "expected_answer": "Peso corporal normal o superior al mínimo esperado",
+        "distractors": [
+          "Presencia de atracones",
+          "Conductas compensatorias",
+          "Preocupación por el peso"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La anorexia nerviosa cursa con peso significativamente bajo (<85% del esperado). La bulimia, en cambio, se presenta típicamente con peso normal o sobrepeso, lo que es un diferenciador clave.",
+      "evidence_chunks": [
+        "CH_CLIN_004"
+      ],
+      "why_not": [
+        {
+          "option": "Presencia de atracones",
+          "reason": "También puede haber atracones en el subtipo purgativo de anorexia, aunque son menos frecuentes."
+        },
+        {
+          "option": "Conductas compensatorias",
+          "reason": "Ambos trastornos pueden tener conductas purgativas."
+        }
+      ],
+      "take_home": "Diferenciador clave: Anorexia = bajo peso. Bulimia = peso normal o sobrepeso."
+    }
+  },
+  {
+    "case_id": "CLIN_005_TDM_ESPECIFICADOR",
+    "case_type": "razonamiento_clinico",
+    "title": "Depresión Mayor: Especificador Atípico",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_005",
+        "text_content": "El especificador 'con características atípicas' en depresión mayor requiere reactividad del estado de ánimo (mejoría ante eventos positivos reales o potenciales) más al menos dos de: aumento de apetito/peso, hipersomnia, parálisis plúmbea (sensación de pesadez en extremidades) y patrón prolongado de rechazo interpersonal."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_005_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente con depresión refiere que cuando sale con amigos 'se siente un poco mejor', pero duerme 12 horas diarias y ha aumentado 5 kg en 2 meses. ¿Qué especificador corresponde?",
+        "expected_answer": "Con características atípicas",
+        "distractors": [
+          "Con rasgos melancólicos",
+          "Con angustia ansiosa",
+          "Con patrón estacional"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La reactividad del ánimo (mejoría con eventos positivos) más hipersomnia y aumento de peso son los pilares del especificador atípico, opuesto a la melancolía (insomnio, anorexia).",
+      "evidence_chunks": [
+        "CH_CLIN_005"
+      ],
+      "why_not": [
+        {
+          "option": "Con rasgos melancólicos",
+          "reason": "La melancolía se asocia a insomnio terminal y pérdida de peso, no hipersomnia ni aumento de apetito."
+        },
+        {
+          "option": "Con angustia ansiosa",
+          "reason": "No se menciona ansiedad ni tensión como síntomas predominantes."
+        }
+      ],
+      "take_home": "Depresión atípica = 'mejoro con buenas noticias' + duermo/como de más. Depresión melancólica = 'nada me alegra' + no duermo/no como."
+    }
+  },
+  {
+    "case_id": "CLIN_006_TRASTORNO_ADAPTACION",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno de Adaptación: Estrés Psicosocial",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_006",
+        "text_content": "El trastorno de adaptación es una respuesta emocional o conductual maladaptativa a un estresor psicosocial identificable (cambio laboral, separación, enfermedad). Los síntomas aparecen dentro de los 3 meses posteriores al estresor y no persisten más de 6 meses después de que cesa el estresor."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_006_1",
+        "type": "mcq_single_best",
+        "instruction": "Mujer de 30 años, 2 meses después de divorcio, presenta tristeza, insomnio y dificultad para concentrarse. No cumple criterios completos para depresión mayor. ¿Cuál es el diagnóstico más probable?",
+        "expected_answer": "Trastorno de adaptación con estado de ánimo depresivo",
+        "distractors": [
+          "Trastorno depresivo mayor",
+          "Duelo normal",
+          "Trastorno de estrés postraumático"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El trastorno de adaptación se diagnostica cuando hay un estresor claro, los síntomas son clínicamente significativos pero no alcanzan el umbral para otro trastorno, y hay una relación temporal directa (inicio a los 3 meses).",
+      "evidence_chunks": [
+        "CH_CLIN_006"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno depresivo mayor",
+          "reason": "No cumple 5 síntomas o no hay anhedonia/ánimo deprimido sostenido por 2 semanas completas según la viñeta."
+        },
+        {
+          "option": "Duelo normal",
+          "reason": "El divorcio no es una muerte, y la intensidad de los síntomas puede ser mayor a la esperable."
+        }
+      ],
+      "take_home": "El trastorno de adaptación es el diagnóstico más frecuente en consulta de atención primaria. Recuerda: hay un 'gatillo' externo."
+    }
+  },
+  {
+    "case_id": "CLIN_007_TOC_INSIGHT",
+    "case_type": "razonamiento_clinico",
+    "title": "TOC: Niveles de Insight",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_007",
+        "text_content": "En el TOC, el insight se refiere a la capacidad de reconocer que las obsesiones y compulsiones son irracionales o excesivas. El DSM-5 especifica niveles: insight bueno o regular (reconoce que las creencias no son verdaderas), insight pobre (piensa que probablemente sean ciertas) y ausencia de insight (convicción delirante)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_007_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente con TOC de limpieza afirma: 'Sé que es poco probable que me contamine, pero la ansiedad es tan intensa que debo lavarme igual'. ¿Qué nivel de insight presenta?",
+        "expected_answer": "Insight bueno o regular",
+        "distractors": [
+          "Insight pobre",
+          "Ausencia de insight (convicción delirante)",
+          "Insight sobrevalorado"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El paciente reconoce explícitamente que sus creencias (riesgo de contaminación) son improbables, lo que indica insight conservado. A pesar de ello, realiza la compulsión por el alivio ansioso.",
+      "evidence_chunks": [
+        "CH_CLIN_007"
+      ],
+      "why_not": [
+        {
+          "option": "Insight pobre",
+          "reason": "Implica que el paciente cree que es 'probablemente cierto', lo que no dice aquí."
+        },
+        {
+          "option": "Ausencia de insight",
+          "reason": "Equivaldría a un delirio; el paciente no tiene esa convicción total."
+        }
+      ],
+      "take_home": "Insight en TOC no significa que el paciente deje de hacer la compulsión, solo que reconoce su irracionalidad. La mayoría de pacientes con TOC tienen insight conservado."
+    }
+  },
+  {
+    "case_id": "CLIN_008_HIPOCONDRIA",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno de Ansiedad por Enfermedad (Hipocondría)",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_008",
+        "text_content": "El trastorno de ansiedad por enfermedad (antes hipocondría) se caracteriza por la preocupación persistente de tener o contraer una enfermedad grave, basada en la interpretación errónea de síntomas corporales normales o leves. A pesar de las evaluaciones médicas normales, la ansiedad persiste."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_008_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente consulta 15 veces en 6 meses por dolor de cabeza ocasional, convencido de que es un tumor cerebral. El neurólogo le ha realizado TAC y RM normales. ¿Qué diagnóstico es más probable?",
+        "expected_answer": "Trastorno de ansiedad por enfermedad (hipocondría)",
+        "distractors": [
+          "Trastorno de síntomas somáticos",
+          "Trastorno facticio",
+          "Simulación"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La preocupación central es tener una enfermedad grave (tumor) a partir de síntomas leves, con persistencia a pesar de pruebas negativas. Eso es ansiedad por enfermedad.",
+      "evidence_chunks": [
+        "CH_CLIN_008"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno de síntomas somáticos",
+          "reason": "El foco ahí es el malestar por los síntomas físicos en sí mismos, no el miedo a tener una enfermedad subyacente."
+        },
+        {
+          "option": "Simulación",
+          "reason": "No hay evidencia de un beneficio externo (económico, legal, etc.)."
+        }
+      ],
+      "take_home": "Hipocondría = '¿y si tengo cáncer?'. Trastorno de síntomas somáticos = 'me duele mucho la cabeza, no puedo funcionar'. Diferencia sutil pero clave."
+    }
+  },
+  {
+    "case_id": "CLIN_009_CONVERSION",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno de Conversión (Síntomas Neurológicos Funcionales)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_009",
+        "text_content": "El trastorno de conversión (trastorno de síntomas neuógogicos funcionales) cursa con síntomas motores o sensitivos incompatibles con enfermedad neurológica conocida (debilidad, temblor, crisis no epilépticas, anestesia). El síntoma no es intencional y causa malestar. Los hallazgos típicos incluyen patrón no dermatomal, fuerza variable y prueba de Hoover positiva."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_009_1",
+        "type": "mcq_single_best",
+        "instruction": "Mujer de 25 años con debilidad en pierna izquierda que empeora cuando se le presta atención. La exploración muestra caída de la pierna al realizar maniobra de Hoover (al levantar la pierna sana, la 'paralizada' no empuja hacia abajo). ¿Qué diagnóstico sugiere?",
+        "expected_answer": "Trastorno de conversión (síntoma neurológico funcional)",
+        "distractors": [
+          "Esclerosis múltiple",
+          "Miastenia gravis",
+          "Lesión de neurona motora superior"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La prueba de Hoover es positiva cuando la extensión de la cadera en la pierna 'paralizada' no ocurre al intentar levantar la pierna sana (porque el paciente no realiza el movimiento voluntario de extensión, que sería automático si hubiera debilidad orgánica). Es altamente específica para debilidad funcional.",
+      "evidence_chunks": [
+        "CH_CLIN_009"
+      ],
+      "why_not": [
+        {
+          "option": "Esclerosis múltiple",
+          "reason": "La debilidad orgánica no varía con la atención ni presenta prueba de Hoover positiva."
+        },
+        {
+          "option": "Lesión de neurona motora superior",
+          "reason": "Cursaría con espasticidad, hiperreflexia y signo de Babinski, no mencionados."
+        }
+      ],
+      "take_home": "La prueba de Hoover es tu mejor aliada para diferenciar debilidad funcional de orgánica en extremidad inferior."
+    }
+  },
+  {
+    "case_id": "CLIN_010_TRASTORNO_FACTICIO",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno Facticio (Síndrome de Münchausen)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_010",
+        "text_content": "El trastorno facticio implica la falsificación intencional de síntomas físicos o psicológicos, sin un incentivo externo evidente (a diferencia de la simulación). El paciente asume el rol de 'enfermo'. Puede incluir autoinducción de lesiones, adulteración de muestras o mentiras sobre historia clínica. El motivo es psicológico (necesidad de atención médica, asumir rol de paciente)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_010_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente que se inyecta heces para causarse sepsis, ha sido operado en 7 hospitales diferentes, pero no busca compensación económica ni evita responsabilidades legales. ¿Cuál es el diagnóstico?",
+        "expected_answer": "Trastorno facticio (Síndrome de Münchausen)",
+        "distractors": [
+          "Simulación",
+          "Trastorno de síntomas somáticos",
+          "Trastorno facticio por poderes"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La falsificación activa de síntomas (autoinyección de heces) sin un incentivo externo claro, solo el rol de enfermo, es característico del trastorno facticio. La ausencia de ganancia secundaria (dinero, evitar prisión) lo diferencia de la simulación.",
+      "evidence_chunks": [
+        "CH_CLIN_010"
+      ],
+      "why_not": [
+        {
+          "option": "Simulación",
+          "reason": "Implica un objetivo externo evidente (dinero, evasión de responsabilidades)."
+        },
+        {
+          "option": "Trastorno facticio por poderes",
+          "reason": "Es cuando se induce enfermedad en otra persona (ej. un padre a un hijo)."
+        }
+      ],
+      "take_home": "Trastorno facticio = paciente quiere estar enfermo. Simulación = paciente quiere un beneficio externo."
+    }
+  },
+  {
+    "case_id": "CLIN_011_ABSTINENCIA_ALCOHOL",
+    "case_type": "razonamiento_clinico",
+    "title": "Síndrome de Abstinencia Alcohólica",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_011",
+        "text_content": "La abstinencia alcohólica aparece dentro de las 6-24 horas posteriores a la reducción o cese del consumo intenso y prolongado. Los síntomas incluyen temblor, ansiedad, insomnio, náuseas, taquicardia e hipertensión. En formas graves (delirium tremens) se agregan desorientación, alucinaciones (típicamente visuales: zoopsias) e inestabilidad autonómica severa (fiebre, taquicardia marcada)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_011_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente alcohólico de 45 años, última ingesta hace 36 horas. Presenta temblor fino, ansiedad, insomnio, TA 150/95 y FC 110. ¿Cuál es el manejo farmacológico de primera línea?",
+        "expected_answer": "Benzodiacepinas (ej. lorazepam o diazepam) con dosis ajustadas según síntomas",
+        "distractors": [
+          "Haloperidol IM",
+          "Carbamazepina sola",
+          "Beta-bloqueadores como única terapia"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Las benzodiacepinas son el tratamiento gold standard para la abstinencia alcohólica porque actúan como sustitutos del alcohol en los receptores GABA. Disminuyen el riesgo de crisis convulsivas y delirium tremens.",
+      "evidence_chunks": [
+        "CH_CLIN_011"
+      ],
+      "why_not": [
+        {
+          "option": "Haloperidol IM",
+          "reason": "Puede bajar el umbral convulsivo y empeorar la abstinencia; no es primera línea."
+        },
+        {
+          "option": "Beta-bloqueadores",
+          "reason": "Controlan síntomas autonómicos pero no previenen crisis ni delirium."
+        }
+      ],
+      "take_home": "En abstinencia alcohólica: BZD + Tiamina. El CIWA-Ar es tu guía."
+    }
+  },
+  {
+    "case_id": "CLIN_012_DUELO_COMPLICADO",
+    "case_type": "razonamiento_clinico",
+    "title": "Duelo vs. Depresión Mayor",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_012",
+        "text_content": "El duelo normal se caracteriza por sentimientos de pérdida que vienen en oleadas, preservación de la autoestima y capacidad de experimentar emociones positivas. La depresión mayor en cambio presenta ánimo deprimido persistente sin relación con pensamientos del ser querido, anhedonia generalizada, baja autoestima y pensamientos de muerte no relacionados con 'unirse' al fallecido."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_012_1",
+        "type": "mcq_single_best",
+        "instruction": "Viudo refiere que 8 meses después de la muerte de su esposa sigue sintiendo tristeza intensa todos los días, no puede disfrutar nada (ni con sus hijos ni hobbies), siente que es 'inútil' y tiene ideas de que 'la vida no vale la pena'. ¿Qué orientación diagnóstica tiene mayor peso?",
+        "expected_answer": "Trastorno de duelo prolongado",
+        "distractors": [
+          "Duelo normal",
+          "Trastorno de adaptación",
+          "Trastorno psicótico breve"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La anhedonia generalizada (no puede disfrutar nada), la baja autoestima ('soy inútil') y la ideación de muerte sin la intención de 'unirse' al ser querido son características que apuntan a depresión mayor y no a duelo normal.",
+      "evidence_chunks": [
+        "CH_CLIN_012"
+      ],
+      "why_not": [
+        {
+          "option": "Duelo normal",
+          "reason": "En el duelo normal, la tristeza suele ser en oleadas y se preserva la capacidad de alegría."
+        },
+        {
+          "option": "Trastorno de adaptacion",
+          "reason": "Suele ser a un estresor identificable no necesariamente muerte."
+        }
+      ],
+      "take_home": "Si el paciente no puede sentir placer en nada (no solo en relación al fallecido) y tiene baja autoestima, piensa en depresión, no solo duelo."
+    }
+  },
+  {
+    "case_id": "CLIN_013_INSOMNIO",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno de Insomnio: Criterios",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_013",
+        "text_content": "El trastorno de insomnio se caracteriza por dificultad para iniciar o mantener el sueño, o despertar temprano sin poder volver a dormir, al menos 3 noches por semana durante 3 meses, a pesar de una adecuada oportunidad para dormir. Causa malestar o deterioro diurno (fatiga, irritabilidad, problemas de concentración)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_013_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente refiere que se acuesta a las 23:00 pero se queda dando vueltas hasta las 2:00 am, 4-5 noches por semana, desde hace 4 meses. Durante el día está cansado e irritable. ¿Cuál es el diagnóstico?",
+        "expected_answer": "Trastorno de insomnio (dificultad para iniciar el sueño)",
+        "distractors": [
+          "Insomnio situacional agudo",
+          "Trastorno de fase de sueño retardada",
+          "Síndrome de piernas inquietas"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Cumple con criterios temporales (>3 meses, ≥3 noches/semana), hay oportunidad para dormir (se acuesta a las 23:00) y hay deterioro diurno (cansancio, irritabilidad).",
+      "evidence_chunks": [
+        "CH_CLIN_013"
+      ],
+      "why_not": [
+        {
+          "option": "Insomnio situacional agudo",
+          "reason": "Es de menos de 3 meses, aquí lleva 4 meses."
+        },
+        {
+          "option": "Trastorno de fase de sueño retardada",
+          "reason": "Se caracteriza por un retraso del reloj biológico (no puede dormir antes de las 2 am, pero si duerme a esa hora, lo hace bien). Aquí la dificultad es para iniciar el sueño a la hora deseada."
+        }
+      ],
+      "take_home": "Insomnio crónico requiere síntomas ≥3 meses. La higiene del sueño y TCC-I son primera línea, no solo fármacos."
+    }
+  },
+  {
+    "case_id": "CLIN_014_NARCOLEPSIA",
+    "case_type": "razonamiento_clinico",
+    "title": "Narcolepsia: Tetrada Clásica",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_014",
+        "text_content": "La narcolepsia tipo 1 se asocia a cataplejía (pérdida súbita del tono muscular desencadenada por emociones intensas, especialmente risa o sorpresa). La tetrada incluye: somnolencia diurna excesiva, cataplejía, alucinaciones hipnagógicas (al dormir) e hipnopómpicas (al despertar), y parálisis del sueño."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_014_1",
+        "type": "mcq_single_best",
+        "instruction": "Joven de 20 años refiere que cuando se ríe a carcajadas, a veces se le caen los objetos de las manos y siente que las rodillas se le doblan. Además, tiene mucha somnolencia diurna. ¿Cuál es el diagnóstico más probable?",
+        "expected_answer": "Narcolepsia tipo 1 (con cataplejía)",
+        "distractors": [
+          "Narcolepsia tipo 2 (sin cataplejía)",
+          "Apnea obstructiva del sueño",
+          "Trastorno de conducta del sueño REM"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La cataplejía (pérdida de tono muscular por emociones, como la risa) es patognomónica de narcolepsia tipo 1. Asociada a somnolencia diurna, es altamente sugestiva.",
+      "evidence_chunks": [
+        "CH_CLIN_014"
+      ],
+      "why_not": [
+        {
+          "option": "Narcolepsia tipo 2",
+          "reason": "No hay cataplejía, por definición."
+        },
+        {
+          "option": "Apnea obstructiva del sueño",
+          "reason": "Causa somnolencia pero no cataplejía."
+        }
+      ],
+      "take_home": "Si un paciente se cae o se le caen objetos cuando se ríe o se enoja, piensa en cataplejía y narcolepsia tipo 1."
+    }
+  },
+  {
+    "case_id": "CLIN_015_TRASTORNO_PERSONALIDAD_LIMITE_CRITERIOS",
+    "case_type": "razonamiento_clinico",
+    "title": "TLP: Criterios DSM-5",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_015",
+        "text_content": "El trastorno límite de la personalidad (TLP) requiere al menos 5 de 9 criterios: 1) miedo al abandono, 2) relaciones inestables e intensas, 3) alteración de identidad, 4) impulsividad (gastos, sexo, sustancias), 5) conductas suicidas o autolesiones, 6) inestabilidad afectiva, 7) sentimiento de vacío, 8) ira intensa, 9) ideación paranoide transitoria o síntomas disociativos bajo estrés."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_015_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente con cambios de humor intensos en el mismo día, se siente vacío, se ha cortado los brazos en varias ocasiones sin intención suicida y tiene miedo extremo a que su pareja lo abandone. ¿Cuántos criterios de TLP están ejemplificados?",
+        "expected_answer": "Al menos 4: inestabilidad afectiva, vacío, autolesiones, miedo al abandono",
+        "distractors": [
+          "Cumple solo 2 criterios",
+          "Cumple 3 criterios",
+          "Cumple los 9 criterios"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Los criterios mencionados son: inestabilidad afectiva (cambios de humor en el día), sentimiento de vacío, conductas autolesivas (cortes) y miedo al abandono. Eso son 4. Se necesitan 5 para el diagnóstico, pero la pregunta pide cuántos están ejemplificados.",
+      "evidence_chunks": [
+        "CH_CLIN_015"
+      ],
+      "why_not": [
+        {
+          "option": "Cumple solo 2 criterios",
+          "reason": "Se identifican claramente al menos 4."
+        },
+        {
+          "option": "Cumple los 9 criterios",
+          "reason": "No se mencionan impulsividad en gastos/sustancias, alteración de identidad, ira intensa, etc."
+        }
+      ],
+      "take_home": "El TLP es el 'gran simulador' de la psiquiatría. El miedo al abandono y las autolesiones sin ideación suicida son pistas clave."
+    }
+  },
+  {
+    "case_id": "CLIN_016_TRASTORNO_PERSONALIDAD_ANTISOCIAL",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno Antisocial de la Personalidad (TASP)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_016",
+        "text_content": "El trastorno antisocial de la personalidad se caracteriza por un patrón general de desprecio y violación de los derechos de los demás desde los 15 años, con evidencia de trastorno de conducta previo a los 15. Incluye fracaso para adaptarse a normas sociales, mentiras repetidas, impulsividad, irritabilidad y agresividad, despreocupación por su seguridad o la de otros, irresponsabilidad consistente y falta de remordimiento."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_016_1",
+        "type": "mcq_single_best",
+        "instruction": "Hombre de 28 años con múltiples arrestos por estafas, ha golpeado a su pareja, nunca ha pagado la manutención de sus hijos y dice que 'la gente se merece lo que le pasa'. Refiere que desde los 12 años robaba en tiendas. ¿Qué diagnóstico es más probable?",
+        "expected_answer": "Trastorno antisocial de la personalidad",
+        "distractors": [
+          "Trastorno límite de la personalidad",
+          "Trastorno narcisista de la personalidad",
+          "Trastorno explosivo intermitente"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Cumple con los criterios: violación de derechos de otros (estafas, agresiones), irresponsabilidad (manutención), falta de remordimiento ('se lo merecen'), y antecedente de trastorno de conducta desde antes de los 15 años (robos a los 12).",
+      "evidence_chunks": [
+        "CH_CLIN_016"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno límite de la personalidad",
+          "reason": "El TLP tiene miedo al abandono, vacío y autolesiones; la agresión en TLP es reactiva, no instrumental como aquí."
+        },
+        {
+          "option": "Trastorno explosivo intermitente",
+          "reason": "Solo explica la agresión, no el patrón de estafas, irresponsabilidad crónica ni falta de remordimiento."
+        }
+      ],
+      "take_home": "El TASP requiere antecedente de trastorno de conducta antes de los 15 años. No hay remordimiento (a diferencia del TLP, donde sí lo hay post-crisis)."
+    }
+  },
+  {
+    "case_id": "CLIN_017_EFECTOS_ADVERSOS_ISRS",
+    "case_type": "farmacologia",
+    "title": "Efectos Adversos de ISRS: Síndrome Serotoninérgico Leve",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_017",
+        "text_content": "Los efectos adversos comunes de los ISRS (fluoxetina, sertralina, escitalopram) incluyen: náuseas, cefalea, insomnio o somnolencia, disfunción sexual (anorgasmia, disminución de libido), y bruxismo. El síndrome serotoninérgico (leve a grave) cursa con inquietud, diaforesis, temblor, hiperreflexia y clonus."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_017_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente que inició sertralina hace 3 días refiere náuseas, cefalea y dificultad para alcanzar el orgasmo. ¿Cuál es la conducta más adecuada?",
+        "expected_answer": "Informar que son efectos esperados y suelen disminuir en 1-2 semanas, mantener dosis",
+        "distractors": [
+          "Suspender sertralina inmediatamente por intolerancia",
+          "Aumentar la dosis para acelerar efecto terapéutico",
+          "Cambiar a un antidepresivo tricíclico"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Las náuseas y cefalea son efectos adversos tempranos y autolimitados (suelen ceder en 1-2 semanas). La disfunción sexual puede persistir y manejarse luego. No se suspende abruptamente por efectos leves.",
+      "evidence_chunks": [
+        "CH_CLIN_017"
+      ],
+      "why_not": [
+        {
+          "option": "Suspender sertralina inmediatamente",
+          "reason": "Suspender abruptamente puede causar síndrome de discontinuación, y los efectos son esperables y tolerables."
+        },
+        {
+          "option": "Aumentar la dosis",
+          "reason": "Empeoraría los efectos adversos sin beneficio terapéutico inmediato."
+        }
+      ],
+      "take_home": "Los efectos adversos de ISRS suelen ser dosis-dependientes y temporales. Paciencia y educación son clave en la primera semana."
+    }
+  },
+  {
+    "case_id": "CLIN_018_ANTIPSICOTICOS_METABOLICOS",
+    "case_type": "farmacologia",
+    "title": "Antipsicóticos Atípicos: Síndrome Metabólico",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_018",
+        "text_content": "Los antipsicóticos atípicos (clozapina, olanzapina, risperidona, quetiapina) difieren en su perfil de efectos metabólicos. Clozapina y olanzapina tienen el mayor riesgo de aumento de peso, dislipidemia y diabetes mellitus tipo 2. Risperidona tiene riesgo moderado. Aripiprazol y ziprasidona tienen riesgo bajo. Se recomienda monitoreo de peso, perímetro abdominal, glucemia y perfil lipídico al inicio y periódicamente."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_018_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente con esquizofrenia inicia tratamiento con olanzapina. ¿Qué monitoreo metabólico debe realizarse al inicio y a los 3 meses?",
+        "expected_answer": "Peso, glucemia en ayunas, perfil lipídico y presión arterial",
+        "distractors": [
+          "Solo peso y perímetro abdominal",
+          "Hemograma completo y función hepática",
+          "Niveles de prolactina exclusivamente"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El síndrome metabólico (obesidad, hiperglucemia, dislipidemia, HTA) es un efecto adverso grave y frecuente de olanzapina. El monitoreo debe incluir los cuatro componentes según guías clínicas.",
+      "evidence_chunks": [
+        "CH_CLIN_018"
+      ],
+      "why_not": [
+        {
+          "option": "Solo peso y perímetro abdominal",
+          "reason": "No es suficiente; la glucemia y los lípidos pueden alterarse incluso sin gran aumento de peso."
+        },
+        {
+          "option": "Niveles de prolactina",
+          "reason": "Eso es para risperidona y paliperidona (efecto hiperprolactinémico), no el monitoreo metabólico primario de olanzapina."
+        }
+      ],
+      "take_home": "Olanzapina y clozapina = campeones en efectividad, también campeones en diabetes y obesidad. Monitorea cada 3 meses."
+    }
+  },
+  {
+    "case_id": "CLIN_019_LITIO_MONITOREO",
+    "case_type": "farmacologia",
+    "title": "Litio: Niveles Terapéuticos y Tóxicos",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_019",
+        "text_content": "El litio tiene un índice terapéutico estrecho. Niveles recomendados: para manía aguda 0.8-1.2 mEq/L, para mantenimiento 0.6-0.8 mEq/L. Toxicidad leve (1.5-2.0): náuseas, temblor fino, letargo. Toxicidad moderada (2.0-2.5): ataxia, disartria, confusión. Toxicidad severa (>2.5): convulsiones, coma, falla renal. La deshidratación, AINEs y diuréticos tiazídicos aumentan los niveles."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_019_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente en mantenimiento con litio (nivel previo 0.7) inicia ibuprofeno por dolor lumbar. Alos 5 días refiere temblor fino, náuseas y 'sensación de mareo'. ¿Cuál es la causa más probable?",
+        "expected_answer": "Aumento del nivel de litio por interacción con AINE (ibuprofeno)",
+        "distractors": [
+          "Toxicidad por litio independiente de interacción",
+          "Efecto adverso del ibuprofeno (neurológico)",
+          "Progresión de enfermedad de base"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Los AINE (excepto aspirina) disminuyen la excreción renal de litio, elevando sus niveles. La tríada temblor + náuseas + inestabilidad sugiere toxicidad leve, precipitada por la interacción.",
+      "evidence_chunks": [
+        "CH_CLIN_019"
+      ],
+      "why_not": [
+        {
+          "option": "Toxicidad por litio independiente",
+          "reason": "El paciente estaba estable con nivel 0.7; el factor desencadenante es el ibuprofeno."
+        },
+        {
+          "option": "Efecto adverso del ibuprofeno",
+          "reason": "El ibuprofeno rara vez causa temblor y mareo como efecto primario."
+        }
+      ],
+      "take_home": "Siempre pregunta por AINEs de venta libre en pacientes con litio. Ibuprofeno y naproxeno son peligrosos."
+    }
+  },
+  {
+    "case_id": "CLIN_020_BENZODIACEPINAS_DEPENDENCIA",
+    "case_type": "farmacologia",
+    "title": "Benzodiacepinas: Tolerancia y Dependencia",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_CLIN_020",
+        "text_content": "Las benzodiacepinas (alprazolam, lorazepam, clonazepam, diazepam) son efectivas a corto plazo para ansiedad e insomnio. El uso crónico (>4 semanas) conlleva riesgo de tolerancia (necesidad de dosis crecientes), dependencia física y síndrome de abstinencia al suspender (ansiedad rebote, insomnio, irritabilidad, temblor, crisis convulsivas). Se recomienda uso intermitente o por menos de 2-4 semanas."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_CLIN_020_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente toma alprazolam 2 mg al día desde hace 8 meses para ansiedad. Quiere suspenderlo porque 'ya no le hace efecto'. ¿Cuál es la conducta más segura?",
+        "expected_answer": "Reducción gradual de la dosis (desescalada) durante semanas o meses",
+        "distractors": [
+          "Suspensión abrupta del alprazolam",
+          "Cambio a dosis equivalente de diazepam y luego reducción lenta",
+          "Aumentar dosis de alprazolam a 4 mg/día"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La suspensión abrupta de BZD después de uso crónico (>8 meses) puede causar abstinencia severa, incluyendo crisis convulsivas. La desescalada lenta es obligatoria. El cambio a diazepam (vida media larga) facilita la reducción (opción también válida, pero la respuesta más directa es reducción gradual).",
+      "evidence_chunks": [
+        "CH_CLIN_020"
+      ],
+      "why_not": [
+        {
+          "option": "Suspensión abrupta",
+          "reason": "Peligroso: riesgo de abstinencia grave y convulsiones."
+        },
+        {
+          "option": "Aumentar dosis",
+          "reason": "Refuerza la tolerancia y dependencia, no resuelve el problema de fondo."
+        }
+      ],
+      "take_home": "Las benzodiacepinas no son para uso crónico. Si llevan >4 semanas, no suspendas de golpe. La retirada debe ser lenta (10-25% de la dosis cada 1-2 semanas)."
+    }
+  },
+  {
+    "case_id": "HOSP_001_DELIRIUM_UCI",
+    "case_type": "razonamiento_clinico",
+    "title": "Delirium en Paciente Crítico: Manejo de Agitación",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_001",
+        "text_content": "El delirium (síndrome confusional agudo) es muy frecuente en UCI. Se caracteriza por alteración de la atención y la conciencia, de inicio agudo y curso fluctuante. El manejo no farmacológico (reorientación, luz diurna, evitar sujeciones) es prioritario. Si hay agitación severa que pone en riesgo dispositivos médicos, los antipsicóticos a dosis bajas (haloperidol, quetiapina) son de elección. Las benzodiacepinas suelen empeorar el cuadro (excepto en abstinencia de alcohol/BZD)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_001_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente de 70 años en UCI, desorientado, intenta arrancarse la sonda vesical. Ha dormido poco. ¿Cuál es el primer paso en el manejo?",
+        "expected_answer": "Identificar y tratar la causa subyacente (ej. infección, hipoxia, fármacos)",
+        "distractors": [
+          "Sedación profunda con propofol",
+          "Administrar lorazepam 2 mg IV",
+          "Sujeción mecánica de cuatro puntos inmediatamente"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El delirium es siempre secundario a una causa médica u orgánica. Tratar la causa es el único manejo definitivo.",
+      "evidence_chunks": [
+        "CH_HOSP_001"
+      ],
+      "why_not": [
+        {
+          "option": "Lorazepam",
+          "reason": "Las benzodiacepinas son un factor de riesgo para delirium y suelen causar agitación paradójica en ancianos."
+        },
+        {
+          "option": "Sedación profunda",
+          "reason": "Debe evitarse a menos que sea estrictamente necesario para ventilación mecánica, ya que prolonga el delirium."
+        }
+      ],
+      "take_home": "Delirium = ¡Busca la causa médica! (Infección, Fármacos, Electrolitos, Hipoxia)."
+    }
+  },
+  {
+    "case_id": "HOSP_002_DEMENCIA_VASCULAR",
+    "case_type": "razonamiento_clinico",
+    "title": "Demencia Vascular: Inicio Escalonao",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_002",
+        "text_content": "La demencia vascular se distingue por un deterioro cognitivo con relación temporal a eventos cerebrovasculares o evidencia de enfermedad de pequeños vasos. El curso suele ser 'en escalones' (deterioro brusco seguido de estabilidad), con síntomas focales neurológicos y disfunción ejecutiva prominente."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_002_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente de 75 años con HTA y DM, presenta deterioro cognitivo que empeoró súbitamente tras un pequeño episodio de confusión y debilidad en mano derecha hace 6 meses. ¿Qué tipo de demencia es más probable?",
+        "expected_answer": "Demencia vascular",
+        "distractors": [
+          "Enfermedad de Alzheimer",
+          "Demencia por cuerpos de Lewy",
+          "Demencia frontotemporal"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El inicio brusco, la relación con síntomas focales (debilidad) y los factores de riesgo cardiovascular (HTA, DM) son altamente sugestivos de origen vascular.",
+      "evidence_chunks": [
+        "CH_HOSP_002"
+      ],
+      "why_not": [
+        {
+          "option": "Alzheimer",
+          "reason": "El Alzheimer tiene un inicio insidioso y progresión lenta y continua, no en escalones."
+        },
+        {
+          "option": "Cuerpos de Lewy",
+          "reason": "Se caracteriza por alucinaciones visuales y parkinsonismo temprano."
+        }
+      ],
+      "take_home": "Demencia vascular: Antecedente de riesgo CV + Deterioro en escalones + Focalidad neurológica."
+    }
+  },
+  {
+    "case_id": "HOSP_003_DEPRESION_POSTPARTO",
+    "case_type": "razonamiento_clinico",
+    "title": "Depresión Postparto: 'Maternity Blues' vs. Depresión",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_003",
+        "text_content": "La tristeza postparto (maternity blues) afecta hasta al 80% de las madres, inicia a los 2-3 días del parto y resuelve en 2 semanas; no requiere tratamiento. La depresión postparto es más grave, persiste más de 2 semanas, afecta el vínculo con el bebé y requiere intervención (psicoterapia o antidepresivos)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_003_1",
+        "type": "mcq_single_best",
+        "instruction": "Madre refiere que desde hace 1 mes (su hijo tiene 5 semanas) se siente muy triste, llora diario, siente que 'no es buena madre' y le cuesta mucho cuidar al bebé. ¿Cuál es el diagnóstico?",
+        "expected_answer": "Depresión postparto",
+        "distractors": [
+          "Tristeza postparto (Maternity blues)",
+          "Psicosos postparto",
+          "Trastorno de adaptación"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La duración de 1 mes y la interferencia con el cuidado del bebé exceden el cuadro normal de 'maternity blues' (que dura <2 semanas).",
+      "evidence_chunks": [
+        "CH_HOSP_003"
+      ],
+      "why_not": [
+        {
+          "option": "Maternity blues",
+          "reason": "Debe resolver antes de las 2 semanas postparto."
+        },
+        {
+          "option": "Psicosis postparto",
+          "reason": "No hay mención de delirios, alucinaciones o desorganización severa (urgencia psiquiátrica)."
+        }
+      ],
+      "take_home": "Postparto + Tristeza > 2 semanas = Depresión. Evaluar riesgo de infanticidio/suicidio siempre."
+    }
+  },
+  {
+    "case_id": "HOSP_004_MANIA_CRITERIOS",
+    "case_type": "razonamiento_clinico",
+    "title": "Episodio Maníaco: Criterios DSM-5",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_004",
+        "text_content": "Un episodio maníaco requiere: Ánimo elevado, expansivo o irritable persistente (al menos 1 semana) más 3 o más de: 1) Autoestima inflada/grandeza, 2) Disminución de necesidad de sueño, 3) Verborrea, 4) Fuga de ideas, 5) Distraibilidad, 6) Aumento de actividad dirigida o agitación, 7) Participación excesiva en actividades riesgosas."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_004_1",
+        "type": "mcq_single_best",
+        "instruction": "Hombre de 30 años llega a urgencias: lleva 5 días sin dormir y dice no estar cansado, ha gastado sus ahorros en 3 autos nuevos y habla tan rápido que es difícil interrumpirlo. ¿Cuál es el diagnóstico?",
+        "expected_answer": "Episodio maníaco",
+        "distractors": [
+          "Episodio hipomaníaco",
+          "Trastorno de personalidad límite",
+          "Consumo de cocaína (intoxicación)"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Presenta disminución de sueño, verborrea, verborrea y gastos excesivos. Aunque lleva 5 días (el criterio es 1 semana), la severidad y los gastos apuntan a manía. El diagnóstico diferencial con sustancias es crucial (pero la pregunta pide el síndrome).",
+      "evidence_chunks": [
+        "CH_HOSP_004"
+      ],
+      "why_not": [
+        {
+          "option": "Hipomanía",
+          "reason": "La hipomanía no suele causar deterioro funcional severo (gastarse todos los ahorros) ni requiere hospitalización."
+        },
+        {
+          "option": "TP Límite",
+          "reason": "La impulsividad en TLP es crónica; aquí es un episodio agudo con disminución de necesidad de sueño."
+        }
+      ],
+      "take_home": "Manía = 1 semana + gran disfunción. Hipomanía = 4 días + no disfunción grave."
+    }
+  },
+  {
+    "case_id": "HOSP_005_ESQUIZOFRENIA_PROGNOSTICO",
+    "case_type": "razonamiento_clinico",
+    "title": "Esquizofrenia: Factores de Buen Pronóstico",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_005",
+        "text_content": "Factores de buen pronóstico en esquizofrenia: inicio tardío, factores precipitantes claros (estrés), inicio agudo, buen ajuste social previo, síntomas positivos predominantes, género femenino, ausencia de anomalías cerebrales estructurales."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_005_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál de los siguientes pacientes tiene, estadísticamente, un mejor pronóstico para su cuadro de esquizofrenia?",
+        "expected_answer": "Mujer de 35 años con inicio brusco tras despido laboral y delirios de persecución",
+        "distractors": [
+          "Varón de 18 años con inicio insidioso y aislamiento social de años",
+          "Paciente con predominio de síntomas negativos (alogia, avolición)",
+          "Paciente con antecedentes familiares directos de esquizofrenia"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Mujer, inicio tardío (35 años), inicio agudo y factor precipitante (despido) son todos indicadores de mejor pronóstico funcional.",
+      "evidence_chunks": [
+        "CH_HOSP_005"
+      ],
+      "why_not": [
+        {
+          "option": "Varón de 18 años",
+          "reason": "El inicio temprano y el inicio insidioso son factores de mal pronóstico."
+        }
+      ],
+      "take_home": "Buen pronóstico = 'Brote agudo en persona estable'. Mal pronóstico = 'Deterioro lento en joven'."
+    }
+  },
+  {
+    "case_id": "HOSP_006_TRASTORNO_CORTA_DURACION",
+    "case_type": "razonamiento_clinico",
+    "title": "Psicosis: Duración de los Síntomas",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_006",
+        "text_content": "Diferenciación temporal de trastornos psicóticos: 1) Trastorno psicótico breve: <1 mes con retorno al funcionamiento basal. 2) Trastorno esquizofreniforme: 1-6 meses. 3) Esquizofrenia: >6 meses."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_006_1",
+        "type": "mcq_single_best",
+        "instruction": "Estudiante de 20 años presenta delirios y alucinaciones auditivas de inicio súbito durante los exámenes finales. A los 15 días los síntomas desaparecen por completo y vuelve a su estado normal. ¿Diagnóstico?",
+        "expected_answer": "Trastorno psicótico breve",
+        "distractors": [
+          "Esquizofrenia",
+          "Trastorno esquizofreniforme",
+          "Trastorno esquizotípico"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La duración de los síntomas fue de 15 días (<1 mes) con recuperación total, lo que define al trastorno psicótico breve.",
+      "evidence_chunks": [
+        "CH_HOSP_006"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno esquizofreniforme",
+          "reason": "Requiere al menos 1 mes de síntomas."
+        },
+        {
+          "option": "Esquizofrenia",
+          "reason": "Requiere al menos 6 meses de síntomas."
+        }
+      ],
+      "take_home": "En psicosis, el tiempo es el diagnóstico: <1 mes, 1 a 6 meses, o >6 meses."
+    }
+  },
+  {
+    "case_id": "HOSP_007_INDICACIONES_TEC",
+    "case_type": "razonamiento_clinico",
+    "title": "Terapia Electroconvulsiva (TEC): Indicaciones",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_007",
+        "text_content": "La TEC es una intervención segura y eficaz. Indicaciones de primera línea: 1) Depresión con riesgo suicida inminente, 2) Depresión con catatonia, 3) Depresión con rechazo alimentario grave, 4) Depresión psicótica en el embarazo, 5) Manía resistente o maligna."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_007_1",
+        "type": "mcq_single_best",
+        "instruction": "¿En cuál de los siguientes casos la TEC se considera el tratamiento de elección inicial (primera línea)?",
+        "expected_answer": "Depresión mayor severa con rechazo absoluto a la ingesta de líquidos y sólidos",
+        "distractors": [
+          "Distimia leve de larga evolución",
+          "Episodio depresivo mayor sin ideación suicida que no ha probado fármacos",
+          "Fobia específica a volar"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El rechazo alimentario grave es una urgencia vital por deshidratación y desnutrición, donde se necesita una respuesta terapéutica rápida que solo la TEC ofrece de forma confiable.",
+      "evidence_chunks": [
+        "CH_HOSP_007"
+      ],
+      "why_not": [
+        {
+          "option": "Distimia",
+          "reason": "No hay indicación de TEC en trastornos leves o crónicos de baja intensidad."
+        },
+        {
+          "option": "Episodio depresivo sin fármacos",
+          "reason": "Tradicionalmente se prueban al menos dos líneas de fármacos antes de TEC, a menos que sea una urgencia de vida."
+        }
+      ],
+      "take_home": "TEC = No es 'el último recurso', es 'el recurso más rápido' para salvar vidas en riesgo inminente."
+    }
+  },
+  {
+    "case_id": "HOSP_008_SINDROME_NEUROLEPTICO_MALIGNO",
+    "case_type": "razonamiento_clinico",
+    "title": "SNM: Clínica y Manejo",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_008",
+        "text_content": "El Síndrome Neuroléptico Maligno (SNM) es una urgencia causada por antipsicóticos. Clínica: Tetrada de 1) Hipertermia extrema, 2) Rigidez muscular severa ('en tubo de plomo'), 3) Alteración del estado mental, 4) Inestabilidad autonómica. Laboratorio: Elevación marcada de CPK y leucocitosis. Manejo: Suspender antipsicótico, soporte vital, dantroleno o bromocriptina."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_008_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente que toma haloperidol presenta fiebre de 40°C, rigidez muscular extrema que impide el movimiento y confusión. ¿Cuál es el hallazgo de laboratorio más característico?",
+        "expected_answer": "Elevación masiva de Creatina Fosfoquinasa (CPK)",
+        "distractors": [
+          "Hipopotasemia severa",
+          "Linfocitosis con eosinofilia",
+          "Trombocitosis"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La rigidez muscular severa causa rabdomiólisis, lo que eleva drásticamente los niveles de CPK en sangre (usualmente >1000, llegando a decenas de miles).",
+      "evidence_chunks": [
+        "CH_HOSP_008"
+      ],
+      "why_not": [
+        {
+          "option": "Trombocitosis",
+          "reason": "No es un hallazgo típico del SNM."
+        }
+      ],
+      "take_home": "SNM = Fiebre + Rigidez + CPK alta. ¡Suspende el neuroléptico ya!"
+    }
+  },
+  {
+    "case_id": "HOSP_009_WERNICKE",
+    "case_type": "razonamiento_clinico",
+    "title": "Encefalopatía de Wernicke",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_009",
+        "text_content": "La encefalopatía de Wernicke se debe a deficiencia de tiamina (Vitamina B1), común en alcoholismo crónico. Tríada clásica: 1) Ataxia, 2) Oftalmoplejía (usualmente nistagmo o parálisis del VI par), 3) Confusión. El tratamiento es tiamina parenteral inmediata. Si se da glucosa antes que tiamina, el cuadro puede empeorar drásticamente."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_009_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente con dependencia al alcohol llega desorientado, con marcha inestable y nistagmo horizontal. ¿Cuál es la primera intervención terapéutica?",
+        "expected_answer": "Administrar Tiamina IM o IV",
+        "distractors": [
+          "Suero glucosado al 5% inmediato",
+          "Lorazepam para evitar abstinencia",
+          "TAC de cráneo simple"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La sospecha de Wernicke obliga a administrar tiamina antes que cualquier otra cosa, especialmente antes de la glucosa (que consume la poca tiamina restante y puede causar daño cerebral irreversible).",
+      "evidence_chunks": [
+        "CH_HOSP_009"
+      ],
+      "why_not": [
+        {
+          "option": "Suero glucosado",
+          "reason": "La glucosa sin tiamina puede precipitar o empeorar la encefalopatía de Wernicke."
+        }
+      ],
+      "take_home": "En urgencias: 'Tiamina antes que Glucosa' en el paciente alcohólico o desnutrido."
+    }
+  },
+  {
+    "case_id": "HOSP_010_INTOXICACION_LITIO",
+    "case_type": "farmacologia",
+    "title": "Intoxicación Aguda por Litio: Manejo",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_010",
+        "text_content": "La intoxicación por litio puede ser aguda o crónica. Síntomas: gastrointestinales (tempranos en aguda), neurológicos (ataxia, temblor grueso, confusión, convulsiones). Manejo: hidratación agresiva con solución salina. Si el nivel es >4.0 mEq/L (aguda) o >2.5 mEq/L con síntomas severos, la hemodiálisis es el tratamiento de elección."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_010_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente que tomó 20 tabletas de litio llega con nivel de 4.5 mEq/L, letargia y temblor grueso. ¿Cuál es el tratamiento definitivo?",
+        "expected_answer": "Hemodiálisis",
+        "distractors": [
+          "Lavado gástrico con carbón activado",
+          "Hidratación con agua libre oral",
+          "Forzar diuresis con furosemida"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Niveles >4.0 en intoxicación aguda o síntomas neurológicos graves son indicación clara de hemodiálisis, que es el método más rápido para eliminar el litio.",
+      "evidence_chunks": [
+        "CH_HOSP_010"
+      ],
+      "why_not": [
+        {
+          "option": "Carbón activado",
+          "reason": "El litio no se une al carbón activado; no es útil."
+        },
+        {
+          "option": "Hidratación con agua libre",
+          "reason": "Se requiere solución salina (sodio) para competir con el litio en el túbulo renal, pero en este nivel ya se requiere diálisis."
+        }
+      ],
+      "take_home": "Litio alto + síntomas neurológicos = Hemodiálisis."
+    }
+  },
+  {
+    "case_id": "HOSP_011_PARADIGMA_REDUCCION_DAÑOS",
+    "case_type": "psiquiatria_social",
+    "title": "Reducción de Daños en Sustancias",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_011",
+        "text_content": "La reducción de daños es un enfoque que prioriza disminuir las consecuencias negativas del consumo de sustancias (ej. sobredosis, VIH) sin exigir necesariamente la abstinencia inmediata. Ejemplos: programas de intercambio de jeringas, salas de consumo seguro y terapia de sustitución con metadona."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_011_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál es un ejemplo representativo del enfoque de 'Reducción de Daños'?",
+        "expected_answer": "Proporcionar naloxona a usuarios de heroína para revertir sobredosis",
+        "distractors": [
+          "Internamiento forzoso hasta lograr desintoxicación",
+          "Prohibición estricta de cualquier parafernalia",
+          "Sanciones legales por posesión de consumo"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El suministro de naloxona busca evitar la muerte por sobredosis, aceptando que el consumo puede ocurrir, lo cual es el núcleo de la reducción de daños.",
+      "evidence_chunks": [
+        "CH_HOSP_011"
+      ],
+      "why_not": [
+        {
+          "option": "Internamiento forzoso",
+          "reason": "Es un enfoque basado en la abstinencia obligatoria, no en la reducción de daños."
+        }
+      ],
+      "take_home": "Reducción de daños = 'Si no puedes dejar de usar, hagamos que mueras menos por usar'."
+    }
+  },
+  {
+    "case_id": "HOSP_012_CRISIS_AGITACION_AGUDO",
+    "case_type": "razonamiento_clinico",
+    "title": "Protocolo de Agitación Aguda",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_012",
+        "text_content": "En agitación psicomotriz, la desescalada verbal es el primer paso. Si falla y hay riesgo inminente, se usa contención farmacológica. El 'cóctel' clásico incluye un antipsicótico (haloperidol) y una benzodiacepina (midazolam o lorazepam). El monitoreo de signos vitales post-sedación es obligatorio."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_012_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente agitado y violento amenaza al personal. La desescalada verbal ha fallado. ¿Cuál es la combinación farmacológica IM más recomendada?",
+        "expected_answer": "Haloperidol 5 mg + Midazolam 5 mg IM",
+        "distractors": [
+          "Amitriptilina 50 mg VO",
+          "Solo Fluoxetina 20 mg",
+          "Diazepam 10 mg solo (riesgo de depresión respiratoria)"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La combinación de un antipsicótico típico y una BZD es más efectiva que cualquiera de los dos por separado y permite usar dosis menores de cada uno, reduciendo efectos secundarios.",
+      "evidence_chunks": [
+        "CH_HOSP_012"
+      ],
+      "why_not": [
+        {
+          "option": "Amitriptilina",
+          "reason": "Es un antidepresivo tricíclico, no tiene rol en el manejo de la agitación aguda."
+        }
+      ],
+      "take_home": "Agitación = 1) Verbal, 2) Fármacos IM, 3) Sujeción (último recurso)."
+    }
+  },
+  {
+    "case_id": "HOSP_013_TCA_BULIMIA_SIGNOS",
+    "case_type": "razonamiento_clinico",
+    "title": "Signos Físicos en Bulimia Nerviosa",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_013",
+        "text_content": "Hallazgos físicos en bulimia (por vómito): Signo de Russell (callosidades en nudillos), erosión del esmalte dental (perimólisis), tumefacción de glándulas parótidas, alcalosis metabólica e hipopotasemia."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_013_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente consulta por aumento de tamaño de ambas mejillas (parótidas) de forma indolora. A la exploración presenta lesiones cicatriciales en los nudillos. ¿Qué diagnóstico sospecha?",
+        "expected_answer": "Bulimia nerviosa con conductas purgativas (vómito)",
+        "distractors": [
+          "Anorexia nerviosa restrictiva",
+          "Parotiditis viral (paperas)",
+          "Sialolitiasis"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La hipertrofia parotídea y el signo de Russell (cicatrices en nudillos por fricción con los dientes al inducir vómito) son signos físicos clásicos de bulimia.",
+      "evidence_chunks": [
+        "CH_HOSP_013"
+      ],
+      "why_not": [
+        {
+          "option": "Paperas",
+          "reason": "Suelen ser dolorosas, febriles y agudas, no explican los nudillos."
+        }
+      ],
+      "take_home": "En TCA, las manos y la boca dicen lo que el paciente calla."
+    }
+  },
+  {
+    "case_id": "HOSP_014_COMPLICACION_ANTIPSICOTICOS",
+    "case_type": "farmacologia",
+    "title": "Antipsicóticos: Distonía Aguda",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_014",
+        "text_content": "La distonía aguda es una reacción extrapiramidal temprana (horas a días). Clínica: contracción involuntaria de cuello (tortícolis), mandíbula (trismo) o mirada (crisis oculógiras). Manejo: Anticolinérgicos como biperideno o difenhidramina IM/IV."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_014_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente que inició haloperidol hace 6 horas llega con la mirada fija hacia arriba y el cuello torcido dolorosamente. ¿Cuál es el tratamiento inmediato?",
+        "expected_answer": "Biperideno o Difenhidramina IM",
+        "distractors": [
+          "Aumentar dosis de haloperidol",
+          "Administrar un ISRS",
+          "Observación solamente"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Los síntomas describen una crisis oculógira y tortícolis (distonía aguda). El tratamiento es restaurar el balance dopamina/acetilcolina con un anticolinérgico.",
+      "evidence_chunks": [
+        "CH_HOSP_014"
+      ],
+      "why_not": [
+        {
+          "option": "Aumentar haloperidol",
+          "reason": "Es la causa del problema; empeoraría el cuadro."
+        }
+      ],
+      "take_home": "Distonía aguda = ¡Rápida respuesta a biperideno!"
+    }
+  },
+  {
+    "case_id": "HOSP_015_DELIRIUM_TREMENS_CLINICA",
+    "case_type": "razonamiento_clinico",
+    "title": "Delirium Tremens: Características",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_015",
+        "text_content": "El Delirium Tremens (DT) es la forma más grave de abstinencia alcohólica (mortalidad 5-15%). Aparece a las 48-96 horas. Se caracteriza por delirium, agitación extrema, alucinaciones visuales/táctiles y tormenta autonómica (fiebre, diaforesis, taquicardia severa)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_015_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué síntoma es fundamental para distinguir el Delirium Tremens de la abstinencia alcohólica leve?",
+        "expected_answer": "Desorientación y alteración de la conciencia (delirium)",
+        "distractors": [
+          "Temblor distal fino",
+          "Ansiedad subjetiva",
+          "Náuseas leves"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La desorientación (delirium) y la inestabilidad autonómica severa marcan el paso de abstinencia simple a DT.",
+      "evidence_chunks": [
+        "CH_HOSP_015"
+      ],
+      "why_not": [
+        {
+          "option": "Temblor",
+          "reason": "Está presente en casi todos los grados de abstinencia, no es específico de DT."
+        }
+      ],
+      "take_home": "Delirium Tremens: El tiempo pico es al 3er o 4to día sin alcohol."
+    }
+  },
+  {
+    "case_id": "HOSP_016_SINDROME_SEROTONINERGICO_GRAVE",
+    "case_type": "farmacologia",
+    "title": "Síndrome Serotoninérgico Severo",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_016",
+        "text_content": "El síndrome serotoninérgico severo ocurre por exceso de serotonina (ej. mezclar ISRS con IMAO, tramadol o éxtasis). Tríada: 1) Alteración mental, 2) Autonómica (midriasis, fiebre), 3) Neuromuscular (hiperreflexia, clonus espontáneo). El clonus es el signo más característico."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_016_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente que toma fluoxetina ingiere tramadol por dolor. Presenta diaforesis, midriasis, fiebre y 'sacudidas' rítmicas al flexionar el pie (clonus). ¿Qué sospecha?",
+        "expected_answer": "Síndrome Serotoninérgico",
+        "distractors": [
+          "Síndrome Neuroléptico Maligno",
+          "Intoxicación por opioides",
+          "Crisis de pánico"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La combinación de un ISRS con tramadol es un desencadenante clásico. La midriasis y la hiperreflexia/clonus orientan a exceso de serotonina.",
+      "evidence_chunks": [
+        "CH_HOSP_016"
+      ],
+      "why_not": [
+        {
+          "option": "SNM",
+          "reason": "El SNM tiene rigidez 'en tubo de plomo' e hiporreflexia, no clonus/hiperreflexia."
+        }
+      ],
+      "take_home": "Serotoninérgico = Hiperreflexia/Clonus. Neuroléptico Maligno = Rigidez extrema."
+    }
+  },
+  {
+    "case_id": "HOSP_017_REACCION_COCAINA",
+    "case_type": "razonamiento_clinico",
+    "title": "Intoxicación por Cocaína: Manejo Inicial",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_017",
+        "text_content": "La intoxicación por cocaína causa midriasis, taquicardia, HTA y riesgo de arritmias o infarto. El manejo para la agitación y HTA son las benzodiacepinas. ¡Cuidado!: Los beta-bloqueadores están contraindicados en la fase aguda por riesgo de estimulación alfa-adrenérgica sin oposición (empeorando la HTA)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_017_1",
+        "type": "mcq_single_best",
+        "instruction": "Paciente con midriasis, dolor torácico y TA 180/110 tras consumo de cocaína. ¿Qué fármaco NO debe administrarse inicialmente?",
+        "expected_answer": "Propranolol (Beta-bloqueador)",
+        "distractors": [
+          "Diazepam",
+          "Nitroglicerina",
+          "Aspirina"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El bloqueo beta deja los receptores alfa libres para recibir toda la carga simpatomimética, causando vasoconstricción coronaria y sistémica masiva.",
+      "evidence_chunks": [
+        "CH_HOSP_017"
+      ],
+      "why_not": [
+        {
+          "option": "Diazepam",
+          "reason": "Es la primera línea para bajar la estimulación simpática central."
+        }
+      ],
+      "take_home": "Cocaína = ¡Prohibido Beta-bloqueadores!"
+    }
+  },
+  {
+    "case_id": "HOSP_018_DEMENCIA_FRONTOTEMPORAL",
+    "case_type": "razonamiento_clinico",
+    "title": "Demencia Frontotemporal: Variante Conductual",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_018",
+        "text_content": "La demencia frontotemporal (variante conductual) suele iniciar jóvenes (50-60 años). Se caracteriza por cambios en la personalidad, desinhibición social (comportamientos inapropiados), apatía y pérdida de la empatía. La memoria suele estar preservada al inicio."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_018_1",
+        "type": "mcq_single_best",
+        "instruction": "Hombre de 55 años, previamente educado, empieza a decir obscenidades en público, orina en la calle y parece no importarle el llanto de su esposa. Su memoria para hechos recientes es normal. ¿Qué sospecha?",
+        "expected_answer": "Demencia frontotemporal",
+        "distractors": [
+          "Enfermedad de Alzheimer",
+          "Depresión tardía",
+          "Tumor frontal"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La desinhibición y pérdida de empatía en un paciente relativamente joven con memoria preservada son típicas de la degeneración lobar frontal.",
+      "evidence_chunks": [
+        "CH_HOSP_018"
+      ],
+      "why_not": [
+        {
+          "option": "Alzheimer",
+          "reason": "El Alzheimer suele iniciar con fallas de memoria, no con cambios groseros de conducta social."
+        }
+      ],
+      "take_home": "Cambio de personalidad + Desinhibición + Paciente < 65 años = Frontotemporal."
+    }
+  },
+  {
+    "case_id": "HOSP_019_TDAH_NIÑOS_CRITERIOS",
+    "case_type": "razonamiento_clinico",
+    "title": "TDAH: Criterios de Escolaridad",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_019",
+        "text_content": "El TDAH requiere que los síntomas (inatención e/o hiperactividad-impulsividad) estén presentes antes de los 12 años y se manifiesten en al menos DOS ambientes (ej. casa y escuela)."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_019_1",
+        "type": "mcq_single_best",
+        "instruction": "Niño de 8 años es muy inquieto en casa, pero su maestra reporta que en la escuela se porta excelente, sigue reglas y termina sus trabajos. ¿Cumple criterios para TDAH?",
+        "expected_answer": "No, porque los síntomas no se presentan en dos o más ambientes",
+        "distractors": [
+          "Sí, la inquietud en casa es suficiente",
+          "Sí, porque tiene menos de 12 años",
+          "No, requiere tener al menos 12 años para el diagnóstico"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La ubicuidad de los síntomas es fundamental para el TDAH. Si solo ocurre en un lugar, es probable que se deba a factores ambientales específicos de ese sitio.",
+      "evidence_chunks": [
+        "CH_HOSP_019"
+      ],
+      "why_not": [
+        {
+          "option": "Si, la inquietud en casa es suficiente",
+          "reason": "Va en contra del Criterio D del DSM-5 que exige varios ambientes."
+        }
+      ],
+      "take_home": "TDAH = ¡Preguntar siempre por el reporte escolar!"
+    }
+  },
+  {
+    "case_id": "HOSP_020_PSICOSIS_BREVE",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno Psicótico Breve post-estrés",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_HOSP_020",
+        "text_content": "El trastorno psicótico breve a menudo ocurre tras un estresor traumático. Los síntomas (delirios, alucinaciones o lenguaje desorganizado) duran entre 1 día y 1 mes. El tratamiento suele ser con antipsicóticos a dosis bajas por tiempo corto."
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_HOSP_020_1",
+        "type": "mcq_single_best",
+        "instruction": "Tras un terremoto, una mujer de 40 años empieza a decir que tiene 'poderes para leer el futuro' y escucha voces de ángeles. Llevaba 3 días sin dormir. Al cabo de una semana, tras dormir y tomar risperidona 1 mg, vuelve a ser la de siempre. ¿Diagnóstico?",
+        "expected_answer": "Trastorno psicótico breve con estresor notable",
+        "distractors": [
+          "Esquizofrenia de inicio tardío",
+          "Trastorno afectivo bipolar",
+          "Trastorno esquizofreniforme"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La aparición tras un trauma (terremoto) y la resolución en una semana (< 1 mes) encajan perfectamente en psicosis breve.",
+      "evidence_chunks": [
+        "CH_HOSP_020"
+      ],
+      "why_not": [
+        {
+          "option": "Esquizofreniforme",
+          "reason": "La duración fue solo una semana."
+        }
+      ],
+      "take_home": "Psicosis breve: < 1 mes. Es la reacción 'fractura' ante un estrés masivo."
+    }
   }
 ]

@@ -2,7 +2,10 @@
 
 const GAME_CONFIG = {
   maxLives: 3,
-  turnSeconds: 30,
+  baseTurnSeconds: 45, // Tiempo inicial más generoso
+  minTurnSeconds: 20,   // Tiempo mínimo (ajustado por quejas de lectura)
+  reductionPerStreak: 1, // Bajar solo 1 segundo
+  streakMilestone: 5,    // Cada 5 aciertos
   modalDelayMs: 450
 };
 
@@ -139,6 +142,7 @@ const Game = (() => {
     current: null,
     resident: "Aguilar",
     residentIndex: 0,
+    turnSeconds: GAME_CONFIG.baseTurnSeconds, // Dinámico
     residents: ["Aguilar", "Solis"],
     casesReady: false,
     useGenerator: false,
@@ -486,13 +490,21 @@ const Game = (() => {
 
   function startTimer() {
     clearInterval(state.timer);
-    state.timeLeft = GAME_CONFIG.turnSeconds;
+    
+    // Dificultad progresiva: calculamos el tiempo del turno
+    const reductions = Math.floor(state.streak / GAME_CONFIG.streakMilestone);
+    state.turnSeconds = Math.max(
+      GAME_CONFIG.minTurnSeconds, 
+      GAME_CONFIG.baseTurnSeconds - (reductions * GAME_CONFIG.reductionPerStreak)
+    );
+
+    state.timeLeft = state.turnSeconds;
     state.timerStart = Date.now();
 
     state.timer = setInterval(() => {
       const elapsed = (Date.now() - state.timerStart) / 1000;
-      state.timeLeft = Math.max(0, GAME_CONFIG.turnSeconds - elapsed);
-      const pct = (state.timeLeft / GAME_CONFIG.turnSeconds) * 100;
+      state.timeLeft = Math.max(0, state.turnSeconds - elapsed);
+      const pct = (state.timeLeft / state.turnSeconds) * 100;
 
       const b = $("#tBar");
       if (b) b.style.width = pct + "%";
