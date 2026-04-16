@@ -44,6 +44,13 @@ const Economy = (() => {
       save();
     },
 
+    spend: (amount) => {
+      if (data.coins < amount) return false;
+      data.coins -= amount;
+      save();
+      return true;
+    },
+
     registerGame: (streak) => {
       data.gamesPlayed++;
       data.maxStreak = Math.max(data.maxStreak, streak);

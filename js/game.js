@@ -2,11 +2,11 @@
 
 const GAME_CONFIG = {
   maxLives: 3,
-  baseTurnSeconds: 45, // Tiempo inicial más generoso
-  minTurnSeconds: 20,   // Tiempo mínimo (ajustado por quejas de lectura)
-  reductionPerStreak: 1, // Bajar solo 1 segundo
-  streakMilestone: 5,    // Cada 5 aciertos
-  modalDelayMs: 450
+  baseTurnSeconds: 45,
+  minTurnSeconds: 15,   // Un poco más bajo para expertos
+  difficultyScale: 4.5, // Factor logarítmico
+  modalDelayMs: 450,
+  advanceDelayMs: 3500  // Tiempo para auto-avance
 };
 
 const NARRATIVE = {
@@ -149,8 +149,10 @@ const Game = (() => {
     streak: 0,
     maxStreak: 0,
     recentCases: [],
+    recentFeedbackTimer: null,
     residentMood: "normal",
-    bossMood: "normal"
+    bossMood: "normal",
+    hintUsedInTurn: false
   };
 
   const $ = (sel) => document.querySelector(sel);
@@ -361,12 +363,16 @@ const Game = (() => {
     state.streak = 0;
     state.maxStreak = 0;
     state.recentCases = [];
+    state.recentFeedbackTimer = null;
     state.residentIndex = 0;
     state.residentMood = "normal";
     state.bossMood = "normal";
+    state.hintUsedInTurn = false;
+
+    // Reset visual effects
+    document.body.classList.remove("hot-zone-active");
 
     $("#hudRoot").innerHTML = "";
-
     await ensureCasesLoaded();
     await nextCase();
 
@@ -411,9 +417,14 @@ const Game = (() => {
           </div>
         </div>
         <div class="hudMeta">
-          <div class="combo-chip">
+          <div class="combo-chip" id="comboChip">
             <span class="combo-label">${streakLabel}</span>
             <span class="combo-value">x${state.streak}</span>
+          </div>
+          <div class="powerups-row" id="pwrRow">
+             <button class="btn-powerup" id="btnHint" ${Economy.getCoins() < 50 || state.hintUsedInTurn ? 'disabled' : ''}>
+               <span>💡</span> Consultar (50)
+             </button>
           </div>
           <div class="combo-chip combo-chip--alt">
             <span class="combo-label">MEJOR</span>
@@ -422,6 +433,23 @@ const Game = (() => {
         </div>
       </div>
     `;
+
+    const hintBtn = $("#btnHint");
+    if (hintBtn) hintBtn.onclick = () => useHint();
+  }
+
+  function useHint() {
+    if (state.hintUsedInTurn || !Economy.spend(50)) return;
+    state.hintUsedInTurn = true;
+    
+    const distractors = document.querySelectorAll('.option-btn[data-ok="0"]:not(.hint-used)');
+    if (distractors.length > 0) {
+      const target = distractors[Math.floor(Math.random() * distractors.length)];
+      target.classList.add("hint-used");
+      target.disabled = true;
+      playTone(600, 0.05);
+    }
+    renderHUD(); // Update buttons and coins
   }
 
   function pickTask(caseObj) {
@@ -491,12 +519,9 @@ const Game = (() => {
   function startTimer() {
     clearInterval(state.timer);
     
-    // Dificultad progresiva: calculamos el tiempo del turno
-    const reductions = Math.floor(state.streak / GAME_CONFIG.streakMilestone);
-    state.turnSeconds = Math.max(
-      GAME_CONFIG.minTurnSeconds, 
-      GAME_CONFIG.baseTurnSeconds - (reductions * GAME_CONFIG.reductionPerStreak)
-    );
+    // Dificultad Logarítmica: más fluido y natural
+    const reduction = Math.floor(Math.log2(state.streak + 1) * GAME_CONFIG.difficultyScale);
+    state.turnSeconds = Math.max(GAME_CONFIG.minTurnSeconds, GAME_CONFIG.baseTurnSeconds - reduction);
 
     state.timeLeft = state.turnSeconds;
     state.timerStart = Date.now();
@@ -509,20 +534,21 @@ const Game = (() => {
       const b = $("#tBar");
       if (b) b.style.width = pct + "%";
 
-      // Update timer visual alarm
+      // Hot Zone: Efecto visual sutil cuando queda < 20%
+      const isHot = (pct <= 20);
+      document.body.classList.toggle("hot-zone-active", isHot);
+
       const track = b ? b.closest(".track") : null;
       if (track) track.classList.toggle("track--danger", state.timeLeft <= 5);
 
       if (state.timeLeft <= 0) {
         clearInterval(state.timer);
+        document.body.classList.remove("hot-zone-active");
         state.lives -= 1;
-        renderHUD(); // update hearts
+        renderHUD();
         if (state.lives <= 0) {
           handleDeath();
         } else {
-          // Timeout penalty move? No, just lose life and next case? 
-          // Logic choice: Timeout = wrong answer essentially.
-          // We'll skip to next case for flow.
           nextCase();
         }
       }
@@ -530,13 +556,18 @@ const Game = (() => {
   }
 
   async function nextCase() {
-    // If lives already zero (double check), die.
     if (state.lives <= 0) return handleDeath();
+    
+    // Cleanup feedback if exists
+    clearTimeout(state.recentFeedbackTimer);
+    const overlay = $("#modalRoot");
+    if (overlay) overlay.innerHTML = "";
 
     state.resident = state.residents[state.residentIndex];
     state.residentIndex = (state.residentIndex + 1) % state.residents.length;
     state.residentMood = "normal";
     state.bossMood = state.lives <= 1 ? "angry" : "normal";
+    state.hintUsedInTurn = false;
 
     try {
       state.current = state.useGenerator ? Generator.createCase() : await CaseDB.pickRandomCase({ excludeCaseIds: state.recentCases });
@@ -554,32 +585,30 @@ const Game = (() => {
     startTimer();
   }
 
-  function showModal(ok, task, selectedText) {
-    const modal = $("#modalRoot");
+  function showSmartFeedback(ok, task, selectedText) {
+    const root = $("#modalRoot");
     const brief = getBriefFeedback(task);
     const details = getExplanationPayload(state.current, task, selectedText, ok);
 
-    modal.innerHTML = `
-      <div class="modal">
-        <div class="modalCard" style="border-color:${ok ? "rgba(120,255,140,.55)" : "rgba(255,80,80,.65)"}">
-          <div class="modalContent">
-             <div style="font-size:64px; text-align:center;">${ok ? "💎" : "⚠️"}</div>
-             <div style="text-align:center; font-weight:900; font-size:32px; color:${ok ? "#78ff8c" : "#ff5050"}">
-               ${ok ? "BRILLANTE" : "ERROR"}
-             </div>
-             <div class="modalNote" style="text-align:center;">${escapeHtml(ok ? "Bien razonado." : "Cuidado con los detalles.")}</div>
-             <div class="modalFeedback">${escapeHtml(details.reason || brief)}</div>
-             ${details.rationale ? `<details class="modalDetails"><summary>Explicación</summary><div class="modalFull">${escapeHtml(details.rationale)}</div></details>` : ""}
+    root.innerHTML = `
+      <div class="feedback-overlay show" style="border-color:${ok ? "rgba(57,255,20,0.4)" : "rgba(255,0,85,0.4)"}">
+        <div class="feedback-header">
+          <div style="font-size:32px;">${ok ? "💎" : "⚠️"}</div>
+          <div class="feedback-status" style="color:${ok ? "#39ff14" : "#ff0055"}">
+            ${ok ? "EXCELENTE" : "ERROR CLÍNICO"}
           </div>
-          <button class="btn-action" id="btnContinue">Continuar</button>
         </div>
+        <div class="modalFeedback" style="margin:0; font-size:14px;">${escapeHtml(details.reason || brief)}</div>
+        <div class="feedback-timer-bar animate-timer" style="background:${ok ? "#39ff14" : "#ff0055"}"></div>
       </div>
     `;
 
-    $("#btnContinue").onclick = () => {
-      modal.innerHTML = "";
+    // Botón de continuar oculto en el overlay para clicks manuales rápidos
+    root.querySelector(".feedback-overlay").onclick = () => nextCase();
+
+    state.recentFeedbackTimer = setTimeout(() => {
       nextCase();
-    };
+    }, GAME_CONFIG.advanceDelayMs);
   }
 
   function handleDeath() {
@@ -614,7 +643,7 @@ const Game = (() => {
     if (state.lives <= 0) {
       setTimeout(handleDeath, 800);
     } else {
-      setTimeout(() => showModal(ok, task, btn?.innerText), GAME_CONFIG.modalDelayMs);
+      setTimeout(() => showSmartFeedback(ok, task, btn?.innerText), GAME_CONFIG.modalDelayMs);
     }
   }
 

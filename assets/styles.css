@@ -982,3 +982,116 @@ body {
   max-height: 35vh;
   overflow: auto;
 }
+
+/* --- NUEVAS MEJORAS DE AUDITORIA --- */
+
+/* Zona Caliente (Sutil) */
+.hot-zone-active {
+  animation: hot-pulse 2s infinite ease-in-out;
+}
+
+@keyframes hot-pulse {
+  0% { filter: contrast(1) saturate(1); }
+  50% { filter: contrast(1.1) saturate(1.2) sepia(0.1); }
+  100% { filter: contrast(1) saturate(1); }
+}
+
+/* Botones de Power-up */
+.powerups-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.btn-powerup {
+  background: rgba(157, 0, 255, 0.15);
+  border: 1px solid rgba(157, 0, 255, 0.4);
+  color: #e0acff;
+  padding: 8px 16px;
+  border-radius: 99px;
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-powerup:hover:not(:disabled) {
+  background: rgba(157, 0, 255, 0.3);
+  border-color: #ff00ff;
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-powerup:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+/* Feedback Inteligente (Auto-advance) */
+.feedback-overlay {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120px);
+  width: min(500px, 92%);
+  background: rgba(10, 5, 25, 0.98);
+  border: 2px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 16px;
+  z-index: 1500;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  pointer-events: none;
+}
+
+.feedback-overlay.show {
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+
+.feedback-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.feedback-status {
+  font-weight: 900;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.feedback-timer-bar {
+  height: 4px;
+  background: var(--miami-cyan);
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 2px;
+  transform-origin: left;
+}
+
+.animate-timer {
+  animation: feedback-timer 3.5s linear forwards;
+}
+
+@keyframes feedback-timer {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+/* Opción deshabilitada por Hint */
+.option-btn.hint-used {
+  opacity: 0.3 !important;
+  pointer-events: none;
+  filter: blur(1px) grayscale(1);
+  border-style: dashed;
+}
