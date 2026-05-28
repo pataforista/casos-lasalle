@@ -1095,3 +1095,118 @@ body {
   filter: blur(1px) grayscale(1);
   border-style: dashed;
 }
+
+/* ============================================================================
+   Nuevos estilos para selector de filtros, parpadeo y detalles expandidos
+   ============================================================================ */
+
+.miami-select {
+  background: rgba(10, 5, 25, 0.85);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  box-shadow: inset 0 0 5px rgba(255, 255, 255, 0.05);
+  transition: all 0.2s ease;
+}
+.miami-select:focus, .miami-select:hover {
+  border-color: var(--miami-cyan);
+  box-shadow: 0 0 10px rgba(0, 243, 255, 0.25);
+}
+.miami-select option {
+  background-color: #0d0a21;
+  color: var(--text-main);
+}
+
+@keyframes red-flash {
+  0%, 100% {
+    background-color: var(--bg-dark);
+    box-shadow: inset 0 0 0px rgba(255, 0, 85, 0);
+  }
+  50% {
+    background-color: rgba(255, 0, 85, 0.06);
+    box-shadow: inset 0 0 40px rgba(255, 0, 85, 0.2);
+  }
+}
+.time-critical {
+  animation: red-flash 1s infinite ease-in-out !important;
+}
+
+.feedback-details-container {
+  margin-top: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  max-height: 250px;
+  overflow-y: auto;
+  text-align: left;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.feedback-why-not-item {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.4;
+  border-left: 2px solid #ff0055;
+  padding-left: 8px;
+}
+.feedback-why-not-item strong {
+  color: #ffb3c1;
+}
+
+.feedback-take-home {
+  margin-top: 10px;
+  background: rgba(0, 243, 255, 0.06);
+  border: 1px solid rgba(0, 243, 255, 0.15);
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #caffbf;
+}
+
+/* ============================================================================
+   Neon Physiological ECG Monitor Styling
+   ============================================================================ */
+@keyframes ecg-pulse {
+  0% { stroke-dashoffset: 100; }
+  100% { stroke-dashoffset: 0; }
+}
+.ecg-svg {
+  width: 90px;
+  height: 24px;
+  opacity: 0.85;
+}
+.ecg-line {
+  stroke: #39ff14; /* Verde neón estándar */
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  filter: drop-shadow(0 0 4px #39ff14);
+  stroke-dasharray: 100;
+  animation: ecg-pulse 2.5s linear infinite;
+}
+/* Variantes de ritmo cardíaco */
+.ecg-line.ecg-tachy {
+  stroke: #ff0055; /* Rosa neón rápido */
+  filter: drop-shadow(0 0 4px #ff0055);
+  animation: ecg-pulse 1.2s linear infinite; /* Taquicardia */
+}
+.ecg-line.ecg-brady {
+  stroke: #00f3ff; /* Celeste neón lento */
+  filter: drop-shadow(0 0 4px #00f3ff);
+  animation: ecg-pulse 4.5s linear infinite; /* Bradicardia */
+}
+.ecg-line.ecg-flat {
+  stroke: rgba(255, 255, 255, 0.2);
+  filter: none;
+  animation: none; /* Línea plana */
+}

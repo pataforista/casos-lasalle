@@ -140,6 +140,17 @@ const Game = (() => {
     timer: null,
     timerStart: 0,
     current: null,
+    currentTaskIndex: 0,
+    studyMode: false,
+    reviewMode: false,
+    autoAdvance: localStorage.getItem('psy_pref_autoadvance') !== 'false',
+    soundEnabled: localStorage.getItem('psy_pref_sound') !== 'false',
+    // Creado dinámicamente
+    solvedCasesCount: 0,
+    filters: {
+      educational_level: "",
+      difficulty: ""
+    },
     resident: "Aguilar",
     residentIndex: 0,
     turnSeconds: GAME_CONFIG.baseTurnSeconds, // Dinámico
@@ -152,7 +163,9 @@ const Game = (() => {
     recentFeedbackTimer: null,
     residentMood: "normal",
     bossMood: "normal",
-    hintUsedInTurn: false
+    hintUsedInTurn: false,
+    failedCaseIds: [],
+    decompensated: false
   };
 
   const $ = (sel) => document.querySelector(sel);
@@ -202,11 +215,67 @@ const Game = (() => {
       .replaceAll("'", "&#039;");
   }
 
-  function getBriefFeedback(task) {
-    const raw = String(task?.rationale || "").trim();
-    if (!raw) return "Evalúa el riesgo inmediato y prioriza lo defendible.";
-    const match = raw.match(/[^.!?]+[.!?]/);
-    return match ? match[0] : raw.slice(0, 160) + "…";
+  function getFailedCases() {
+    try {
+      const raw = JSON.parse(localStorage.getItem('psycase_failed_cases') || '[]');
+      // Normalizar registros antiguos (que eran solo strings) a objetos de Repaso Espaciado
+      return raw.map(item => {
+        if (typeof item === 'string') {
+          return { caseId: item, level: 0, nextReview: 0 };
+        }
+        return item;
+      });
+    } catch(e) {
+      return [];
+    }
+  }
+
+  function getDueFailedCases() {
+    const failed = getFailedCases();
+    const now = Date.now();
+    return failed.filter(item => !item.nextReview || item.nextReview <= now);
+  }
+
+  function saveFailedCase(caseId) {
+    if (!caseId || !caseId.startsWith("REAL_")) return; // Solo guardar casos clínicos reales para el repaso
+    let failed = getFailedCases();
+    let existing = failed.find(item => item.caseId === caseId);
+    if (!existing) {
+      failed.push({ caseId, level: 0, nextReview: Date.now() });
+    } else {
+      // Si ya existía, pero se volvió a fallar, se reinicia el nivel de maestría y se programa inmediato
+      existing.level = 0;
+      existing.nextReview = Date.now();
+    }
+    localStorage.setItem('psycase_failed_cases', JSON.stringify(failed));
+  }
+
+  function promoteFailedCase(caseId) {
+    if (!caseId) return;
+    let failed = getFailedCases();
+    let idx = failed.findIndex(item => item.caseId === caseId);
+    if (idx !== -1) {
+      const item = failed[idx];
+      item.level = (item.level || 0) + 1;
+      if (item.level >= 3) {
+        // Alcanzó el nivel máximo de maestría (3 aciertos espaciados), se borra definitivamente
+        failed.splice(idx, 1);
+      } else {
+        // Reprogramar según el nivel de maestría:
+        // Nivel 1: +24 horas (86400000 ms)
+        // Nivel 2: +72 horas (259200000 ms)
+        const delay = item.level === 1 ? 24 * 3600 * 1000 : 72 * 3600 * 1000;
+        item.nextReview = Date.now() + delay;
+      }
+      localStorage.setItem('psycase_failed_cases', JSON.stringify(failed));
+    }
+  }
+
+  function getBriefFeedback(caseObj, task) {
+    const rationale = caseObj?.explanation?.rationale || task?.rationale || "";
+    if (!rationale) return "Evalúa el riesgo inmediato y prioriza lo defendible.";
+    const firstSentence = rationale.match(/[^.!?]+[.!?]/);
+    return firstSentence ? firstSentence[0] : rationale.slice(0, 160) + "…";
   }
 
   function getExplanationPayload(caseObj, task, selectedText, ok) {
@@ -253,6 +322,8 @@ const Game = (() => {
     if (!root) return;
 
     Economy.init(); // Refresh data
+    const failedList = getFailedCases();
+    const dueList = getDueFailedCases();
 
     root.innerHTML = `
       <div class="miami-card hero-card">
@@ -263,12 +334,49 @@ const Game = (() => {
           <div class="hero-pill">🩺 Decisiones clínicas</div>
           <div class="hero-pill">🔥 Rachas y recompensas</div>
         </div>
-        <button class="btn-action" id="btnStart">Iniciar turno</button>
+        <button class="btn-action" id="btnStart">Iniciar guardia</button>
+        <button class="btn-action" id="btnStudyMode" style="margin-top:10px; background:linear-gradient(135deg, var(--miami-cyan), var(--miami-purple)); box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);">Modo Estudio</button>
+        ${failedList.length > 0 ? `
+          <button class="btn-action" id="btnMenuReviewFailed" 
+            style="margin-top:10px; background:${dueList.length > 0 ? 'linear-gradient(135deg, #ffd700, #ff8c00)' : 'rgba(255, 255, 255, 0.06)'}; 
+            box-shadow: ${dueList.length > 0 ? '0 0 15px rgba(255, 215, 0, 0.4)' : 'none'}; 
+            border: ${dueList.length > 0 ? 'none' : '1px dashed rgba(255, 255, 255, 0.15)'}; 
+            color: ${dueList.length > 0 ? '#fff' : 'rgba(255,255,255,0.4)'}; 
+            font-size:16px;" 
+            ${dueList.length === 0 ? 'disabled' : ''}>
+            ${dueList.length > 0 ? `📖 Repasar Errores (${dueList.length} listos / ${failedList.length} total)` : `✅ Repaso al día (${failedList.length} en maestría)`}
+          </button>
+        ` : ""}
         <div class="hero-meta">
           <span>Rango: ${escapeHtml(Economy.getRank())}</span>
           <span>🪙 ${Economy.getCoins()}</span>
         </div>
       </div>
+      
+      <div class="miami-card">
+        <div class="narrative-title" style="margin-bottom:12px;">📊 FILTRAR CASOS (OPCIONAL)</div>
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
+          <div>
+            <label class="stat-label" style="display:block; margin-bottom:6px;" for="selectLevel">Nivel Educativo</label>
+            <select class="miami-select" id="selectLevel">
+              <option value="">Todos los niveles</option>
+              <option value="licenciatura">Licenciatura</option>
+              <option value="residencia">Residencia (RDoC)</option>
+              <option value="especialidad">Especialidad</option>
+            </select>
+          </div>
+          <div>
+            <label class="stat-label" style="display:block; margin-bottom:6px;" for="selectDifficulty">Dificultad</label>
+            <select class="miami-select" id="selectDifficulty">
+              <option value="">Todas</option>
+              <option value="facil">Fácil</option>
+              <option value="media">Media</option>
+              <option value="dificil">Difícil</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
       <div class="miami-card">
         <div class="narrative-title">${escapeHtml(NARRATIVE.welcomeTitle)}</div>
         <ul class="rules-list">
@@ -278,19 +386,36 @@ const Game = (() => {
     `;
 
     $("#btnStart").onclick = () => {
-      // Manual fade out before starting
       root.classList.add("fade-out", "screen-transition");
-      setTimeout(() => startTurn(), 400);
+      setTimeout(() => startTurn(false, false), 400);
     };
+
+    $("#btnStudyMode").onclick = () => {
+      root.classList.add("fade-out", "screen-transition");
+      setTimeout(() => startTurn(true, false), 400);
+    };
+
+    if (failedList.length > 0) {
+      $("#btnMenuReviewFailed").onclick = () => {
+        root.classList.add("fade-out", "screen-transition");
+        setTimeout(() => startTurn(true, true), 400);
+      };
+    }
   }
 
   function renderGameOver() {
     const modal = $("#modalRoot");
 
-    Economy.registerGame(state.maxStreak);
+    if (!state.studyMode) {
+      Economy.registerGame(state.maxStreak);
+    }
     const stats = Economy.getStats();
     const achievements = Economy.checkAchievements();
     const unlocked = Economy.getUnlockedAchievements();
+
+    const failedList = getFailedCases();
+    const dueList = getDueFailedCases();
+    const showReviewBtn = failedList.length > 0;
 
     modal.innerHTML = `
       <div class="modal">
@@ -325,6 +450,16 @@ const Game = (() => {
           
           <div style="display:grid; gap:10px; margin-top:20px;">
             <button class="btn-action" id="btnRestart">Nueva Guardia</button>
+            ${showReviewBtn ? `
+              <button class="btn-action" id="btnReviewFailed" 
+                style="background:${dueList.length > 0 ? 'linear-gradient(135deg, var(--miami-cyan), var(--miami-purple))' : 'rgba(255, 255, 255, 0.06)'}; 
+                box-shadow: ${dueList.length > 0 ? '0 0 15px rgba(0, 243, 255, 0.4)' : 'none'}; 
+                border: ${dueList.length > 0 ? 'none' : '1px dashed rgba(255, 255, 255, 0.15)'}; 
+                color: ${dueList.length > 0 ? '#fff' : 'rgba(255,255,255,0.4)'};"
+                ${dueList.length === 0 ? 'disabled' : ''}>
+                ${dueList.length > 0 ? `Repasar Errores (${dueList.length} listos / ${failedList.length} total)` : `Repaso al día (${failedList.length} en maestría)`}
+              </button>
+            ` : ""}
             <button class="option-btn" id="btnMenu" style="justify-content:center; text-align:center;">Volver al Menú</button>
           </div>
         </div>
@@ -333,9 +468,35 @@ const Game = (() => {
 
     $("#btnRestart").onclick = () => {
       modal.innerHTML = "";
-      startTurn();
+      startTurn(false, false);
     };
+    if (showReviewBtn) {
+      $("#btnReviewFailed").onclick = () => {
+        modal.innerHTML = "";
+        startTurn(true, true);
+      };
+    }
     $("#btnMenu").onclick = () => {
+      location.reload();
+    };
+  }
+
+  function showReviewSuccess() {
+    const modal = $("#modalRoot");
+    modal.innerHTML = `
+      <div class="modal">
+        <div class="modalCard game-over-card" style="border-color:#39ff14; box-shadow: 0 0 50px rgba(57, 255, 20, 0.25);">
+          <div style="font-size:48px;">🏆</div>
+          <div class="hero-title" style="color:#39ff14;">¡ERRORES DEPURADOS!</div>
+          <div style="color:rgba(255,255,255,0.7); margin-bottom:10px;">Has repasado y corregido todos tus casos fallados de la base de datos real.</div>
+          <div style="color:var(--miami-cyan); font-weight:700; margin-bottom:20px;">¡Excelente trabajo clínico!</div>
+          <div style="display:grid; gap:10px;">
+            <button class="btn-action" id="btnSuccessMenu">Volver al Menú</button>
+          </div>
+        </div>
+      </div>
+    `;
+    $("#btnSuccessMenu").onclick = () => {
       location.reload();
     };
   }
@@ -354,12 +515,14 @@ const Game = (() => {
     }
   }
 
-  async function startTurn() {
+  async function startTurn(studyMode = false, reviewMode = false) {
+    state.studyMode = studyMode;
+    state.reviewMode = reviewMode;
     ensureAudio();
-    playTone(520, 0.08);
+    if (state.soundEnabled) playTone(520, 0.08);
 
     // Reset state
-    state.lives = GAME_CONFIG.maxLives;
+    state.lives = studyMode ? 999 : GAME_CONFIG.maxLives;
     state.streak = 0;
     state.maxStreak = 0;
     state.recentCases = [];
@@ -368,9 +531,17 @@ const Game = (() => {
     state.residentMood = "normal";
     state.bossMood = "normal";
     state.hintUsedInTurn = false;
+    state.solvedCasesCount = 0;
+    state.currentTaskIndex = 0;
+
+    // Read filters
+    const selectLevel = $("#selectLevel");
+    const selectDifficulty = $("#selectDifficulty");
+    state.filters.educational_level = selectLevel ? selectLevel.value : "";
+    state.filters.difficulty = selectDifficulty ? selectDifficulty.value : "";
 
     // Reset visual effects
-    document.body.classList.remove("hot-zone-active");
+    document.body.classList.remove("hot-zone-active", "time-critical");
 
     $("#hudRoot").innerHTML = "";
     await ensureCasesLoaded();
@@ -388,8 +559,11 @@ const Game = (() => {
     const hud = $("#hudRoot");
     if (!hud) return;
 
-    const hearts = "💖".repeat(state.lives);
+    const hearts = state.studyMode ? "💖 ♾️" : "💖".repeat(state.lives);
     const streakLabel = state.streak >= 3 ? "RACHA" : "COMBO";
+    
+    const isEduDoc = state.current?.case_type === "documento_educativo";
+    const timeLabel = state.studyMode ? 'MODO ESTUDIO' : (isEduDoc ? 'LECTURA LIBRE' : 'TIEMPO');
 
     hud.innerHTML = `
       <div class="miami-card">
@@ -404,20 +578,20 @@ const Game = (() => {
 
           <div class="track" aria-label="tiempo">
             <div class="bar" id="tBar" style="width:100%"></div>
-            <div class="track-label">TIEMPO</div>
+            <div class="track-label">${timeLabel}</div>
           </div>
 
           <div class="hudBox">
             <div>
               <div class="badge">Dr. Celada</div>
-              <div style="font-weight:900; font-style:italic;">${state.lives <= 1 ? "¡FURIOSO!" : "VIGILANDO"}</div>
+              <div style="font-weight:900; font-style:italic;">${state.studyMode ? 'EDUCANDO' : (state.lives <= 1 ? "¡FURIOSO!" : "VIGILANDO")}</div>
               <div style="color:rgba(255,43,214,.9);font-weight:900;">🪙 ${Economy.getCoins()} · ${escapeHtml(Economy.getRank())}</div>
             </div>
             <div class="avatar" id="bossBox">${Avatars.boss(state.bossMood)}</div>
           </div>
         </div>
         <div class="hudMeta">
-          <div class="combo-chip" id="comboChip">
+          <div class="combo-chip" id="comboChip" style="${state.studyMode ? 'opacity:0.4;' : ''}">
             <span class="combo-label">${streakLabel}</span>
             <span class="combo-value">x${state.streak}</span>
           </div>
@@ -425,8 +599,14 @@ const Game = (() => {
              <button class="btn-powerup" id="btnHint" ${Economy.getCoins() < 50 || state.hintUsedInTurn ? 'disabled' : ''}>
                <span>💡</span> Consultar (50)
              </button>
+             <button class="btn-powerup" id="btnSoundToggle" title="Activar/Silenciar sonido">
+               <span>${state.soundEnabled ? '🔊' : '🔇'}</span>
+             </button>
+             <button class="btn-powerup" id="btnAutoToggle" title="Auto-avance de retroalimentación">
+               <span>${state.autoAdvance ? '⏱️ Auto' : '⏸️ Manual'}</span>
+             </button>
           </div>
-          <div class="combo-chip combo-chip--alt">
+          <div class="combo-chip combo-chip--alt" style="${state.studyMode ? 'opacity:0.4;' : ''}">
             <span class="combo-label">MEJOR</span>
             <span class="combo-value">x${state.maxStreak}</span>
           </div>
@@ -436,6 +616,26 @@ const Game = (() => {
 
     const hintBtn = $("#btnHint");
     if (hintBtn) hintBtn.onclick = () => useHint();
+
+    const soundBtn = $("#btnSoundToggle");
+    if (soundBtn) {
+      soundBtn.onclick = () => {
+        state.soundEnabled = !state.soundEnabled;
+        localStorage.setItem('psy_pref_sound', state.soundEnabled);
+        renderHUD();
+        playTone(660, 0.05);
+      };
+    }
+
+    const autoBtn = $("#btnAutoToggle");
+    if (autoBtn) {
+      autoBtn.onclick = () => {
+        state.autoAdvance = !state.autoAdvance;
+        localStorage.setItem('psy_pref_autoadvance', state.autoAdvance);
+        renderHUD();
+        playTone(660, 0.05);
+      };
+    }
   }
 
   function useHint() {
@@ -452,15 +652,52 @@ const Game = (() => {
     renderHUD(); // Update buttons and coins
   }
 
-  function pickTask(caseObj) {
-    const t = (caseObj.tasks && caseObj.tasks[0]) ? caseObj.tasks[0] : null;
+  function pickTask(caseObj, index = 0) {
+    const t = (caseObj?.tasks && caseObj.tasks[index]) ? caseObj.tasks[index] : null;
     const base = {
       instruction: "Analiza el caso y responde.",
       expected_answer: "Conducta adecuada",
       distractors: ["Opción A", "Opción B", "Opción C"],
       rationale: "Justificación clínica."
     };
-    return t ? { ...base, ...t, question: t.question || "" } : base;
+    
+    if (!t) return base;
+    
+    // Consecuencias de Guardia (Branching Scenarios)
+    if (state.decompensated && index > 0) {
+      const adapted = { ...base, ...t };
+      const prefix = "🚨 [URGENCIA: ¡El paciente se ha descompensado debido a tu conducta anterior! Realiza una maniobra de rescate]\n\n";
+      if (adapted.question) {
+        adapted.question = prefix + adapted.question;
+      } else if (adapted.instruction) {
+        adapted.instruction = prefix + adapted.instruction;
+      }
+      return adapted;
+    }
+    
+    return { ...base, ...t, question: t.question || "" };
+  }
+
+  function getPatientEcgClass(c) {
+    if (!c) return "normal";
+    if (c.case_type === "documento_educativo") return "flat"; // Documentos teóricos = línea plana tranquila (no animada)
+    if (state.decompensated) return "tachy"; // Si está descompensado por error previo, taquicardia inmediata!
+    
+    const id = String(c.case_id || "").toUpperCase();
+    const title = String(c.title || c.display_title || "").toUpperCase();
+    const type = String(c.type || "").toUpperCase();
+    const text = String(c.source_chunks?.[0]?.text_content || "").toUpperCase();
+
+    const tachyKeywords = ["MANIA", "PANIC", "PÁNICO", "COCA", "ABSTINENCIA", "AGITAC", "SUICID", "SUI", "TAQUICARDIA", "MANÍA"];
+    const bradyKeywords = ["ANOREXIA", "DEMENC", "HIPOACTIVO", "ESTUPOR", "BRADICARDIA", "ANOREXICA", "ANORÉXICA"];
+
+    if (tachyKeywords.some(kw => id.includes(kw) || title.includes(kw) || type.includes(kw) || text.includes(kw))) {
+      return "tachy";
+    }
+    if (bradyKeywords.some(kw => id.includes(kw) || title.includes(kw) || type.includes(kw) || text.includes(kw))) {
+      return "brady";
+    }
+    return "normal";
   }
 
   function renderCase() {
@@ -475,22 +712,41 @@ const Game = (() => {
     const c = state.current;
     const sources = Array.isArray(c.source_chunks) ? c.source_chunks : [];
     const text = sources.map(x => normalizeCaseText(x.text_content)).filter(Boolean).join("\n\n");
-    const task = pickTask(c);
+    const task = pickTask(c, state.currentTaskIndex);
     const bodyText = text || task.instruction;
     const { summary, details } = splitCaseText(bodyText);
     const questionText = normalizeCaseText(task.question || task.instruction);
-    const consequenceText = state.streak >= 3 ? NARRATIVE.consequence : "";
+    const consequenceText = state.streak >= 3 && !state.studyMode ? NARRATIVE.consequence : "";
 
     const options = [
       { t: task.expected_answer, ok: true },
       ...(Array.isArray(task.distractors) ? task.distractors : []).map(d => ({ t: d, ok: false }))
     ].sort(() => Math.random() - 0.5);
 
+    // Badge showing case / task progress or Educational Doc
+    const tasksCount = c.tasks ? c.tasks.length : 1;
+    let progressBadge = "";
+    if (c.case_type === "documento_educativo") {
+      progressBadge = "Lectura Didáctica";
+    } else {
+      progressBadge = tasksCount > 1 
+        ? `Pregunta ${state.currentTaskIndex + 1}/${tasksCount}`
+        : `Caso ${state.solvedCasesCount + 1}`;
+    }
+
+    const ecgClass = getPatientEcgClass(c);
+    const ecgSvg = `
+      <svg viewBox="0 0 100 30" class="ecg-svg" aria-hidden="true">
+        <path d="M 0 15 L 30 15 L 35 12 L 40 18 L 45 15 L 48 5 L 52 28 L 56 15 L 60 17 L 65 15 L 100 15" class="ecg-line ${ecgClass}"></path>
+      </svg>
+    `;
+
     root.innerHTML = `
       <div class="miami-card case-card">
         <div class="caseHeader">
           <div class="caseTitle">${escapeHtml(getCaseTitle(c))}</div>
-          <div class="caseBadge">Caso ${state.recentCases.length || 1}</div>
+          ${ecgSvg}
+          <div class="caseBadge">${escapeHtml(progressBadge)}</div>
         </div>
         <div class="caseSummary">
           <div class="caseLabel">Lectura rápida</div>
@@ -519,6 +775,14 @@ const Game = (() => {
   function startTimer() {
     clearInterval(state.timer);
     
+    // Si el caso actual es un documento educativo, no iniciamos temporizador
+    if (state.current?.case_type === "documento_educativo") {
+      const b = $("#tBar");
+      if (b) b.style.width = "100%";
+      document.body.classList.remove("hot-zone-active", "time-critical");
+      return;
+    }
+
     // Dificultad Logarítmica: más fluido y natural
     const reduction = Math.floor(Math.log2(state.streak + 1) * GAME_CONFIG.difficultyScale);
     state.turnSeconds = Math.max(GAME_CONFIG.minTurnSeconds, GAME_CONFIG.baseTurnSeconds - reduction);
@@ -538,17 +802,26 @@ const Game = (() => {
       const isHot = (pct <= 20);
       document.body.classList.toggle("hot-zone-active", isHot);
 
+      // Parpadeo de fondo rojo cuando quedan ≤ 5 segundos
+      const isCritical = (state.timeLeft <= 5);
+      document.body.classList.toggle("time-critical", isCritical);
+
       const track = b ? b.closest(".track") : null;
-      if (track) track.classList.toggle("track--danger", state.timeLeft <= 5);
+      if (track) track.classList.toggle("track--danger", isCritical);
 
       if (state.timeLeft <= 0) {
         clearInterval(state.timer);
-        document.body.classList.remove("hot-zone-active");
+        document.body.classList.remove("hot-zone-active", "time-critical");
         state.lives -= 1;
+        
+        // Guardar caso en la lista de fallados
+        saveFailedCase(state.current?.case_id);
+
         renderHUD();
         if (state.lives <= 0) {
           handleDeath();
         } else {
+          // Time out moves to next case
           nextCase();
         }
       }
@@ -568,12 +841,35 @@ const Game = (() => {
     state.residentMood = "normal";
     state.bossMood = state.lives <= 1 ? "angry" : "normal";
     state.hintUsedInTurn = false;
+    state.currentTaskIndex = 0; // Reset index for new case
+    state.decompensated = false; // Reset descompensación para el nuevo caso
+
+    if (state.reviewMode) {
+      const activeFailed = getDueFailedCases();
+      if (!activeFailed.length) {
+        showReviewSuccess();
+        return;
+      }
+      state.failedCaseIds = activeFailed.map(item => item.caseId);
+    }
 
     try {
-      state.current = state.useGenerator ? Generator.createCase() : await CaseDB.pickRandomCase({ excludeCaseIds: state.recentCases });
-    } catch {
+      const queryFilters = {
+        excludeCaseIds: state.reviewMode ? [] : state.recentCases,
+        ...state.filters
+      };
+      if (state.reviewMode) {
+        queryFilters.includeCaseIds = state.failedCaseIds;
+      }
+      state.current = state.useGenerator ? Generator.createCase(state.filters) : await CaseDB.pickRandomCase(queryFilters);
+    } catch(err) {
+      console.warn("Error loading filtered cases from DB, falling back to Generator:", err);
+      if (state.reviewMode) {
+        showReviewSuccess();
+        return;
+      }
       state.useGenerator = true;
-      state.current = Generator.createCase();
+      state.current = Generator.createCase(state.filters);
     }
 
     if (state.current?.case_id) {
@@ -582,16 +878,52 @@ const Game = (() => {
 
     renderHUD();
     renderCase();
-    startTimer();
+    
+    if (!state.studyMode && state.current?.case_type !== "documento_educativo") {
+      startTimer();
+    } else {
+      clearInterval(state.timer);
+      const b = $("#tBar");
+      if (b) b.style.width = "100%";
+      document.body.classList.remove("hot-zone-active", "time-critical");
+    }
+  }
+
+  async function advanceNext() {
+    if (state.lives <= 0) return handleDeath();
+
+    // Check if there is another task in current case
+    state.currentTaskIndex++;
+    if (state.current && state.current.tasks && state.currentTaskIndex < state.current.tasks.length) {
+      state.hintUsedInTurn = false;
+      renderHUD();
+      renderCase();
+      if (!state.studyMode && state.current?.case_type !== "documento_educativo") {
+        startTimer();
+      } else {
+        clearInterval(state.timer);
+        const b = $("#tBar");
+        if (b) b.style.width = "100%";
+        document.body.classList.remove("hot-zone-active", "time-critical");
+      }
+    } else {
+      // Go to next case
+      state.solvedCasesCount++;
+      await nextCase();
+    }
   }
 
   function showSmartFeedback(ok, task, selectedText) {
     const root = $("#modalRoot");
-    const brief = getBriefFeedback(task);
+    const brief = getBriefFeedback(state.current, task);
     const details = getExplanationPayload(state.current, task, selectedText, ok);
+    const hasExplanation = !!state.current?.explanation;
+
+    const whyNotList = state.current?.explanation?.why_not || [];
+    const takeHomeText = details.takeHome;
 
     root.innerHTML = `
-      <div class="feedback-overlay show" style="border-color:${ok ? "rgba(57,255,20,0.4)" : "rgba(255,0,85,0.4)"}">
+      <div class="feedback-overlay show" style="border-color:${ok ? "rgba(57,255,20,0.4)" : "rgba(255,0,85,0.4)"}; cursor: default;">
         <div class="feedback-header">
           <div style="font-size:32px;">${ok ? "💎" : "⚠️"}</div>
           <div class="feedback-status" style="color:${ok ? "#39ff14" : "#ff0055"}">
@@ -599,21 +931,69 @@ const Game = (() => {
           </div>
         </div>
         <div class="modalFeedback" style="margin:0; font-size:14px;">${escapeHtml(details.reason || brief)}</div>
-        <div class="feedback-timer-bar animate-timer" style="background:${ok ? "#39ff14" : "#ff0055"}"></div>
+        
+        <div id="expandedFeedback" style="display:none;">
+          ${details.rationale && details.rationale !== details.reason ? `<div class="modalFeedback" style="margin-top:10px; font-size:13px; background:rgba(255,255,255,0.02); border-color:rgba(255,255,255,0.1);">${escapeHtml(details.rationale)}</div>` : ""}
+          ${takeHomeText ? `<div class="feedback-take-home">💡 Para recordar: ${escapeHtml(takeHomeText)}</div>` : ""}
+          ${whyNotList.length ? `
+            <div style="margin-top:12px;">
+              <div class="modalSectionTitle" style="font-size:11px; color:#ff00ff; font-weight:800; letter-spacing:1px; text-transform:uppercase;">¿POR QUÉ OTRAS OPCIONES NO?</div>
+              ${whyNotList.map(w => `
+                <div class="feedback-why-not-item">
+                  <strong>${escapeHtml(w.option)}</strong>: ${escapeHtml(w.reason)}
+                </div>
+              `).join("")}
+            </div>
+          ` : ""}
+        </div>
+
+        <div style="display:flex; gap:10px; margin-top:12px;" id="feedbackControls">
+          ${hasExplanation ? `<button class="btn-powerup" id="btnShowMoreFeedback" style="flex:1; justify-content:center;">📖 Ver Explicación</button>` : ""}
+          <button class="btn-powerup" id="btnNextFeedback" style="flex:1; justify-content:center; background:linear-gradient(135deg, var(--miami-pink), var(--miami-purple)); color:#fff; border:none; font-weight:800;">Siguiente</button>
+        </div>
+
+        <div class="feedback-timer-bar animate-timer" id="feedbackTimerBar" style="background:${ok ? "#39ff14" : "#ff0055"}"></div>
       </div>
     `;
 
-    // Botón de continuar oculto en el overlay para clicks manuales rápidos
-    root.querySelector(".feedback-overlay").onclick = () => nextCase();
+    const timerBar = $("#feedbackTimerBar");
 
-    state.recentFeedbackTimer = setTimeout(() => {
-      nextCase();
-    }, GAME_CONFIG.advanceDelayMs);
+    const advance = () => {
+      clearTimeout(state.recentFeedbackTimer);
+      root.innerHTML = "";
+      advanceNext();
+    };
+
+    // If auto-advance is disabled, or we are in study mode, or we are in a time-free document, hide the timer bar
+    const useAutoAdvance = state.autoAdvance && !state.studyMode && state.current?.case_type !== "documento_educativo";
+    if (!useAutoAdvance) {
+      if (timerBar) timerBar.style.display = "none";
+    }
+
+    $("#btnNextFeedback").onclick = advance;
+
+    const showMoreBtn = $("#btnShowMoreFeedback");
+    if (showMoreBtn) {
+      showMoreBtn.onclick = (e) => {
+        e.stopPropagation();
+        clearTimeout(state.recentFeedbackTimer);
+        if (timerBar) timerBar.style.display = "none";
+        $("#expandedFeedback").style.display = "block";
+        showMoreBtn.style.display = "none";
+      };
+    }
+
+    if (useAutoAdvance) {
+      state.recentFeedbackTimer = setTimeout(() => {
+        advance();
+      }, GAME_CONFIG.advanceDelayMs);
+    }
   }
 
   function handleDeath() {
     clearInterval(state.timer);
-    playTone(150, 0.4);
+    document.body.classList.remove("time-critical");
+    if (state.soundEnabled) playTone(150, 0.4);
     // Wait a sec then show Game Over
     setTimeout(() => renderGameOver(), 600);
   }
@@ -621,21 +1001,40 @@ const Game = (() => {
   function checkAnswer(btn, ok, task) {
     clearInterval(state.timer);
     document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
+    document.body.classList.remove("time-critical");
+
+    const isEduDoc = state.current?.case_type === "documento_educativo";
 
     if (ok) {
       btn.classList.add("correct");
-      state.streak++;
-      state.maxStreak = Math.max(state.maxStreak, state.streak);
-      Economy.add(25 + (state.streak * 5), 50);
+      if (!state.studyMode && !isEduDoc) {
+        state.streak++;
+        state.maxStreak = Math.max(state.maxStreak, state.streak);
+        Economy.add(25 + (state.streak * 5), 50);
+      }
       state.residentMood = "happy";
-      playTone(880, 0.12);
+      if (state.soundEnabled) playTone(880, 0.12);
+
+      // Promocionar nivel de maestría en repaso espaciado al responder bien
+      promoteFailedCase(state.current?.case_id);
+      state.decompensated = false; // ¡El paciente ha sido estabilizado!
     } else {
       btn.classList.add("incorrect");
-      state.lives--;
-      state.streak = 0;
+      if (!state.studyMode && !isEduDoc) {
+        state.lives--;
+        state.streak = 0;
+      }
       state.residentMood = "shock";
       state.bossMood = "angry";
-      playTone(220, 0.2);
+      if (state.soundEnabled) playTone(220, 0.2);
+
+      // Guardar caso real en la lista de fallados al errar
+      saveFailedCase(state.current?.case_id);
+      
+      // Si tiene más tareas el caso actual, marcar como descompensado para la siguiente tarea
+      if (state.current && state.current.tasks && state.currentTaskIndex + 1 < state.current.tasks.length) {
+        state.decompensated = true;
+      }
     }
 
     renderHUD();
@@ -643,7 +1042,11 @@ const Game = (() => {
     if (state.lives <= 0) {
       setTimeout(handleDeath, 800);
     } else {
-      setTimeout(() => showSmartFeedback(ok, task, btn?.innerText), GAME_CONFIG.modalDelayMs);
+      // Correct option text extraction
+      const selectedTextEl = btn.querySelector('.option-text');
+      const selectedText = selectedTextEl ? selectedTextEl.innerText : btn.innerText;
+
+      setTimeout(() => showSmartFeedback(ok, task, selectedText), GAME_CONFIG.modalDelayMs);
     }
   }
 
@@ -662,6 +1065,7 @@ const Game = (() => {
   let audioCtx;
   function ensureAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
   function playTone(f, d = 0.1) {
+    if (!state.soundEnabled) return;
     if (!audioCtx) ensureAudio();
     if (!audioCtx) return;
     const o = audioCtx.createOscillator();

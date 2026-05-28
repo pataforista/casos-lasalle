@@ -5,7 +5,7 @@
    - Limpieza de caches: borra TODO lo que no sea el cache actual
    ============================================================================ */
 
-   const CACHE_VERSION = "psycase-v1.0.6";
+   const CACHE_VERSION = "psycase-v1.0.7";
    const CACHE_NAME = `psycase-${CACHE_VERSION}`;
    
    const APP_SHELL = [
@@ -23,7 +23,6 @@
      "./assets/icons/icon-512.png",
    
      "./data/manifest_v1.json",
-     "./data/items_v1.json",
      "./data/packs/cases_real_v1.json"
    ];
    

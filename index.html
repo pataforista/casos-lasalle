@@ -1,9 +1,28 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-MX">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>PsyCase</title>
+  
+  <!-- SEO Básico -->
+  <title>PsyCase - Casos Clínicos de Psiquiatría para Estudiantes de Medicina y ENARM</title>
+  <meta name="description" content="PsyCase es un simulador interactivo de casos clínicos de psiquiatría diseñado para estudiantes de medicina, residentes y preparación ENARM/MIR. Mejora tu diagnóstico clínico bajo presión.">
+  <meta name="keywords" content="casos clínicos, psiquiatría, simulador médico, estudiantes de medicina, ENARM, MIR, DSM-5, diagnóstico psiquiátrico, app médica">
+  <meta name="author" content="PsyCase">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://psycase.app/">
+  <meta property="og:title" content="PsyCase - Casos Clínicos de Psiquiatría">
+  <meta property="og:description" content="Simulador de casos clínicos interactivos de psiquiatría para estudiantes de medicina y ENARM.">
+  <meta property="og:image" content="./assets/icons/icon-512.png">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary">
+  <meta property="twitter:url" content="https://psycase.app/">
+  <meta property="twitter:title" content="PsyCase - Casos Clínicos de Psiquiatría">
+  <meta property="twitter:description" content="Aprende psiquiatría con casos clínicos interactivos para estudiantes de medicina y ENARM.">
+  <meta property="twitter:image" content="./assets/icons/icon-512.png">
 
   <!-- PWA -->
   <link rel="manifest" href="./manifest.webmanifest">
@@ -18,12 +37,10 @@
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./assets/styles.css">
-
-
 </head>
 
 <body>
-  <div class="scanline"></div>
+  <div class="scanline" aria-hidden="true"></div>
 
   <div id="app" class="max-w-2xl mx-auto p-4 min-h-screen flex flex-col justify-center">
     <!-- Raíces separadas: evita que UI borre el HUD por accidente -->
@@ -62,14 +79,44 @@
       logDebug("[promise] " + String(e.reason || "unhandled"));
     });
 
-    // SW: si existe, se registra. Si no, no rompe la demo.
+    // SW: si existe, se registra y se fuerza la actualización inmediata.
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", async () => {
         try {
-          await navigator.serviceWorker.register("./sw.js");
+          const reg = await navigator.serviceWorker.register("./sw.js");
           logDebug("[sw] registered");
+
+          // Forzar la búsqueda de actualizaciones del Service Worker al cargar la página
+          reg.update();
+
+          // Escuchar cambios en la instalación
+          reg.addEventListener("updatefound", () => {
+            const installingWorker = reg.installing;
+            if (installingWorker) {
+              installingWorker.addEventListener("statechange", () => {
+                if (installingWorker.state === "installed") {
+                  if (navigator.serviceWorker.controller) {
+                    logDebug("[sw] Nueva versión detectada, recargando...");
+                    window.location.reload();
+                  } else {
+                    logDebug("[sw] Contenido cacheado para uso offline.");
+                  }
+                }
+              });
+            }
+          });
         } catch (err) {
           logDebug("[sw] register failed: " + String(err));
+        }
+      });
+
+      // Recargar automáticamente cuando el nuevo Service Worker toma el control (skipWaiting)
+      let refreshing = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (!refreshing) {
+          refreshing = true;
+          logDebug("[sw] Controlador activado, aplicando actualización...");
+          window.location.reload();
         }
       });
     }

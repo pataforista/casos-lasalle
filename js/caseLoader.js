@@ -93,6 +93,19 @@ const CaseDB = (() => {
       pool = pool.filter(c => (c.metadata?.is_real_data ?? c.is_real_data) === false);
     }
 
+    if (filters.difficulty) {
+      pool = pool.filter(c => c.difficulty === filters.difficulty);
+    }
+
+    if (filters.educational_level) {
+      pool = pool.filter(c => c.educational_level === filters.educational_level);
+    }
+
+    if (filters.includeCaseIds && Array.isArray(filters.includeCaseIds)) {
+      const includeSet = new Set(filters.includeCaseIds);
+      pool = pool.filter(c => includeSet.has(c.case_id));
+    }
+
     if (excludeCaseIds.size) {
       pool = pool.filter(c => !excludeCaseIds.has(c.case_id));
     }
@@ -129,10 +142,37 @@ const CaseDB = (() => {
   }
 
   /* ------------------------------------------------------------
+     Contador de pool filtrado
+     ------------------------------------------------------------ */
+  function getPoolSize(filters = {}) {
+    if (!manifestIndex.length) return 0;
+    let pool = manifestIndex;
+
+    if (filters.onlyReal === true) {
+      pool = pool.filter(c => (c.metadata?.is_real_data ?? c.is_real_data) === true);
+    }
+    if (filters.onlySynthetic === true) {
+      pool = pool.filter(c => (c.metadata?.is_real_data ?? c.is_real_data) === false);
+    }
+    if (filters.difficulty) {
+      pool = pool.filter(c => c.difficulty === filters.difficulty);
+    }
+    if (filters.educational_level) {
+      pool = pool.filter(c => c.educational_level === filters.educational_level);
+    }
+    if (filters.includeCaseIds && Array.isArray(filters.includeCaseIds)) {
+      const includeSet = new Set(filters.includeCaseIds);
+      pool = pool.filter(c => includeSet.has(c.case_id));
+    }
+    return pool.length;
+  }
+
+  /* ------------------------------------------------------------
      API pública
      ------------------------------------------------------------ */
   return {
     init,
-    pickRandomCase
+    pickRandomCase,
+    getPoolSize
   };
 })();
