@@ -617,7 +617,7 @@
         },
         {
           "option": "Lesión parietal",
-          "reason": "La alternativa 'Lesión parietal' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Desregulación frontoestriatal'."
+          "reason": "Las lesiones parietales causan déficits visuoespaciales, negligencia hemiespacial y apraxias; no producen el patrón de inatención, impulsividad e hiperactividad del TDAH, que refleja disfunción frontoestriatal dopaminérgica funcional, no una lesión estructural focal."
         }
       ],
       "take_home": "RDoC conceptualiza el TDAH como un fallo en los sistemas de control cognitivo y recompensa, más allá de la simple 'falta de atención'."
@@ -909,7 +909,7 @@
           "reason": "Repetición patológica del habla, inespecífico (autismo/catatonia)."
         }
       ],
-      "take_home": "La diferencia clave entre Bipolar I y II es la intensidad de la elevación: Manía (grave, >1 semana, hospitalización) vs Hipomanía (leve, >4 días, funcional)."
+      "take_home": "La diferencia clave entre Bipolar I y II es la intensidad de la elevación: Manía (grave, ≥7 días o cualquier duración si requiere hospitalización) vs Hipomanía (leve, ≥4 días, sin hospitalización)."
     },
     "hitop": [
       "internalizing"
@@ -1463,7 +1463,7 @@
         },
         {
           "option": "Terapia de sueño aislada",
-          "reason": "La alternativa 'Terapia de sueño aislada' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Psicoterapia focalizada en el trauma (ej. Exposición)'."
+          "reason": "Tratar solo el insomnio (higiene del sueño, TCC-I) sin abordar el trauma subyacente no resuelve los flashbacks, la evitación ni la hipervigilancia. El TEPT requiere terapias focalizadas en el trauma que aborden todos los clústeres sintomáticos."
         }
       ],
       "take_home": "Evitar el recuerdo perpetúa el TEPT; el tratamiento efectivo requiere acercarse al trauma de forma segura."
@@ -1810,11 +1810,11 @@
         },
         {
           "option": "Latencia del discurso",
-          "reason": "La alternativa 'Latencia del discurso' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Ideas de autorreferencia con suspicacia'."
+          "reason": "La latencia del discurso (pausa antes de responder) es inespecífica y puede verse en depresión, timidez o procesamiento cognitivo lento; no es un signo de psicosis activa por sí solo."
         },
         {
           "option": "Contacto visual pobre",
-          "reason": "La alternativa 'Contacto visual pobre' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Ideas de autorreferencia con suspicacia'."
+          "reason": "El contacto visual pobre es inespecífico (ansiedad social, TEA, timidez cultural); no tiene valor diagnóstico para psicosis si no se acompaña de otros signos como las ideas de referencia."
         }
       ],
       "take_home": "En un primer episodio psicótico, prioriza descartar causas metabólicas (tiroides) y tóxicas antes que buscar causas estructurales raras."
@@ -1975,7 +1975,7 @@
         },
         {
           "option": "Con ansiedad",
-          "reason": "La alternativa 'Con ansiedad' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Con rasgos melancólicos'."
+          "reason": "El especificador DSM-5 'con angustia ansiosa' requiere síntomas de tensión, agitación o miedo a perder el control predominantes. Este caso muestra el perfil biológico melancólico (empeoramiento matutino, insomnio terminal, pérdida de peso) sin que la ansiedad sea el síntoma dominante."
         }
       ],
       "take_home": "Identificar melancolía es crucial porque suele responder mejor a fármacos duales o tricíclicos que a psicoterapia sola."
@@ -2140,15 +2140,15 @@
         },
         {
           "option": "Evitación de lugares",
-          "reason": "La alternativa 'Evitación de lugares' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Flashbacks (reexperimentación)'."
+          "reason": "La evitación de lugares relacionados con el trauma pertenece al Clúster C del TEPT (evitación activa), no al Clúster B de reexperimentación. Los flashbacks son la manifestación más característica y diagnóstica del TEPT."
         },
         {
           "option": "Irritabilidad",
-          "reason": "La alternativa 'Irritabilidad' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Flashbacks (reexperimentación)'."
+          "reason": "La irritabilidad y los estallidos de ira pertenecen al Clúster E (alteraciones de activación/reactividad) del TEPT; son frecuentes pero no definen el diagnóstico con la especificidad de los flashbacks (Clúster B)."
         },
         {
           "option": "Anhedonia",
-          "reason": "La alternativa 'Anhedonia' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Flashbacks (reexperimentación)'."
+          "reason": "La anhedonia y el embotamiento afectivo pertenecen al Clúster D del TEPT (alteraciones cognitivas y del estado de ánimo). Aunque es un síntoma importante, los flashbacks son el criterio más distintivo del TEPT frente a otros trastornos."
         }
       ],
       "take_home": "La cronología define el diagnóstico: Reacción normal (<3 días) -> Estrés Agudo (<1 mes) -> TEPT (>1 mes)."
@@ -2329,11 +2329,11 @@
         },
         {
           "option": "Agresividad física",
-          "reason": "La alternativa 'Agresividad física' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Inquietud subjetiva interna'."
+          "reason": "La agresividad física no es una manifestación típica del TDAH en adultos; cuando está presente, sugiere trastornos comórbidos como TEI o TASP. La hiperactividad adulta se expresa como inquietud subjetiva, no como conducta agresiva."
         },
         {
           "option": "Somnolencia diurna",
-          "reason": "La alternativa 'Somnolencia diurna' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Inquietud subjetiva interna'."
+          "reason": "La somnolencia diurna sugiere un trastorno del sueño primario (narcolepsia, apnea), no TDAH. En el TDAH, la hiperactividad genera dificultad para 'bajar revoluciones' y descansar, pero no somnolencia diurna."
         }
       ],
       "take_home": "El TDAH es un trastorno del 'hacer' (ejecución), no del 'saber'. En adultos, la desorganización crónica es el sello distintivo."
@@ -2426,7 +2426,7 @@
         },
         {
           "option": "Trastorno Límite de la Personalidad",
-          "reason": "La alternativa 'Trastorno Límite de la Personalidad' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno Explosivo Intermitente'."
+          "reason": "El TLP tiene inestabilidad crónica del afecto, miedo intenso al abandono, identidad difusa y autolesiones; la agresión surge como reacción al rechazo percibido. En el TEI, la agresión es episódica y desproporcionada al estímulo, con remordimiento posterior, sin el patrón crónico de relaciones inestables o miedo al abandono del TLP."
         }
       ],
       "take_home": "La presencia de remordimiento genuino post-episodio es un diferenciador clave entre TEI y psicopatía/antisocial."
@@ -2849,19 +2849,15 @@
       "why_not": [
         {
           "option": "Síndrome Neuroléptico Maligno",
-          "reason": "Cursa con rigidez severa ('tubo de plomo') e hiporreflexia, y se asocia a antipsicóticos, no a ISRS+Tramadol."
+          "reason": "Cursa con rigidez severa 'en tubo de plomo' y ausencia de clonus e hiperreflexia; se asocia a antipsicóticos dopaminérgicos, no a serotonérgicos como ISRS+Tramadol."
         },
         {
           "option": "Meningitis bacteriana",
           "reason": "Aunque hay fiebre, el clonus y la historia farmacológica clara apuntan a toxidrome, no a infección meníngea."
         },
         {
-          "option": "Síndrome Neuroléptico Maligno (SNM)",
-          "reason": "La alternativa 'Síndrome Neuroléptico Maligno (SNM)' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Síndrome Serotoninérgico'."
-        },
-        {
           "option": "Crisis hipertensiva primaria",
-          "reason": "La alternativa 'Crisis hipertensiva primaria' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Síndrome Serotoninérgico'."
+          "reason": "La crisis hipertensiva primaria no explica el clonus neuromuscular ni la hiperreflexia; la historia de polifarmacia serotonérgica es el dato guía."
         }
       ],
       "take_home": "Hiperreflexia + Clonus = Serotonina. Rigidez + Hiporreflexia = Dopamina (SNM). Ambos matan por hipertermia."
@@ -3217,7 +3213,7 @@
         },
         {
           "option": "Estimulación magnética",
-          "reason": "La alternativa 'Estimulación magnética' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Prueba de desafío con Lorazepam (Benzodiacepina)'."
+          "reason": "La estimulación magnética transcraneal (TMS) es una intervención programada y electiva para depresión resistente; no está disponible en urgencias ni es aplicable en el manejo agudo de catatonia. El lorazepam IV es la prueba diagnóstico-terapéutica inmediata."
         }
       ],
       "take_home": "Ante un paciente psiquiátrico inmóvil y mudo: 1) Piensa en Catatonia, 2) No des antipsicóticos, 3) Prueba Lorazepam."
@@ -3294,7 +3290,7 @@
         },
         {
           "option": "Tirotoxicosis",
-          "reason": "La alternativa 'Tirotoxicosis' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno de Ansiedad Generalizada (TAG)'."
+          "reason": "La tirotoxicosis puede imitar clínicamente el TAG (ansiedad, palpitaciones, nerviosismo), pero se distingue por signos físicos objetivos: pérdida de peso, intolerancia al calor, bocio, exoftalmos y taquicardia sinusal. La ausencia de estos signos y el perfil tiroideo normal (TSH) permiten excluirla."
         }
       ],
       "take_home": "El TAG suele ser crónico y se manifiesta somáticamente como 'tensión y fatiga'; mentalmente como '¿y si pasa algo malo?'."
@@ -3359,7 +3355,7 @@
         },
         {
           "option": "Síntomas exclusivamente físicos sin componente cognitivo",
-          "reason": "La alternativa 'Síntomas exclusivamente físicos sin componente cognitivo' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Inicio súbito y alcanza máxima intensidad en minutos'."
+          "reason": "Los criterios DSM-5 para el trastorno de pánico requieren síntomas cognitivos (miedo a morir, miedo a 'volverse loco' o perder el control) además de los síntomas somáticos. Una crisis puramente física sin componente cognitivo apuntaría más a una causa médica cardíaca o endocrina."
         }
       ],
       "take_home": "Pánico = crisis aguda, breve e inesperada. TAG = preocupación crónica y difusa. Ambos pueden coexistir."
@@ -3619,7 +3615,7 @@
         },
         {
           "option": "Con patrón estacional",
-          "reason": "La alternativa 'Con patrón estacional' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Con características atípicas'."
+          "reason": "El especificador 'con patrón estacional' requiere una relación temporal consistente entre el inicio de los episodios depresivos y una época del año específica (ej. invierno), con remisión completa en otra época, durante al menos 2 años consecutivos. No se menciona ningún patrón estacional en este caso."
         }
       ],
       "take_home": "Depresión atípica = 'mejoro con buenas noticias' + duermo/como de más. Depresión melancólica = 'nada me alegra' + no duermo/no como."
@@ -3749,11 +3745,11 @@
         },
         {
           "option": "Ausencia de insight (convicción delirante)",
-          "reason": "La alternativa 'Ausencia de insight (convicción delirante)' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Insight bueno o regular'."
+          "reason": "La ausencia total de insight implica una convicción delirante: el paciente cree completamente que se va a contaminar. Aquí el paciente reconoce explícitamente que 'es poco probable', lo que descarta la convicción delirante."
         },
         {
           "option": "Insight sobrevalorado",
-          "reason": "La alternativa 'Insight sobrevalorado' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Insight bueno o regular'."
+          "reason": "'Insight sobrevalorado' no es una categoría reconocida en el especificador DSM-5 para TOC; los niveles válidos son bueno/regular, pobre, y ausencia (convicción delirante). Este distractor evalúa que el estudiante conozca la taxonomía correcta del especificador."
         }
       ],
       "take_home": "Insight en TOC no significa que el paciente deje de hacer la compulsión, solo que reconoce su irracionalidad. La mayoría de pacientes con TOC tienen insight conservado."
@@ -3913,7 +3909,8 @@
         "text_content": "El trastorno facticio implica la falsificación intencional de síntomas físicos o psicológicos, sin un incentivo externo evidente (a diferencia de la simulación). El paciente asume el rol de 'enfermo'. Puede incluir autoinducción de lesiones, adulteración de muestras o mentiras sobre historia clínica. El motivo es psicológico (necesidad de atención médica, asumir rol de paciente).",
         "labels": {
           "hitop": [
-            "internalizing"
+            "internalizing",
+            "somatoform"
           ],
           "rdoc": [
             "Cognitive Systems"
@@ -3956,7 +3953,8 @@
       "take_home": "Trastorno facticio = paciente quiere estar enfermo. Simulación = paciente quiere un beneficio externo."
     },
     "hitop": [
-      "internalizing"
+      "internalizing",
+      "somatoform"
     ],
     "rdoc": [
       "Cognitive Systems"
@@ -4016,11 +4014,11 @@
         },
         {
           "option": "Carbamazepina sola",
-          "reason": "La alternativa 'Carbamazepina sola' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Benzodiacepinas (ej. lorazepam o diazepam) con dosis ajustadas según síntomas'."
+          "reason": "La carbamazepina es una alternativa reconocida en guías europeas (NICE, AWMF) para abstinencia leve-moderada, pero su eficacia para prevenir convulsiones en abstinencia grave es inferior a las benzodiacepinas. En este caso con taquicardia (FC 110) e hipertensión, las BZD son claramente de primera línea."
         },
         {
           "option": "Beta-bloqueadores como única terapia",
-          "reason": "La alternativa 'Beta-bloqueadores como única terapia' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Benzodiacepinas (ej. lorazepam o diazepam) con dosis ajustadas según síntomas'."
+          "reason": "Los beta-bloqueadores controlan síntomas autonómicos (taquicardia, temblor) pero no actúan sobre los receptores GABA, por lo que no previenen convulsiones ni delirium tremens, que son las complicaciones graves de la abstinencia alcohólica."
         }
       ],
       "take_home": "En abstinencia alcohólica: BZD + Tiamina. El CIWA-Ar es tu guía."
@@ -4153,7 +4151,7 @@
         },
         {
           "option": "Síndrome de piernas inquietas",
-          "reason": "La alternativa 'Síndrome de piernas inquietas' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno de insomnio (dificultad para iniciar el sueño)'."
+          "reason": "El SPI se caracteriza por una urgencia irresistible de mover las piernas, con sensaciones desagradables (hormigueo, quemazón) que empeoran en reposo y mejoran con el movimiento. La viñeta describe únicamente dificultad para conciliar el sueño sin sensaciones en las extremidades."
         }
       ],
       "take_home": "Insomnio crónico requiere síntomas ≥3 meses. La higiene del sueño y TCC-I son primera línea, no solo fármacos."
@@ -4350,7 +4348,7 @@
         },
         {
           "option": "Trastorno narcisista de la personalidad",
-          "reason": "La alternativa 'Trastorno narcisista de la personalidad' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno antisocial de la personalidad'."
+          "reason": "El TNP implica grandiosidad, búsqueda de admiración y falta de empatía, pero sin el patrón de violación activa de normas legales, agresión física ni el antecedente de trastorno de conducta antes de los 15 años que caracteriza al TASP."
         }
       ],
       "take_home": "El TASP requiere antecedente de trastorno de conducta antes de los 15 años. No hay remordimiento (a diferencia del TLP, donde sí lo hay post-crisis)."
@@ -4375,10 +4373,10 @@
     "source_chunks": [
       {
         "chunk_id": "CH_CLIN_017",
-        "text_content": "Los efectos adversos comunes de los ISRS (fluoxetina, sertralina, escitalopram) incluyen: náuseas, cefalea, insomnio o somnolencia, disfunción sexual (anorgasmia, disminución de libido), y bruxismo. El síndrome serotoninérgico (leve a grave) cursa con inquietud, diaforesis, temblor, hiperreflexia y clonus.",
+        "text_content": "Los efectos adversos comunes de los ISRS (fluoxetina, sertralina, escitalopram) incluyen: náuseas, cefalea, insomnio o somnolencia, disfunción sexual (anorgasmia, disminución de libido), y bruxismo. Las náuseas y la cefalea son transitorias (1-2 semanas). La disfunción sexual puede persistir durante todo el tratamiento. El síndrome serotoninérgico (leve a grave) cursa con inquietud, diaforesis, temblor, hiperreflexia y clonus.",
         "labels": {
           "hitop": [
-            "somatoform"
+            "internalizing"
           ],
           "rdoc": [
             "Arousal/Regulatory Systems"
@@ -4391,7 +4389,7 @@
         "task_id": "T_CLIN_017_1",
         "type": "mcq_single_best",
         "instruction": "Paciente que inició sertralina hace 3 días refiere náuseas, cefalea y dificultad para alcanzar el orgasmo. ¿Cuál es la conducta más adecuada?",
-        "expected_answer": "Informar que son efectos esperados y suelen disminuir en 1-2 semanas, mantener dosis",
+        "expected_answer": "Informar que náuseas y cefalea son transitorias (1-2 semanas); la disfunción sexual puede persistir y manejarse específicamente; mantener dosis",
         "distractors": [
           "Suspender sertralina inmediatamente por intolerancia",
           "Aumentar la dosis para acelerar efecto terapéutico",
@@ -4400,7 +4398,7 @@
       }
     ],
     "explanation": {
-      "rationale": "Las náuseas y cefalea son efectos adversos tempranos y autolimitados (suelen ceder en 1-2 semanas). La disfunción sexual puede persistir y manejarse luego. No se suspende abruptamente por efectos leves.",
+      "rationale": "Las náuseas y cefalea son efectos adversos tempranos y autolimitados de los ISRS (suelen ceder en 1-2 semanas). La disfunción sexual (anorgasmia, disminución de libido) puede persistir durante todo el tratamiento y no es transitoria; puede requerir reducción de dosis, adición de bupropión o cambio de fármaco. No se debe suspender abruptamente por efectos leves en la primera semana.",
       "evidence_chunks": [
         "CH_CLIN_017"
       ],
@@ -4415,21 +4413,21 @@
         },
         {
           "option": "Suspender sertralina inmediatamente por intolerancia",
-          "reason": "La alternativa 'Suspender sertralina inmediatamente por intolerancia' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Informar que son efectos esperados y suelen disminuir en 1-2 semanas, mantener dosis'."
+          "reason": "Suspensión abrupta antes del mes puede provocar síndrome de discontinuación (mareos, náuseas, parestesias). Los efectos adversos iniciales son esperables y no constituyen intolerancia real; deben manejarse con educación y espera."
         },
         {
           "option": "Aumentar la dosis para acelerar efecto terapéutico",
-          "reason": "La alternativa 'Aumentar la dosis para acelerar efecto terapéutico' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Informar que son efectos esperados y suelen disminuir en 1-2 semanas, mantener dosis'."
+          "reason": "Aumentar la dosis empeoraría los efectos adversos dosis-dependientes (náuseas, disfunción sexual) sin acortar el inicio del efecto antidepresivo, que tarda 2-4 semanas independientemente de la dosis."
         },
         {
           "option": "Cambiar a un antidepresivo tricíclico",
-          "reason": "La alternativa 'Cambiar a un antidepresivo tricíclico' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Informar que son efectos esperados y suelen disminuir en 1-2 semanas, mantener dosis'."
+          "reason": "Los tricíclicos (amitriptilina, clomipramina) tienen un perfil de efectos adversos mucho más amplio (anticolinérgicos, cardiotóxicos) que los ISRS. Cambiar a ellos en la primera semana por efectos menores esperados sería un error de manejo."
         }
       ],
-      "take_home": "Los efectos adversos de ISRS suelen ser dosis-dependientes y temporales. Paciencia y educación son clave en la primera semana."
+      "take_home": "Los efectos adversos de ISRS: náuseas y cefalea son transitorias (ceden en 1-2 semanas). La disfunción sexual puede ser persistente y requiere manejo activo si interfiere con el tratamiento."
     },
     "hitop": [
-      "somatoform"
+      "internalizing"
     ],
     "rdoc": [
       "Arousal/Regulatory Systems"
@@ -4498,7 +4496,7 @@
       "take_home": "Olanzapina y clozapina = campeones en efectividad, también campeones en diabetes y obesidad. Monitorea cada 3 meses."
     },
     "hitop": [
-      "internalizing"
+      "thought_disorder"
     ],
     "rdoc": [
       "Cognitive Systems"
@@ -4667,7 +4665,7 @@
     "source_chunks": [
       {
         "chunk_id": "CH_HOSP_001",
-        "text_content": "El delirium (síndrome confusional agudo) es muy frecuente en UCI. Se caracteriza por alteración de la atención y la conciencia, de inicio agudo y curso fluctuante. El manejo no farmacológico (reorientación, luz diurna, evitar sujeciones) es prioritario. Si hay agitación severa que pone en riesgo dispositivos médicos, los antipsicóticos a dosis bajas (haloperidol, quetiapina) son de elección. Las benzodiacepinas suelen empeorar el cuadro (excepto en abstinencia de alcohol/BZD).",
+        "text_content": "El delirium (síndrome confusional agudo) es muy frecuente en UCI. Se caracteriza por alteración de la atención y la conciencia, de inicio agudo y curso fluctuante. El manejo no farmacológico (reorientación, luz diurna, evitar sujeciones) es prioritario. Las guías actuales (SCCM PADIS 2018) no recomiendan el uso rutinario de antipsicóticos para tratar el delirium; sin embargo, si hay agitación grave que pone en riesgo al paciente o los dispositivos, pueden usarse antipsicóticos a dosis bajas (haloperidol, quetiapina) como manejo sintomático. Las benzodiacepinas suelen empeorar el cuadro (excepto en abstinencia de alcohol/BZD).",
         "labels": {
           "hitop": [
             "thought_disorder"
@@ -4887,7 +4885,7 @@
         "text_content": "Un episodio maníaco requiere: Ánimo elevado, expansivo o irritable persistente (al menos 1 semana, o cualquier duración si requiere hospitalización) más 3 o más de: 1) Autoestima inflada/grandeza, 2) Disminución de necesidad de sueño, 3) Verborrea, 4) Fuga de ideas, 5) Distraibilidad, 6) Aumento de actividad dirigida o agitación, 7) Participación excesiva en actividades riesgosas.",
         "labels": {
           "hitop": [
-            "externalizing"
+            "internalizing"
           ],
           "rdoc": [
             "Arousal/Regulatory Systems",
@@ -4939,7 +4937,7 @@
       "take_home": "Manía = 1 semana + gran disfunción. Hipomanía = 4 días + no disfunción grave."
     },
     "hitop": [
-      "externalizing"
+      "internalizing"
     ],
     "rdoc": [
       "Arousal/Regulatory Systems",
@@ -5430,9 +5428,7 @@
         "chunk_id": "CH_HOSP_012",
         "text_content": "En agitación psicomotriz, la desescalada verbal es el primer paso. Si falla y hay riesgo inminente, se usa contención farmacológica. El 'cóctel' clásico incluye un antipsicótico (haloperidol) y una benzodiacepina (midazolam o lorazepam). El monitoreo de signos vitales post-sedación es obligatorio.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
+          "hitop": [],
           "rdoc": [
             "Arousal/Regulatory Systems"
           ]
@@ -5477,9 +5473,7 @@
       ],
       "take_home": "Agitación = 1) Verbal, 2) Fármacos IM, 3) Sujeción (último recurso)."
     },
-    "hitop": [
-      "internalizing"
-    ],
+    "hitop": [],
     "rdoc": [
       "Arousal/Regulatory Systems"
     ]
@@ -5631,7 +5625,7 @@
     "source_chunks": [
       {
         "chunk_id": "CH_HOSP_015",
-        "text_content": "El Delirium Tremens (DT) es la forma más grave de abstinencia alcohólica (mortalidad 5-15%). Aparece a las 48-96 horas. Se caracteriza por delirium, agitación extrema, alucinaciones visuales/táctiles y tormenta autonómica (fiebre, diaforesis, taquicardia severa).",
+        "text_content": "El Delirium Tremens (DT) es la forma más grave de abstinencia alcohólica (mortalidad histórica 5-15% sin tratamiento; con manejo actual en UCI <5%). Aparece a las 48-96 horas tras la última ingesta. Se caracteriza por delirium, agitación extrema, alucinaciones visuales/táctiles y tormenta autonómica (fiebre, diaforesis, taquicardia severa).",
         "labels": {
           "hitop": [
             "internalizing"
@@ -5734,11 +5728,11 @@
       "why_not": [
         {
           "option": "SNM",
-          "reason": "El SNM tiene rigidez 'en tubo de plomo' e hiporreflexia, no clonus/hiperreflexia."
+          "reason": "El SNM tiene rigidez 'en tubo de plomo' sin clonus ni hiperreflexia; se asocia a antipsicóticos (bloqueo D2), no a ISRS."
         },
         {
           "option": "Síndrome Neuroléptico Maligno",
-          "reason": "El SNM cursa con rigidez extrapiramidal 'en tubo de plomo' e hiporreflexia, a diferencia del clonus, temblores y la marcada hiperreflexia neuromuscular que definen al síndrome serotoninérgico."
+          "reason": "El SNM cursa con rigidez extrapiramidal 'en tubo de plomo' sin clonus ni hiperreflexia; la marcada hiperreflexia y el clonus son características definitorias del síndrome serotoninérgico, no del neuroléptico."
         },
         {
           "option": "Intoxicación por opioides",
@@ -6007,16 +6001,12 @@
       ],
       "why_not": [
         {
-          "option": "Esquizofreniforme",
-          "reason": "La duración fue solo una semana."
-        },
-        {
           "option": "Esquizofrenia de inicio tardío",
           "reason": "Se descarta debido a la resolución completa de los síntomas en una semana y el retorno al funcionamiento basal previo, mientras que la esquizofrenia requiere signos continuos por al menos 6 meses."
         },
         {
           "option": "Trastorno afectivo bipolar",
-          "reason": "La paciente no presenta antecedentes ni síntomas de la polaridad afectiva maníaca (euforia patológica o grandiosidad expansiva prolongada); la remisión en una semana tras un terremoto apoya la psicosis reactiva."
+          "reason": "Aunque la grandiosidad y la reducción de sueño pueden aparecer en un episodio maníaco, el TAB I requiere mínimo 7 días de síntomas (o cualquier duración si se hospitaliza) con historia de ciclos recurrentes. La resolución completa en una semana tras un estresor masivo (terremoto), sin episodios previos documentados, es más compatible con psicosis breve reactiva que con debut de TAB."
         },
         {
           "option": "Trastorno esquizofreniforme",
