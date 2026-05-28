@@ -1042,6 +1042,8 @@ body {
   left: 50%;
   transform: translateX(-50%) translateY(120px);
   width: min(500px, 92%);
+  max-height: 90vh;
+  overflow-y: auto;
   background: rgba(10, 5, 25, 0.98);
   border: 2px solid var(--glass-border);
   border-radius: 20px;
@@ -1209,4 +1211,24 @@ body {
   stroke: rgba(255, 255, 255, 0.2);
   filter: none;
   animation: none; /* Línea plana */
+}
+
+/* Badge label for HUD names */
+.badge {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Keyboard shortcut hint below options */
+.options-hint {
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+  font-weight: 600;
+  margin-top: 6px;
 }
