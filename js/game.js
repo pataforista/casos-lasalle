@@ -218,13 +218,20 @@ const Game = (() => {
   function getFailedCases() {
     try {
       const raw = JSON.parse(localStorage.getItem('psycase_failed_cases') || '[]');
-      // Normalizar registros antiguos (que eran solo strings) a objetos de Repaso Espaciado
-      return raw.map(item => {
-        if (typeof item === 'string') {
-          return { caseId: item, level: 0, nextReview: 0 };
-        }
-        return item;
-      });
+      if (!Array.isArray(raw)) return [];
+      return raw
+        .filter(item => item !== null && typeof item === 'object' || typeof item === 'string')
+        .map(item => {
+          if (typeof item === 'string') {
+            return { caseId: item, level: 0, nextReview: 0 };
+          }
+          return {
+            caseId: typeof item.caseId === 'string' ? item.caseId : '',
+            level: Number.isFinite(item.level) ? item.level : 0,
+            nextReview: Number.isFinite(item.nextReview) ? item.nextReview : 0
+          };
+        })
+        .filter(item => item.caseId.length > 0);
     } catch(e) {
       return [];
     }
@@ -440,7 +447,7 @@ const Game = (() => {
               <div class="stat-label" style="color:#ffd700;">LOGROS OBTENIDOS</div>
               <div class="achievement-list">
                 ${unlocked.map(a => `
-                  <div class="achievement-badge" title="${a.name}">${a.icon}</div>
+                  <div class="achievement-badge" title="${escapeHtml(a.name)}">${escapeHtml(a.icon)}</div>
                 `).join("")}
               </div>
             </div>
