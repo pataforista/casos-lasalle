@@ -14,7 +14,17 @@ const Economy = (() => {
   function load() {
     try {
       const stored = localStorage.getItem(STORAGE_KEY);
-      return stored ? { ...defaultData, ...JSON.parse(stored) } : { ...defaultData };
+      if (!stored) return { ...defaultData };
+      const parsed = JSON.parse(stored);
+      return {
+        coins: Number.isFinite(parsed.coins) ? parsed.coins : defaultData.coins,
+        xp: Number.isFinite(parsed.xp) ? parsed.xp : defaultData.xp,
+        maxStreak: Number.isFinite(parsed.maxStreak) ? parsed.maxStreak : defaultData.maxStreak,
+        gamesPlayed: Number.isFinite(parsed.gamesPlayed) ? parsed.gamesPlayed : defaultData.gamesPlayed,
+        achievements: Array.isArray(parsed.achievements)
+          ? parsed.achievements.filter(id => typeof id === 'string')
+          : defaultData.achievements
+      };
     } catch {
       return { ...defaultData };
     }

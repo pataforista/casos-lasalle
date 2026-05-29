@@ -218,13 +218,20 @@ const Game = (() => {
   function getFailedCases() {
     try {
       const raw = JSON.parse(localStorage.getItem('psycase_failed_cases') || '[]');
-      // Normalizar registros antiguos (que eran solo strings) a objetos de Repaso Espaciado
-      return raw.map(item => {
-        if (typeof item === 'string') {
-          return { caseId: item, level: 0, nextReview: 0 };
-        }
-        return item;
-      });
+      if (!Array.isArray(raw)) return [];
+      return raw
+        .filter(item => item !== null && typeof item === 'object' || typeof item === 'string')
+        .map(item => {
+          if (typeof item === 'string') {
+            return { caseId: item, level: 0, nextReview: 0 };
+          }
+          return {
+            caseId: typeof item.caseId === 'string' ? item.caseId : '',
+            level: Number.isFinite(item.level) ? item.level : 0,
+            nextReview: Number.isFinite(item.nextReview) ? item.nextReview : 0
+          };
+        })
+        .filter(item => item.caseId.length > 0);
     } catch(e) {
       return [];
     }
@@ -440,7 +447,7 @@ const Game = (() => {
               <div class="stat-label" style="color:#ffd700;">LOGROS OBTENIDOS</div>
               <div class="achievement-list">
                 ${unlocked.map(a => `
-                  <div class="achievement-badge" title="${a.name}">${a.icon}</div>
+                  <div class="achievement-badge" title="${escapeHtml(a.name)}">${escapeHtml(a.icon)}</div>
                 `).join("")}
               </div>
             </div>
@@ -477,7 +484,8 @@ const Game = (() => {
       };
     }
     $("#btnMenu").onclick = () => {
-      location.reload();
+      modal.innerHTML = "";
+      ScreenManager.showMenu();
     };
   }
 
@@ -497,7 +505,8 @@ const Game = (() => {
       </div>
     `;
     $("#btnSuccessMenu").onclick = () => {
-      location.reload();
+      modal.innerHTML = "";
+      ScreenManager.showMenu();
     };
   }
 
@@ -534,11 +543,16 @@ const Game = (() => {
     state.solvedCasesCount = 0;
     state.currentTaskIndex = 0;
 
-    // Read filters
-    const selectLevel = $("#selectLevel");
-    const selectDifficulty = $("#selectDifficulty");
-    state.filters.educational_level = selectLevel ? selectLevel.value : "";
-    state.filters.difficulty = selectDifficulty ? selectDifficulty.value : "";
+    // Read filters — review mode ignores filters to avoid excluding valid failed cases
+    if (reviewMode) {
+      state.filters.educational_level = "";
+      state.filters.difficulty = "";
+    } else {
+      const selectLevel = $("#selectLevel");
+      const selectDifficulty = $("#selectDifficulty");
+      state.filters.educational_level = selectLevel ? selectLevel.value : "";
+      state.filters.difficulty = selectDifficulty ? selectDifficulty.value : "";
+    }
 
     // Reset visual effects
     document.body.classList.remove("hot-zone-active", "time-critical");
@@ -605,6 +619,9 @@ const Game = (() => {
              <button class="btn-powerup" id="btnAutoToggle" title="Auto-avance de retroalimentación">
                <span>${state.autoAdvance ? '⏱️ Auto' : '⏸️ Manual'}</span>
              </button>
+             <button class="btn-powerup" id="btnMenuFromGame" title="Volver al menú principal">
+               <span>🏠</span>
+             </button>
           </div>
           <div class="combo-chip combo-chip--alt" style="${state.studyMode ? 'opacity:0.4;' : ''}">
             <span class="combo-label">MEJOR</span>
@@ -634,6 +651,16 @@ const Game = (() => {
         localStorage.setItem('psy_pref_autoadvance', state.autoAdvance);
         renderHUD();
         playTone(660, 0.05);
+      };
+    }
+
+    const menuBtn = $("#btnMenuFromGame");
+    if (menuBtn) {
+      menuBtn.onclick = () => {
+        clearInterval(state.timer);
+        clearTimeout(state.recentFeedbackTimer);
+        document.body.classList.remove("hot-zone-active", "time-critical");
+        ScreenManager.showMenu();
       };
     }
   }
@@ -812,17 +839,24 @@ const Game = (() => {
       if (state.timeLeft <= 0) {
         clearInterval(state.timer);
         document.body.classList.remove("hot-zone-active", "time-critical");
-        state.lives -= 1;
-        
-        // Guardar caso en la lista de fallados
-        saveFailedCase(state.current?.case_id);
+
+        if (!state.studyMode) {
+          state.lives -= 1;
+          state.streak = 0; // Timeout rompe racha igual que error
+          saveFailedCase(state.current?.case_id);
+        }
+
+        // Resaltar respuesta correcta visualmente
+        document.querySelectorAll(".option-btn").forEach(b => {
+          b.disabled = true;
+          if (b.dataset.ok === "1") b.classList.add("correct");
+        });
 
         renderHUD();
         if (state.lives <= 0) {
-          handleDeath();
+          setTimeout(handleDeath, 1200);
         } else {
-          // Time out moves to next case
-          nextCase();
+          showTimeoutFeedback();
         }
       }
     }, 100);
@@ -874,6 +908,7 @@ const Game = (() => {
 
     if (state.current?.case_id) {
       state.recentCases.unshift(state.current.case_id);
+      if (state.recentCases.length > 30) state.recentCases.length = 30;
     }
 
     renderHUD();
@@ -988,6 +1023,30 @@ const Game = (() => {
         advance();
       }, GAME_CONFIG.advanceDelayMs);
     }
+  }
+
+  function showTimeoutFeedback() {
+    const task = pickTask(state.current, state.currentTaskIndex);
+    const brief = getBriefFeedback(state.current, task);
+    const root = $("#modalRoot");
+
+    root.innerHTML = `
+      <div class="feedback-overlay show" style="border-color:rgba(255,165,0,0.4);">
+        <div class="feedback-header">
+          <div style="font-size:32px;">⏰</div>
+          <div class="feedback-status" style="color:#ffa500;">TIEMPO AGOTADO</div>
+        </div>
+        <div style="font-size:12px; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Respuesta correcta</div>
+        <div class="modalFeedback" style="margin:0; font-size:14px; border-color:rgba(57,255,20,0.3); color:#caffbf;">${escapeHtml(task.expected_answer)}</div>
+        <div class="modalFeedback" style="margin-top:8px; font-size:13px; background:rgba(255,255,255,0.02); border-color:rgba(255,255,255,0.08);">${escapeHtml(brief)}</div>
+        <div class="feedback-timer-bar animate-timer" style="background:#ffa500;"></div>
+      </div>
+    `;
+
+    state.recentFeedbackTimer = setTimeout(() => {
+      root.innerHTML = "";
+      nextCase();
+    }, GAME_CONFIG.advanceDelayMs);
   }
 
   function handleDeath() {

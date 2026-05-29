@@ -43,12 +43,14 @@ const CaseDB = (() => {
      ------------------------------------------------------------ */
   async function loadPack(packPath) {
     const cleanPath = String(packPath).replace(/^\.?\//, "").replace(/^data\//, "");
+    if (!/^packs\/[a-zA-Z0-9_\-]+\.json$/.test(cleanPath)) {
+      throw new Error(`Ruta de pack no permitida: ${cleanPath}`);
+    }
     if (loadedPacks.has(cleanPath)) {
       return loadedPacks.get(cleanPath);
     }
 
     const packPromise = (async () => {
-      // Si la ruta ya empieza con packs/, se asume relativa a /data/
       const res = await fetch(`./data/${cleanPath}`);
       if (!res.ok) {
         throw new Error(`No se pudo cargar pack: ${cleanPath}`);

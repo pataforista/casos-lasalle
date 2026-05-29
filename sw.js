@@ -5,7 +5,7 @@
    - Limpieza de caches: borra TODO lo que no sea el cache actual
    ============================================================================ */
 
-   const CACHE_VERSION = "psycase-v1.0.7";
+   const CACHE_VERSION = "psycase-v1.0.8";
    const CACHE_NAME = `psycase-${CACHE_VERSION}`;
    
    const APP_SHELL = [
@@ -51,7 +51,7 @@
      if (cached) return cached;
    
      const network = await fetch(request);
-     cache.put(request, network.clone());
+     if (network.ok) cache.put(request, network.clone());
      return network;
    }
    
@@ -61,7 +61,7 @@
    
      const networkPromise = fetch(request)
        .then((res) => {
-         cache.put(request, res.clone());
+         if (res.ok) cache.put(request, res.clone());
          return res;
        })
        .catch(() => cached);
