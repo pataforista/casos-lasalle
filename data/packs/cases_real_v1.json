@@ -196,12 +196,12 @@
           "reason": "La fiebre no es un síntoma de esquizofrenia; su presencia obliga a descartar de inmediato causas médicas orgánicas como infecciones o encefalitis."
         },
         {
-          "option": "Negative Valence Systems",
-          "reason": "Se refiere a los sistemas de respuesta al miedo, la ansiedad y la pérdida en RDoC, no al procesamiento y funciones cognitivas ejecutivas."
-        },
-        {
           "option": "Alteración exclusiva del sueño",
           "reason": "El insomnio es un síntoma inespecífico presente en múltiples trastornos; no explica los síntomas psicóticos descritos ni el deterioro funcional grave."
+        },
+        {
+          "option": "Negative Valence Systems",
+          "reason": "Se refiere a los sistemas de respuesta al miedo, la ansiedad y la pérdida en RDoC, no al procesamiento y funciones cognitivas ejecutivas."
         }
       ],
       "take_home": "En psicosis, el tiempo de evolución dicta el diagnóstico (Breve <1m, Esquizofreniforme 1-6m, Esquizofrenia >6m). El deterioro cognitivo no responde bien a antipsicóticos."
@@ -612,12 +612,12 @@
           "reason": "Causa Síndrome Serotoninérgico, no TDAH."
         },
         {
-          "option": "Negative Valence Systems",
-          "reason": "Dominio relacionado con miedo, ansiedad y respuesta a amenaza."
-        },
-        {
           "option": "Lesión parietal",
           "reason": "Las lesiones parietales causan déficits visuoespaciales, negligencia hemiespacial y apraxias; no producen el patrón de inatención, impulsividad e hiperactividad del TDAH, que refleja disfunción frontoestriatal dopaminérgica funcional, no una lesión estructural focal."
+        },
+        {
+          "option": "Negative Valence Systems",
+          "reason": "Dominio relacionado con miedo, ansiedad y respuesta a amenaza."
         }
       ],
       "take_home": "RDoC conceptualiza el TDAH como un fallo en los sistemas de control cognitivo y recompensa, más allá de la simple 'falta de atención'."
@@ -820,8 +820,16 @@
       ],
       "why_not": [
         {
+          "option": "Contención mecánica exclusiva",
+          "reason": "La alternativa 'Contención mecánica exclusiva' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Tratamiento de la causa subyacente'."
+        },
+        {
           "option": "Benzodiacepinas a altas dosis",
           "reason": "Son delirogénicas en ancianos; su uso se restringe a delirium por abstinencia alcohólica."
+        },
+        {
+          "option": "Psicoanálisis",
+          "reason": "La alternativa 'Psicoanálisis' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Tratamiento de la causa subyacente'."
         },
         {
           "option": "Cognitive Systems",
@@ -830,14 +838,6 @@
         {
           "option": "Negative Valence Systems",
           "reason": "Se refiere a sistemas de amenaza/miedo, no al estado de conciencia."
-        },
-        {
-          "option": "Contención mecánica exclusiva",
-          "reason": "La alternativa 'Contención mecánica exclusiva' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Tratamiento de la causa subyacente'."
-        },
-        {
-          "option": "Psicoanálisis",
-          "reason": "La alternativa 'Psicoanálisis' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Tratamiento de la causa subyacente'."
         }
       ],
       "take_home": "La hipótesis colinérgica (déficit) y dopaminérgica (exceso) explica por qué los anticolinérgicos precipitan delirium y los antipsicóticos pueden controlarlo."
@@ -1450,6 +1450,10 @@
       ],
       "why_not": [
         {
+          "option": "Terapia de sueño aislada",
+          "reason": "Tratar solo el insomnio (higiene del sueño, TCC-I) sin abordar el trauma subyacente no resuelve los flashbacks, la evitación ni la hipervigilancia. El TEPT requiere terapias focalizadas en el trauma que aborden todos los clústeres sintomáticos."
+        },
+        {
           "option": "Hipnosis regresiva",
           "reason": "Riesgo de implantar falsos recuerdos; no es primera línea."
         },
@@ -1460,10 +1464,6 @@
         {
           "option": "Positive Valence Systems",
           "reason": "Se refiere a recompensa y motivación, lo opuesto a la amenaza."
-        },
-        {
-          "option": "Terapia de sueño aislada",
-          "reason": "Tratar solo el insomnio (higiene del sueño, TCC-I) sin abordar el trauma subyacente no resuelve los flashbacks, la evitación ni la hipervigilancia. El TEPT requiere terapias focalizadas en el trauma que aborden todos los clústeres sintomáticos."
         }
       ],
       "take_home": "Evitar el recuerdo perpetúa el TEPT; el tratamiento efectivo requiere acercarse al trauma de forma segura."
@@ -1717,12 +1717,12 @@
           "reason": "Contrario al enfoque de derechos y autonomía del paciente."
         },
         {
-          "option": "Segregación permanente",
-          "reason": "Opuesto a la inclusión y recuperación funcional buscada actualmente."
-        },
-        {
           "option": "Contención mecánica rutinaria",
           "reason": "La alternativa 'Contención mecánica rutinaria' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Medicina basada en evidencia y derechos humanos'."
+        },
+        {
+          "option": "Segregación permanente",
+          "reason": "Opuesto a la inclusión y recuperación funcional buscada actualmente."
         }
       ],
       "take_home": "La evolución psiquiátrica no es solo técnica (fármacos), sino fundamentalmente ética (derechos humanos)."
@@ -1801,20 +1801,20 @@
           "reason": "Puede verse en depresión grave, demencia o autismo."
         },
         {
-          "option": "fMRI",
-          "reason": "Es una herramienta de investigación, no de diagnóstico clínico rutinario."
-        },
-        {
-          "option": "Punción lumbar",
-          "reason": "Invasiva; se reserva para sospecha de infección (fiebre, rigidez nuca) que este paciente no tiene."
-        },
-        {
           "option": "Latencia del discurso",
           "reason": "La latencia del discurso (pausa antes de responder) es inespecífica y puede verse en depresión, timidez o procesamiento cognitivo lento; no es un signo de psicosis activa por sí solo."
         },
         {
           "option": "Contacto visual pobre",
           "reason": "El contacto visual pobre es inespecífico (ansiedad social, TEA, timidez cultural); no tiene valor diagnóstico para psicosis si no se acompaña de otros signos como las ideas de referencia."
+        },
+        {
+          "option": "Resonancia magnética funcional (fMRI)",
+          "reason": "Es una herramienta de investigación, no de diagnóstico clínico rutinario."
+        },
+        {
+          "option": "Punción lumbar inmediata",
+          "reason": "Invasiva; se reserva para sospecha de infección (fiebre, rigidez nuca) que este paciente no tiene."
         }
       ],
       "take_home": "En un primer episodio psicótico, prioriza descartar causas metabólicas (tiroides) y tóxicas antes que buscar causas estructurales raras."
@@ -1881,24 +1881,20 @@
       ],
       "why_not": [
         {
-          "option": "Externalización",
-          "reason": "Implica impulsividad, agresión o consumo de sustancias (dirigir malestar hacia afuera)."
-        },
-        {
-          "option": "Positive Valence Systems",
-          "reason": "Regula la búsqueda de recompensa y motivación, no el miedo."
-        },
-        {
           "option": "Trastorno del Pensamiento (Thought Disorder)",
           "reason": "La alternativa 'Trastorno del Pensamiento (Thought Disorder)' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Internalización (Internalizing)'."
         },
         {
           "option": "Externalización (Externalizing)",
-          "reason": "La alternativa 'Externalización (Externalizing)' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Internalización (Internalizing)'."
+          "reason": "Implica impulsividad, agresión o consumo de sustancias (dirigir malestar hacia afuera)."
         },
         {
           "option": "Antagonismo",
           "reason": "La alternativa 'Antagonismo' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Internalización (Internalizing)'."
+        },
+        {
+          "option": "Positive Valence Systems",
+          "reason": "Regula la búsqueda de recompensa y motivación, no el miedo."
         }
       ],
       "take_home": "Los nuevos modelos (HiTOP/RDoC) explican por qué un paciente tiene 'muchos diagnósticos' (comorbilidad): en realidad tiene una alteración en una dimensión subyacente compartida."
@@ -1970,12 +1966,12 @@
           "reason": "Se caracteriza por reactividad del humor, parálisis plúmbea y síntomas vegetativos inversos (comer/dormir mucho)."
         },
         {
-          "option": "Patrón estacional",
-          "reason": "Requiere relación temporal recurrente con estaciones del año (ej. invierno)."
-        },
-        {
           "option": "Con ansiedad",
           "reason": "El especificador DSM-5 'con angustia ansiosa' requiere síntomas de tensión, agitación o miedo a perder el control predominantes. Este caso muestra el perfil biológico melancólico (empeoramiento matutino, insomnio terminal, pérdida de peso) sin que la ansiedad sea el síntoma dominante."
+        },
+        {
+          "option": "Patrón estacional",
+          "reason": "Requiere relación temporal recurrente con estaciones del año (ej. invierno)."
         }
       ],
       "take_home": "Identificar melancolía es crucial porque suele responder mejor a fármacos duales o tricíclicos que a psicoterapia sola."
@@ -2043,7 +2039,7 @@
       ],
       "why_not": [
         {
-          "option": "TEPT",
+          "option": "Trastorno de Estrés Postraumático",
           "reason": "No explica la fiebre, el bocio ni el exoftalmos."
         },
         {
@@ -2051,16 +2047,12 @@
           "reason": "No se pueden simular signos vitales alterados (fiebre, taquicardia) ni hallazgos anatómicos (bocio)."
         },
         {
-          "option": "Prueba de provocación con CO2",
-          "reason": "Usada en investigación de pánico, pero aquí la prioridad es la causa metabólica."
-        },
-        {
-          "option": "Trastorno de Estrés Postraumático",
-          "reason": "La alternativa 'Trastorno de Estrés Postraumático' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Tirotoxicosis / Tormenta Tiroidea'."
-        },
-        {
           "option": "Trastorno de personalidad",
           "reason": "La alternativa 'Trastorno de personalidad' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Tirotoxicosis / Tormenta Tiroidea'."
+        },
+        {
+          "option": "Prueba de provocación con CO2",
+          "reason": "Usada en investigación de pánico, pero aquí la prioridad es la causa metabólica."
         }
       ],
       "take_home": "Taquicardia + Pérdida de Peso + Calor = Piensa en Tiroides. No psiquiatrices síntomas vitales alterados."
@@ -2127,18 +2119,6 @@
       ],
       "why_not": [
         {
-          "option": "Trastorno de Estrés Agudo",
-          "reason": "Solo válido durante el primer mes (3 días a 4 semanas) post-trauma."
-        },
-        {
-          "option": "Trastorno de Adaptación",
-          "reason": "Se usa cuando no se cumplen criterios completos de TEPT (ej. faltan flashbacks) o el estresor es menor."
-        },
-        {
-          "option": "Evitación",
-          "reason": "Es un clúster separado (esfuerzos para no pensar/sentir/visitar)."
-        },
-        {
           "option": "Evitación de lugares",
           "reason": "La evitación de lugares relacionados con el trauma pertenece al Clúster C del TEPT (evitación activa), no al Clúster B de reexperimentación. Los flashbacks son la manifestación más característica y diagnóstica del TEPT."
         },
@@ -2149,6 +2129,14 @@
         {
           "option": "Anhedonia",
           "reason": "La anhedonia y el embotamiento afectivo pertenecen al Clúster D del TEPT (alteraciones cognitivas y del estado de ánimo). Aunque es un síntoma importante, los flashbacks son el criterio más distintivo del TEPT frente a otros trastornos."
+        },
+        {
+          "option": "Trastorno de Estrés Agudo",
+          "reason": "Solo válido durante el primer mes (3 días a 4 semanas) post-trauma."
+        },
+        {
+          "option": "Trastorno de Adaptación",
+          "reason": "Se usa cuando no se cumplen criterios completos de TEPT (ej. faltan flashbacks) o el estresor es menor."
         }
       ],
       "take_home": "La cronología define el diagnóstico: Reacción normal (<3 días) -> Estrés Agudo (<1 mes) -> TEPT (>1 mes)."
@@ -2324,16 +2312,16 @@
           "reason": "Típico de la infancia, raro en adultos por maduración y normas sociales."
         },
         {
-          "option": "Presencia de distracción",
-          "reason": "Síntoma compartido por ambos trastornos (en manía/depresión también hay inatención), no discrimina por sí solo."
-        },
-        {
           "option": "Agresividad física",
           "reason": "La agresividad física no es una manifestación típica del TDAH en adultos; cuando está presente, sugiere trastornos comórbidos como TEI o TASP. La hiperactividad adulta se expresa como inquietud subjetiva, no como conducta agresiva."
         },
         {
           "option": "Somnolencia diurna",
           "reason": "La somnolencia diurna sugiere un trastorno del sueño primario (narcolepsia, apnea), no TDAH. En el TDAH, la hiperactividad genera dificultad para 'bajar revoluciones' y descansar, pero no somnolencia diurna."
+        },
+        {
+          "option": "Presencia de distracción",
+          "reason": "Síntoma compartido por ambos trastornos (en manía/depresión también hay inatención), no discrimina por sí solo."
         }
       ],
       "take_home": "El TDAH es un trastorno del 'hacer' (ejecución), no del 'saber'. En adultos, la desorganización crónica es el sello distintivo."
@@ -2506,20 +2494,16 @@
       ],
       "why_not": [
         {
-          "option": "Obtener placer directo",
-          "reason": "Característica de las adicciones o impulsos, no del TOC (donde es egodistónico)."
-        },
-        {
-          "option": "Confirmar una idea delirante",
-          "reason": "El paciente reconoce que es excesivo (insight), lo que lo diferencia de la psicosis."
-        },
-        {
           "option": "Obtener placer directo (refuerzo positivo)",
-          "reason": "La alternativa 'Obtener placer directo (refuerzo positivo)' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Neutralizar la ansiedad provocada por la obsesión (refuerzo negativo)'."
+          "reason": "Característica de las adicciones o impulsos, no del TOC (donde es egodistónico)."
         },
         {
           "option": "Higiene real necesaria",
           "reason": "La alternativa 'Higiene real necesaria' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Neutralizar la ansiedad provocada por la obsesión (refuerzo negativo)'."
+        },
+        {
+          "option": "Confirmar una idea delirante",
+          "reason": "El paciente reconoce que es excesivo (insight), lo que lo diferencia de la psicosis."
         }
       ],
       "take_home": "El ciclo del TOC se mantiene por refuerzo negativo: la compulsión alivia la ansiedad momentáneamente, reforzando la conducta."
@@ -2681,16 +2665,16 @@
           "reason": "Es un síntoma negativo (déficit), no positivo (producción)."
         },
         {
-          "option": "Internalización",
-          "reason": "Domina en ansiedad/depresión, no en psicosis franca."
-        },
-        {
           "option": "Aislamiento social",
           "reason": "La alternativa 'Aislamiento social' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Ideas delirantes de referencia y alucinaciones auditivas'."
         },
         {
           "option": "Deterioro escolar",
           "reason": "La alternativa 'Deterioro escolar' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Ideas delirantes de referencia y alucinaciones auditivas'."
+        },
+        {
+          "option": "Internalización",
+          "reason": "Domina en ansiedad/depresión, no en psicosis franca."
         }
       ],
       "take_home": "HiTOP reclasifica la 'esquizofrenia' dentro del espectro de Trastornos del Pensamiento, reconociendo la dimensionalidad de los síntomas psicóticos."
@@ -2758,16 +2742,16 @@
       ],
       "why_not": [
         {
+          "option": "Sedación profunda inmediata",
+          "reason": "La alternativa 'Sedación profunda inmediata' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Buscar y tratar foco infeccioso (prob. urinario)'."
+        },
+        {
           "option": "Ingreso a unidad psiquiátrica",
           "reason": "Es un error grave; el paciente requiere manejo médico/hospitalario por la sepsis potencial, no psiquiátrico."
         },
         {
           "option": "Aumentar dosis de memantina",
           "reason": "No trata la causa aguda y podría no ser efectivo en agudo."
-        },
-        {
-          "option": "Sedación profunda inmediata",
-          "reason": "La alternativa 'Sedación profunda inmediata' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Buscar y tratar foco infeccioso (prob. urinario)'."
         }
       ],
       "take_home": "En geriatría: Agitación súbita = Delirium. Busca la infección, el fármaco o la deshidratación."
@@ -2848,16 +2832,16 @@
       ],
       "why_not": [
         {
-          "option": "Síndrome Neuroléptico Maligno",
+          "option": "Síndrome Neuroléptico Maligno (SNM)",
           "reason": "Cursa con rigidez severa 'en tubo de plomo' y ausencia de clonus e hiperreflexia; se asocia a antipsicóticos dopaminérgicos, no a serotonérgicos como ISRS+Tramadol."
-        },
-        {
-          "option": "Meningitis bacteriana",
-          "reason": "Aunque hay fiebre, el clonus y la historia farmacológica clara apuntan a toxidrome, no a infección meníngea."
         },
         {
           "option": "Crisis hipertensiva primaria",
           "reason": "La crisis hipertensiva primaria no explica el clonus neuromuscular ni la hiperreflexia; la historia de polifarmacia serotonérgica es el dato guía."
+        },
+        {
+          "option": "Meningitis bacteriana",
+          "reason": "Aunque hay fiebre, el clonus y la historia farmacológica clara apuntan a toxidrome, no a infección meníngea."
         }
       ],
       "take_home": "Hiperreflexia + Clonus = Serotonina. Rigidez + Hiporreflexia = Dopamina (SNM). Ambos matan por hipertermia."
@@ -3025,16 +3009,12 @@
       ],
       "why_not": [
         {
-          "option": "Amenorrea",
-          "reason": "Es un síntoma común y diagnóstico, pero no indica riesgo de muerte inminente por sí solo."
-        },
-        {
           "option": "Presencia de lanugo",
           "reason": "Signo de desnutrición crónica, no de inestabilidad aguda."
         },
         {
           "option": "Amenorrea secundaria",
-          "reason": "La alternativa 'Amenorrea secundaria' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Bradicardia severa (<45 lpm) e inestabilidad hemodinámica'."
+          "reason": "Es un síntoma común y diagnóstico, pero no indica riesgo de muerte inminente por sí solo."
         },
         {
           "option": "Deseo de hacer ejercicio",
@@ -3125,16 +3105,16 @@
           "reason": "Corresponde a esquizofrenia; en TLP la prueba de realidad se conserva fuera de crisis."
         },
         {
-          "option": "Ignorar para no reforzar",
-          "reason": "Peligroso; siempre se debe evaluar la letalidad médica y la intención suicida."
-        },
-        {
           "option": "Aplanamiento afectivo",
           "reason": "La alternativa 'Aplanamiento afectivo' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Desregulación emocional y Desinhibición (Externalización)'."
         },
         {
           "option": "Antagonismo exclusivo",
           "reason": "La alternativa 'Antagonismo exclusivo' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Desregulación emocional y Desinhibición (Externalización)'."
+        },
+        {
+          "option": "Ignorar para no reforzar la conducta",
+          "reason": "Peligroso; siempre se debe evaluar la letalidad médica y la intención suicida."
         }
       ],
       "take_home": "Las autolesiones en TLP suelen tener función de regulación emocional (alivio de tensión), no siempre intención de muerte, pero el riesgo suicida es alto."
@@ -3415,12 +3395,12 @@
           "reason": "No hay crisis de pánico inesperadas ni miedo a lugares abiertos o cerrados per se, sino miedo a la evaluación social."
         },
         {
-          "option": "Mutismo selectivo",
-          "reason": "Es un trastorno de la infancia que implica no hablar en contextos específicos, no necesariamente por miedo a la evaluación."
-        },
-        {
           "option": "Trastorno de ansiedad generalizada",
           "reason": "La alternativa 'Trastorno de ansiedad generalizada' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno de ansiedad social (fobia social) de tipo actuación'."
+        },
+        {
+          "option": "Mutismo selectivo",
+          "reason": "Es un trastorno de la infancia que implica no hablar en contextos específicos, no necesariamente por miedo a la evaluación."
         }
       ],
       "take_home": "La fobia social es más que timidez: causa deterioro funcional y se asocia a alto riesgo de depresión secundaria."
@@ -3480,12 +3460,12 @@
           "reason": "Ese es el Criterio B, pero la frase 'se ve gorda' apunta a la distorsión perceptual, no al miedo."
         },
         {
-          "option": "Amenorrea",
-          "reason": "Ya no es criterio obligatorio en DSM-5 (fue retirado)."
-        },
-        {
           "option": "Restricción de la ingesta",
           "reason": "La alternativa 'Restricción de la ingesta' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Distorsión de la imagen corporal (alteración en la percepción del peso)'."
+        },
+        {
+          "option": "Amenorrea",
+          "reason": "Ya no es criterio obligatorio en DSM-5 (fue retirado)."
         }
       ],
       "take_home": "La anorexia no es solo dieta; es un trastorno perceptual donde el espejo miente."
@@ -3740,10 +3720,6 @@
           "reason": "Implica que el paciente cree que es 'probablemente cierto', lo que no dice aquí."
         },
         {
-          "option": "Ausencia de insight",
-          "reason": "Equivaldría a un delirio; el paciente no tiene esa convicción total."
-        },
-        {
           "option": "Ausencia de insight (convicción delirante)",
           "reason": "La ausencia total de insight implica una convicción delirante: el paciente cree completamente que se va a contaminar. Aquí el paciente reconoce explícitamente que 'es poco probable', lo que descarta la convicción delirante."
         },
@@ -3810,12 +3786,12 @@
           "reason": "El foco ahí es el malestar por los síntomas físicos en sí mismos, no el miedo a tener una enfermedad subyacente."
         },
         {
-          "option": "Simulación",
-          "reason": "No hay evidencia de un beneficio externo (económico, legal, etc.)."
-        },
-        {
           "option": "Trastorno facticio",
           "reason": "La alternativa 'Trastorno facticio' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno de ansiedad por enfermedad (hipocondría)'."
+        },
+        {
+          "option": "Simulación",
+          "reason": "No hay evidencia de un beneficio externo (económico, legal, etc.)."
         }
       ],
       "take_home": "Hipocondría = '¿y si tengo cáncer?'. Trastorno de síntomas somáticos = 'me duele mucho la cabeza, no puedo funcionar'. Diferencia sutil pero clave."
@@ -3876,12 +3852,12 @@
           "reason": "La debilidad orgánica no varía con la atención ni presenta prueba de Hoover positiva."
         },
         {
-          "option": "Lesión de neurona motora superior",
-          "reason": "Cursaría con espasticidad, hiperreflexia y signo de Babinski, no mencionados."
-        },
-        {
           "option": "Miastenia gravis",
           "reason": "La alternativa 'Miastenia gravis' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno de conversión (síntoma neurológico funcional)'."
+        },
+        {
+          "option": "Lesión de neurona motora superior",
+          "reason": "Cursaría con espasticidad, hiperreflexia y signo de Babinski, no mencionados."
         }
       ],
       "take_home": "La prueba de Hoover es tu mejor aliada para diferenciar debilidad funcional de orgánica en extremidad inferior."
@@ -3942,12 +3918,12 @@
           "reason": "Implica un objetivo externo evidente (dinero, evasión de responsabilidades)."
         },
         {
-          "option": "Trastorno facticio por poderes",
-          "reason": "Es cuando se induce enfermedad en otra persona (ej. un padre a un hijo)."
-        },
-        {
           "option": "Trastorno de síntomas somáticos",
           "reason": "La alternativa 'Trastorno de síntomas somáticos' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno facticio (Síndrome de Münchausen)'."
+        },
+        {
+          "option": "Trastorno facticio por poderes",
+          "reason": "Es cuando se induce enfermedad en otra persona (ej. un padre a un hijo)."
         }
       ],
       "take_home": "Trastorno facticio = paciente quiere estar enfermo. Simulación = paciente quiere un beneficio externo."
@@ -4007,10 +3983,6 @@
         {
           "option": "Haloperidol IM",
           "reason": "Puede bajar el umbral convulsivo y empeorar la abstinencia; no es primera línea."
-        },
-        {
-          "option": "Beta-bloqueadores",
-          "reason": "Controlan síntomas autonómicos pero no previenen crisis ni delirium."
         },
         {
           "option": "Carbamazepina sola",
@@ -4205,16 +4177,12 @@
       ],
       "why_not": [
         {
-          "option": "Narcolepsia tipo 2",
+          "option": "Narcolepsia tipo 2 (sin cataplejía)",
           "reason": "No hay cataplejía, por definición."
         },
         {
           "option": "Apnea obstructiva del sueño",
           "reason": "Causa somnolencia pero no cataplejía."
-        },
-        {
-          "option": "Narcolepsia tipo 2 (sin cataplejía)",
-          "reason": "La alternativa 'Narcolepsia tipo 2 (sin cataplejía)' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Narcolepsia tipo 1 (con cataplejía)'."
         },
         {
           "option": "Trastorno de conducta del sueño REM",
@@ -4274,15 +4242,15 @@
       "why_not": [
         {
           "option": "Cumple solo 2 criterios",
-          "reason": "Se identifican claramente al menos 4."
-        },
-        {
-          "option": "Cumple los 9 criterios",
           "reason": "No se mencionan impulsividad en gastos/sustancias, alteración de identidad, ira intensa, etc."
         },
         {
           "option": "Cumple 3 criterios",
-          "reason": "La alternativa 'Cumple 3 criterios' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Al menos 4: inestabilidad afectiva, vacío, autolesiones, miedo al abandono'."
+          "reason": "No se mencionan impulsividad en gastos/sustancias, alteración de identidad, ira intensa, etc."
+        },
+        {
+          "option": "Cumple los 9 criterios",
+          "reason": "No se mencionan impulsividad en gastos/sustancias, alteración de identidad, ira intensa, etc."
         }
       ],
       "take_home": "El TLP es el 'gran simulador' de la psiquiatría. El miedo al abandono y las autolesiones sin ideación suicida son pistas clave."
@@ -4343,12 +4311,12 @@
           "reason": "El TLP tiene miedo al abandono, vacío y autolesiones; la agresión en TLP es reactiva, no instrumental como aquí."
         },
         {
-          "option": "Trastorno explosivo intermitente",
-          "reason": "Solo explica la agresión, no el patrón de estafas, irresponsabilidad crónica ni falta de remordimiento."
-        },
-        {
           "option": "Trastorno narcisista de la personalidad",
           "reason": "El TNP implica grandiosidad, búsqueda de admiración y falta de empatía, pero sin el patrón de violación activa de normas legales, agresión física ni el antecedente de trastorno de conducta antes de los 15 años que caracteriza al TASP."
+        },
+        {
+          "option": "Trastorno explosivo intermitente",
+          "reason": "Solo explica la agresión, no el patrón de estafas, irresponsabilidad crónica ni falta de remordimiento."
         }
       ],
       "take_home": "El TASP requiere antecedente de trastorno de conducta antes de los 15 años. No hay remordimiento (a diferencia del TLP, donde sí lo hay post-crisis)."
@@ -4403,14 +4371,6 @@
         "CH_CLIN_017"
       ],
       "why_not": [
-        {
-          "option": "Suspender sertralina inmediatamente",
-          "reason": "Suspender abruptamente puede causar síndrome de discontinuación, y los efectos son esperables y tolerables."
-        },
-        {
-          "option": "Aumentar la dosis",
-          "reason": "Empeoraría los efectos adversos sin beneficio terapéutico inmediato."
-        },
         {
           "option": "Suspender sertralina inmediatamente por intolerancia",
           "reason": "Suspensión abrupta antes del mes puede provocar síndrome de discontinuación (mareos, náuseas, parestesias). Los efectos adversos iniciales son esperables y no constituyen intolerancia real; deben manejarse con educación y espera."
@@ -4481,16 +4441,12 @@
           "reason": "No es suficiente; la glucemia y los lípidos pueden alterarse incluso sin gran aumento de peso."
         },
         {
-          "option": "Niveles de prolactina",
-          "reason": "Eso es para risperidona y paliperidona (efecto hiperprolactinémico), no el monitoreo metabólico primario de olanzapina."
-        },
-        {
           "option": "Hemograma completo y función hepática",
           "reason": "La alternativa 'Hemograma completo y función hepática' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Peso, glucemia en ayunas, perfil lipídico y presión arterial'."
         },
         {
           "option": "Niveles de prolactina exclusivamente",
-          "reason": "La alternativa 'Niveles de prolactina exclusivamente' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Peso, glucemia en ayunas, perfil lipídico y presión arterial'."
+          "reason": "Eso es para risperidona y paliperidona (efecto hiperprolactinémico), no el monitoreo metabólico primario de olanzapina."
         }
       ],
       "take_home": "Olanzapina y clozapina = campeones en efectividad, también campeones en diabetes y obesidad. Monitorea cada 3 meses."
@@ -4547,20 +4503,12 @@
       ],
       "why_not": [
         {
-          "option": "Toxicidad por litio independiente",
+          "option": "Toxicidad por litio independiente de interacción",
           "reason": "El paciente estaba estable con nivel 0.7; el factor desencadenante es el ibuprofeno."
         },
         {
-          "option": "Efecto adverso del ibuprofeno",
-          "reason": "El ibuprofeno rara vez causa temblor y mareo como efecto primario."
-        },
-        {
-          "option": "Toxicidad por litio independiente de interacción",
-          "reason": "La alternativa 'Toxicidad por litio independiente de interacción' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Aumento del nivel de litio por interacción con AINE (ibuprofeno)'."
-        },
-        {
           "option": "Efecto adverso del ibuprofeno (neurológico)",
-          "reason": "La alternativa 'Efecto adverso del ibuprofeno (neurológico)' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Aumento del nivel de litio por interacción con AINE (ibuprofeno)'."
+          "reason": "El ibuprofeno rara vez causa temblor y mareo como efecto primario."
         },
         {
           "option": "Progresión de enfermedad de base",
@@ -4622,16 +4570,8 @@
       ],
       "why_not": [
         {
-          "option": "Suspensión abrupta",
-          "reason": "Peligroso: riesgo de abstinencia grave y convulsiones."
-        },
-        {
-          "option": "Aumentar dosis",
-          "reason": "Refuerza la tolerancia y dependencia, no resuelve el problema de fondo."
-        },
-        {
           "option": "Suspensión abrupta del alprazolam",
-          "reason": "La alternativa 'Suspensión abrupta del alprazolam' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Reducción gradual de la dosis (desescalada) durante semanas o meses'."
+          "reason": "Peligroso: riesgo de abstinencia grave y convulsiones."
         },
         {
           "option": "Cambio a dosis equivalente de diazepam y luego reducción lenta",
@@ -4639,7 +4579,7 @@
         },
         {
           "option": "Aumentar dosis de alprazolam a 4 mg/día",
-          "reason": "La alternativa 'Aumentar dosis de alprazolam a 4 mg/día' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Reducción gradual de la dosis (desescalada) durante semanas o meses'."
+          "reason": "Refuerza la tolerancia y dependencia, no resuelve el problema de fondo."
         }
       ],
       "take_home": "Las benzodiacepinas no son para uso crónico. Si llevan >4 semanas, no suspendas de golpe. La retirada debe ser lenta (10-25% de la dosis cada 1-2 semanas)."
@@ -4697,20 +4637,12 @@
       ],
       "why_not": [
         {
-          "option": "Lorazepam",
-          "reason": "Las benzodiacepinas son un factor de riesgo para delirium y suelen causar agitación paradójica en ancianos."
-        },
-        {
-          "option": "Sedación profunda",
+          "option": "Sedación profunda con propofol",
           "reason": "Debe evitarse a menos que sea estrictamente necesario para ventilación mecánica, ya que prolonga el delirium."
         },
         {
-          "option": "Sedación profunda con propofol",
-          "reason": "La alternativa 'Sedación profunda con propofol' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Identificar y tratar la causa subyacente (ej. infección, hipoxia, fármacos)'."
-        },
-        {
           "option": "Administrar lorazepam 2 mg IV",
-          "reason": "La alternativa 'Administrar lorazepam 2 mg IV' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Identificar y tratar la causa subyacente (ej. infección, hipoxia, fármacos)'."
+          "reason": "Las benzodiacepinas son un factor de riesgo para delirium y suelen causar agitación paradójica en ancianos."
         },
         {
           "option": "Sujeción mecánica de cuatro puntos inmediatamente",
@@ -4769,20 +4701,12 @@
       ],
       "why_not": [
         {
-          "option": "Alzheimer",
+          "option": "Enfermedad de Alzheimer",
           "reason": "El Alzheimer tiene un inicio insidioso y progresión lenta y continua, no en escalones."
         },
         {
-          "option": "Cuerpos de Lewy",
-          "reason": "Se caracteriza por alucinaciones visuales y parkinsonismo temprano."
-        },
-        {
-          "option": "Enfermedad de Alzheimer",
-          "reason": "La alternativa 'Enfermedad de Alzheimer' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Demencia vascular'."
-        },
-        {
           "option": "Demencia por cuerpos de Lewy",
-          "reason": "La alternativa 'Demencia por cuerpos de Lewy' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Demencia vascular'."
+          "reason": "Se caracteriza por alucinaciones visuales y parkinsonismo temprano."
         },
         {
           "option": "Demencia frontotemporal",
@@ -4840,20 +4764,12 @@
       ],
       "why_not": [
         {
-          "option": "Maternity blues",
+          "option": "Tristeza postparto (Maternity blues)",
           "reason": "Debe resolver antes de las 2 semanas postparto."
         },
         {
           "option": "Psicosis postparto",
           "reason": "No hay mención de delirios, alucinaciones o desorganización severa (urgencia psiquiátrica)."
-        },
-        {
-          "option": "Tristeza postparto (Maternity blues)",
-          "reason": "La alternativa 'Tristeza postparto (Maternity blues)' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Depresión postparto'."
-        },
-        {
-          "option": "Psicosis postparto",
-          "reason": "La alternativa 'Psicosis postparto' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Depresión postparto'."
         },
         {
           "option": "Trastorno de adaptación",
@@ -4914,20 +4830,12 @@
       ],
       "why_not": [
         {
-          "option": "Hipomanía",
+          "option": "Episodio hipomaníaco",
           "reason": "La hipomanía no suele causar deterioro funcional severo (gastarse todos los ahorros) ni requiere hospitalización."
         },
         {
-          "option": "TP Límite",
-          "reason": "La impulsividad en TLP es crónica; aquí es un episodio agudo con disminución de necesidad de sueño."
-        },
-        {
-          "option": "Episodio hipomaníaco",
-          "reason": "La alternativa 'Episodio hipomaníaco' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Episodio maníaco'."
-        },
-        {
           "option": "Trastorno de personalidad límite",
-          "reason": "La alternativa 'Trastorno de personalidad límite' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Episodio maníaco'."
+          "reason": "La impulsividad en TLP es crónica; aquí es un episodio agudo con disminución de necesidad de sueño."
         },
         {
           "option": "Consumo de cocaína (intoxicación)",
@@ -4988,12 +4896,8 @@
       ],
       "why_not": [
         {
-          "option": "Varón de 18 años",
-          "reason": "El inicio temprano y el inicio insidioso son factores de mal pronóstico."
-        },
-        {
           "option": "Varón de 18 años con inicio insidioso y aislamiento social de años",
-          "reason": "La alternativa 'Varón de 18 años con inicio insidioso y aislamiento social de años' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Mujer de 35 años con inicio brusco tras despido laboral y delirios de persecución'."
+          "reason": "El inicio temprano y el inicio insidioso son factores de mal pronóstico."
         },
         {
           "option": "Paciente con predominio de síntomas negativos (alogia, avolición)",
@@ -5057,12 +4961,12 @@
       ],
       "why_not": [
         {
-          "option": "Trastorno esquizofreniforme",
-          "reason": "Requiere al menos 1 mes de síntomas."
-        },
-        {
           "option": "Esquizofrenia",
           "reason": "Requiere al menos 6 meses de síntomas."
+        },
+        {
+          "option": "Trastorno esquizofreniforme",
+          "reason": "Requiere al menos 1 mes de síntomas."
         },
         {
           "option": "Trastorno esquizotípico",
@@ -5188,16 +5092,16 @@
       ],
       "why_not": [
         {
-          "option": "Trombocitosis",
-          "reason": "El aumento de plaquetas no está fisiopatológicamente asociado al SNM; en este síndrome es característico observar leucocitosis reactiva y elevación masiva de CPK."
-        },
-        {
           "option": "Hipopotasemia severa",
           "reason": "Aunque los electrólitos séricos pueden alterarse secundariamente, la elevación masiva de CPK secundaria a la rabdomiólisis extrema es el marcador patognomónico principal en el SNM."
         },
         {
           "option": "Linfocitosis con eosinofilia",
           "reason": "Es característica de reacciones alérgicas severas a fármacos (como el síndrome de DRESS), no del SNM, el cual cursa con rigidez 'en tubo de plomo' y tormenta autonómica."
+        },
+        {
+          "option": "Trombocitosis",
+          "reason": "El aumento de plaquetas no está fisiopatológicamente asociado al SNM; en este síndrome es característico observar leucocitosis reactiva y elevación masiva de CPK."
         }
       ],
       "take_home": "SNM = Fiebre + Rigidez + CPK alta. ¡Suspende el neuroléptico ya!"
@@ -5250,10 +5154,6 @@
         "CH_HOSP_009"
       ],
       "why_not": [
-        {
-          "option": "Suero glucosado",
-          "reason": "La glucosa sin tiamina puede precipitar o empeorar la encefalopatía de Wernicke."
-        },
         {
           "option": "Suero glucosado al 5% inmediato",
           "reason": "La administración de glucosa sin tiamina previa agota la poca tiamina celular y puede precipitar o agravar de forma irreversible la encefalopatía de Wernicke."
@@ -5316,14 +5216,6 @@
         "CH_HOSP_010"
       ],
       "why_not": [
-        {
-          "option": "Carbón activado",
-          "reason": "El litio no se une al carbón activado; no es útil."
-        },
-        {
-          "option": "Hidratación con agua libre",
-          "reason": "Se requiere solución salina (sodio) para competir con el litio en el túbulo renal, pero en este nivel ya se requiere diálisis."
-        },
         {
           "option": "Lavado gástrico con carbón activado",
           "reason": "El litio es un catión cargado de tamaño muy pequeño y no se adsorbe en el carbón activado, lo que hace inútil esta medida en la descontaminación."
@@ -5388,12 +5280,8 @@
       ],
       "why_not": [
         {
-          "option": "Internamiento forzoso",
-          "reason": "Es un enfoque basado en la abstinencia obligatoria, no en la reducción de daños."
-        },
-        {
           "option": "Internamiento forzoso hasta lograr desintoxicación",
-          "reason": "La alternativa 'Internamiento forzoso hasta lograr desintoxicación' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Proporcionar naloxona a usuarios de heroína para revertir sobredosis'."
+          "reason": "Es un enfoque basado en la abstinencia obligatoria, no en la reducción de daños."
         },
         {
           "option": "Prohibición estricta de cualquier parafernalia",
@@ -5455,12 +5343,8 @@
       ],
       "why_not": [
         {
-          "option": "Amitriptilina",
-          "reason": "Es un antidepresivo tricíclico, no tiene rol en el manejo de la agitación aguda."
-        },
-        {
           "option": "Amitriptilina 50 mg VO",
-          "reason": "La alternativa 'Amitriptilina 50 mg VO' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Haloperidol 5 mg + Midazolam 5 mg IM'."
+          "reason": "Es un antidepresivo tricíclico, no tiene rol en el manejo de la agitación aguda."
         },
         {
           "option": "Solo Fluoxetina 20 mg",
@@ -5521,10 +5405,6 @@
         "CH_HOSP_013"
       ],
       "why_not": [
-        {
-          "option": "Paperas",
-          "reason": "Suelen ser dolorosas, febriles y agudas, no explican los nudillos."
-        },
         {
           "option": "Anorexia nerviosa restrictiva",
           "reason": "La anorexia de tipo restrictivo no cursa con conductas purgativas frecuentes; por ende, no suele presentar signo de Russell ni hipertrofia de glándulas parótidas."
@@ -5589,12 +5469,8 @@
       ],
       "why_not": [
         {
-          "option": "Aumentar haloperidol",
-          "reason": "Es la causa del problema; empeoraría el cuadro."
-        },
-        {
           "option": "Aumentar dosis de haloperidol",
-          "reason": "La alternativa 'Aumentar dosis de haloperidol' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Biperideno o Difenhidramina IM'."
+          "reason": "Es la causa del problema; empeoraría el cuadro."
         },
         {
           "option": "Administrar un ISRS",
@@ -5656,10 +5532,6 @@
         "CH_HOSP_015"
       ],
       "why_not": [
-        {
-          "option": "Temblor",
-          "reason": "Está presente en casi todos los grados de abstinencia, no es específico de DT."
-        },
         {
           "option": "Temblor distal fino",
           "reason": "El temblor leve es un síntoma cardinal de la abstinencia alcohólica inicial (6-24 horas), pero no es específico del Delirium Tremens."
@@ -5726,10 +5598,6 @@
         "CH_HOSP_016"
       ],
       "why_not": [
-        {
-          "option": "SNM",
-          "reason": "El SNM tiene rigidez 'en tubo de plomo' sin clonus ni hiperreflexia; se asocia a antipsicóticos (bloqueo D2), no a ISRS."
-        },
         {
           "option": "Síndrome Neuroléptico Maligno",
           "reason": "El SNM cursa con rigidez extrapiramidal 'en tubo de plomo' sin clonus ni hiperreflexia; la marcada hiperreflexia y el clonus son características definitorias del síndrome serotoninérgico, no del neuroléptico."
@@ -5860,10 +5728,6 @@
       ],
       "why_not": [
         {
-          "option": "Alzheimer",
-          "reason": "El Alzheimer suele iniciar con fallas de memoria, no con cambios groseros de conducta social."
-        },
-        {
           "option": "Enfermedad de Alzheimer",
           "reason": "La Enfermedad de Alzheimer típicamente inicia con fallas notables en la memoria de corto plazo y orientación espacial, preservando la conducta y la empatía social hasta fases avanzadas."
         },
@@ -5930,12 +5794,8 @@
       ],
       "why_not": [
         {
-          "option": "Si, la inquietud en casa es suficiente",
-          "reason": "Va en contra del Criterio D del DSM-5 que exige varios ambientes."
-        },
-        {
           "option": "Sí, la inquietud en casa es suficiente",
-          "reason": "La alternativa 'Sí, la inquietud en casa es suficiente' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'No, porque los síntomas no se presentan en dos o más ambientes'."
+          "reason": "Va en contra del Criterio D del DSM-5 que exige varios ambientes."
         },
         {
           "option": "Sí, porque tiene menos de 12 años",

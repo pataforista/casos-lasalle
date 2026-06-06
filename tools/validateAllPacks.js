@@ -21,7 +21,7 @@ const path = require("path");
 
 const ALLOWED_DIFFICULTIES = new Set(["facil", "media", "dificil"]);
 const ALLOWED_LEVELS = new Set(["licenciatura", "residencia", "especialidad"]);
-const ALLOWED_CASE_TYPES = new Set(["razonamiento_clinico", "documento_educativo"]);
+const ALLOWED_CASE_TYPES = new Set(["razonamiento_clinico", "documento_educativo", "farmacologia", "psiquiatria_social"]);
 
 function readJson(filePath) {
   const abs = path.resolve(filePath);
