@@ -1,6 +1,6 @@
 {
   "version": "v1",
-  "updated": "2026-05-27",
+  "updated": "2026-06-06",
   "counts": {
     "total": 83,
     "real": 83,
@@ -180,7 +180,7 @@
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
-        "internalizing"
+        "thought_disorder"
       ],
       "rdoc": [
         "Cognitive Systems",
@@ -196,7 +196,7 @@
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
-        "internalizing"
+        "thought_disorder"
       ],
       "rdoc": [
         "Cognitive Systems",
@@ -383,12 +383,8 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
-      "rdoc": [
-        "Cognitive Systems"
-      ],
+      "hitop": [],
+      "rdoc": [],
       "pack": "packs/cases_real_v1.json"
     },
     {
@@ -398,12 +394,8 @@
       "educational_level": "residencia",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
-      "rdoc": [
-        "Cognitive Systems"
-      ],
+      "hitop": [],
+      "rdoc": [],
       "pack": "packs/cases_real_v1.json"
     },
     {
@@ -490,7 +482,6 @@
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
-        "thought_disorder",
         "neurodevelopmental"
       ],
       "rdoc": [
@@ -554,7 +545,7 @@
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
-        "internalizing"
+        "externalizing"
       ],
       "rdoc": [
         "Arousal/Regulatory Systems",
@@ -585,7 +576,7 @@
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
-        "internalizing"
+        "thought_disorder"
       ],
       "rdoc": [
         "Cognitive Systems",
@@ -646,8 +637,8 @@
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
-        "thought_disorder",
-        "externalizing"
+        "externalizing",
+        "detachment"
       ],
       "rdoc": [
         "Negative Valence Systems",
@@ -772,7 +763,7 @@
         "internalizing"
       ],
       "rdoc": [
-        "Cognitive Systems"
+        "Negative Valence Systems"
       ],
       "pack": "packs/cases_real_v1.json"
     },
@@ -830,7 +821,8 @@
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
-        "internalizing"
+        "internalizing",
+        "somatoform"
       ],
       "rdoc": [
         "Cognitive Systems"
@@ -891,11 +883,8 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
+      "hitop": [],
       "rdoc": [
-        "Negative Valence Systems",
         "Arousal/Regulatory Systems"
       ],
       "pack": "packs/cases_real_v1.json"
@@ -939,7 +928,7 @@
       "case_type": "farmacologia",
       "is_real_data": true,
       "hitop": [
-        "somatoform"
+        "internalizing"
       ],
       "rdoc": [
         "Arousal/Regulatory Systems"
@@ -1106,12 +1095,10 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
+      "hitop": [],
       "rdoc": [
         "Arousal/Regulatory Systems",
-        "Motor Systems"
+        "Sensorimotor Systems"
       ],
       "pack": "packs/cases_real_v1.json"
     },
@@ -1122,9 +1109,7 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
+      "hitop": [],
       "rdoc": [
         "Cognitive Systems",
         "Arousal/Regulatory Systems"
@@ -1138,9 +1123,7 @@
       "educational_level": "licenciatura",
       "case_type": "farmacologia",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
+      "hitop": [],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -1168,9 +1151,7 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
+      "hitop": [],
       "rdoc": [
         "Arousal/Regulatory Systems"
       ],
@@ -1198,11 +1179,9 @@
       "educational_level": "licenciatura",
       "case_type": "farmacologia",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
+      "hitop": [],
       "rdoc": [
-        "Cognitive Systems"
+        "Sensorimotor Systems"
       ],
       "pack": "packs/cases_real_v1.json"
     },
@@ -1245,7 +1224,7 @@
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
-        "internalizing"
+        "externalizing"
       ],
       "rdoc": [
         "Arousal/Regulatory Systems"
