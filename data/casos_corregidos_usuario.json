@@ -1,0 +1,715 @@
+[
+  {
+    "case_id": "REAL_GEN_GAD_001_A",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno de Ansiedad Generalizada: Preocupación Excesiva",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_GAD_001_A",
+        "text_content": "El Trastorno de Ansiedad Generalizada (TAG) se caracteriza por una ansiedad y preocupación excesivas que ocurren la mayoría de los días durante al menos seis meses. La persona encuentra difícil controlar la preocupación. Se asocia a síntomas como inquietud, fatiga, dificultad para concentrarse, irritabilidad, tensión muscular y alteraciones del sueño. Causa malestar clínicamente significativo o deterioro en el funcionamiento social, laboral u otras áreas importantes.",
+        "labels": {
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_GAD_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál es la característica central y definitoria del Trastorno de Ansiedad Generalizada (TAG)?",
+        "expected_answer": "Preocupación excesiva y difícil de controlar sobre múltiples eventos",
+        "distractors": [
+          "Ataques de pánico recurrentes e inesperados",
+          "Miedo intenso a ser evaluado negativamente",
+          "Conductas repetitivas para neutralizar la ansiedad"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La preocupación excesiva y difícil de controlar es la característica central del TAG. Los ataques de pánico son propios del trastorno de pánico, el miedo a la evaluación es típico de la ansiedad social y las conductas repetitivas son características del TOC.[reference:1]",
+      "evidence_chunks": [
+        "CH_GAD_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Ataques de pánico recurrentes e inesperados",
+          "reason": "Esta es la característica definitoria del Trastorno de Pánico, no del TAG."
+        },
+        {
+          "option": "Miedo intenso a ser evaluado negativamente",
+          "reason": "Este es el núcleo del Trastorno de Ansiedad Social (Fobia Social)."
+        },
+        {
+          "option": "Conductas repetitivas para neutralizar la ansiedad",
+          "reason": "Este es el componente compulsivo del Trastorno Obsesivo-Compulsivo (TOC)."
+        }
+      ],
+      "take_home": "El TAG se define por una preocupación crónica, excesiva e incontrolable que persiste durante al menos seis meses y se acompaña de síntomas somáticos como tensión muscular y fatiga."
+    },
+    "hitop": [
+      "internalizing"
+    ],
+    "rdoc": [
+      "Negative Valence Systems"
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_PANIC_001_A",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno de Pánico: Crisis Inesperadas",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_PANIC_001_A",
+        "text_content": "El Trastorno de Pánico se caracteriza por la presencia de ataques de pánico recurrentes e inesperados. Un ataque de pánico es un período de miedo o malestar intenso en el que aparecen de forma súbita cuatro o más de los siguientes síntomas: palpitaciones, sudoración, temblores, sensación de ahogo, dolor torácico, náuseas, mareo, desrealización, miedo a perder el control o a morir. Para el diagnóstico, al menos uno de los ataques debe ir seguido de un mes o más de preocupación persistente por tener más ataques o un cambio de comportamiento maladaptativo.",
+        "labels": {
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_PANIC_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Un paciente describe episodios repentinos de miedo intenso que alcanzan su punto máximo en minutos, acompañados de palpitaciones, sudoración y miedo a morir. Estos episodios ocurren sin un desencadenante claro. ¿Cuál es el diagnóstico más probable?",
+        "expected_answer": "Trastorno de Pánico",
+        "distractors": [
+          "Trastorno de Ansiedad Generalizada",
+          "Trastorno de Ansiedad Social",
+          "Fobia Específica"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La presencia de ataques de pánico recurrentes e inesperados, con síntomas somáticos y cognitivos intensos, es el sello distintivo del Trastorno de Pánico. La preocupación persistente por las crisis es clave para el diagnóstico.[reference:2]",
+      "evidence_chunks": [
+        "CH_PANIC_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno de Ansiedad Generalizada",
+          "reason": "El TAG se caracteriza por una preocupación crónica y difusa, no por ataques de pánico agudos e inesperados."
+        },
+        {
+          "option": "Trastorno de Ansiedad Social",
+          "reason": "El miedo en la ansiedad social está vinculado a situaciones de evaluación social, no a ataques espontáneos."
+        },
+        {
+          "option": "Fobia Específica",
+          "reason": "La fobia específica implica miedo a un objeto o situación particular, no a ataques inesperados."
+        }
+      ],
+      "take_home": "El Trastorno de Pánico se define por ataques de pánico inesperados y recurrentes, seguidos de una preocupación persistente por las consecuencias de los ataques o un cambio significativo en el comportamiento relacionado con ellos."
+    },
+    "hitop": [
+      "internalizing"
+    ],
+    "rdoc": [
+      "Negative Valence Systems"
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_SAD_001_A",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno de Ansiedad Social: Miedo a la Evaluación",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_SAD_001_A",
+        "text_content": "El Trastorno de Ansiedad Social (Fobia Social) se caracteriza por un miedo o ansiedad intensa y persistente en una o más situaciones sociales o de actuación en las que la persona está expuesta al posible escrutinio por parte de otros. El individuo teme actuar de una manera que sea evaluada negativamente. Las situaciones sociales casi siempre provocan miedo o ansiedad y se evitan o soportan con gran malestar. El miedo o la ansiedad es desproporcionado y causa un deterioro clínicamente significativo.",
+        "labels": {
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_SAD_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Un paciente evita activamente hablar en público, asistir a fiestas y comer en restaurantes por miedo a ser juzgado y humillado. Reconoce que su miedo es excesivo. ¿Cuál es el diagnóstico más probable?",
+        "expected_answer": "Trastorno de Ansiedad Social (Fobia Social)",
+        "distractors": [
+          "Trastorno de Pánico con Agorafobia",
+          "Trastorno de Ansiedad Generalizada",
+          "Trastorno de Personalidad por Evitación"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El miedo intenso y persistente a ser evaluado negativamente en situaciones sociales, con la consiguiente evitación, es el núcleo del Trastorno de Ansiedad Social.[reference:3]",
+      "evidence_chunks": [
+        "CH_SAD_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno de Pánico con Agorafobia",
+          "reason": "El miedo en la agorafobia se centra en lugares de los que podría ser difícil escapar o donde no se podría recibir ayuda, no en la evaluación social."
+        },
+        {
+          "option": "Trastorno de Ansiedad Generalizada",
+          "reason": "La preocupación en el TAG es generalizada y no se limita a situaciones sociales."
+        },
+        {
+          "option": "Trastorno de Personalidad por Evitación",
+          "reason": "Aunque el TPE tiene un patrón de evitación social, el Trastorno de Ansiedad Social es un diagnóstico más específico y se diagnostica cuando los síntomas son prominentes y causan un deterioro significativo. Pueden ser comórbidos, pero la descripción encaja mejor con el trastorno de ansiedad."
+        }
+      ],
+      "take_home": "El Trastorno de Ansiedad Social no es timidez; es un miedo intenso y debilitante a la evaluación negativa que conduce a la evitación de situaciones sociales, interfiriendo significativamente en la vida de la persona."
+    },
+    "hitop": [
+      "internalizing"
+    ],
+    "rdoc": [
+      "Negative Valence Systems"
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_OCD_001_A",
+    "case_type": "razonamiento_clinico",
+    "title": "TOC: Obsesiones y Compulsiones",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_OCD_001_A",
+        "text_content": "El Trastorno Obsesivo-Compulsivo (TOC) se caracteriza por la presencia de obsesiones, compulsiones, o ambas. Las obsesiones son pensamientos, impulsos o imágenes recurrentes y persistentes que se experimentan como intrusivos y no deseados, causando ansiedad o malestar. Las compulsiones son comportamientos repetitivos o actos mentales que la persona se siente impulsada a realizar en respuesta a una obsesión, con el objetivo de neutralizarla o reducir el malestar. Estas obsesiones y compulsiones consumen tiempo (más de una hora al día) o causan un deterioro clínicamente significativo.",
+        "labels": {
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Cognitive Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_OCD_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Un paciente describe pensamientos repetitivos e intrusivos de que sus manos están contaminadas, lo que le causa una gran ansiedad. Para aliviar esta ansiedad, se lava las manos hasta 50 veces al día, llegando a dañarse la piel. Reconoce que sus pensamientos son irracionales. ¿Cuál es el diagnóstico más probable?",
+        "expected_answer": "Trastorno Obsesivo-Compulsivo (TOC)",
+        "distractors": [
+          "Trastorno de Ansiedad por Enfermedad (Hipocondría)",
+          "Trastorno de Ansiedad Generalizada",
+          "Trastorno de Personalidad Obsesivo-Compulsiva"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La presencia de obsesiones (pensamientos de contaminación) y compulsiones (lavado de manos) que consumen tiempo y causan deterioro, junto con el reconocimiento de su irracionalidad (insight), es el cuadro clásico del TOC.[reference:4]",
+      "evidence_chunks": [
+        "CH_OCD_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno de Ansiedad por Enfermedad (Hipocondría)",
+          "reason": "La hipocondría se centra en el miedo a tener una enfermedad grave, no en pensamientos intrusivos que se neutralizan con rituales."
+        },
+        {
+          "option": "Trastorno de Ansiedad Generalizada",
+          "reason": "La preocupación en el TAG es sobre eventos de la vida real, no sobre pensamientos intrusivos egodistónicos."
+        },
+        {
+          "option": "Trastorno de Personalidad Obsesivo-Compulsiva",
+          "reason": "El TPOC es un patrón de personalidad caracterizado por un perfeccionismo y control excesivos, no por obsesiones y compulsiones egodistónicas como en el TOC."
+        }
+      ],
+      "take_home": "El TOC se diferencia de la preocupación normal por la naturaleza egodistónica de las obsesiones (el paciente las reconoce como producto de su mente) y el tiempo significativo que consumen las compulsiones, causando un deterioro funcional."
+    },
+    "hitop": [
+      "internalizing"
+    ],
+    "rdoc": [
+      "Cognitive Systems"
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_PTSD_003_A",
+    "case_type": "razonamiento_clinico",
+    "title": "TEPT: Clasificación y Síntomas Nucleares",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_PTSD_003_A",
+        "text_content": "El Trastorno de Estrés Postraumático (TEPT) puede desarrollarse tras la exposición a la muerte, amenaza de muerte, lesión grave o violencia sexual. Los síntomas se agrupan en cuatro clusters: 1) Intrusión (recuerdos angustiosos, pesadillas, flashbacks), 2) Evitación (de estímulos relacionados con el trauma), 3) Alteraciones negativas en la cognición y el estado de ánimo, y 4) Alteraciones en la activación y reactividad (hipervigilancia, respuesta de sobresalto exagerada). Los síntomas deben durar más de un mes.",
+        "labels": {
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_PTSD_003_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Un veterano de guerra presenta recurrentes pesadillas sobre el combate, evita activamente cualquier lugar o conversación que le recuerde la guerra, se siente constantemente alerta y tiene dificultades para conciliar el sueño. Los síntomas comenzaron hace 3 meses. ¿Cuál es el diagnóstico más probable y qué cluster de síntomas representan las pesadillas?",
+        "expected_answer": "Trastorno de Estrés Postraumático (TEPT); las pesadillas pertenecen al cluster de Intrusión.",
+        "distractors": [
+          "Trastorno de Estrés Agudo; las pesadillas pertenecen a la Evitación.",
+          "Trastorno de Adaptación; las pesadillas son un síntoma de activación.",
+          "Trastorno de Pánico; las pesadillas son un síntoma cognitivo."
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La duración de más de un mes y los síntomas de los cuatro clusters (intrusión, evitación y activación) cumplen con los criterios para TEPT. Las pesadillas son una forma de reexperimentación o intrusión del evento traumático.[reference:5][reference:6]",
+      "evidence_chunks": [
+        "CH_PTSD_003_A"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno de Estrés Agudo; las pesadillas pertenecen a la Evitación.",
+          "reason": "El Trastorno de Estrés Agudo se diagnostica si los síntomas duran menos de un mes. Además, las pesadillas son un síntoma de intrusión, no de evitación."
+        },
+        {
+          "option": "Trastorno de Adaptación; las pesadillas son un síntoma de activación.",
+          "reason": "El Trastorno de Adaptación se da en respuesta a un estresor psicosocial identificable y no suele presentar el patrón completo de síntomas de TEPT, como flashbacks o hipervigilancia."
+        },
+        {
+          "option": "Trastorno de Pánico; las pesadillas son un síntoma cognitivo.",
+          "reason": "El Trastorno de Pánico se caracteriza por ataques de pánico, no por pesadillas relacionadas con un trauma."
+        }
+      ],
+      "take_home": "El TEPT se diagnostica cuando los síntomas persisten más de un mes después de la exposición a un trauma. Sus cuatro clusters de síntomas (intrusión, evitación, alteraciones cognitivo-anímicas y alteraciones de la activación) son clave para su identificación."
+    },
+    "hitop": [
+      "internalizing"
+    ],
+    "rdoc": [
+      "Negative Valence Systems"
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_BIP_003_A",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno Bipolar: Episodio Hipomaníaco vs. Maníaco",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_BIP_003_A",
+        "text_content": "El Trastorno Bipolar I se define por la presencia de al menos un episodio maníaco. Un episodio maníaco es un período de estado de ánimo anormal y persistentemente elevado, expansivo o irritable, y un aumento anormal y persistente de la actividad o la energía, que dura al menos una semana y está presente la mayor parte del día, casi todos los días. Causa un deterioro funcional marcado o requiere hospitalización. El Trastorno Bipolar II se caracteriza por uno o más episodios depresivos mayores y al menos un episodio hipomaníaco, pero nunca un episodio maníaco. La hipomanía dura al menos cuatro días y no causa un deterioro funcional grave.",
+        "labels": {
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Positive Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_BIP_003_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Un paciente presenta un período de 5 días de estado de ánimo inusualmente alegre, con menos necesidad de sueño, mayor energía y productividad en el trabajo. Sus amigos notan el cambio, pero no interfiere significativamente con su vida. Adicionalmente, refiere que el año pasado tuvo un episodio de 2 meses donde no podía levantarse de la cama y perdió el interés en todo. ¿Cuál es el diagnóstico más probable?",
+        "expected_answer": "Trastorno Bipolar II (episodio hipomaníaco)",
+        "distractors": [
+          "Trastorno Bipolar I (episodio maníaco)",
+          "Trastorno Ciclotímico",
+          "Trastorno de Personalidad Límite"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La duración de 5 días, la ausencia de deterioro funcional grave en el episodio actual y la presencia de un episodio depresivo mayor previo apuntan a un episodio hipomaníaco, característico del Trastorno Bipolar II.[reference:7]",
+      "evidence_chunks": [
+        "CH_BIP_003_A"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno Bipolar I (episodio maníaco)",
+          "reason": "Un episodio maníaco requiere una duración de al menos una semana y causa un deterioro funcional significativo o requiere hospitalización, lo cual no se describe en este caso."
+        },
+        {
+          "option": "Trastorno Ciclotímico",
+          "reason": "El trastorno ciclotímico implica numerosos períodos de síntomas hipomaníacos y depresivos que no cumplen los criterios completos para un episodio, durante al menos dos años. El caso describe episodios que sí cumplen criterios."
+        },
+        {
+          "option": "Trastorno de Personalidad Límite",
+          "reason": "La inestabilidad anímica en el TLP es reactiva y de corta duración (horas), no se presenta como un episodio sostenido de euforia y aumento de energía."
+        }
+      ],
+      "take_home": "La diferencia clave entre un episodio maníaco (Bipolar I) y uno hipomaníaco (Bipolar II) es la duración (1 semana vs. 4 días) y la gravedad (deterioro marcado vs. cambio leve). El Bipolar II requiere además la presencia de al menos un episodio depresivo mayor."
+    },
+    "hitop": [
+      "internalizing"
+    ],
+    "rdoc": [
+      "Positive Valence Systems"
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_SUD_001_A",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno por Consumo de Sustancias: Criterios",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_SUD_001_A",
+        "text_content": "El Trastorno por Consumo de Sustancias (TCS) se diagnostica según 11 criterios que se agrupan en cuatro categorías: 1) Control deficiente (consumir en mayor cantidad o por más tiempo del deseado, deseo persistente o esfuerzos infructuosos por controlar el consumo), 2) Deterioro social (incumplimiento de obligaciones, problemas interpersonales), 3) Consumo de riesgo (uso en situaciones físicamente peligrosas, consumo a pesar de problemas físicos o psicológicos), y 4) Criterios farmacológicos (tolerancia y abstinencia). La gravedad se clasifica como leve (2-3 criterios), moderada (4-5) o grave (6 o más).",
+        "labels": {
+          "hitop": [
+            "externalizing"
+          ],
+          "rdoc": [
+            "Arousal/Regulatory Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_SUD_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Un paciente refiere que ha intentado dejar de beber alcohol en varias ocasiones sin éxito. Bebe cantidades mayores de las que planeaba, ha llegado a faltar al trabajo por resaca y su familia se ha quejado repetidamente. ¿Cuántos criterios para el Trastorno por Consumo de Alcohol se están ejemplificando en esta viñeta?",
+        "expected_answer": "Al menos 4: control deficiente (intentos fallidos y consumo mayor al deseado), deterioro social (incumplimiento de obligaciones y problemas familiares).",
+        "distractors": [
+          "1 criterio: solo se menciona el deseo de beber.",
+          "2 criterios: el consumo en situaciones peligrosas y la abstinencia.",
+          "3 criterios: la tolerancia, la abstinencia y el consumo a pesar de los problemas."
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "Los criterios de TCS incluyen 'consumir en mayor cantidad de lo planeado', 'intentos fallidos por controlar el consumo', 'incumplimiento de obligaciones' y 'problemas interpersonales'. Esto ejemplifica al menos 4 criterios, lo que constituye un trastorno moderado.[reference:8]",
+      "evidence_chunks": [
+        "CH_SUD_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "1 criterio: solo se menciona el deseo de beber.",
+          "reason": "El caso menciona múltiples problemas: falta de control, problemas laborales y familiares, no solo el deseo."
+        },
+        {
+          "option": "2 criterios: el consumo en situaciones peligrosas y la abstinencia.",
+          "reason": "Estos criterios específicos (consumo de riesgo y abstinencia) no se mencionan en la viñeta."
+        },
+        {
+          "option": "3 criterios: la tolerancia, la abstinencia y el consumo a pesar de los problemas.",
+          "reason": "La viñeta no menciona tolerancia ni abstinencia, sino falta de control y consecuencias sociales."
+        }
+      ],
+      "take_home": "El Trastorno por Consumo de Sustancias se basa en un patrón problemático de consumo que incluye falta de control, deterioro social, uso de riesgo y criterios farmacológicos. La presencia de 2-3 criterios indica un trastorno leve, 4-5 moderado y 6 o más grave."
+    },
+    "hitop": [
+      "externalizing"
+    ],
+    "rdoc": [
+      "Arousal/Regulatory Systems"
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_NCD_001_A",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno Neurocognitivo Mayor: Demencia",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_NCD_001_A",
+        "text_content": "El Trastorno Neurocognitivo Mayor (demencia) se caracteriza por un deterioro significativo en uno o más dominios cognitivos (atención compleja, función ejecutiva, aprendizaje y memoria, lenguaje, percepción motora o cognición social). El deterioro debe representar una disminución respecto a un nivel previo de funcionamiento, interferir con la independencia en las actividades cotidianas y no ocurrir exclusivamente en el contexto de un delirium. El diagnóstico de la Enfermedad de Alzheimer, la demencia vascular y otras causas se basa en la presentación clínica y los hallazgos de laboratorio o de neuroimagen.",
+        "labels": {
+          "hitop": [],
+          "rdoc": [
+            "Cognitive Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_NCD_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Un paciente de 72 años presenta un deterioro progresivo de la memoria que ha empeorado en los últimos dos años. Su familia reporta que olvida citas, se pierde en lugares conocidos y tiene dificultades para manejar sus finanzas. ¿Cuál es la característica que define a este cuadro como un Trastorno Neurocognitivo Mayor?",
+        "expected_answer": "El deterioro cognitivo interfiere con la independencia en las actividades cotidianas.",
+        "distractors": [
+          "La edad del paciente es superior a 65 años.",
+          "El paciente tiene dificultades para recordar nombres.",
+          "El inicio del deterioro fue repentino."
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La característica clave que distingue el trastorno neurocognitivo mayor (demencia) del menor es el deterioro significativo que interfiere con la independencia en las actividades cotidianas.[reference:9]",
+      "evidence_chunks": [
+        "CH_NCD_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "La edad del paciente es superior a 65 años.",
+          "reason": "Aunque la edad es un factor de riesgo, no es un criterio diagnóstico. El deterioro cognitivo puede ocurrir en personas más jóvenes."
+        },
+        {
+          "option": "El paciente tiene dificultades para recordar nombres.",
+          "reason": "Los olvidos de nombres pueden ser parte del envejecimiento normal; no definen por sí solos un trastorno neurocognitivo mayor."
+        },
+        {
+          "option": "El inicio del deterioro fue repentino.",
+          "reason": "Un inicio repentino sugiere más un delirium o una causa vascular aguda que una demencia degenerativa, que suele tener un inicio insidioso."
+        }
+      ],
+      "take_home": "Los trastornos neurocognitivos se diagnostican por la presencia de un deterioro cognitivo que representa una disminución respecto a un nivel previo y que interfiere con la independencia funcional del paciente."
+    },
+    "hitop": [],
+    "rdoc": [
+      "Cognitive Systems"
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_ASD_003_A",
+    "case_type": "razonamiento_clinico",
+    "title": "TEA: Comunicación Social y Conductas Restrictivas",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_ASD_003_A",
+        "text_content": "El Trastorno del Espectro Autista (TEA) se define por la presencia de: A) Déficits persistentes en la comunicación e interacción social en múltiples contextos, incluyendo problemas en la reciprocidad socioemocional, en las conductas comunicativas no verbales y en el desarrollo y mantenimiento de relaciones. B) Patrones restrictivos y repetitivos de comportamiento, intereses o actividades, como movimientos motores estereotipados, insistencia en la monotonía, intereses altamente restringidos o hiper o hiporreactividad a los estímulos sensoriales. Los síntomas deben estar presentes en las primeras fases del período de desarrollo y causar un deterioro clínicamente significativo.",
+        "labels": {
+          "hitop": [
+            "neurodevelopmental"
+          ],
+          "rdoc": [
+            "Social Processes"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_ASD_003_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Un niño de 4 años evita el contacto visual, no responde a su nombre y tiene un interés inusual por las aspas de los ventiladores. Se altera mucho si se cambia la ruta para ir al colegio. ¿Qué dominios del TEA están presentes en este caso?",
+        "expected_answer": "Déficit en la comunicación social (evita el contacto visual, no responde a su nombre) y patrones de comportamiento restringidos y repetitivos (interés por el ventilador, alteración por cambios de ruta).",
+        "distractors": [
+          "Solo presenta déficits en la comunicación social.",
+          "Solo presenta patrones de comportamiento restringidos y repetitivos.",
+          "Presenta síntomas de TDAH, no de TEA."
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El caso presenta claramente ambos dominios necesarios para el diagnóstico de TEA: déficits en la comunicación e interacción social y patrones de comportamiento, intereses o actividades restringidos y repetitivos.[reference:10]",
+      "evidence_chunks": [
+        "CH_ASD_003_A"
+      ],
+      "why_not": [
+        {
+          "option": "Solo presenta déficits en la comunicación social.",
+          "reason": "El caso también describe claramente comportamientos repetitivos (interés por el ventilador) y rigidez (alteración por cambios de ruta)."
+        },
+        {
+          "option": "Solo presenta patrones de comportamiento restringidos y repetitivos.",
+          "reason": "El caso también describe déficits sociales claros (evita el contacto visual, no responde a su nombre)."
+        },
+        {
+          "option": "Presenta síntomas de TDAH, no de TEA.",
+          "reason": "Aunque la inatención puede estar presente, los déficits en la comunicación social y los patrones repetitivos son característicos del TEA y no del TDAH."
+        }
+      ],
+      "take_home": "El diagnóstico de TEA requiere la presencia de déficits en ambos dominios: 1) Comunicación e interacción social, y 2) Patrones restrictivos y repetitivos de comportamiento, intereses o actividades."
+    },
+    "hitop": [
+      "neurodevelopmental"
+    ],
+    "rdoc": [
+      "Social Processes"
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_ADHD_003_A",
+    "case_type": "razonamiento_clinico",
+    "title": "TDAH: Subtipos y Persistencia en Adultos",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_ADHD_003_A",
+        "text_content": "El Trastorno por Déficit de Atención e Hiperactividad (TDAH) es un trastorno del neurodesarrollo que se caracteriza por un patrón persistente de inatención y/o hiperactividad-impulsividad que interfiere con el funcionamiento o desarrollo. Los síntomas deben haber estado presentes antes de los 12 años y manifestarse en dos o más contextos. Existen tres presentaciones: predominantemente inatento, predominantemente hiperactivo-impulsivo, y combinada. En adultos, la hiperactividad a menudo se manifiesta como inquietud o dificultad para relajarse.",
+        "labels": {
+          "hitop": [
+            "externalizing",
+            "neurodevelopmental"
+          ],
+          "rdoc": [
+            "Cognitive Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_ADHD_003_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Un adulto refiere dificultad para mantener la atención en el trabajo, es desorganizado y pierde objetos con frecuencia. Sus compañeros lo describen como alguien que 'siempre está en las nubes'. Refiere que desde niño ha tenido estos problemas, pero que 'la hiperactividad se le ha calmado'. ¿Cuál es la presentación más probable del TDAH en este paciente?",
+        "expected_answer": "Presentación predominantemente inatenta.",
+        "distractors": [
+          "Presentación predominantemente hiperactivo-impulsiva.",
+          "Presentación combinada.",
+          "No cumple criterios para TDAH en la adultez."
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La descripción del paciente se centra en síntomas de inatención (dificultad para mantener la atención, desorganización, pérdida de objetos). La hiperactividad ha disminuido, lo cual es común en adultos con TDAH.[reference:11]",
+      "evidence_chunks": [
+        "CH_ADHD_003_A"
+      ],
+      "why_not": [
+        {
+          "option": "Presentación predominantemente hiperactivo-impulsiva.",
+          "reason": "El caso no describe síntomas prominentes de hiperactividad (como inquietud extrema) o impulsividad en la vida adulta, sino que se centra en la inatención."
+        },
+        {
+          "option": "Presentación combinada.",
+          "reason": "Para la presentación combinada, se necesitan síntomas significativos tanto de inatención como de hiperactividad-impulsividad, y en este caso los síntomas de hiperactividad no son prominentes."
+        },
+        {
+          "option": "No cumple criterios para TDAH en la adultez.",
+          "reason": "El paciente cumple con los criterios de inatención y reporta que los síntomas estaban presentes desde la infancia, lo que es consistente con el TDAH."
+        }
+      ],
+      "take_home": "El TDAH puede persistir en la edad adulta, aunque sus manifestaciones cambien. La hiperactividad motora tiende a disminuir, pero los síntomas de inatención suelen persistir y causar problemas significativos en el funcionamiento diario."
+    },
+    "hitop": [
+      "externalizing",
+      "neurodevelopmental"
+    ],
+    "rdoc": [
+      "Cognitive Systems"
+    ]
+  },
+  {
+    "case_id": "REAL_GEN_TCA_001_A",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno por Atracón: Sin Conductas Compensatorias",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_TCA_001_A",
+        "text_content": "El Trastorno por Atracón (Binge-Eating Disorder) se caracteriza por episodios recurrentes de atracones, que se definen por: 1) Ingesta de una cantidad de alimentos claramente superior a la que la mayoría de las personas ingerirían en un período de tiempo similar, y 2) Una sensación de falta de control sobre la ingesta durante el episodio. Los episodios se asocian a tres o más de los siguientes: comer mucho más rápido de lo normal, comer hasta sentirse incómodamente lleno, comer grandes cantidades cuando no se tiene hambre, comer solo por vergüenza, o sentirse disgustado, deprimido o culpable después. A diferencia de la bulimia, no hay conductas compensatorias inapropiadas recurrentes.",
+        "labels": {
+          "hitop": [
+            "internalizing"
+          ],
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_TCA_001_A_1",
+        "type": "mcq_single_best",
+        "instruction": "Un paciente describe episodios en los que come grandes cantidades de comida en poco tiempo, sintiendo que no puede parar. Después de estos episodios, se siente muy culpable y avergonzado. No se provoca el vómito ni realiza ejercicio excesivo para compensar. ¿Cuál es el diagnóstico más probable?",
+        "expected_answer": "Trastorno por Atracón (Binge-Eating Disorder)",
+        "distractors": [
+          "Bulimia Nerviosa",
+          "Anorexia Nerviosa, tipo purgativo",
+          "Otro trastorno de la conducta alimentaria especificado (OSFED)"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La presencia de atracones recurrentes con sensación de pérdida de control y malestar posterior, sin conductas compensatorias inapropiadas, es el sello distintivo del Trastorno por Atracón.[reference:12]",
+      "evidence_chunks": [
+        "CH_TCA_001_A"
+      ],
+      "why_not": [
+        {
+          "option": "Bulimia Nerviosa",
+          "reason": "La bulimia se caracteriza por atracones seguidos de conductas compensatorias inapropiadas, como el vómito o el uso de laxantes, que este paciente no presenta."
+        },
+        {
+          "option": "Anorexia Nerviosa, tipo purgativo",
+          "reason": "La anorexia purgativa implica un peso corporal significativamente bajo y un miedo intenso a ganar peso, además de las conductas purgativas. El caso no menciona bajo peso."
+        },
+        {
+          "option": "Otro trastorno de la conducta alimentaria especificado (OSFED)",
+          "reason": "Este diagnóstico se usa cuando los síntomas no cumplen los criterios completos para otro trastorno, pero el caso descrito sí cumple los criterios para el Trastorno por Atracón."
+        }
+      ],
+      "take_home": "El Trastorno por Atracón se diferencia de la Bulimia Nerviosa por la ausencia de conductas compensatorias recurrentes (vómitos, laxantes, ejercicio excesivo) después de los episodios de atracón."
+    },
+    "hitop": [
+      "internalizing"
+    ],
+    "rdoc": [
+      "Negative Valence Systems"
+    ]
+  }
+]

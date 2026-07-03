@@ -1,9 +1,9 @@
 {
   "version": "v1",
-  "updated": "2026-06-06",
+  "updated": "2026-07-01",
   "counts": {
-    "total": 83,
-    "real": 83,
+    "total": 94,
+    "real": 94,
     "synthetic": 0,
     "synth_packs": 0,
     "pack_size": 25
@@ -1274,6 +1274,170 @@
       ],
       "rdoc": [
         "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_GAD_001_A",
+      "title": "Trastorno de Ansiedad Generalizada: Preocupación Excesiva",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_PANIC_001_A",
+      "title": "Trastorno de Pánico: Crisis Inesperadas",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SAD_001_A",
+      "title": "Trastorno de Ansiedad Social: Miedo a la Evaluación",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_OCD_001_A",
+      "title": "TOC: Obsesiones y Compulsiones",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_PTSD_003_A",
+      "title": "TEPT: Clasificación y Síntomas Nucleares",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_BIP_003_A",
+      "title": "Trastorno Bipolar: Episodio Hipomaníaco vs. Maníaco",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Positive Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SUD_001_A",
+      "title": "Trastorno por Consumo de Sustancias: Criterios",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_NCD_001_A",
+      "title": "Trastorno Neurocognitivo Mayor: Demencia",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ASD_003_A",
+      "title": "TEA: Comunicación Social y Conductas Restrictivas",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Social Processes"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ADHD_003_A",
+      "title": "TDAH: Subtipos y Persistencia en Adultos",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing",
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_TCA_001_A",
+      "title": "Trastorno por Atracón: Sin Conductas Compensatorias",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
       ],
       "pack": "packs/cases_real_v1.json"
     }
