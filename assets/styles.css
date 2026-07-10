@@ -1229,6 +1229,31 @@ body {
   color: rgba(255, 255, 255, 0.6);
 }
 
+/* Voz del residente: presentación del caso y reacción en el feedback */
+.residentQuote {
+  margin-top: 12px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid rgba(255, 0, 255, 0.5);
+  color: rgba(255, 255, 255, 0.85);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.residentQuote strong {
+  font-style: normal;
+  color: rgba(0, 243, 255, 0.85);
+}
+
+.feedback-resident {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 /* Contador de casos disponibles bajo los filtros */
 .pool-info {
   margin-top: 12px;

@@ -92,7 +92,7 @@ Problemas encontrados:
 - **La pista es débil para su precio:** elimina 1 distractor aleatorio de 3 (a veces el que ya habías descartado). Alternativa: eliminar 2, o mostrar el `take_home` como "consulta al adscrito" (encaja con la narrativa).
 - **Curva de dificultad razonable** (45 s → −log2 con la racha, piso 15 s), pero invisible: el jugador no sabe que su racha acorta el reloj. Un aviso "⚡ racha 4: 35 s" haría legible la presión.
 - **Rango (R1→LEYENDA) sube solo con XP acumulado** (50/acierto): es un contador de tiempo jugado, no de destreza. Ligarlo a maestría del repaso o a rachas le daría significado.
-- Los dos residentes ("Aguilar"/"Solis") alternan mecánicamente y las frases de `NARRATIVE.residents` nunca se muestran en el juego — narrativa declarada pero no cableada.
+- ✅ *(resuelto con la Fase 1 del plan de personajes)* Los dos residentes ("Aguilar"/"Solis") alternaban mecánicamente y las frases de `NARRATIVE.residents` nunca se mostraban en el juego — narrativa declarada pero no cableada.
 
 ---
 
@@ -114,9 +114,9 @@ Problemas encontrados:
 
 Objetivo: que la guardia se sienta habitada — caras nuevas, reacciones creíbles y un paciente visible — sin romper el offline-first ni el rendimiento móvil. Se propone en tres fases incrementales; cada una es útil por sí sola.
 
-### Fase 1 — Rotación y voz de los personajes (sin assets nuevos, esfuerzo bajo)
+### Fase 1 — ✅ IMPLEMENTADA — Rotación y voz de los personajes (sin assets nuevos)
 
-Hoy hay exactamente 2 residentes ("Aguilar", "Solis") que alternan de forma mecánica caso por caso, el jefe es una constante, y las frases de `NARRATIVE.residents` están escritas en el código pero **nunca se muestran** en pantalla.
+Antes había exactamente 2 residentes ("Aguilar", "Solis") que alternaban de forma mecánica caso por caso, el jefe era una constante, y las frases de `NARRATIVE.residents` estaban escritas en el código pero **nunca se mostraban** en pantalla. Lo implementado: roster de 8 residentes con gradiente y frase personal, selección aleatoria sin repetición consecutiva (se conserva el residente durante las tareas de su caso), frase de presentación contextual según la clase ECG del paciente en la tarjeta del caso, reacción del residente en el feedback de acierto/error/timeout (con pool especial en racha ≥3 y anti-repetición de frases), arco del jefe (VIGILANDO → TENSO → ASINTIENDO en racha ≥5 → IMPRESIONADO en racha ≥8 → ¡FURIOSO! con 1 vida) y la cita de `NARRATIVE.boss` visible en el menú.
 
 1. **Roster ampliado:** 6–8 residentes con nombre, género, color de gradiente propio y 2–3 rasgos de personalidad (la insegura, el sobrado, la metódica…). Selección aleatoria ponderada que evite repetir el residente del caso anterior — más variedad percibida sin tocar assets.
 2. **Frases contextuales:** cada residente "presenta" el caso con una línea propia según el tipo (`case_type`, clase ECG): *"Doctora, este viene agitado, no lo puedo contener"* para `tachy`, *"Lo encontraron los familiares, casi no responde"* para `brady`. Pools de frases por estado (presentación / acierto / error / racha) con anti-repetición.
@@ -153,7 +153,7 @@ Hoy hay exactamente 2 residentes ("Aguilar", "Solis") que alternan de forma mec�
 | 8 | `prefers-reduced-motion` + contraste + `aria-live` | Bajo | Medio | ⏳ Pendiente |
 | 9 | P3 varios (typo, shuffle, ECG, favicon, plural, íconos, try/catch) | Trivial | Bajo | ✅ Hecho (falta README) |
 
-| 10 | Fase 1 personajes: roster ampliado + frases contextuales + arco del jefe | Bajo | Medio-alto | ⏳ Pendiente |
+| 10 | Fase 1 personajes: roster ampliado + frases contextuales + arco del jefe | Bajo | Medio-alto | ✅ Hecho |
 | 11 | Fase 2 personajes: globos de diálogo, B9 real, paciente en escena | Medio | Alto | ⏳ Pendiente |
 | 12 | Fase 3 personajes: sprites con estados + desbloqueo vía economía | Medio-alto | Medio (estética) | ⏳ Pendiente |
 
