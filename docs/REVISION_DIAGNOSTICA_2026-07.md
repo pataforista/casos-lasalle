@@ -62,6 +62,7 @@ Se cargaba el compilador JIT de Tailwind (~300 KB de JS que exigía `'unsafe-eva
 - ✅ Game Over y menú: concordancia "1 listo" / "N listos".
 - ✅ `Economy.save()` y la persistencia de casos fallados ahora envuelven `localStorage.setItem` en try/catch (Safari privado / cuota llena ya no rompe la partida).
 - ⏳ README desactualizado: menciona `js/ui.js` y `tools/validator.js` que no existen; `data/cases_v1.json` y `casos_corregidos_usuario.json` (~300 KB) se publican sin que el runtime los use.
+- ✅ *(encontrado y corregido durante la verificación móvil)* `splitCaseText` y `getBriefFeedback` cortaban las oraciones en los puntos decimales: la "Lectura rápida" mostraba *"para manía aguda 0."* en lugar de *"0.6-1.2 mEq/L"* — truncaba dosis y rangos clínicos. El separador ahora ignora `[.!?]` seguido de dígito.
 
 ---
 
@@ -110,6 +111,20 @@ Problemas encontrados:
 
 ---
 
+### Verificación de compatibilidad móvil (2026-07-10) — ✅ hecha
+
+Se auditó en navegador con viewports de 320×568 (iPhone SE), 360×740, 390×844, 414×896 y 740×360 (horizontal), con emulación táctil. Resultado final: **0 px de desbordamiento horizontal en todos los tamaños, todos los objetivos táctiles ≥ 44 px, y el overlay de feedback cabe en todos los viewports.** Correcciones aplicadas durante la auditoría:
+
+- `.feedback-overlay` y `.modalCard` sobresalían ~5 px del viewport en portrait: son `div` con `box-sizing: content-box` (los botones no sufren esto porque el UA stylesheet les da `border-box`). Corregido con `box-sizing: border-box`.
+- La fila de power-ups no envolvía: en 320 px el botón "Auto" quedaba cortado y el botón de menú (🏠) era **inalcanzable** (la tarjeta tiene `overflow: hidden`). Corregido con `flex-wrap: wrap`.
+- HUD compactado en ≤ 480 px (paddings, avatares 56 px, chips): la pregunta ahora queda visible o mucho más cerca del fold con el timer corriendo.
+- El título del caso compartía fila con el ECG y el badge y se comprimía a una palabra por línea en 320 px; ahora ocupa su propia fila en pantallas chicas.
+- `bottom` del overlay de feedback respeta `env(safe-area-inset-bottom)` (iPhones con home indicator).
+- `-webkit-text-size-adjust: 100%` para evitar la inflación de texto de Safari iOS en horizontal.
+- `min-height: 44px` en `.btn-powerup` (en horizontal medían 35 px).
+
+Lo que sigue pendiente del lado móvil es de contenido, no de layout: el bloque de teoría "Lectura rápida" (sección 3.5) es lo que más empuja la pregunta hacia abajo en pantallas de 320 px.
+
 ## 6. Plan: sprites, rotación de personajes e interacciones más realistas
 
 Objetivo: que la guardia se sienta habitada — caras nuevas, reacciones creíbles y un paciente visible — sin romper el offline-first ni el rendimiento móvil. Se propone en tres fases incrementales; cada una es útil por sí sola.
@@ -148,7 +163,7 @@ Antes había exactamente 2 residentes ("Aguilar", "Solis") que alternaban de for
 | 3 | B4+B3: quitar Tailwind CDN, endurecer CSP, cachear fuentes offline | Bajo | Alto | ✅ Hecho |
 | 4 | B6+B7: revelar respuesta correcta al fallar y feedback antes del Game Over | Bajo | Alto | ✅ Hecho |
 | 5 | `display_title` neutros para los ~15 títulos-spoiler | Medio (editorial) | Alto para el valor didáctico | ⏳ Pendiente |
-| 6 | Compactar HUD móvil | Medio | Medio | ⏳ Pendiente |
+| 6 | Compactar HUD móvil | Medio | Medio | 🔶 Parcial — compactado vía CSS ≤480px; queda el rediseño a una fila |
 | 7 | Sumideros de economía + curva de dificultad visible | Medio | Medio | ⏳ Pendiente |
 | 8 | `prefers-reduced-motion` + contraste + `aria-live` | Bajo | Medio | ⏳ Pendiente |
 | 9 | P3 varios (typo, shuffle, ECG, favicon, plural, íconos, try/catch) | Trivial | Bajo | ✅ Hecho (falta README) |

@@ -327,11 +327,14 @@ const Game = (() => {
     }
   }
 
+  // Separador de oraciones que no corta en decimales ("0.6-1.2 mEq/L")
+  const SENTENCE_RE = /(?:[^.!?]|[.!?](?=\d))+(?:[.!?]+|$)/g;
+
   function getBriefFeedback(caseObj, task) {
     const rationale = caseObj?.explanation?.rationale || task?.rationale || "";
     if (!rationale) return "Evalúa el riesgo inmediato y prioriza lo defendible.";
-    const firstSentence = rationale.match(/[^.!?]+[.!?]/);
-    return firstSentence ? firstSentence[0] : rationale.slice(0, 160) + "…";
+    const sentences = rationale.match(SENTENCE_RE);
+    return sentences ? sentences[0].trim() : rationale.slice(0, 160) + "…";
   }
 
   function getExplanationPayload(caseObj, task, selectedText, ok) {
@@ -385,7 +388,7 @@ const Game = (() => {
   function splitCaseText(text) {
     const clean = normalizeCaseText(text);
     if (!clean) return { summary: "", details: "" };
-    const sentences = clean.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [];
+    const sentences = clean.match(SENTENCE_RE) || [];
     let summary = sentences.slice(0, 2).join(" ").trim();
     let details = sentences.slice(2).join(" ").trim();
     if (!summary) summary = clean;
