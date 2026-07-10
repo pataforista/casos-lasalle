@@ -31,35 +31,88 @@ const NARRATIVE = {
   consequence: "El error honesto pesa menos que una decisión mal razonada."
 };
 
+// --- ROSTER DE RESIDENTES (Fase 1: rotación con identidad propia) ---
+const ROSTER = [
+  { name: "Aguilar",  title: "Dra.", grad: ["#84fab0", "#8fd3f4"], signature: "Ya lo interrogué; te resumo lo importante." },
+  { name: "Solis",    title: "Dr.",  grad: ["#fccb90", "#d57eeb"], signature: "Yo ya le hubiera dado algo, pero mejor dime tú." },
+  { name: "Ríos",     title: "Dra.", grad: ["#a1c4fd", "#c2e9fb"], signature: "Con calma: los datos están completos, la decisión es tuya." },
+  { name: "Mendoza",  title: "Dr.",  grad: ["#fbc2eb", "#a6c1ee"], signature: "No me gusta cómo se ve… ¿lo checas conmigo?" },
+  { name: "Ferrer",   title: "Dra.", grad: ["#f6d365", "#fda085"], signature: "Te lo pongo en una línea: hay que decidir ya." },
+  { name: "Castañeda",title: "Dr.",  grad: ["#96e6a1", "#d4fc79"], signature: "El interrogatorio no me cuadra del todo, júzgalo tú." },
+  { name: "Herrera",  title: "Dra.", grad: ["#e0c3fc", "#8ec5fc"], signature: "La familia está afuera preguntando. ¿Qué les digo?" },
+  { name: "Valdez",   title: "Dr.",  grad: ["#ffecd2", "#fcb69f"], signature: "Tranquilidad… bueno, la que se pueda a esta hora." }
+];
+
+// Frases por contexto. Las de "presentNormal" incluyen las citas originales de NARRATIVE.residents.
+const RESIDENT_LINES = {
+  presentTachy: [
+    "Viene muy agitado, apenas podemos contenerlo. ¿Qué hacemos?",
+    "Está taquicárdico y no coopera. Necesito una indicación ya.",
+    "Se altera más con cada minuto. Tú decides.",
+    "Seguridad ya está enterada, pero esto es clínico. ¿Indicaciones?"
+  ],
+  presentBrady: [
+    "Casi no responde; lo trajeron los familiares.",
+    "Lleva horas sin moverse ni comer. Esto no me gusta.",
+    "Hipoactivo, apenas contesta. ¿Por dónde empezamos?"
+  ],
+  presentNormal: [
+    "No tengo tiempo para revisar todo, dime qué hacemos.",
+    "Esto puede esperar… o no. Tú decides.",
+    "Si lo mandamos a casa y se complica, va a rebotar.",
+    "Te presento el caso; la sala está llena y hay prisa.",
+    "Ya está el expediente. ¿Cuál es tu impresión?"
+  ],
+  ok: [
+    "¡Eso! Ya lo estamos indicando.",
+    "De acuerdo, tiene sentido. Procedo.",
+    "Bien visto. Aviso a enfermería.",
+    "Anotado. El paciente va a agradecerlo."
+  ],
+  okStreak: [
+    "Otra más… hoy estás en modo intratable.",
+    "Así da gusto pasar la guardia.",
+    "El Dr. Celada tiene que estar viendo esto.",
+    "A este ritmo, vaciamos la sala antes del cambio de turno."
+  ],
+  error: [
+    "¿Seguro? El paciente no va bien…",
+    "Uy… eso no salió como esperábamos.",
+    "Se complicó. Hay que replantear.",
+    "El adscrito va a preguntar por esto…"
+  ],
+  timeout: [
+    "Nos quedamos pensando demasiado…",
+    "No decidimos a tiempo; ya intervino el adscrito.",
+    "La demora también es una decisión, y esta costó."
+  ]
+};
+
+// Anti-repetición: recuerda la última frase usada por pool
+const _lineMemory = {};
+function pickLine(poolName) {
+  const pool = RESIDENT_LINES[poolName] || [];
+  if (!pool.length) return "";
+  let idx = Math.floor(Math.random() * pool.length);
+  if (pool.length > 1 && idx === _lineMemory[poolName]) idx = (idx + 1) % pool.length;
+  _lineMemory[poolName] = idx;
+  return pool[idx];
+}
+
 const Avatars = {
-  _generate(svgContent, gradientId, animation, badge) {
+  // gradColors: [colorInicio, colorFin] — identidad visual propia de cada personaje
+  _generate(svgContent, gradColors, animation, badge) {
     const uid = Math.random().toString(36).substr(2, 5);
     const gradId = `grad_${uid}`;
+    const [c1, c2] = Array.isArray(gradColors) && gradColors.length === 2
+      ? gradColors
+      : ["#84fab0", "#8fd3f4"];
 
-    const gradients = {
-      resident: `
+    const selectedGrad = `
         <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#84fab0" />
-          <stop offset="100%" stop-color="#8fd3f4" />
-        </linearGradient>`,
-      resident_happy: `
-        <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#fccb90" />
-          <stop offset="100%" stop-color="#d57eeb" />
-        </linearGradient>`,
-      resident_error: `
-        <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#e0c3fc" />
-          <stop offset="100%" stop-color="#8ec5fc" />
-        </linearGradient>`,
-      boss: `
-        <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#f5576c" />
-          <stop offset="100%" stop-color="#f093fb" />
-        </linearGradient>`
-    };
-
-    const selectedGrad = gradients[gradientId] || gradients.resident;
+          <stop offset="0%" stop-color="${c1}" />
+          <stop offset="100%" stop-color="${c2}" />
+        </linearGradient>`;
 
     return `
       <div class="kawaii-avatar ${animation ? animation : ''}" style="background: transparent;">
@@ -73,25 +126,22 @@ const Avatars = {
     `;
   },
 
-  resident(name, mood = "normal") {
+  resident(name, mood = "normal", gradColors) {
     const faces = {
       normal: {
         eyes: `<circle cx="35" cy="45" r="5" fill="#111"/><circle cx="65" cy="45" r="5" fill="#111"/>`,
-        mouth: `<path d="M40 65 Q50 70 60 65" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>`,
-        grad: "resident"
+        mouth: `<path d="M40 65 Q50 70 60 65" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>`
       },
       happy: {
         eyes: `<path d="M30 45 Q35 40 40 45" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
                <path d="M60 45 Q65 40 70 45" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>`,
         mouth: `<path d="M35 60 Q50 75 65 60" fill="#ff6b6b" stroke="none"/>`,
-        grad: "resident_happy",
         anim: "bounce"
       },
       shock: {
         eyes: `<line x1="30" y1="40" x2="40" y2="50" stroke="#111" stroke-width="3"/><line x1="40" y1="40" x2="30" y2="50" stroke="#111" stroke-width="3"/>
                <line x1="60" y1="40" x2="70" y2="50" stroke="#111" stroke-width="3"/><line x1="70" y1="40" x2="60" y2="50" stroke="#111" stroke-width="3"/>`,
         mouth: `<circle cx="50" cy="65" r="6" fill="none" stroke="#111" stroke-width="3"/>`,
-        grad: "resident_error",
         anim: "shake"
       }
     };
@@ -106,7 +156,7 @@ const Avatars = {
       ${config.mouth}
     `;
 
-    return this._generate(svgContent, config.grad, config.anim, initial);
+    return this._generate(svgContent, gradColors, config.anim, initial);
   },
 
   boss(mood = "normal") {
@@ -129,14 +179,14 @@ const Avatars = {
       ${config.mouth}
     `;
 
-    return this._generate(svgContent, "boss", mood === 'angry' ? 'shake' : '', "BOSS");
+    return this._generate(svgContent, ["#f5576c", "#f093fb"], mood === 'angry' ? 'shake' : '', "BOSS");
   }
 };
 
 const Game = (() => {
   const state = {
     lives: GAME_CONFIG.maxLives,
-    timeLeft: GAME_CONFIG.turnSeconds,
+    timeLeft: GAME_CONFIG.baseTurnSeconds,
     timer: null,
     timerStart: 0,
     current: null,
@@ -151,10 +201,8 @@ const Game = (() => {
       educational_level: "",
       difficulty: ""
     },
-    resident: "Aguilar",
-    residentIndex: 0,
+    resident: ROSTER[0],
     turnSeconds: GAME_CONFIG.baseTurnSeconds, // Dinámico
-    residents: ["Aguilar", "Solis"],
     casesReady: false,
     useGenerator: false,
     streak: 0,
@@ -244,7 +292,8 @@ const Game = (() => {
   }
 
   function saveFailedCase(caseId) {
-    if (!caseId || !caseId.startsWith("REAL_")) return; // Solo guardar casos clínicos reales para el repaso
+    // Guardar todos los casos del banco para el repaso; excluir solo los sintéticos del generador
+    if (!caseId || caseId.startsWith("MODULAR_")) return;
     let failed = getFailedCases();
     let existing = failed.find(item => item.caseId === caseId);
     if (!existing) {
@@ -254,7 +303,7 @@ const Game = (() => {
       existing.level = 0;
       existing.nextReview = Date.now();
     }
-    localStorage.setItem('psycase_failed_cases', JSON.stringify(failed));
+    try { localStorage.setItem('psycase_failed_cases', JSON.stringify(failed)); } catch {}
   }
 
   function promoteFailedCase(caseId) {
@@ -274,15 +323,18 @@ const Game = (() => {
         const delay = item.level === 1 ? 24 * 3600 * 1000 : 72 * 3600 * 1000;
         item.nextReview = Date.now() + delay;
       }
-      localStorage.setItem('psycase_failed_cases', JSON.stringify(failed));
+      try { localStorage.setItem('psycase_failed_cases', JSON.stringify(failed)); } catch {}
     }
   }
+
+  // Separador de oraciones que no corta en decimales ("0.6-1.2 mEq/L")
+  const SENTENCE_RE = /(?:[^.!?]|[.!?](?=\d))+(?:[.!?]+|$)/g;
 
   function getBriefFeedback(caseObj, task) {
     const rationale = caseObj?.explanation?.rationale || task?.rationale || "";
     if (!rationale) return "Evalúa el riesgo inmediato y prioriza lo defendible.";
-    const firstSentence = rationale.match(/[^.!?]+[.!?]/);
-    return firstSentence ? firstSentence[0] : rationale.slice(0, 160) + "…";
+    const sentences = rationale.match(SENTENCE_RE);
+    return sentences ? sentences[0].trim() : rationale.slice(0, 160) + "…";
   }
 
   function getExplanationPayload(caseObj, task, selectedText, ok) {
@@ -308,10 +360,35 @@ const Game = (() => {
     return String(text || "").replace(/\s+/g, " ").trim();
   }
 
+  // Residente aleatorio evitando repetir el del caso anterior
+  function pickResident() {
+    const candidates = ROSTER.filter(r => r.name !== state.resident?.name);
+    return candidates[Math.floor(Math.random() * candidates.length)] || ROSTER[0];
+  }
+
+  // Frase con la que el residente presenta el caso (según el "ritmo" del paciente).
+  // A veces usa su frase personal para que cada residente tenga voz propia.
+  function getResidentPresentLine(ecgClass) {
+    if (state.resident?.signature && Math.random() < 0.25) return state.resident.signature;
+    if (ecgClass === "tachy") return pickLine("presentTachy");
+    if (ecgClass === "brady") return pickLine("presentBrady");
+    return pickLine("presentNormal");
+  }
+
+  // Estado del jefe: evalúa resultados — rachas altas ganan elogio, vidas bajas ganan tensión
+  function getBossStatus() {
+    if (state.studyMode) return "EDUCANDO";
+    if (state.lives <= 1) return "¡FURIOSO!";
+    if (state.streak >= 8) return "IMPRESIONADO";
+    if (state.streak >= 5) return "ASINTIENDO";
+    if (state.lives === 2) return "TENSO";
+    return "VIGILANDO";
+  }
+
   function splitCaseText(text) {
     const clean = normalizeCaseText(text);
     if (!clean) return { summary: "", details: "" };
-    const sentences = clean.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [];
+    const sentences = clean.match(SENTENCE_RE) || [];
     let summary = sentences.slice(0, 2).join(" ").trim();
     let details = sentences.slice(2).join(" ").trim();
     if (!summary) summary = clean;
@@ -351,7 +428,7 @@ const Game = (() => {
             color: ${dueList.length > 0 ? '#fff' : 'rgba(255,255,255,0.4)'}; 
             font-size:16px;" 
             ${dueList.length === 0 ? 'disabled' : ''}>
-            ${dueList.length > 0 ? `📖 Repasar Errores (${dueList.length} listos / ${failedList.length} total)` : `✅ Repaso al día (${failedList.length} en maestría)`}
+            ${dueList.length > 0 ? `📖 Repasar Errores (${dueList.length} ${dueList.length === 1 ? "listo" : "listos"} / ${failedList.length} total)` : `✅ Repaso al día (${failedList.length} en maestría)`}
           </button>
         ` : ""}
         <div class="hero-meta">
@@ -382,6 +459,7 @@ const Game = (() => {
             </select>
           </div>
         </div>
+        <div class="pool-info" id="poolInfo" aria-live="polite"></div>
       </div>
 
       <div class="miami-card">
@@ -389,8 +467,32 @@ const Game = (() => {
         <ul class="rules-list">
            ${NARRATIVE.rules.slice(0, 3).map(r => `<li>${escapeHtml(r)}</li>`).join("")}
         </ul>
+        <div class="narrative-quote">${escapeHtml(NARRATIVE.boss)}</div>
       </div>
     `;
+
+    // Reflejar los filtros vigentes y mostrar cuántos casos reales cubre la combinación
+    const selectLevel = $("#selectLevel");
+    const selectDifficulty = $("#selectDifficulty");
+    selectLevel.value = state.filters.educational_level;
+    selectDifficulty.value = state.filters.difficulty;
+
+    const updatePoolInfo = () => {
+      const info = $("#poolInfo");
+      if (!info) return;
+      if (!state.casesReady) { info.textContent = ""; return; }
+      const n = CaseDB.getPoolSize({
+        educational_level: selectLevel.value,
+        difficulty: selectDifficulty.value
+      });
+      info.textContent = n > 0
+        ? `${n} caso${n === 1 ? "" : "s"} del banco clínico con estos filtros`
+        : "⚠️ Sin casos reales para esta combinación: se jugarán casos sintéticos";
+      info.classList.toggle("pool-info--warn", n === 0);
+    };
+    selectLevel.onchange = updatePoolInfo;
+    selectDifficulty.onchange = updatePoolInfo;
+    ensureCasesLoaded().then(updatePoolInfo);
 
     $("#btnStart").onclick = () => {
       root.classList.add("fade-out", "screen-transition");
@@ -464,7 +566,7 @@ const Game = (() => {
                 border: ${dueList.length > 0 ? 'none' : '1px dashed rgba(255, 255, 255, 0.15)'}; 
                 color: ${dueList.length > 0 ? '#fff' : 'rgba(255,255,255,0.4)'};"
                 ${dueList.length === 0 ? 'disabled' : ''}>
-                ${dueList.length > 0 ? `Repasar Errores (${dueList.length} listos / ${failedList.length} total)` : `Repaso al día (${failedList.length} en maestría)`}
+                ${dueList.length > 0 ? `Repasar Errores (${dueList.length} ${dueList.length === 1 ? "listo" : "listos"} / ${failedList.length} total)` : `Repaso al día (${failedList.length} en maestría)`}
               </button>
             ` : ""}
             <button class="option-btn" id="btnMenu" style="justify-content:center; text-align:center;">Volver al Menú</button>
@@ -536,7 +638,6 @@ const Game = (() => {
     state.maxStreak = 0;
     state.recentCases = [];
     state.recentFeedbackTimer = null;
-    state.residentIndex = 0;
     state.residentMood = "normal";
     state.bossMood = "normal";
     state.hintUsedInTurn = false;
@@ -548,10 +649,11 @@ const Game = (() => {
       state.filters.educational_level = "";
       state.filters.difficulty = "";
     } else {
+      // Si los selects no están en el DOM (ej. reinicio desde Game Over), conservar los filtros previos
       const selectLevel = $("#selectLevel");
       const selectDifficulty = $("#selectDifficulty");
-      state.filters.educational_level = selectLevel ? selectLevel.value : "";
-      state.filters.difficulty = selectDifficulty ? selectDifficulty.value : "";
+      if (selectLevel) state.filters.educational_level = selectLevel.value;
+      if (selectDifficulty) state.filters.difficulty = selectDifficulty.value;
     }
 
     // Reset visual effects
@@ -579,13 +681,15 @@ const Game = (() => {
     const isEduDoc = state.current?.case_type === "documento_educativo";
     const timeLabel = state.studyMode ? 'MODO ESTUDIO' : (isEduDoc ? 'LECTURA LIBRE' : 'TIEMPO');
 
+    const res = state.resident || ROSTER[0];
+
     hud.innerHTML = `
       <div class="miami-card">
         <div class="hudRow">
           <div class="hudBox">
-            <div class="avatar" id="resBox">${Avatars.resident(state.resident, state.residentMood)}</div>
+            <div class="avatar" id="resBox">${Avatars.resident(res.name, state.residentMood, res.grad)}</div>
             <div>
-              <div class="badge">Dra. ${escapeHtml(state.resident)}</div>
+              <div class="badge">${escapeHtml(res.title)} ${escapeHtml(res.name)}</div>
               <div style="font-weight:900;">${hearts}</div>
             </div>
           </div>
@@ -598,7 +702,7 @@ const Game = (() => {
           <div class="hudBox">
             <div>
               <div class="badge">Dr. Celada</div>
-              <div style="font-weight:900; font-style:italic;">${state.studyMode ? 'EDUCANDO' : (state.lives <= 1 ? "¡FURIOSO!" : "VIGILANDO")}</div>
+              <div style="font-weight:900; font-style:italic;">${getBossStatus()}</div>
               <div style="color:rgba(255,43,214,.9);font-weight:900;">🪙 ${Economy.getCoins()} · ${escapeHtml(Economy.getRank())}</div>
             </div>
             <div class="avatar" id="bossBox">${Avatars.boss(state.bossMood)}</div>
@@ -748,7 +852,12 @@ const Game = (() => {
     const options = [
       { t: task.expected_answer, ok: true },
       ...(Array.isArray(task.distractors) ? task.distractors : []).map(d => ({ t: d, ok: false }))
-    ].sort(() => Math.random() - 0.5);
+    ];
+    // Fisher–Yates: barajado uniforme (sort(random-0.5) sesga la posición de la correcta)
+    for (let i = options.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [options[i], options[j]] = [options[j], options[i]];
+    }
 
     // Badge showing case / task progress or Educational Doc
     const tasksCount = c.tasks ? c.tasks.length : 1;
@@ -756,17 +865,26 @@ const Game = (() => {
     if (c.case_type === "documento_educativo") {
       progressBadge = "Lectura Didáctica";
     } else {
-      progressBadge = tasksCount > 1 
+      progressBadge = tasksCount > 1
         ? `Pregunta ${state.currentTaskIndex + 1}/${tasksCount}`
         : `Caso ${state.solvedCasesCount + 1}`;
     }
+    // Transparencia: avisar cuando el caso no proviene del banco clínico real
+    const isSynthetic = c.metadata?.is_real_data === false || String(c.case_id || "").startsWith("MODULAR_");
+    if (isSynthetic) progressBadge += " · Sintético";
 
     const ecgClass = getPatientEcgClass(c);
     const ecgSvg = `
       <svg viewBox="0 0 100 30" class="ecg-svg" aria-hidden="true">
-        <path d="M 0 15 L 30 15 L 35 12 L 40 18 L 45 15 L 48 5 L 52 28 L 56 15 L 60 17 L 65 15 L 100 15" class="ecg-line ${ecgClass}"></path>
+        <path d="M 0 15 L 30 15 L 35 12 L 40 18 L 45 15 L 48 5 L 52 28 L 56 15 L 60 17 L 65 15 L 100 15" pathLength="100" class="ecg-line ecg-${ecgClass}"></path>
       </svg>
     `;
+
+    // El residente presenta el caso (solo en la primera tarea, no en documentos didácticos)
+    const res = state.resident || ROSTER[0];
+    const presentLine = (state.currentTaskIndex === 0 && c.case_type !== "documento_educativo")
+      ? getResidentPresentLine(ecgClass)
+      : "";
 
     root.innerHTML = `
       <div class="miami-card case-card">
@@ -775,6 +893,7 @@ const Game = (() => {
           ${ecgSvg}
           <div class="caseBadge">${escapeHtml(progressBadge)}</div>
         </div>
+        ${presentLine ? `<div class="residentQuote">💬 <strong>${escapeHtml(res.title)} ${escapeHtml(res.name)}:</strong> “${escapeHtml(presentLine)}”</div>` : ""}
         <div class="caseSummary">
           <div class="caseLabel">Lectura rápida</div>
           <div class="caseBody">${escapeHtml(summary)}</div>
@@ -853,11 +972,9 @@ const Game = (() => {
         });
 
         renderHUD();
-        if (state.lives <= 0) {
-          setTimeout(handleDeath, 1200);
-        } else {
-          showTimeoutFeedback();
-        }
+        // Mostrar siempre la respuesta correcta y su explicación breve;
+        // nextCase() dispara el Game Over si ya no quedan vidas.
+        showTimeoutFeedback();
       }
     }, 100);
   }
@@ -870,8 +987,7 @@ const Game = (() => {
     const overlay = $("#modalRoot");
     if (overlay) overlay.innerHTML = "";
 
-    state.resident = state.residents[state.residentIndex];
-    state.residentIndex = (state.residentIndex + 1) % state.residents.length;
+    state.resident = pickResident();
     state.residentMood = "normal";
     state.bossMood = state.lives <= 1 ? "angry" : "normal";
     state.hintUsedInTurn = false;
@@ -897,13 +1013,20 @@ const Game = (() => {
       }
       state.current = state.useGenerator ? Generator.createCase(state.filters) : await CaseDB.pickRandomCase(queryFilters);
     } catch(err) {
-      console.warn("Error loading filtered cases from DB, falling back to Generator:", err);
       if (state.reviewMode) {
         showReviewSuccess();
         return;
       }
-      state.useGenerator = true;
-      state.current = Generator.createCase(state.filters);
+      // Pool agotado por las exclusiones recientes: reintentar permitiendo repetir casos
+      try {
+        state.current = await CaseDB.pickRandomCase({ ...state.filters });
+        state.recentCases = [];
+      } catch(err2) {
+        // No existe ningún caso real con estos filtros: usar el generador SOLO para este turno,
+        // sin cambiar state.useGenerator (el banco real sigue disponible para otros filtros).
+        console.warn("Sin casos reales para los filtros actuales, generando caso sintético:", err2);
+        state.current = Generator.createCase(state.filters);
+      }
     }
 
     if (state.current?.case_id) {
@@ -957,6 +1080,10 @@ const Game = (() => {
     const whyNotList = state.current?.explanation?.why_not || [];
     const takeHomeText = details.takeHome;
 
+    // Reacción del residente al resultado (racha alta tiene frases propias)
+    const res = state.resident || ROSTER[0];
+    const reactLine = pickLine(ok ? (state.streak >= 3 ? "okStreak" : "ok") : "error");
+
     root.innerHTML = `
       <div class="feedback-overlay show" style="border-color:${ok ? "rgba(57,255,20,0.4)" : "rgba(255,0,85,0.4)"}; cursor: default;">
         <div class="feedback-header">
@@ -965,6 +1092,7 @@ const Game = (() => {
             ${ok ? "EXCELENTE" : "ERROR CLÍNICO"}
           </div>
         </div>
+        ${reactLine ? `<div class="feedback-resident">${escapeHtml(res.title)} ${escapeHtml(res.name)}: “${escapeHtml(reactLine)}”</div>` : ""}
         <div class="modalFeedback" style="margin:0; font-size:14px;">${escapeHtml(details.reason || brief)}</div>
         
         <div id="expandedFeedback" style="display:none;">
@@ -1030,12 +1158,16 @@ const Game = (() => {
     const brief = getBriefFeedback(state.current, task);
     const root = $("#modalRoot");
 
+    const res = state.resident || ROSTER[0];
+    const timeoutLine = pickLine("timeout");
+
     root.innerHTML = `
       <div class="feedback-overlay show" style="border-color:rgba(255,165,0,0.4);">
         <div class="feedback-header">
           <div style="font-size:32px;">⏰</div>
           <div class="feedback-status" style="color:#ffa500;">TIEMPO AGOTADO</div>
         </div>
+        ${timeoutLine ? `<div class="feedback-resident">${escapeHtml(res.title)} ${escapeHtml(res.name)}: “${escapeHtml(timeoutLine)}”</div>` : ""}
         <div style="font-size:12px; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Respuesta correcta</div>
         <div class="modalFeedback" style="margin:0; font-size:14px; border-color:rgba(57,255,20,0.3); color:#caffbf;">${escapeHtml(task.expected_answer)}</div>
         <div class="modalFeedback" style="margin-top:8px; font-size:13px; background:rgba(255,255,255,0.02); border-color:rgba(255,255,255,0.08);">${escapeHtml(brief)}</div>
@@ -1079,6 +1211,8 @@ const Game = (() => {
       state.decompensated = false; // ¡El paciente ha sido estabilizado!
     } else {
       btn.classList.add("incorrect");
+      // Revelar cuál era la opción correcta (igual que en timeout)
+      document.querySelectorAll('.option-btn[data-ok="1"]').forEach(b => b.classList.add("correct"));
       if (!state.studyMode && !isEduDoc) {
         state.lives--;
         state.streak = 0;
@@ -1098,15 +1232,12 @@ const Game = (() => {
 
     renderHUD();
 
-    if (state.lives <= 0) {
-      setTimeout(handleDeath, 800);
-    } else {
-      // Correct option text extraction
-      const selectedTextEl = btn.querySelector('.option-text');
-      const selectedText = selectedTextEl ? selectedTextEl.innerText : btn.innerText;
-
-      setTimeout(() => showSmartFeedback(ok, task, selectedText), GAME_CONFIG.modalDelayMs);
-    }
+    // Mostrar la retroalimentación SIEMPRE, incluso al perder la última vida:
+    // es el caso con mayor valor didáctico. advanceNext() dispara el Game Over
+    // al avanzar (manual o auto) cuando lives <= 0.
+    const selectedTextEl = btn.querySelector('.option-text');
+    const selectedText = selectedTextEl ? selectedTextEl.innerText : btn.innerText;
+    setTimeout(() => showSmartFeedback(ok, task, selectedText), GAME_CONFIG.modalDelayMs);
   }
 
   function init() {

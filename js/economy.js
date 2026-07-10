@@ -31,7 +31,11 @@ const Economy = (() => {
   }
 
   function save() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    } catch {
+      // Almacenamiento no disponible (modo privado / cuota llena): seguir jugando sin persistir
+    }
   }
 
   const ACHIEVEMENTS = {

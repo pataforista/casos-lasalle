@@ -4,8 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   
-  <!-- CSP: unsafe-eval requerido por Tailwind CDN (mitigar moviendo a build step en producción) -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; worker-src 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; worker-src 'self';">
 
   <!-- SEO Básico -->
   <title>PsyCase - Casos Clínicos de Psiquiatría para Estudiantes de Medicina y ENARM</title>
@@ -30,6 +29,7 @@
   <!-- PWA -->
   <link rel="manifest" href="./manifest.webmanifest">
   <meta name="theme-color" content="#050510">
+  <link rel="icon" href="./assets/icons/icon-192.png">
   <link rel="apple-touch-icon" href="./assets/icons/icon-192.png">
 
   <!-- Performance para fuentes -->
@@ -38,20 +38,19 @@
 
   <!-- Estética Miami Vice / Synthwave -->
   <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600;700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./assets/styles.css">
 </head>
 
 <body>
   <div class="scanline" aria-hidden="true"></div>
 
-  <div id="app" class="max-w-2xl mx-auto p-4 min-h-screen flex flex-col justify-center">
+  <div id="app">
     <!-- Raíces separadas: evita que UI borre el HUD por accidente -->
     <div id="hudRoot"></div>
     <div id="caseRoot">
       <div class="miami-card" style="text-align:center;">
         <div class="spinner"></div>
-        <div class="text-center opacity-80 font-bold">Cargando PsyCase…</div>
+        <div style="text-align:center; opacity:.8; font-weight:700;">Cargando PsyCase…</div>
       </div>
     </div>
     <div id="modalRoot"></div>
@@ -84,7 +83,7 @@
     window.addEventListener("error", (e) => {
       logDebug("[error] " + (e.message || "unknown") + (e.filename ? ` @ ${e.filename}:${e.lineno}` : ""));
       const root = document.getElementById("caseRoot");
-      if (root) root.innerHTML = `<div class="miami-card"><div class="font-black text-pink-400">Error</div><div style="opacity:.85;margin-top:8px;">${_esc(e.message || e)}</div></div>`;
+      if (root) root.innerHTML = `<div class="miami-card"><div style="font-weight:900;color:#f472b6;">Error</div><div style="opacity:.85;margin-top:8px;">${_esc(e.message || e)}</div></div>`;
     });
 
     window.addEventListener("unhandledrejection", (e) => {
