@@ -110,7 +110,36 @@ Problemas encontrados:
 
 ---
 
-## 6. Priorización sugerida
+## 6. Plan: sprites, rotación de personajes e interacciones más realistas
+
+Objetivo: que la guardia se sienta habitada — caras nuevas, reacciones creíbles y un paciente visible — sin romper el offline-first ni el rendimiento móvil. Se propone en tres fases incrementales; cada una es útil por sí sola.
+
+### Fase 1 — Rotación y voz de los personajes (sin assets nuevos, esfuerzo bajo)
+
+Hoy hay exactamente 2 residentes ("Aguilar", "Solis") que alternan de forma mecánica caso por caso, el jefe es una constante, y las frases de `NARRATIVE.residents` están escritas en el código pero **nunca se muestran** en pantalla.
+
+1. **Roster ampliado:** 6–8 residentes con nombre, género, color de gradiente propio y 2–3 rasgos de personalidad (la insegura, el sobrado, la metódica…). Selección aleatoria ponderada que evite repetir el residente del caso anterior — más variedad percibida sin tocar assets.
+2. **Frases contextuales:** cada residente "presenta" el caso con una línea propia según el tipo (`case_type`, clase ECG): *"Doctora, este viene agitado, no lo puedo contener"* para `tachy`, *"Lo encontraron los familiares, casi no responde"* para `brady`. Pools de frases por estado (presentación / acierto / error / racha) con anti-repetición.
+3. **Jefe con arco:** hoy solo "VIGILANDO/¡FURIOSO!". Añadir estados intermedios ligados a racha y vidas (aprobación seca en racha ≥5, advertencia a 2 vidas, elogio raro y valioso), reutilizando la cita de `NARRATIVE.boss` que tampoco se muestra.
+
+### Fase 2 — Interacciones realistas (esfuerzo medio)
+
+4. **Globos de diálogo en el HUD:** burbuja breve junto al avatar (aparece 2–3 s, no bloquea el timer, `aria-live="polite"`, se desactiva con `prefers-reduced-motion`). Es el vehículo de las frases de la Fase 1 — sin esto, las frases no tienen dónde vivir.
+5. **Arreglar B9 con esta pieza:** la "descompensación" actual promete una maniobra de rescate que no existe. Convertirla en reacción real: al fallar la tarea 1, el ECG pasa a `tachy` (ya implementado), el residente lanza una frase de urgencia y el prefijo engañoso desaparece — la tarea 2 se presenta como lo que es, con contexto de deterioro.
+6. **Reacciones encadenadas:** acierto en racha → residente celebra Y el jefe asiente; error → residente en shock Y el jefe reacciona un beat después (400 ms). La secuencia, no la simultaneidad, es lo que se lee como "vivo".
+7. **El paciente entra a escena:** hoy el paciente es solo una línea de ECG. Darle presencia mínima: un avatar de paciente en la tarjeta del caso cuyo estado visual siga a `getPatientEcgClass` (normal/taqui/brady) y empeore al descompensarse. Es el mayor salto de realismo por unidad de esfuerzo.
+
+### Fase 3 — Sprites (esfuerzo medio-alto, requiere producir assets)
+
+8. **Sustituir los SVG procedurales por sprites con identidad:** retratos estilo pixel-art o cartoon plano, coherentes con la estética synthwave (paleta cian/rosa/morado sobre fondo oscuro).
+   - **Formato:** sprite sheets WebP (con PNG de respaldo) en `assets/sprites/`, animación por `steps()` de CSS — nada de GIF ni JS por frame.
+   - **Estados mínimos por personaje:** idle, hablando, celebrando, shock (4 frames bastan; la rotación de personajes disimula la economía de frames).
+   - **Pacientes:** 6–10 retratos genéricos reutilizables (por edad/sexo aparente), asignados por hash del `case_id` para que el mismo caso muestre siempre la misma cara.
+   - **Offline-first obligatorio:** todos los sprites en `APP_SHELL` del SW con bump de `CACHE_VERSION`; presupuesto ~150–250 KB total para no castigar la primera carga móvil.
+   - **Accesibilidad:** `prefers-reduced-motion` congela en el frame idle; los estados también se comunican por texto (ya existe el patrón "VIGILANDO/¡FURIOSO!").
+9. **Gancho con la economía (pendiente #7):** desbloquear residentes/retratos con monedas o rango da por fin un sumidero significativo a las monedas y una razón para subir de rango.
+
+## 7. Priorización sugerida
 
 | # | Acción | Esfuerzo | Impacto | Estado |
 |---|--------|----------|---------|--------|
@@ -124,4 +153,8 @@ Problemas encontrados:
 | 8 | `prefers-reduced-motion` + contraste + `aria-live` | Bajo | Medio | ⏳ Pendiente |
 | 9 | P3 varios (typo, shuffle, ECG, favicon, plural, íconos, try/catch) | Trivial | Bajo | ✅ Hecho (falta README) |
 
-Pendientes también: B8 (timeout ignora preferencias y tareas restantes), B9 (narrativa de descompensación) y todo lo editorial de la sección 3 (why_not de segundas tareas, viñetas cortas, teoría antes de la pregunta, `documento_educativo` sin contenido).
+| 10 | Fase 1 personajes: roster ampliado + frases contextuales + arco del jefe | Bajo | Medio-alto | ⏳ Pendiente |
+| 11 | Fase 2 personajes: globos de diálogo, B9 real, paciente en escena | Medio | Alto | ⏳ Pendiente |
+| 12 | Fase 3 personajes: sprites con estados + desbloqueo vía economía | Medio-alto | Medio (estética) | ⏳ Pendiente |
+
+Pendientes también: B8 (timeout ignora preferencias y tareas restantes), B9 (narrativa de descompensación — se resuelve dentro de la Fase 2 del plan de personajes) y todo lo editorial de la sección 3 (why_not de segundas tareas, viñetas cortas, teoría antes de la pregunta, `documento_educativo` sin contenido).
