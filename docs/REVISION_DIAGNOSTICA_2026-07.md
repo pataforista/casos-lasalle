@@ -1,5 +1,7 @@
 # Revisión diagnóstica — PsyCase (julio 2026)
 
+> **Actualización 2026-07-10:** los hallazgos urgentes (B1–B7 y los triviales de P3, salvo el README) fueron **corregidos en esta rama** y verificados en navegador. Quedan pendientes como trabajo editorial/diseño: B8, B9, títulos-spoiler, distribución de datos, HUD móvil, economía y accesibilidad. Cada ítem indica su estado.
+
 Alcance: código (runtime JS, SW, HTML/CSS), datos (`manifest_v1.json` + `cases_real_v1.json`, 94 casos), jugabilidad y estética. La app se ejecutó en navegador headless (móvil 390×844 y escritorio 1280×800) recorriendo menú → caso → feedback → game over → filtros, incluyendo un escenario sin acceso a CDNs.
 
 ---
@@ -21,30 +23,30 @@ Los problemas más importantes no son de estilo sino de **flujo de juego y datos
 
 ### P1 — Afectan la experiencia de forma visible
 
-**B1. Fallback al generador es silencioso y permanente** (`js/game.js:898-907`)
+**B1. ✅ CORREGIDO — Fallback al generador es silencioso y permanente** (`js/game.js:898-907`)
 Cuando `pickRandomCase` lanza error (pool vacío), `state.useGenerator = true` y nunca se restablece: `ensureCasesLoaded` retorna temprano porque `casesReady` sigue en `true`. Desde ese momento **todas** las guardias de la sesión usan casos sintéticos, incluso sin filtros. Se reproduce fácil:
 - Filtro `residencia + fácil` → 0 casos en el manifest → generador (verificado: apareció "Trastorno Esquizoafectivo", que es un módulo del generador, con badge "Caso 1" y sin ningún aviso).
 - Pools pequeños se agotan solos: `licenciatura + difícil` tiene 3 casos y `recentCases` excluye los últimos 30, así que a la cuarta pregunta el pool queda vacío → generador para siempre.
 
-*Fix sugerido:* no persistir `useGenerator` tras un fallo de filtros; si el pool se agota, vaciar `excludeCaseIds` y repetir casos (o avisar "pool agotado, repitiendo casos"); mostrar un badge "Caso sintético" cuando el origen sea el generador.
+*Corrección aplicada:* al agotarse el pool se reintenta sin exclusiones (repite casos) antes de generar; el generador se usa solo para ese turno sin persistir `useGenerator`; el badge muestra "· Sintético"; y el menú ahora usa `CaseDB.getPoolSize` para mostrar cuántos casos reales cubre la combinación de filtros (con advertencia cuando es cero).
 
-**B2. El repaso espaciado solo guarda casos `REAL_`** (`js/game.js:247`)
-`saveFailedCase` hace `if (!caseId.startsWith("REAL_")) return;`. El banco tiene 36 `REAL_`, 18 `EDU_`, 20 `CLIN_`, 20 `HOSP_` — todos reales (`is_real_data: true`), pero el 62 % de los errores nunca entra al repaso. El filtro correcto sería excluir solo los `MODULAR_` del generador.
+**B2. ✅ CORREGIDO — El repaso espaciado solo guarda casos `REAL_`** (`js/game.js:247`)
+`saveFailedCase` hacía `if (!caseId.startsWith("REAL_")) return;`. El banco tiene 36 `REAL_`, 18 `EDU_`, 20 `CLIN_`, 20 `HOSP_` — todos reales (`is_real_data: true`), pero el 62 % de los errores nunca entraba al repaso. Ahora se excluyen solo los `MODULAR_` del generador.
 
-**B3. El SW nunca cachea los CDNs → el "soporte offline real" de fuentes/Tailwind no existe** (`sw.js:54,64`)
-Los `fetch` de recursos cross-origin sin CORS (script de Tailwind, CSS de Google Fonts) devuelven respuestas *opacas* con `res.ok === false`, así que `if (res.ok) cache.put(...)` no las guarda jamás. Offline: sin fuentes Chakra Petch/Inter y sin Tailwind. Consecuencia mayor: el contenedor `max-w-2xl mx-auto` de `index.html` es clase Tailwind — sin el CDN, en escritorio el juego se estira a 1280 px (verificado con captura). *Fix:* eliminar la dependencia de Tailwind (ver B4) y auto-hospedar las fuentes, o cachear respuestas opacas deliberadamente.
+**B3. ✅ CORREGIDO — El SW nunca cachea los CDNs → el "soporte offline real" de fuentes/Tailwind no existe** (`sw.js:54,64`)
+Los `fetch` de recursos cross-origin sin CORS (script de Tailwind, CSS de Google Fonts) devuelven respuestas *opacas* con `res.ok === false`, así que `if (res.ok) cache.put(...)` no las guardaba jamás. Offline: sin fuentes Chakra Petch/Inter y sin Tailwind. Consecuencia mayor: el contenedor `max-w-2xl mx-auto` de `index.html` era clase Tailwind — sin el CDN, en escritorio el juego se estiraba a 1280 px (verificado con captura). *Corrección aplicada:* el SW ahora acepta respuestas opacas para el whitelist de fuentes (`isCacheable`), Tailwind se eliminó por completo (ver B4) y se subió `CACHE_VERSION` a v1.1.0.
 
-**B4. Tailwind CDN completo para ~10 clases de utilidad**
-Se carga el compilador JIT de Tailwind (~300 KB de JS que exige `'unsafe-eval'` en la CSP, como admite el propio comentario en `index.html:7`) para usar `max-w-2xl mx-auto p-4 min-h-screen flex flex-col justify-center`, `text-center opacity-80 font-bold` y `text-pink-400`. Reemplazarlas por ~12 líneas en `styles.css` permite: quitar `unsafe-eval` y el dominio del CDN de la CSP, arreglar el offline de escritorio (B3) y acelerar la primera carga.
+**B4. ✅ CORREGIDO — Tailwind CDN completo para ~10 clases de utilidad**
+Se cargaba el compilador JIT de Tailwind (~300 KB de JS que exigía `'unsafe-eval'` en la CSP) para usar `max-w-2xl mx-auto p-4 min-h-screen flex flex-col justify-center`, `text-center opacity-80 font-bold` y `text-pink-400`. Se reemplazaron por la regla `#app` en `styles.css` y estilos inline puntuales; la CSP ya no incluye `unsafe-eval` ni `cdn.tailwindcss.com`. Verificado: en 1280 px el contenedor queda centrado a 672 px sin red externa.
 
-**B5. Los filtros se pierden al reiniciar desde Game Over** (`js/game.js:551-554`)
-"Nueva Guardia" llama `startTurn(false, false)` cuando los `<select>` ya no existen en el DOM, y `selectLevel ? selectLevel.value : ""` restablece los filtros a "todos". El jugador que eligió "licenciatura + media" los pierde sin saberlo. *Fix:* leer los selects solo si existen; si no, conservar `state.filters`.
+**B5. ✅ CORREGIDO — Los filtros se pierden al reiniciar desde Game Over** (`js/game.js:551-554`)
+"Nueva Guardia" llama `startTurn(false, false)` cuando los `<select>` ya no existen en el DOM, y `selectLevel ? selectLevel.value : ""` restablecía los filtros a "todos". Ahora los selects se leen solo si existen y, al volver al menú, reflejan los filtros vigentes.
 
 ### P2 — Inconsistencias de flujo
 
-**B6. Al fallar la última vida no hay retroalimentación.** `checkAnswer` con `lives <= 0` va directo a `handleDeath` (`js/game.js:1101`): el jugador nunca ve por qué falló el caso que lo mató — justo el que más valor didáctico tiene. Mostrar el feedback y luego el Game Over.
+**B6. ✅ CORREGIDO — Al fallar la última vida no hay retroalimentación.** `checkAnswer` con `lives <= 0` iba directo a `handleDeath` (`js/game.js:1101`): el jugador nunca veía por qué falló el caso que lo mató — justo el que más valor didáctico tiene. Ahora el feedback se muestra siempre y el Game Over aparece al avanzar (también en el timeout de la última vida).
 
-**B7. Una respuesta incorrecta no revela cuál era la correcta.** En timeout sí se ilumina la opción correcta (`js/game.js:850-852`), pero al responder mal solo se marca en rojo la elegida; el overlay de feedback explica el porqué del error sin decir la respuesta correcta (hay que deducirla de "Ver explicación"). Marcar también `.correct` en `checkAnswer` cuando `ok === false`.
+**B7. ✅ CORREGIDO — Una respuesta incorrecta no revela cuál era la correcta.** En timeout sí se iluminaba la opción correcta (`js/game.js:850-852`), pero al responder mal solo se marcaba en rojo la elegida. Ahora `checkAnswer` marca también `.correct` cuando `ok === false`.
 
 **B8. El timeout ignora las preferencias y las tareas restantes.** `showTimeoutFeedback` siempre auto-avanza a los 3.5 s aunque el usuario haya puesto "⏸️ Manual", no tiene botón "Siguiente", y salta con `nextCase()` directamente, descartando las tareas restantes de un caso multi-tarea (una respuesta incorrecta, en cambio, continúa con la siguiente tarea "descompensada"). Además no incrementa `solvedCasesCount`, así que el badge "Caso N" repite número.
 
@@ -52,14 +54,14 @@ Se carga el compilador JIT de Tailwind (~300 KB de JS que exige `'unsafe-eval'` 
 
 ### P3 — Menores
 
-- `js/game.js:139`: `state.timeLeft = GAME_CONFIG.turnSeconds` — esa clave no existe (`baseTurnSeconds`); inofensivo porque `startTimer` lo sobrescribe, pero es un typo latente.
-- `js/game.js:751`: barajado con `sort(() => Math.random() - 0.5)` está sesgado (la opción correcta no queda uniformemente distribuida entre las 4 posiciones). Usar Fisher–Yates.
-- ECG (`js/game.js:766`): el `path` mide más de 100 unidades y `stroke-dasharray: 100` produce segmentos partidos — en las capturas se ve como guiones sueltos, no como trazo ECG. Añadir `pathLength="100"` al `<path>` lo arregla en una línea.
-- Consola: 404 de `favicon.ico` (no hay `<link rel="icon">`).
-- `assets/icons/` tiene duplicados: `icon-192.png`/`icon_192.png` y `icon-512.png`/`icon_512.png`; manifest y SW solo usan los de guion. Borrar los de guion bajo.
-- Game Over: "Repasar Errores (1 **listos** / 1 total)" — concordancia singular/plural.
-- `Economy.save()` no envuelve `localStorage.setItem` en try/catch (Safari privado / cuota llena rompería la partida).
-- README desactualizado: menciona `js/ui.js` y `tools/validator.js` que no existen; `data/cases_v1.json` y `casos_corregidos_usuario.json` (~300 KB) se publican sin que el runtime los use.
+- ✅ `js/game.js:139`: `state.timeLeft = GAME_CONFIG.turnSeconds` — clave inexistente (`baseTurnSeconds`); corregido.
+- ✅ `js/game.js:751`: barajado con `sort(() => Math.random() - 0.5)` sesgado; reemplazado por Fisher–Yates.
+- ✅ ECG (`js/game.js:766`): el `path` mide más de 100 unidades y `stroke-dasharray: 100` producía segmentos partidos; se añadió `pathLength="100"`. Al corregirlo se encontró un bug extra: `getPatientEcgClass` devuelve `tachy`/`brady`/`flat` pero el CSS espera `ecg-tachy`/`ecg-brady`/`ecg-flat` — las variantes de ritmo (taquicardia rosa, bradicardia lenta, línea plana) nunca se aplicaban. También corregido (`ecg-${ecgClass}`).
+- ✅ Consola: 404 de `favicon.ico` — se añadió `<link rel="icon">`.
+- ✅ `assets/icons/`: eliminados los duplicados `icon_192.png`/`icon_512.png` (guion bajo, sin referencias).
+- ✅ Game Over y menú: concordancia "1 listo" / "N listos".
+- ✅ `Economy.save()` y la persistencia de casos fallados ahora envuelven `localStorage.setItem` en try/catch (Safari privado / cuota llena ya no rompe la partida).
+- ⏳ README desactualizado: menciona `js/ui.js` y `tools/validator.js` que no existen; `data/cases_v1.json` y `casos_corregidos_usuario.json` (~300 KB) se publican sin que el runtime los use.
 
 ---
 
@@ -110,14 +112,16 @@ Problemas encontrados:
 
 ## 6. Priorización sugerida
 
-| # | Acción | Esfuerzo | Impacto |
-|---|--------|----------|---------|
-| 1 | B1: fallback del generador visible y no permanente + usar `getPoolSize` para deshabilitar combos vacíos en el menú | Bajo | Alto — hoy el jugador puede pasar la sesión entera sin tocar el banco real |
-| 2 | B2: repaso espaciado para todos los casos reales (excluir solo `MODULAR_`) | Trivial | Alto — activa el 62 % del banco |
-| 3 | B4+B3: quitar Tailwind CDN (12 líneas de CSS), endurecer CSP, auto-hospedar fuentes | Bajo | Alto — offline real y escritorio estable |
-| 4 | B6+B7: revelar respuesta correcta al fallar y feedback antes del Game Over | Bajo | Alto — es el momento de máximo aprendizaje |
-| 5 | `display_title` neutros para los ~15 títulos-spoiler | Medio (editorial) | Alto para el valor didáctico |
-| 6 | Compactar HUD móvil | Medio | Medio |
-| 7 | Sumideros de economía + curva de dificultad visible | Medio | Medio |
-| 8 | `prefers-reduced-motion` + contraste + `aria-live` | Bajo | Medio |
-| 9 | P3 varios (ECG `pathLength`, favicon, plural, íconos duplicados, README) | Trivial | Bajo |
+| # | Acción | Esfuerzo | Impacto | Estado |
+|---|--------|----------|---------|--------|
+| 1 | B1: fallback del generador visible y no permanente + `getPoolSize` en el menú | Bajo | Alto | ✅ Hecho |
+| 2 | B2: repaso espaciado para todos los casos reales (excluir solo `MODULAR_`) | Trivial | Alto | ✅ Hecho |
+| 3 | B4+B3: quitar Tailwind CDN, endurecer CSP, cachear fuentes offline | Bajo | Alto | ✅ Hecho |
+| 4 | B6+B7: revelar respuesta correcta al fallar y feedback antes del Game Over | Bajo | Alto | ✅ Hecho |
+| 5 | `display_title` neutros para los ~15 títulos-spoiler | Medio (editorial) | Alto para el valor didáctico | ⏳ Pendiente |
+| 6 | Compactar HUD móvil | Medio | Medio | ⏳ Pendiente |
+| 7 | Sumideros de economía + curva de dificultad visible | Medio | Medio | ⏳ Pendiente |
+| 8 | `prefers-reduced-motion` + contraste + `aria-live` | Bajo | Medio | ⏳ Pendiente |
+| 9 | P3 varios (typo, shuffle, ECG, favicon, plural, íconos, try/catch) | Trivial | Bajo | ✅ Hecho (falta README) |
+
+Pendientes también: B8 (timeout ignora preferencias y tareas restantes), B9 (narrativa de descompensación) y todo lo editorial de la sección 3 (why_not de segundas tareas, viñetas cortas, teoría antes de la pregunta, `documento_educativo` sin contenido).

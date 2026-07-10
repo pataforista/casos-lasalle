@@ -5,7 +5,7 @@
    - Limpieza de caches: borra TODO lo que no sea el cache actual
    ============================================================================ */
 
-   const CACHE_VERSION = "psycase-v1.0.9";
+   const CACHE_VERSION = "psycase-v1.1.0";
    const CACHE_NAME = `psycase-${CACHE_VERSION}`;
    
    const APP_SHELL = [
@@ -45,27 +45,33 @@
    });
    
    /* -------------------------- ESTRATEGIAS ---------------------------- */
+   // Las peticiones cross-origin sin CORS (CSS/fuentes de Google Fonts) devuelven
+   // respuestas opacas con ok === false; hay que aceptarlas o nunca se cachean.
+   function isCacheable(res) {
+     return res.ok || res.type === "opaque";
+   }
+
    async function cacheFirst(request) {
      const cache = await caches.open(CACHE_NAME);
      const cached = await cache.match(request);
      if (cached) return cached;
-   
+
      const network = await fetch(request);
-     if (network.ok) cache.put(request, network.clone());
+     if (isCacheable(network)) cache.put(request, network.clone());
      return network;
    }
-   
+
    async function staleWhileRevalidate(request) {
      const cache = await caches.open(CACHE_NAME);
      const cached = await cache.match(request);
-   
+
      const networkPromise = fetch(request)
        .then((res) => {
-         if (res.ok) cache.put(request, res.clone());
+         if (isCacheable(res)) cache.put(request, res.clone());
          return res;
        })
        .catch(() => cached);
-   
+
      return cached || networkPromise;
    }
    
@@ -83,11 +89,10 @@
       return;
     }
 
-    // 2) CDN Externos (Fuentes y Tailwind) para soporte offline real
+    // 2) CDN Externos (fuentes) para soporte offline real
     const EXTERNAL_WHITELIST = [
       "fonts.googleapis.com",
-      "fonts.gstatic.com",
-      "cdn.tailwindcss.com"
+      "fonts.gstatic.com"
     ];
     if (EXTERNAL_WHITELIST.includes(url.hostname)) {
       event.respondWith(staleWhileRevalidate(req));

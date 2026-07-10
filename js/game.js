@@ -136,7 +136,7 @@ const Avatars = {
 const Game = (() => {
   const state = {
     lives: GAME_CONFIG.maxLives,
-    timeLeft: GAME_CONFIG.turnSeconds,
+    timeLeft: GAME_CONFIG.baseTurnSeconds,
     timer: null,
     timerStart: 0,
     current: null,
@@ -244,7 +244,8 @@ const Game = (() => {
   }
 
   function saveFailedCase(caseId) {
-    if (!caseId || !caseId.startsWith("REAL_")) return; // Solo guardar casos clínicos reales para el repaso
+    // Guardar todos los casos del banco para el repaso; excluir solo los sintéticos del generador
+    if (!caseId || caseId.startsWith("MODULAR_")) return;
     let failed = getFailedCases();
     let existing = failed.find(item => item.caseId === caseId);
     if (!existing) {
@@ -254,7 +255,7 @@ const Game = (() => {
       existing.level = 0;
       existing.nextReview = Date.now();
     }
-    localStorage.setItem('psycase_failed_cases', JSON.stringify(failed));
+    try { localStorage.setItem('psycase_failed_cases', JSON.stringify(failed)); } catch {}
   }
 
   function promoteFailedCase(caseId) {
@@ -274,7 +275,7 @@ const Game = (() => {
         const delay = item.level === 1 ? 24 * 3600 * 1000 : 72 * 3600 * 1000;
         item.nextReview = Date.now() + delay;
       }
-      localStorage.setItem('psycase_failed_cases', JSON.stringify(failed));
+      try { localStorage.setItem('psycase_failed_cases', JSON.stringify(failed)); } catch {}
     }
   }
 
@@ -351,7 +352,7 @@ const Game = (() => {
             color: ${dueList.length > 0 ? '#fff' : 'rgba(255,255,255,0.4)'}; 
             font-size:16px;" 
             ${dueList.length === 0 ? 'disabled' : ''}>
-            ${dueList.length > 0 ? `📖 Repasar Errores (${dueList.length} listos / ${failedList.length} total)` : `✅ Repaso al día (${failedList.length} en maestría)`}
+            ${dueList.length > 0 ? `📖 Repasar Errores (${dueList.length} ${dueList.length === 1 ? "listo" : "listos"} / ${failedList.length} total)` : `✅ Repaso al día (${failedList.length} en maestría)`}
           </button>
         ` : ""}
         <div class="hero-meta">
@@ -382,6 +383,7 @@ const Game = (() => {
             </select>
           </div>
         </div>
+        <div class="pool-info" id="poolInfo" aria-live="polite"></div>
       </div>
 
       <div class="miami-card">
@@ -391,6 +393,29 @@ const Game = (() => {
         </ul>
       </div>
     `;
+
+    // Reflejar los filtros vigentes y mostrar cuántos casos reales cubre la combinación
+    const selectLevel = $("#selectLevel");
+    const selectDifficulty = $("#selectDifficulty");
+    selectLevel.value = state.filters.educational_level;
+    selectDifficulty.value = state.filters.difficulty;
+
+    const updatePoolInfo = () => {
+      const info = $("#poolInfo");
+      if (!info) return;
+      if (!state.casesReady) { info.textContent = ""; return; }
+      const n = CaseDB.getPoolSize({
+        educational_level: selectLevel.value,
+        difficulty: selectDifficulty.value
+      });
+      info.textContent = n > 0
+        ? `${n} caso${n === 1 ? "" : "s"} del banco clínico con estos filtros`
+        : "⚠️ Sin casos reales para esta combinación: se jugarán casos sintéticos";
+      info.classList.toggle("pool-info--warn", n === 0);
+    };
+    selectLevel.onchange = updatePoolInfo;
+    selectDifficulty.onchange = updatePoolInfo;
+    ensureCasesLoaded().then(updatePoolInfo);
 
     $("#btnStart").onclick = () => {
       root.classList.add("fade-out", "screen-transition");
@@ -464,7 +489,7 @@ const Game = (() => {
                 border: ${dueList.length > 0 ? 'none' : '1px dashed rgba(255, 255, 255, 0.15)'}; 
                 color: ${dueList.length > 0 ? '#fff' : 'rgba(255,255,255,0.4)'};"
                 ${dueList.length === 0 ? 'disabled' : ''}>
-                ${dueList.length > 0 ? `Repasar Errores (${dueList.length} listos / ${failedList.length} total)` : `Repaso al día (${failedList.length} en maestría)`}
+                ${dueList.length > 0 ? `Repasar Errores (${dueList.length} ${dueList.length === 1 ? "listo" : "listos"} / ${failedList.length} total)` : `Repaso al día (${failedList.length} en maestría)`}
               </button>
             ` : ""}
             <button class="option-btn" id="btnMenu" style="justify-content:center; text-align:center;">Volver al Menú</button>
@@ -548,10 +573,11 @@ const Game = (() => {
       state.filters.educational_level = "";
       state.filters.difficulty = "";
     } else {
+      // Si los selects no están en el DOM (ej. reinicio desde Game Over), conservar los filtros previos
       const selectLevel = $("#selectLevel");
       const selectDifficulty = $("#selectDifficulty");
-      state.filters.educational_level = selectLevel ? selectLevel.value : "";
-      state.filters.difficulty = selectDifficulty ? selectDifficulty.value : "";
+      if (selectLevel) state.filters.educational_level = selectLevel.value;
+      if (selectDifficulty) state.filters.difficulty = selectDifficulty.value;
     }
 
     // Reset visual effects
@@ -748,7 +774,12 @@ const Game = (() => {
     const options = [
       { t: task.expected_answer, ok: true },
       ...(Array.isArray(task.distractors) ? task.distractors : []).map(d => ({ t: d, ok: false }))
-    ].sort(() => Math.random() - 0.5);
+    ];
+    // Fisher–Yates: barajado uniforme (sort(random-0.5) sesga la posición de la correcta)
+    for (let i = options.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [options[i], options[j]] = [options[j], options[i]];
+    }
 
     // Badge showing case / task progress or Educational Doc
     const tasksCount = c.tasks ? c.tasks.length : 1;
@@ -756,15 +787,18 @@ const Game = (() => {
     if (c.case_type === "documento_educativo") {
       progressBadge = "Lectura Didáctica";
     } else {
-      progressBadge = tasksCount > 1 
+      progressBadge = tasksCount > 1
         ? `Pregunta ${state.currentTaskIndex + 1}/${tasksCount}`
         : `Caso ${state.solvedCasesCount + 1}`;
     }
+    // Transparencia: avisar cuando el caso no proviene del banco clínico real
+    const isSynthetic = c.metadata?.is_real_data === false || String(c.case_id || "").startsWith("MODULAR_");
+    if (isSynthetic) progressBadge += " · Sintético";
 
     const ecgClass = getPatientEcgClass(c);
     const ecgSvg = `
       <svg viewBox="0 0 100 30" class="ecg-svg" aria-hidden="true">
-        <path d="M 0 15 L 30 15 L 35 12 L 40 18 L 45 15 L 48 5 L 52 28 L 56 15 L 60 17 L 65 15 L 100 15" class="ecg-line ${ecgClass}"></path>
+        <path d="M 0 15 L 30 15 L 35 12 L 40 18 L 45 15 L 48 5 L 52 28 L 56 15 L 60 17 L 65 15 L 100 15" pathLength="100" class="ecg-line ecg-${ecgClass}"></path>
       </svg>
     `;
 
@@ -853,11 +887,9 @@ const Game = (() => {
         });
 
         renderHUD();
-        if (state.lives <= 0) {
-          setTimeout(handleDeath, 1200);
-        } else {
-          showTimeoutFeedback();
-        }
+        // Mostrar siempre la respuesta correcta y su explicación breve;
+        // nextCase() dispara el Game Over si ya no quedan vidas.
+        showTimeoutFeedback();
       }
     }, 100);
   }
@@ -897,13 +929,20 @@ const Game = (() => {
       }
       state.current = state.useGenerator ? Generator.createCase(state.filters) : await CaseDB.pickRandomCase(queryFilters);
     } catch(err) {
-      console.warn("Error loading filtered cases from DB, falling back to Generator:", err);
       if (state.reviewMode) {
         showReviewSuccess();
         return;
       }
-      state.useGenerator = true;
-      state.current = Generator.createCase(state.filters);
+      // Pool agotado por las exclusiones recientes: reintentar permitiendo repetir casos
+      try {
+        state.current = await CaseDB.pickRandomCase({ ...state.filters });
+        state.recentCases = [];
+      } catch(err2) {
+        // No existe ningún caso real con estos filtros: usar el generador SOLO para este turno,
+        // sin cambiar state.useGenerator (el banco real sigue disponible para otros filtros).
+        console.warn("Sin casos reales para los filtros actuales, generando caso sintético:", err2);
+        state.current = Generator.createCase(state.filters);
+      }
     }
 
     if (state.current?.case_id) {
@@ -1079,6 +1118,8 @@ const Game = (() => {
       state.decompensated = false; // ¡El paciente ha sido estabilizado!
     } else {
       btn.classList.add("incorrect");
+      // Revelar cuál era la opción correcta (igual que en timeout)
+      document.querySelectorAll('.option-btn[data-ok="1"]').forEach(b => b.classList.add("correct"));
       if (!state.studyMode && !isEduDoc) {
         state.lives--;
         state.streak = 0;
@@ -1098,15 +1139,12 @@ const Game = (() => {
 
     renderHUD();
 
-    if (state.lives <= 0) {
-      setTimeout(handleDeath, 800);
-    } else {
-      // Correct option text extraction
-      const selectedTextEl = btn.querySelector('.option-text');
-      const selectedText = selectedTextEl ? selectedTextEl.innerText : btn.innerText;
-
-      setTimeout(() => showSmartFeedback(ok, task, selectedText), GAME_CONFIG.modalDelayMs);
-    }
+    // Mostrar la retroalimentación SIEMPRE, incluso al perder la última vida:
+    // es el caso con mayor valor didáctico. advanceNext() dispara el Game Over
+    // al avanzar (manual o auto) cuando lives <= 0.
+    const selectedTextEl = btn.querySelector('.option-text');
+    const selectedText = selectedTextEl ? selectedTextEl.innerText : btn.innerText;
+    setTimeout(() => showSmartFeedback(ok, task, selectedText), GAME_CONFIG.modalDelayMs);
   }
 
   function init() {

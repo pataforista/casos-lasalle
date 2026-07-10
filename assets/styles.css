@@ -552,9 +552,16 @@ body {
   }
 }
 
-/* Safe Area for Mobile */
+/* Contenedor principal (antes clases Tailwind: max-w-2xl mx-auto p-4 min-h-screen flex flex-col justify-center) */
 #app {
+  max-width: 672px;
+  margin: 0 auto;
+  padding: 16px;
   padding-bottom: calc(20px + var(--safe-bottom));
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hudBox {
@@ -1220,6 +1227,20 @@ body {
   letter-spacing: 1px;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.6);
+}
+
+/* Contador de casos disponibles bajo los filtros */
+.pool-info {
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  color: rgba(0, 243, 255, 0.75);
+  min-height: 16px;
+}
+
+.pool-info--warn {
+  color: #ffd166;
 }
 
 /* Keyboard shortcut hint below options */
