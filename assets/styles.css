@@ -1378,7 +1378,10 @@ body {
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor;
   transition: background-position 0.15s steps(1);
-  transform: scale(1.1) translateY(-3%);
+  /* Las celdas ya vienen encuadradas como busto; un leve zoom llena las
+     esquinas redondeadas sin recortar la cabeza (antes translateY(-3%)
+     subía la imagen y cortaba el pelo). */
+  transform: scale(1.04);
 }
 
 /* Accessibility: Support reduced motion settings */
