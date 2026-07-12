@@ -1,2 +1,6 @@
 data/packs/
 data/manifest_v1.json
+
+# Python
+__pycache__/
+*.pyc
