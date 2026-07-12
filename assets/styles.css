@@ -383,10 +383,10 @@ body {
 
 .caseSummary {
   margin-top: 12px;
-  padding: 12px 14px;
-  border-radius: 16px;
-  background: rgba(0, 243, 255, 0.08);
-  border: 1px solid rgba(0, 243, 255, 0.2);
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .caseBody {
@@ -500,13 +500,27 @@ body {
 }
 
 .caseQuestion {
-  margin-top: 12px;
-  padding: 10px 14px;
-  border-radius: 14px;
-  background: rgba(0, 243, 255, 0.08);
-  border: 1px solid rgba(0, 243, 255, 0.25);
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 700;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(255, 0, 255, 0.14), rgba(157, 0, 255, 0.14));
+  border: 1.5px solid rgba(255, 0, 255, 0.45);
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.15);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.caseQuestion::before {
+  content: "❓ Pregunta";
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--miami-pink);
+  margin-bottom: 6px;
 }
 
 .hudMeta {
@@ -609,6 +623,16 @@ body {
     padding: 12px;
     font-size: 16px;
   }
+
+  /* Power-ups a solo ícono + costo: 6 botones con etiqueta completa
+     ocupaban 2-3 filas y empujaban la pregunta fuera de pantalla */
+  .btn-powerup-label {
+    display: none;
+  }
+
+  .btn-powerup {
+    padding: 8px 10px;
+  }
 }
 
 @media (max-width: 380px) {
@@ -702,6 +726,14 @@ body {
   border-color: rgba(255, 255, 255, 0.15);
   background: linear-gradient(135deg, rgba(255, 0, 255, 0.25), rgba(112, 0, 255, 0.2));
   box-shadow: 0 0 18px rgba(255, 0, 255, 0.25);
+}
+
+/* La racha máxima es un dato secundario durante el turno; se oculta
+   en móvil para dejar sitio a la pregunta y las opciones */
+@media (max-width: 480px) {
+  .combo-chip--alt {
+    display: none;
+  }
 }
 
 .combo-label {
@@ -1320,13 +1352,14 @@ body {
 /* Voz del residente: presentación del caso y reacción en el feedback */
 .residentQuote {
   margin-top: 12px;
-  padding: 8px 12px;
+  padding: 9px 12px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border-left: 3px solid rgba(255, 0, 255, 0.5);
-  color: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.06);
+  border-left: 3px solid rgba(255, 0, 255, 0.6);
+  color: rgba(255, 255, 255, 0.92);
   font-style: italic;
-  font-size: 13px;
+  font-weight: 600;
+  font-size: 14px;
   line-height: 1.4;
 }
 
@@ -1336,10 +1369,16 @@ body {
 }
 
 .feedback-resident {
-  margin-bottom: 8px;
-  font-size: 12px;
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border-left: 3px solid rgba(0, 243, 255, 0.6);
+  font-size: 14px;
+  font-weight: 700;
   font-style: italic;
-  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.95);
 }
 
 /* Contador de casos disponibles bajo los filtros */
