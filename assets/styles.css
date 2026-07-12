@@ -218,6 +218,7 @@
   transition: all 0.3s ease;
   animation-duration: 2s;
   animation-iteration-count: infinite;
+  overflow: hidden;
 }
 
 .avatar-svg {
@@ -533,8 +534,8 @@ body {
    queden lo más cerca posible del fold con el timer corriendo */
 @media (max-width: 480px) {
   .miami-card {
-    padding: 16px;
-    margin-bottom: 14px;
+    padding: 12px;
+    margin-bottom: 10px;
   }
 
   /* El título ocupa su propia fila; ECG y badge pasan a la fila siguiente */
@@ -544,45 +545,69 @@ body {
 
   .caseTitle {
     width: 100%;
-    font-size: 17px;
-  }
-
-  .case-card {
-    padding: 14px;
-  }
-
-  .kawaii-avatar {
-    width: 56px;
-    height: 56px;
-    font-size: 28px;
-  }
-
-  .avatar-svg {
-    width: 38px;
-    height: 38px;
-  }
-
-  .hudMeta {
-    margin-top: 10px;
-    gap: 8px;
-  }
-
-  .combo-chip {
-    padding: 6px 12px;
-    gap: 6px;
-  }
-
-  .combo-value {
     font-size: 15px;
   }
 
+  .case-card {
+    padding: 12px;
+  }
+
+  .hudRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .hudBox {
+    gap: 6px;
+  }
+
+  .hudBox .badge {
+    display: none;
+  }
+
+  .kawaii-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .kawaii-tag {
+    display: none;
+  }
+
+  .hudBox div {
+    font-size: 11px;
+  }
+
+  .avatar-svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .hudMeta {
+    margin-top: 8px;
+    gap: 6px;
+  }
+
+  .combo-chip {
+    padding: 4px 8px;
+    gap: 4px;
+  }
+
+  .combo-value {
+    font-size: 13px;
+  }
+
   .hero-title {
-    font-size: 30px;
+    font-size: 26px;
   }
 
   .btn-action {
-    padding: 16px;
-    font-size: 18px;
+    padding: 12px;
+    font-size: 16px;
   }
 }
 
@@ -596,18 +621,12 @@ body {
   }
 
   .kawaii-avatar {
-    width: 48px;
-    height: 48px;
-    font-size: 24px;
-  }
-
-  .avatar-svg {
     width: 32px;
     height: 32px;
   }
 
   .hero-title {
-    font-size: 28px;
+    font-size: 24px;
   }
 }
 
@@ -1346,4 +1365,31 @@ body {
   color: rgba(255, 255, 255, 0.3);
   font-weight: 600;
   margin-top: 6px;
+}
+
+/* Sprite frame inside avatar containers */
+.sprite-frame {
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+  transition: background-position 0.15s steps(1);
+  transform: scale(1.1) translateY(-3%);
+}
+
+/* Accessibility: Support reduced motion settings */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: scroll !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
 }

@@ -33,14 +33,14 @@ const NARRATIVE = {
 
 // --- ROSTER DE RESIDENTES (Fase 1: rotación con identidad propia) ---
 const ROSTER = [
-  { name: "Aguilar",  title: "Dra.", grad: ["#84fab0", "#8fd3f4"], signature: "Ya lo interrogué; te resumo lo importante." },
-  { name: "Solis",    title: "Dr.",  grad: ["#fccb90", "#d57eeb"], signature: "Yo ya le hubiera dado algo, pero mejor dime tú." },
-  { name: "Ríos",     title: "Dra.", grad: ["#a1c4fd", "#c2e9fb"], signature: "Con calma: los datos están completos, la decisión es tuya." },
-  { name: "Mendoza",  title: "Dr.",  grad: ["#fbc2eb", "#a6c1ee"], signature: "No me gusta cómo se ve… ¿lo checas conmigo?" },
-  { name: "Ferrer",   title: "Dra.", grad: ["#f6d365", "#fda085"], signature: "Te lo pongo en una línea: hay que decidir ya." },
-  { name: "Castañeda",title: "Dr.",  grad: ["#96e6a1", "#d4fc79"], signature: "El interrogatorio no me cuadra del todo, júzgalo tú." },
-  { name: "Herrera",  title: "Dra.", grad: ["#e0c3fc", "#8ec5fc"], signature: "La familia está afuera preguntando. ¿Qué les digo?" },
-  { name: "Valdez",   title: "Dr.",  grad: ["#ffecd2", "#fcb69f"], signature: "Tranquilidad… bueno, la que se pueda a esta hora." }
+  { name: "Aguilar",  title: "Dra.", grad: ["#84fab0", "#8fd3f4"], signature: "Ya lo interrogué; te resumo lo importante.", sprite: "Dra. Aguilar.png", cols: 4, rows: 4, pctY: 33.333 },
+  { name: "Solis",    title: "Dr.",  grad: ["#fccb90", "#d57eeb"], signature: "Yo ya le hubiera dado algo, pero mejor dime tú.", sprite: "Dr. Solís.png", cols: 4, rows: 2, pctY: 0 },
+  { name: "Ríos",     title: "Dra.", grad: ["#a1c4fd", "#c2e9fb"], signature: "Con calma: los datos están completos, la decisión es tuya.", sprite: "Dra. Ríos.png", cols: 4, rows: 2, pctY: 0 },
+  { name: "Mendoza",  title: "Dr.",  grad: ["#fbc2eb", "#a6c1ee"], signature: "No me gusta cómo se ve… ¿lo checas conmigo?", sprite: "Dr. Mendoza.png", cols: 4, rows: 2, pctY: 0 },
+  { name: "Ferrer",   title: "Dra.", grad: ["#f6d365", "#fda085"], signature: "Te lo pongo en una línea: hay que decidir ya.", sprite: "Dra. Ferrer.png", cols: 4, rows: 2, pctY: 0 },
+  { name: "Castañeda",title: "Dr.",  grad: ["#96e6a1", "#d4fc79"], signature: "El interrogatorio no me cuadra del todo, júzgalo tú.", sprite: "Dr. Castañeda.png", cols: 4, rows: 1, pctY: 0 },
+  { name: "Herrera",  title: "Dra.", grad: ["#e0c3fc", "#8ec5fc"], signature: "La familia está afuera preguntando. ¿Qué les digo?", sprite: "Dra. Herrera.png", cols: 4, rows: 1, pctY: 0 },
+  { name: "Valdez",   title: "Dr.",  grad: ["#ffecd2", "#fcb69f"], signature: "Tranquilidad… bueno, la que se pueda a esta hora.", sprite: "Dr. Valdez.png", cols: 4, rows: 1, pctY: 0 }
 ];
 
 // Frases por contexto. Las de "presentNormal" incluyen las citas originales de NARRATIVE.residents.
@@ -100,86 +100,69 @@ function pickLine(poolName) {
 }
 
 const Avatars = {
-  // gradColors: [colorInicio, colorFin] — identidad visual propia de cada personaje
-  _generate(svgContent, gradColors, animation, badge) {
-    const uid = Math.random().toString(36).substr(2, 5);
-    const gradId = `grad_${uid}`;
+  // Genera un avatar usando sprite sheets transparentes y contenedores CSS con degradados.
+  _generate(spritePath, cols, rows, mood, animation, badge, gradColors, customPctY = 0) {
     const [c1, c2] = Array.isArray(gradColors) && gradColors.length === 2
       ? gradColors
       : ["#84fab0", "#8fd3f4"];
 
-    const selectedGrad = `
-        <linearGradient id="${gradId}" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="${c1}" />
-          <stop offset="100%" stop-color="${c2}" />
-        </linearGradient>`;
+    let colIdx = 0;
+    if (mood === "happy") colIdx = 2;
+    else if (mood === "shock" || mood === "angry") colIdx = 3;
+
+    // Todas las tiras tienen 4 columnas, por lo que cols-1 es siempre 3
+    const pctX = (colIdx / 3) * 100;
+    const pctY = customPctY;
 
     return `
-      <div class="kawaii-avatar ${animation ? animation : ''}" style="background: transparent;">
-        <svg viewBox="0 0 100 100" class="avatar-svg" style="width:100%; height:100%; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));">
-          <defs>${selectedGrad}</defs>
-          <rect x="10" y="10" width="80" height="80" rx="25" fill="url(#${gradId})" stroke="rgba(255,255,255,0.8)" stroke-width="3" />
-          ${svgContent}
-        </svg>
+      <div class="kawaii-avatar ${animation ? animation : ''}" style="background: linear-gradient(135deg, ${c1}, ${c2}); display: flex; align-items: center; justify-content: center; position: relative; overflow: visible;">
+        <div style="width: 100%; height: 100%; overflow: hidden; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
+          <div class="sprite-frame" style="
+            background-image: url('assets/sprites/${spritePath}');
+            background-size: ${cols * 100}% ${rows * 100}%;
+            background-position: ${pctX}% ${pctY}%;
+          "></div>
+        </div>
         ${badge ? `<div class="kawaii-tag">${badge}</div>` : ""}
       </div>
     `;
   },
 
   resident(name, mood = "normal", gradColors) {
-    const faces = {
-      normal: {
-        eyes: `<circle cx="35" cy="45" r="5" fill="#111"/><circle cx="65" cy="45" r="5" fill="#111"/>`,
-        mouth: `<path d="M40 65 Q50 70 60 65" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>`
-      },
-      happy: {
-        eyes: `<path d="M30 45 Q35 40 40 45" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>
-               <path d="M60 45 Q65 40 70 45" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>`,
-        mouth: `<path d="M35 60 Q50 75 65 60" fill="#ff6b6b" stroke="none"/>`,
-        anim: "bounce"
-      },
-      shock: {
-        eyes: `<line x1="30" y1="40" x2="40" y2="50" stroke="#111" stroke-width="3"/><line x1="40" y1="40" x2="30" y2="50" stroke="#111" stroke-width="3"/>
-               <line x1="60" y1="40" x2="70" y2="50" stroke="#111" stroke-width="3"/><line x1="70" y1="40" x2="60" y2="50" stroke="#111" stroke-width="3"/>`,
-        mouth: `<circle cx="50" cy="65" r="6" fill="none" stroke="#111" stroke-width="3"/>`,
-        anim: "shake"
-      }
-    };
-
-    const config = faces[mood] || faces.normal;
+    const res = ROSTER.find(r => r.name === name) || ROSTER[0];
     const initial = name ? name[0].toUpperCase() : "R";
-
-    const svgContent = `
-      ${config.eyes}
-      <circle cx="25" cy="55" r="4" fill="rgba(255,100,100,0.3)" />
-      <circle cx="75" cy="55" r="4" fill="rgba(255,100,100,0.3)" />
-      ${config.mouth}
-    `;
-
-    return this._generate(svgContent, gradColors, config.anim, initial);
+    const anim = mood === "happy" ? "bounce" : (mood === "shock" ? "shake" : "");
+    return this._generate(res.sprite, res.cols, res.rows, mood, anim, initial, gradColors || res.grad, res.pctY || 0);
   },
 
   boss(mood = "normal") {
-    const faces = {
-      normal: {
-        eyes: `<rect x="25" y="42" width="50" height="8" rx="2" fill="#111"/>`,
-        mouth: `<line x1="40" y1="70" x2="60" y2="70" stroke="#111" stroke-width="3" stroke-linecap="round"/>`
-      },
-      angry: {
-        eyes: `<rect x="25" y="42" width="50" height="8" rx="2" fill="#ff0044"/>
-               <path d="M25 35 L50 45 L75 35" fill="none" stroke="#111" stroke-width="2"/>`,
-        mouth: `<path d="M40 70 Q50 65 60 70" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/>`
+    const anim = mood === "angry" ? "shake" : "";
+    return this._generate("Dr. Celada.png", 4, 1, mood, anim, "BOSS", ["#f5576c", "#f093fb"], 0);
+  },
+
+  patient(caseId, ecgClass) {
+    let hash = 0;
+    if (caseId) {
+      for (let i = 0; i < caseId.length; i++) {
+        hash = caseId.charCodeAt(i) + ((hash << 5) - hash);
       }
-    };
-
-    const config = faces[mood] || faces.normal;
-    const svgContent = `
-      ${config.eyes}
-      ${mood === 'normal' ? '' : '<path d="M85 20 L95 10" stroke="#ff0044" stroke-width="4" />'}
-      ${config.mouth}
-    `;
-
-    return this._generate(svgContent, ["#f5576c", "#f093fb"], mood === 'angry' ? 'shake' : '', "BOSS");
+    }
+    const index = Math.abs(hash) % 3;
+    const patients = [
+      { file: "paciente 1 Joven Adulto.png", cols: 4, rows: 4, pctY: 33.333, grad: ["#ff758c", "#ff7eb3"] },
+      { file: "Paciente 2 Adulta Mayor.png", cols: 4, rows: 1, pctY: 0, grad: ["#f6d365", "#fda085"] },
+      { file: "Paciente 3 Adulto de Mediana Edad.png", cols: 4, rows: 2, pctY: 0, grad: ["#a1c4fd", "#c2e9fb"] }
+    ];
+    const pat = patients[index];
+    let mood = "normal";
+    let anim = "";
+    if (ecgClass === "tachy") {
+      mood = "happy";
+      anim = "shake";
+    } else if (ecgClass === "brady" || ecgClass === "flat") {
+      mood = "shock";
+    }
+    return this._generate(pat.file, pat.cols, pat.rows, mood, anim, "PAC", pat.grad, pat.pctY || 0);
   }
 };
 
@@ -714,8 +697,14 @@ const Game = (() => {
             <span class="combo-value">x${state.streak}</span>
           </div>
           <div class="powerups-row" id="pwrRow">
-             <button class="btn-powerup" id="btnHint" ${Economy.getCoins() < 50 || state.hintUsedInTurn ? 'disabled' : ''}>
-               <span>💡</span> Consultar (50)
+             <button class="btn-powerup" id="btnHint" ${Economy.getCoins() < 50 || state.hintUsedInTurn ? 'disabled' : ''} title="Descartar una opción incorrecta">
+               <span>💡</span> Pista (50)
+             </button>
+             <button class="btn-powerup" id="btnBuyLife" ${Economy.getCoins() < 100 || state.lives >= GAME_CONFIG.maxLives ? 'disabled' : ''} title="Recuperar una vida">
+               <span>❤️</span> +Vida (100)
+             </button>
+             <button class="btn-powerup" id="btnBuyTime" ${Economy.getCoins() < 30 || state.studyMode || isEduDoc ? 'disabled' : ''} title="Añadir 30 segundos al reloj">
+               <span>⏱️</span> +30s (30)
              </button>
              <button class="btn-powerup" id="btnSoundToggle" title="Activar/Silenciar sonido">
                <span>${state.soundEnabled ? '🔊' : '🔇'}</span>
@@ -737,6 +726,12 @@ const Game = (() => {
 
     const hintBtn = $("#btnHint");
     if (hintBtn) hintBtn.onclick = () => useHint();
+
+    const lifeBtn = $("#btnBuyLife");
+    if (lifeBtn) lifeBtn.onclick = () => buyLife();
+
+    const timeBtn = $("#btnBuyTime");
+    if (timeBtn) timeBtn.onclick = () => buyTime();
 
     const soundBtn = $("#btnSoundToggle");
     if (soundBtn) {
@@ -781,6 +776,20 @@ const Game = (() => {
       playTone(600, 0.05);
     }
     renderHUD(); // Update buttons and coins
+  }
+
+  function buyLife() {
+    if (state.lives >= GAME_CONFIG.maxLives || !Economy.spend(100)) return;
+    state.lives++;
+    playTone(880, 0.1);
+    renderHUD();
+  }
+
+  function buyTime() {
+    if (state.studyMode || state.current?.case_type === "documento_educativo" || !Economy.spend(30)) return;
+    state.timeLeft = Math.min(state.timeLeft + 30, state.turnSeconds);
+    playTone(880, 0.1);
+    renderHUD();
   }
 
   function pickTask(caseObj, index = 0) {
@@ -888,10 +897,15 @@ const Game = (() => {
 
     root.innerHTML = `
       <div class="miami-card case-card">
-        <div class="caseHeader">
-          <div class="caseTitle">${escapeHtml(getCaseTitle(c))}</div>
-          ${ecgSvg}
-          <div class="caseBadge">${escapeHtml(progressBadge)}</div>
+        <div class="caseHeader" style="display: flex; align-items: center; gap: 16px;">
+          ${Avatars.patient(c.case_id, ecgClass)}
+          <div style="flex: 1; min-width: 0;">
+            <div class="caseTitle" style="font-size: 16px; margin-bottom: 6px;">${escapeHtml(getCaseTitle(c))}</div>
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+              ${ecgSvg}
+              <div class="caseBadge">${escapeHtml(progressBadge)}</div>
+            </div>
+          </div>
         </div>
         ${presentLine ? `<div class="residentQuote">💬 <strong>${escapeHtml(res.title)} ${escapeHtml(res.name)}:</strong> “${escapeHtml(presentLine)}”</div>` : ""}
         <div class="caseSummary">
@@ -943,6 +957,11 @@ const Game = (() => {
 
       const b = $("#tBar");
       if (b) b.style.width = pct + "%";
+
+      const label = b ? b.parentElement.querySelector(".track-label") : null;
+      if (label && !state.studyMode) {
+        label.textContent = `TIEMPO: ${Math.ceil(state.timeLeft)}s (Dificultad +${Math.floor(state.streak / 3) + 1})`;
+      }
 
       // Hot Zone: Efecto visual sutil cuando queda < 20%
       const isHot = (pct <= 20);

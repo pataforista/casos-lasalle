@@ -64,7 +64,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Psicosis y Criterios Clínicos: Fenomenología y Criterios"
   },
   {
     "case_id": "REAL_GEN_SCH_002_A",
@@ -131,7 +132,8 @@
     "rdoc": [
       "Cognitive Systems",
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Psicosis y Criterios Clínicos: Heterogeneidad Clínica"
   },
   {
     "case_id": "REAL_GEN_SCH_002_B",
@@ -211,7 +213,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Psicosis y Criterios Clínicos: Diagnóstico Diferencial y RDoC"
   },
   {
     "case_id": "REAL_GEN_SUI_001_A",
@@ -410,7 +413,8 @@
     "rdoc": [
       "Negative Valence Systems",
       "Arousal/Regulatory Systems"
-    ]
+    ],
+    "display_title": "Trastorno Trastorno del Estado de Ánimo Mayor: Criterios Diagnósticos"
   },
   {
     "case_id": "REAL_GEN_ADHD_001_A",
@@ -479,7 +483,8 @@
     "rdoc": [
       "Cognitive Systems",
       "Positive Valence Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Neurodesarrollo: Fenotipo y Evolución"
   },
   {
     "case_id": "REAL_GEN_ADHD_002_A",
@@ -546,7 +551,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Neurodesarrollo: Diagnóstico y Circuitos"
   },
   {
     "case_id": "REAL_GEN_ADHD_002_B",
@@ -628,7 +634,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Neurodesarrollo: Neurobiología y RDoC"
   },
   {
     "case_id": "REAL_GEN_DELIR_001_A",
@@ -919,7 +926,8 @@
       "Arousal/Regulatory Systems",
       "Cognitive Systems",
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Afecto: Definiciones"
   },
   {
     "case_id": "REAL_GEN_BIP_002_A",
@@ -988,7 +996,8 @@
       "Positive Valence Systems",
       "Arousal/Regulatory Systems",
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Afecto: Neurobiología y Manejo"
   },
   {
     "case_id": "REAL_GEN_BIP_002_B",
@@ -1057,7 +1066,8 @@
       "Positive Valence Systems",
       "Arousal/Regulatory Systems",
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Afecto: RDoC y Mecanismos"
   },
   {
     "case_id": "REAL_GEN_ASD_001_A",
@@ -1982,7 +1992,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Estado de Ánimo: Rasgos Melancólicos"
   },
   {
     "case_id": "EDU_04_ANSIEDAD",
@@ -2234,7 +2245,8 @@
     ],
     "rdoc": [
       "Social Processes"
-    ]
+    ],
+    "display_title": "Neurodesarrollo: Trastorno del Neurodesarrollo Nivel 1 en Adultos"
   },
   {
     "case_id": "EDU_07_TDAH",
@@ -2333,7 +2345,8 @@
     "rdoc": [
       "Cognitive Systems",
       "Positive Valence Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Neurodesarrollo: Fenotipo Adulto"
   },
   {
     "case_id": "EDU_08_IMPULSOS",
@@ -2513,7 +2526,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Ansiedad y Conductas Repetitivas: Función de la Compulsión"
   },
   {
     "case_id": "EDU_10_SUBST",
@@ -2851,7 +2865,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Urgencias: Toxicidad por Psicofármacos"
   },
   {
     "case_id": "EDU_17_SEXUAL",
@@ -2940,7 +2955,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Sexualidad: Efectos Adversos de Antidepresivos"
   },
   {
     "case_id": "EDU_18_TCA",
@@ -3028,7 +3044,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Conducta Alimentaria: Criterios de Ingreso en Trastorno de la Conducta Alimentaria"
   },
   {
     "case_id": "EDU_19_PERS",
@@ -3126,7 +3143,8 @@
     "rdoc": [
       "Negative Valence Systems",
       "Positive Valence Systems"
-    ]
+    ],
+    "display_title": "Personalidad: Rasgos de la Personalidad (Trastorno de la Personalidad)"
   },
   {
     "case_id": "EDU_20_TALLER",
@@ -3204,7 +3222,8 @@
     "rdoc": [
       "Arousal/Regulatory Systems",
       "Sensorimotor Systems"
-    ]
+    ],
+    "display_title": "Alteraciones Psicomotoras: Diagnóstico y Manejo"
   },
   {
     "case_id": "EDU_21_ANSIEDAD_GAD",
@@ -3280,7 +3299,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Ansiedad y Preocupación (Trastorno de Ansiedad): Diferencial"
   },
   {
     "case_id": "CLIN_001_PANICO",
@@ -3345,7 +3365,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Urgencias de Ansiedad: Crisis vs. Ansiedad y Preocupación"
   },
   {
     "case_id": "CLIN_002_FOBIA_SOCIAL",
@@ -3410,7 +3431,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Ansiedad y Fobias: Ansiedad de Actuación"
   },
   {
     "case_id": "CLIN_003_ANOREXIA",
@@ -3475,7 +3497,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Trastorno de la Conducta Alimentaria Nerviosa: Criterios Diagnósticos"
   },
   {
     "case_id": "CLIN_004_BULIMIA",
@@ -3540,7 +3563,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Caso Clínico: Mujer de 22 años"
   },
   {
     "case_id": "CLIN_005_TDM_ESPECIFICADOR",
@@ -3605,7 +3629,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Estado de Ánimo: Especificador Atípico"
   },
   {
     "case_id": "CLIN_006_TRASTORNO_ADAPTACION",
@@ -3670,7 +3695,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Caso Clínico: Mujer de 30 años"
   },
   {
     "case_id": "CLIN_007_TOC_INSIGHT",
@@ -3735,7 +3761,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Ansiedad y Conductas Repetitivas: Niveles de Insight"
   },
   {
     "case_id": "CLIN_008_HIPOCONDRIA",
@@ -3867,7 +3894,8 @@
     ],
     "rdoc": [
       "Sensorimotor Systems"
-    ]
+    ],
+    "display_title": "Caso Clínico: Mujer de 25 años"
   },
   {
     "case_id": "CLIN_010_TRASTORNO_FACTICIO",
@@ -3934,7 +3962,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Producción Intencionada de Síntomas (Síndrome de Caso Clínico de Simulación)"
   },
   {
     "case_id": "CLIN_011_ABSTINENCIA_ALCOHOL",
@@ -4001,7 +4030,8 @@
     "rdoc": [
       "Arousal/Regulatory Systems",
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Síndrome de Soporte de Soporte por Abstinencia por Consumo de Sustancias"
   },
   {
     "case_id": "CLIN_012_DUELO_COMPLICADO",
@@ -4068,7 +4098,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Reacción ante Pérdidas Afectivas vs. Trastorno del Estado de Ánimo"
   },
   {
     "case_id": "CLIN_013_INSOMNIO",
@@ -4133,7 +4164,8 @@
     ],
     "rdoc": [
       "Arousal/Regulatory Systems"
-    ]
+    ],
+    "display_title": "Trastorno de Alteraciones del Ciclo Vigilia-Sueño: Criterios"
   },
   {
     "case_id": "CLIN_014_NARCOLEPSIA",
@@ -4194,7 +4226,8 @@
     "hitop": [],
     "rdoc": [
       "Arousal/Regulatory Systems"
-    ]
+    ],
+    "display_title": "Caso Clínico: Joven de 20 años"
   },
   {
     "case_id": "CLIN_015_TRASTORNO_PERSONALIDAD_LIMITE_CRITERIOS",
@@ -4261,7 +4294,8 @@
     "rdoc": [
       "Negative Valence Systems",
       "Positive Valence Systems"
-    ]
+    ],
+    "display_title": "Trastorno de la Personalidad: Criterios DSM-5"
   },
   {
     "case_id": "CLIN_016_TRASTORNO_PERSONALIDAD_ANTISOCIAL",
@@ -4326,7 +4360,8 @@
     ],
     "rdoc": [
       "Positive Valence Systems"
-    ]
+    ],
+    "display_title": "Caso Clínico: Hombre de 28 años"
   },
   {
     "case_id": "CLIN_017_EFECTOS_ADVERSOS_ISRS",
@@ -4391,7 +4426,8 @@
     ],
     "rdoc": [
       "Arousal/Regulatory Systems"
-    ]
+    ],
+    "display_title": "Efectos Adversos de ISRS: Toxicidad por Psicofármacos Leve"
   },
   {
     "case_id": "CLIN_018_ANTIPSICOTICOS_METABOLICOS",
@@ -4718,7 +4754,8 @@
     "hitop": [],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Trastorno Deterioro Cognitivo Vascular: Inicio Escalonado"
   },
   {
     "case_id": "HOSP_003_DEPRESION_POSTPARTO",
@@ -4783,7 +4820,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Estado de Ánimo Postparto: 'Maternity Blues' vs. Trastorno del Estado de Ánimo"
   },
   {
     "case_id": "HOSP_004_MANIA_CRITERIOS",
@@ -4850,7 +4888,8 @@
     "rdoc": [
       "Arousal/Regulatory Systems",
       "Positive Valence Systems"
-    ]
+    ],
+    "display_title": "Caso Clínico: Hombre de 30 años"
   },
   {
     "case_id": "HOSP_005_ESQUIZOFRENIA_PROGNOSTICO",
@@ -4915,7 +4954,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Psicosis y Criterios Clínicos: Factores de Buen Pronóstico"
   },
   {
     "case_id": "HOSP_006_TRASTORNO_CORTA_DURACION",
@@ -4980,7 +5020,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Espectro de la Esquizofrenia: Criterios Temporales"
   },
   {
     "case_id": "HOSP_007_INDICACIONES_TEC",
@@ -5173,7 +5214,8 @@
     "rdoc": [
       "Cognitive Systems",
       "Arousal/Regulatory Systems"
-    ]
+    ],
+    "display_title": "Encefalopatía de Urgencia Neuro-Nutricional"
   },
   {
     "case_id": "HOSP_010_INTOXICACION_LITIO",
@@ -5234,7 +5276,8 @@
     "hitop": [],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Urgencias por Consumo de Sustancias o Fármacos Aguda por Litio: Manejo"
   },
   {
     "case_id": "HOSP_011_PARADIGMA_REDUCCION_DAÑOS",
@@ -5299,7 +5342,8 @@
     ],
     "rdoc": [
       "Arousal/Regulatory Systems"
-    ]
+    ],
+    "display_title": "Reducción de Daños en Consumo de Sustancias"
   },
   {
     "case_id": "HOSP_012_CRISIS_AGITACION_AGUDO",
@@ -5360,7 +5404,8 @@
     "hitop": [],
     "rdoc": [
       "Arousal/Regulatory Systems"
-    ]
+    ],
+    "display_title": "ProAnsiedad y Conductas Repetitivasolo de Protocolo de Urgencias"
   },
   {
     "case_id": "HOSP_013_TCA_BULIMIA_SIGNOS",
@@ -5425,7 +5470,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Signos Físicos en Trastorno de la Conducta Alimentaria Nerviosa"
   },
   {
     "case_id": "HOSP_014_COMPLICACION_ANTIPSICOTICOS",
@@ -5618,7 +5664,8 @@
     ],
     "rdoc": [
       "Arousal/Regulatory Systems"
-    ]
+    ],
+    "display_title": "Toxicidad por Psicofármacos Severo"
   },
   {
     "case_id": "HOSP_017_REACCION_COCAINA",
@@ -5683,7 +5730,8 @@
     ],
     "rdoc": [
       "Arousal/Regulatory Systems"
-    ]
+    ],
+    "display_title": "Urgencias por Consumo de Sustancias o Fármacos por Cocaína: Manejo Inicial"
   },
   {
     "case_id": "HOSP_018_DEMENCIA_FRONTOTEMPORAL",
@@ -5746,7 +5794,8 @@
     "rdoc": [
       "Negative Valence Systems",
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Caso Clínico: Hombre de 55 años"
   },
   {
     "case_id": "HOSP_019_TDAH_NIÑOS_CRITERIOS",
@@ -5815,7 +5864,8 @@
     "rdoc": [
       "Cognitive Systems",
       "Positive Valence Systems"
-    ]
+    ],
+    "display_title": "Caso Clínico: Niño de 8 años"
   },
   {
     "case_id": "HOSP_020_PSICOSIS_BREVE",
@@ -5945,7 +5995,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Trastorno de Ansiedad y Preocupación: Preocupación Excesiva"
   },
   {
     "case_id": "REAL_GEN_PANIC_001_A",
@@ -6010,7 +6061,8 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Urgencias de Ansiedad: Crisis Inesperadas"
   },
   {
     "case_id": "REAL_GEN_SAD_001_A",
@@ -6140,7 +6192,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Ansiedad y Conductas Repetitivas: Obsesiones y Compulsiones"
   },
   {
     "case_id": "REAL_GEN_PTSD_003_A",
@@ -6270,7 +6323,8 @@
     ],
     "rdoc": [
       "Positive Valence Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Afecto: Episodio Hipomaníaco vs. Maníaco"
   },
   {
     "case_id": "REAL_GEN_SUD_001_A",
@@ -6335,7 +6389,8 @@
     ],
     "rdoc": [
       "Arousal/Regulatory Systems"
-    ]
+    ],
+    "display_title": "Trastorno por Consumo de Consumo de Sustancias: Criterios"
   },
   {
     "case_id": "REAL_GEN_NCD_001_A",
@@ -6396,7 +6451,8 @@
     "hitop": [],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Trastorno Deterioro Cognitivo Mayor: Trastorno Deterioro Cognitivo"
   },
   {
     "case_id": "REAL_GEN_ASD_003_A",
@@ -6461,7 +6517,8 @@
     ],
     "rdoc": [
       "Social Processes"
-    ]
+    ],
+    "display_title": "Caso Clínico: Niño de 4 años"
   },
   {
     "case_id": "REAL_GEN_ADHD_003_A",
@@ -6528,7 +6585,8 @@
     ],
     "rdoc": [
       "Cognitive Systems"
-    ]
+    ],
+    "display_title": "Trastorno del Neurodesarrollo: Subtipos y Persistencia en Adultos"
   },
   {
     "case_id": "REAL_GEN_TCA_001_A",
@@ -6593,6 +6651,7 @@
     ],
     "rdoc": [
       "Negative Valence Systems"
-    ]
+    ],
+    "display_title": "Trastorno por Trastorno Alimentario: Sin Conductas Compensatorias"
   }
 ]

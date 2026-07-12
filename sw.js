@@ -5,7 +5,7 @@
    - Limpieza de caches: borra TODO lo que no sea el cache actual
    ============================================================================ */
 
-   const CACHE_VERSION = "psycase-v1.2.1";
+   const CACHE_VERSION = "psycase-v1.3.2";
    const CACHE_NAME = `psycase-${CACHE_VERSION}`;
    
    const APP_SHELL = [
@@ -23,7 +23,20 @@
      "./assets/icons/icon-512.png",
    
      "./data/manifest_v1.json",
-     "./data/packs/cases_real_v1.json"
+     "./data/packs/cases_real_v1.json",
+
+     "./assets/sprites/Dr. Castañeda.png",
+     "./assets/sprites/Dr. Celada.png",
+     "./assets/sprites/Dr. Mendoza.png",
+     "./assets/sprites/Dr. Solís.png",
+     "./assets/sprites/Dr. Valdez.png",
+     "./assets/sprites/Dra. Aguilar.png",
+     "./assets/sprites/Dra. Ferrer.png",
+     "./assets/sprites/Dra. Herrera.png",
+     "./assets/sprites/Dra. Ríos.png",
+     "./assets/sprites/paciente 1 Joven Adulto.png",
+     "./assets/sprites/Paciente 2 Adulta Mayor.png",
+     "./assets/sprites/Paciente 3 Adulto de Mediana Edad.png"
    ];
    
    /* ----------------------------- INSTALL ----------------------------- */
