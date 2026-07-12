@@ -16,8 +16,11 @@ Este script, para cada hoja:
 import os
 import numpy as np
 from PIL import Image
+from scipy import ndimage
 
-SRC = "assets/sprites"
+# Directorio con las HOJAS ORIGINALES (sin procesar). Se define por variable de
+# entorno para no leer nunca la propia salida ya reextraída de assets/sprites.
+SRC = os.environ.get("SRCDIR", "assets/sprites_src")
 CELL = 512  # tamaño final de cada celda cuadrada
 
 # Ajuste de encuadre por hoja: (K = factor ancho-cabeza -> lado del cuadro,
@@ -71,6 +74,45 @@ def dechroma_magenta(arr):
     return arr
 
 
+def _disk(r):
+    y, x = np.ogrid[-r:r + 1, -r:r + 1]
+    return x * x + y * y <= r * r
+
+
+def clean_glow(arr, close_r=7, min_speck=30):
+    """Cierra el hueco transparente entre el cuerpo y el 'glow' flotante.
+
+    El arte original trae un contorno luminoso de 1-2 px separado del cuerpo
+    por una franja transparente de ~10 px: sobre cualquier fondo se ve como
+    un aro hueco alrededor de la figura. Aquí se puentea ese hueco (closing),
+    se rellenan huecos internos, se quitan motas sueltas y los pixeles que
+    pasan a ser opacos toman el color del pixel opaco más cercano (para que
+    la franja rellenada no quede negra).
+    """
+    a = arr[:, :, 3]
+    mask = a > 0
+    st = _disk(close_r)
+    closed = ndimage.binary_closing(mask, structure=st)
+    closed = ndimage.binary_fill_holes(closed)
+    # Quita componentes diminutos (ruido de glow), conserva gotas/marcas.
+    lbl, n = ndimage.label(closed)
+    if n > 0:
+        sizes = ndimage.sum(np.ones_like(lbl), lbl, index=range(1, n + 1))
+        small = np.where(sizes < min_speck)[0] + 1
+        if len(small):
+            closed[np.isin(lbl, small)] = False
+    new = closed & ~mask
+    out = arr.copy()
+    if new.any():
+        idx = ndimage.distance_transform_edt(
+            ~mask, return_distances=False, return_indices=True)
+        rgb = arr[:, :, :3]
+        nearest = rgb[idx[0], idx[1]]
+        out[:, :, :3] = np.where(new[:, :, None], nearest, rgb)
+    out[:, :, 3] = np.where(closed, 255, 0).astype(np.uint8)
+    return out
+
+
 def erode_alpha(arr, px=1):
     """Encoge el alfa 'px' pixeles para eliminar franjas de croma en los bordes."""
     a = arr[:, :, 3]
@@ -114,6 +156,10 @@ def process(fname, tune):
     if fname in CHROMA_MAGENTA:
         arr = dechroma_magenta(arr)
         arr = erode_alpha(arr, 2)
+    # Las hojas-escena son paneles opacos (sin glow flotante); el resto trae
+    # el contorno luminoso separado que hay que cerrar.
+    if fname not in SCENE_BOXES:
+        arr = clean_glow(arr)
     W = arr.shape[1]
     cw = W // 4
 
