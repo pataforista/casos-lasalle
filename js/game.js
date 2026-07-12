@@ -700,19 +700,19 @@ const Game = (() => {
           </div>
           <div class="powerups-row" id="pwrRow">
              <button class="btn-powerup" id="btnHint" ${Economy.getCoins() < 50 || state.hintUsedInTurn ? 'disabled' : ''} title="Descartar una opción incorrecta">
-               <span>💡</span> Pista (50)
+               <span>💡</span><span class="btn-powerup-label"> Pista</span><span class="btn-powerup-cost"> (50)</span>
              </button>
              <button class="btn-powerup" id="btnBuyLife" ${Economy.getCoins() < 100 || state.lives >= GAME_CONFIG.maxLives ? 'disabled' : ''} title="Recuperar una vida">
-               <span>❤️</span> +Vida (100)
+               <span>❤️</span><span class="btn-powerup-label"> +Vida</span><span class="btn-powerup-cost"> (100)</span>
              </button>
              <button class="btn-powerup" id="btnBuyTime" ${Economy.getCoins() < 30 || state.studyMode || isEduDoc ? 'disabled' : ''} title="Añadir 30 segundos al reloj">
-               <span>⏱️</span> +30s (30)
+               <span>⏱️</span><span class="btn-powerup-label"> +30s</span><span class="btn-powerup-cost"> (30)</span>
              </button>
              <button class="btn-powerup" id="btnSoundToggle" title="Activar/Silenciar sonido">
                <span>${state.soundEnabled ? '🔊' : '🔇'}</span>
              </button>
              <button class="btn-powerup" id="btnAutoToggle" title="Auto-avance de retroalimentación">
-               <span>${state.autoAdvance ? '⏱️ Auto' : '⏸️ Manual'}</span>
+               <span>${state.autoAdvance ? '⏱️' : '⏸️'}</span><span class="btn-powerup-label"> ${state.autoAdvance ? 'Auto' : 'Manual'}</span>
              </button>
              <button class="btn-powerup" id="btnMenuFromGame" title="Volver al menú principal">
                <span>🏠</span>
