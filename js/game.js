@@ -910,12 +910,12 @@ const Game = (() => {
           </div>
         </div>
         ${presentLine ? `<div class="residentQuote">💬 <strong>${escapeHtml(res.title)} ${escapeHtml(res.name)}:</strong> “${escapeHtml(presentLine)}”</div>` : ""}
+        ${questionText ? `<div class="caseQuestion">${escapeHtml(questionText)}</div>` : ""}
         <div class="caseSummary">
           <div class="caseLabel">Lectura rápida</div>
           <div class="caseBody">${escapeHtml(summary)}</div>
         </div>
         ${details ? `<details class="caseDetails"><summary>Ver detalles</summary><div class="caseBody">${escapeHtml(details)}</div></details>` : ""}
-        ${questionText ? `<div class="caseQuestion">${escapeHtml(questionText)}</div>` : ""}
         ${consequenceText ? `<div class="caseAside">${escapeHtml(consequenceText)}</div>` : ""}
       </div>
       <div class="options">
