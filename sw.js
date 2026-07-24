@@ -5,7 +5,7 @@
    - Limpieza de caches: borra TODO lo que no sea el cache actual
    ============================================================================ */
 
-   const CACHE_VERSION = "psycase-v1.4.1";
+   const CACHE_VERSION = "psycase-v1.5.0";
    const CACHE_NAME = `psycase-${CACHE_VERSION}`;
    
    const APP_SHELL = [
@@ -45,6 +45,13 @@
        caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL))
      );
      self.skipWaiting();
+   });
+
+   /* ----------------------------- MESSAGE ----------------------------- */
+   self.addEventListener("message", (event) => {
+     if (event.data && event.data.type === "SKIP_WAITING") {
+       self.skipWaiting();
+     }
    });
    
    /* ----------------------------- ACTIVATE ---------------------------- */

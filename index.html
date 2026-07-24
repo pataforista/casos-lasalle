@@ -94,11 +94,16 @@
     if ("serviceWorker" in navigator) {
       window.addEventListener("load", async () => {
         try {
-          const reg = await navigator.serviceWorker.register("./sw.js");
+          const reg = await navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" });
           logDebug("[sw] registered");
 
           // Forzar la búsqueda de actualizaciones del Service Worker al cargar la página
           reg.update();
+
+          // Si ya hay un SW esperando activación, enviarle SKIP_WAITING
+          if (reg.waiting) {
+            reg.waiting.postMessage({ type: "SKIP_WAITING" });
+          }
 
           // Escuchar cambios en la instalación
           reg.addEventListener("updatefound", () => {
@@ -107,8 +112,10 @@
               installingWorker.addEventListener("statechange", () => {
                 if (installingWorker.state === "installed") {
                   if (navigator.serviceWorker.controller) {
-                    logDebug("[sw] Nueva versión detectada, recargando...");
-                    window.location.reload();
+                    logDebug("[sw] Nueva versión detectada, notificando recarga...");
+                    if (installingWorker) {
+                      installingWorker.postMessage({ type: "SKIP_WAITING" });
+                    }
                   } else {
                     logDebug("[sw] Contenido cacheado para uso offline.");
                   }
