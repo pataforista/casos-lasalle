@@ -1,10 +1,38 @@
+/**
+ * update_cases.js — migración puntual del banco de casos.
+ *
+ * Aplica modified_cases.json sobre el pack real: elimina 8 casos, reemplaza los
+ * corregidos y añade los nuevos.
+ *
+ * CUIDADO: reescribe el banco clínico. Por eso es dry-run por defecto y sólo
+ * escribe con --write.
+ *
+ * Uso:
+ *   node tools/update_cases.js            (informa, no escribe)
+ *   node tools/update_cases.js --write    (aplica)
+ *
+ * HISTORIAL: esta herramienta dejó la app sin banco de casos. Escribía el pack
+ * como cases_real_v1_final.json (nombre que nunca se versionó) y machacaba el
+ * manifest con un índice de la forma [{pack, cases:[{id,title}]}], que
+ * js/caseLoader.js no sabe leer: getPoolSize() devolvía 1 y todas las partidas
+ * caían al generador sintético. Ahora escribe sobre el pack canónico y el
+ * manifest lo construye tools/lib/manifest.js, que valida antes de guardar.
+ */
+
 const fs = require('fs');
 const path = require('path');
+const { buildManifest, writeManifest } = require('./lib/manifest');
 
-const originalPackPath = path.join(__dirname, '../data/packs/cases_real_v1.json');
+const WRITE = process.argv.includes('--write');
+
+const dataDir = path.join(__dirname, '..', 'data');
+const REAL_PACK_FILE = 'cases_real_v1.json';
+const originalPackPath = path.join(dataDir, 'packs', REAL_PACK_FILE);
 const modifiedCasesPath = path.join(__dirname, 'modified_cases.json');
-const finalPackPath = path.join(__dirname, '../data/packs/cases_real_v1_final.json');
-const manifestPath = path.join(__dirname, '../data/manifest_v1.json');
+// Se escribe sobre el pack canónico: un "…_final.json" aparte era justo lo que
+// dejaba al manifest apuntando a un archivo que no existía en el repositorio.
+const finalPackPath = originalPackPath;
+const manifestPath = path.join(dataDir, 'manifest_v1.json');
 
 // The 8 cases to eliminate as explicitly stated by the user
 const idsToRemove = [
@@ -66,10 +94,6 @@ function run() {
   console.log(`Added: ${addedCount}`);
   console.log(`Final case count: ${finalCases.length}`);
 
-  if (finalCases.length !== 87) {
-    console.error(`ERROR: Expected 87 cases, got ${finalCases.length}`);
-  }
-
   // Validate for duplicates
   const idSet = new Set();
   let hasDuplicates = false;
@@ -80,47 +104,31 @@ function run() {
     }
     idSet.add(c.case_id);
   }
-  
+
   if (hasDuplicates) {
     console.error("Aborting due to duplicates.");
     process.exit(1);
   }
 
-  // Save the new pack
+  // El manifest se arma con el formato único y se valida antes de tocar disco,
+  // así que un fallo aquí deja los datos como estaban.
+  const manifest = buildManifest({
+    realPack: { file: REAL_PACK_FILE, cases: finalCases },
+    synthPacks: [],
+    version: 'v1'
+  });
+
+  if (!WRITE) {
+    console.log(`\n(dry-run) Se escribirían ${finalCases.length} casos en packs/${REAL_PACK_FILE}`);
+    console.log(`(dry-run) y ${manifest.index.length} entradas en manifest_v1.json.`);
+    console.log('(dry-run) Usa --write para aplicar. Reescribe el banco clínico.');
+    return;
+  }
+
   fs.writeFileSync(finalPackPath, JSON.stringify(finalCases, null, 2));
   console.log(`Saved final pack to ${finalPackPath}`);
 
-  // Generate new manifest
-  let manifest;
-  try {
-    manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
-  } catch (e) {
-    manifest = {
-      version: "1.0",
-      name: "Casos Lasalle (Versión Pregrado)",
-      description: "Banco de casos clínicos alineados al syllabus y enfocados en diagnóstico y manejo inicial.",
-      index: [{ pack: "", cases: [] }]
-    };
-  }
-
-  // Handle both array format and object format for manifest
-  let manifestObj = Array.isArray(manifest) ? { version: "1.1", index: manifest } : manifest;
-  if (!manifestObj.index || manifestObj.index.length === 0) {
-     manifestObj.index = [{}];
-  }
-
-  manifestObj.total_cases = finalCases.length;
-  manifestObj.index = [
-    {
-      pack: "packs/cases_real_v1_final.json",
-      cases: finalCases.map(c => ({
-        id: c.case_id,
-        title: c.title || c.display_title
-      }))
-    }
-  ];
-
-  fs.writeFileSync(manifestPath, JSON.stringify(manifestObj, null, 2));
+  writeManifest(manifestPath, manifest, dataDir);
   console.log(`Saved manifest to ${manifestPath}`);
 }
 

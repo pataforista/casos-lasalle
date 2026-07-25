@@ -15,6 +15,8 @@
 
 const fs = require("fs");
 const path = require("path");
+// El formato del manifest vive en un solo sitio: ver tools/lib/manifest.js.
+const { buildManifest, writeManifest, isReal } = require("./lib/manifest");
 
 function readJson(p) { return JSON.parse(fs.readFileSync(path.resolve(p), "utf-8")); }
 function writeJson(p, obj) {
@@ -22,7 +24,6 @@ function writeJson(p, obj) {
   fs.mkdirSync(path.dirname(abs), { recursive: true });
   fs.writeFileSync(abs, JSON.stringify(obj, null, 2), "utf-8");
 }
-function uniq(a) { return Array.from(new Set((a || []).filter(Boolean))); }
 
 function parseFlags(argv) {
   const flags = {};
@@ -33,28 +34,6 @@ function parseFlags(argv) {
     }
   }
   return flags;
-}
-
-function today() {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
-}
-
-function collectLabelsFromCase(c) {
-  const hitop = [];
-  const rdoc = [];
-  const chunks = Array.isArray(c.source_chunks) ? c.source_chunks : [];
-  for (const ch of chunks) {
-    if (ch?.labels) {
-      if (Array.isArray(ch.labels.hitop)) hitop.push(...ch.labels.hitop);
-      if (Array.isArray(ch.labels.rdoc)) rdoc.push(...ch.labels.rdoc);
-    }
-    if (ch?.label_refs) {
-      if (Array.isArray(ch.label_refs.hitop)) hitop.push(...ch.label_refs.hitop);
-      if (Array.isArray(ch.label_refs.rdoc)) rdoc.push(...ch.label_refs.rdoc);
-    }
-  }
-  return { hitop: uniq(hitop), rdoc: uniq(rdoc) };
 }
 
 function chunkIntoPacks(arr, packSize) {
@@ -85,8 +64,7 @@ function main() {
     if (!c.case_id || seen.has(c.case_id)) continue;
     seen.add(c.case_id);
 
-    const isReal = !!(c.metadata && c.metadata.is_real_data === true);
-    (isReal ? real : synth).push(c);
+    (isReal(c) ? real : synth).push(c);
   }
 
   const packsDir = path.join(outDir, "packs");
@@ -106,53 +84,26 @@ function main() {
     writeJson(path.join(packsDir, name), p);
   });
 
-  // manifest index con campo pack
-  const index = [];
-  const add = (c, packName) => {
-    const labels = collectLabelsFromCase(c);
-    index.push({
-      case_id: c.case_id,
-      title: c.title || "",
-      difficulty: c.difficulty || "",
-      educational_level: c.educational_level || "",
-      case_type: c.case_type || "",
-      is_real_data: !!(c.metadata && c.metadata.is_real_data === true),
-      hitop: labels.hitop,
-      rdoc: labels.rdoc,
-      pack: `packs/${packName}`
-    });
-  };
-
-  real.forEach(c => add(c, realPackName));
-  synthPacks.forEach((p, idx) => p.forEach(c => add(c, synthNames[idx])));
-
-  const manifest = {
+  // El índice y su validación salen de tools/lib/manifest.js: writeManifest()
+  // se niega a escribir algo que js/caseLoader.js no sepa leer.
+  const manifest = buildManifest({
+    realPack: { file: realPackName, cases: real },
+    synthPacks: synthPacks.map((p, idx) => ({ file: synthNames[idx], cases: p })),
     version,
-    updated: today(),
-    counts: {
-      total: index.length,
-      real: real.length,
-      synthetic: synth.length,
-      synth_packs: synthNames.length,
-      pack_size: packSize
-    },
-    packs: {
-      real: `packs/${realPackName}`,
-      synth: synthNames.map(n => `packs/${n}`)
-    },
-    index
-  };
+    packSize
+  });
 
   // Nombre EXACTO que usa tu loader:
   const manifestPath = path.join(outDir, `manifest_${version}.json`);
-  writeJson(manifestPath, manifest);
+  writeManifest(manifestPath, manifest, outDir);
 
   // Conveniencia: copiar a manifest_v1.json si version=v1
   if (version === "v1") {
-    writeJson(path.join(outDir, "manifest_v1.json"), manifest);
+    writeManifest(path.join(outDir, "manifest_v1.json"), manifest, outDir);
   }
 
   console.log("✅ Packs + manifest generados");
+  console.log(`   ${manifest.index.length} casos (${real.length} reales, ${synth.length} sintéticos)`);
   console.log("Manifest:", path.resolve(version === "v1" ? path.join(outDir, "manifest_v1.json") : manifestPath));
 }
 
