@@ -279,6 +279,12 @@ body {
     radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.03) 0%, rgba(0, 0, 0, 0) 70%);
   background-size: 40px 40px, 40px 40px, 100% 100%;
   background-attachment: fixed;
+  animation: bg-scroll 20s linear infinite;
+}
+
+@keyframes bg-scroll {
+  0% { background-position: 0 0, 0 0, center; }
+  100% { background-position: 0 40px, 40px 0, center; }
 }
 
 .hud-font {
@@ -286,18 +292,19 @@ body {
 }
 
 .miami-card {
-  background: var(--glass-bg);
+  background: rgba(10, 5, 25, 0.7);
   border: 1px solid var(--glass-border);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
   border-radius: 24px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
   padding: 24px;
   margin-bottom: 20px;
   position: relative;
   overflow: hidden;
+  animation: pop-in 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .miami-card::before {
@@ -397,14 +404,14 @@ body {
   margin-top: 12px;
   padding: 10px 14px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .caseBody {
-  color: rgba(255, 255, 255, 0.82);
-  line-height: 1.45;
-  font-size: 15px;
+  color: #ffffff;
+  line-height: 1.6;
+  font-size: 17px;
 }
 
 .caseDetails {
@@ -514,14 +521,13 @@ body {
 .caseQuestion {
   margin-top: 14px;
   padding: 14px 16px;
-  border-radius: 16px;
-  background: linear-gradient(135deg, rgba(255, 0, 255, 0.14), rgba(157, 0, 255, 0.14));
-  border: 1.5px solid rgba(255, 0, 255, 0.45);
-  box-shadow: 0 0 20px rgba(255, 0, 255, 0.15);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.5);
+  border-left: 4px solid var(--miami-pink);
   color: #ffffff;
   font-weight: 800;
-  font-size: 16px;
-  line-height: 1.4;
+  font-size: 17px;
+  line-height: 1.5;
 }
 
 .caseQuestion::before {
@@ -999,7 +1005,12 @@ body {
   border-color: var(--miami-cyan);
   background: rgba(0, 243, 255, 0.1);
   box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
-  transform: translateX(4px);
+  transform: translateX(4px) scale(1.01);
+}
+
+.option-btn:active:not(:disabled) {
+  transform: scale(0.97);
+  box-shadow: 0 0 5px rgba(0, 243, 255, 0.1);
 }
 
 .option-btn:hover:not(:disabled) .option-index {
@@ -1078,6 +1089,12 @@ body {
   z-index: 1000;
   pointer-events: none;
   opacity: 0.3;
+  animation: scanline-scroll 8s linear infinite;
+}
+
+@keyframes scanline-scroll {
+  0% { background-position: 0 0; }
+  100% { background-position: 0 40px; }
 }
 
 .spinner {
@@ -1371,13 +1388,13 @@ body {
   margin-top: 12px;
   padding: 9px 12px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.06);
-  border-left: 3px solid rgba(255, 0, 255, 0.6);
-  color: rgba(255, 255, 255, 0.92);
+  background: rgba(0, 0, 0, 0.4);
+  border-left: 3px solid rgba(0, 243, 255, 0.6);
+  color: #ffffff;
   font-style: italic;
   font-weight: 600;
-  font-size: 14px;
-  line-height: 1.4;
+  font-size: 15px;
+  line-height: 1.5;
 }
 
 .residentQuote strong {
@@ -1434,7 +1451,13 @@ body {
   image-rendering: pixelated;
   -ms-interpolation-mode: nearest-neighbor;
   transition: background-position 0.15s steps(1);
-  /* Las celdas ya vienen encuadradas como busto; un leve zoom llena las
+  animation: idleBreathe 3s ease-in-out infinite;
+}
+
+@keyframes idleBreathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-2px) scaleY(1.02); }
+}
      esquinas redondeadas sin recortar la cabeza (antes translateY(-3%)
      subía la imagen y cortaba el pelo). */
   transform: scale(1.04);

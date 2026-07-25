@@ -31,18 +31,15 @@ const NARRATIVE = {
   consequence: "El error honesto pesa menos que una decisión mal razonada."
 };
 
-// --- ROSTER DE RESIDENTES (Fase 1: rotación con identidad propia) ---
 const ROSTER = [
-  // Todas las tiras se reextrajeron a un formato uniforme 4x1 de celdas
-  // cuadradas (ver tools/extract_sprites.py), así que cols:4, rows:1, pctY:0.
-  { name: "Aguilar",  title: "Dra.", grad: ["#84fab0", "#8fd3f4"], signature: "Ya lo interrogué; te resumo lo importante.", sprite: "Dra. Aguilar.png", cols: 4, rows: 1, pctY: 0 },
-  { name: "Solis",    title: "Dr.",  grad: ["#fccb90", "#d57eeb"], signature: "Yo ya le hubiera dado algo, pero mejor dime tú.", sprite: "Dr. Solís.png", cols: 4, rows: 1, pctY: 0 },
-  { name: "Ríos",     title: "Dra.", grad: ["#a1c4fd", "#c2e9fb"], signature: "Con calma: los datos están completos, la decisión es tuya.", sprite: "Dra. Ríos.png", cols: 4, rows: 1, pctY: 0 },
-  { name: "Mendoza",  title: "Dr.",  grad: ["#fbc2eb", "#a6c1ee"], signature: "No me gusta cómo se ve… ¿lo checas conmigo?", sprite: "Dr. Mendoza.png", cols: 4, rows: 1, pctY: 0 },
-  { name: "Ferrer",   title: "Dra.", grad: ["#f6d365", "#fda085"], signature: "Te lo pongo en una línea: hay que decidir ya.", sprite: "Dra. Ferrer.png", cols: 4, rows: 1, pctY: 0 },
-  { name: "Castañeda",title: "Dr.",  grad: ["#96e6a1", "#d4fc79"], signature: "El interrogatorio no me cuadra del todo, júzgalo tú.", sprite: "Dr. Castañeda.png", cols: 4, rows: 1, pctY: 0 },
-  { name: "Herrera",  title: "Dra.", grad: ["#e0c3fc", "#8ec5fc"], signature: "La familia está afuera preguntando. ¿Qué les digo?", sprite: "Dra. Herrera.png", cols: 4, rows: 1, pctY: 0 },
-  { name: "Valdez",   title: "Dr.",  grad: ["#ffecd2", "#fcb69f"], signature: "Tranquilidad… bueno, la que se pueda a esta hora.", sprite: "Dr. Valdez.png", cols: 4, rows: 1, pctY: 0 }
+  { name: "Aguilar",  title: "Dra.", grad: ["#84fab0", "#8fd3f4"], signature: "Ya lo interrogué; te resumo lo importante.", sprite: "aguilar_out.png", cols: 8, rows: 1, pctY: 10 },
+  { name: "Solis",    title: "Dr.",  grad: ["#fccb90", "#d57eeb"], signature: "Yo ya le hubiera dado algo, pero mejor dime tú.", sprite: "solis_out.png", cols: 8, rows: 1, pctY: 10 },
+  { name: "Ríos",     title: "Dra.", grad: ["#a1c4fd", "#c2e9fb"], signature: "Con calma: los datos están completos, la decisión es tuya.", sprite: "rios_out.png", cols: 8, rows: 1, pctY: 10 },
+  { name: "Mendoza",  title: "Dr.",  grad: ["#fbc2eb", "#a6c1ee"], signature: "No me gusta cómo se ve… ¿lo checas conmigo?", sprite: "mendoza_out.png", cols: 8, rows: 1, pctY: 10 },
+  { name: "Ferrer",   title: "Dra.", grad: ["#f6d365", "#fda085"], signature: "Te lo pongo en una línea: hay que decidir ya.", sprite: "ferrer_out.png", cols: 8, rows: 1, pctY: 10 },
+  { name: "Castañeda",title: "Dr.",  grad: ["#96e6a1", "#d4fc79"], signature: "El interrogatorio no me cuadra del todo, júzgalo tú.", sprite: "castaneda_out.png", cols: 8, rows: 1, pctY: 10 },
+  { name: "Herrera",  title: "Dra.", grad: ["#e0c3fc", "#8ec5fc"], signature: "La familia está afuera preguntando. ¿Qué les digo?", sprite: "herrera_out.png", cols: 8, rows: 1, pctY: 10 },
+  { name: "Valdez",   title: "Dr.",  grad: ["#ffecd2", "#fcb69f"], signature: "Tranquilidad… bueno, la que se pueda a esta hora.", sprite: "valdez_out.png", cols: 8, rows: 1, pctY: 10 }
 ];
 
 // Frases por contexto. Las de "presentNormal" incluyen las citas originales de NARRATIVE.residents.
@@ -103,25 +100,38 @@ function pickLine(poolName) {
 
 const Avatars = {
   // Genera un avatar usando sprite sheets transparentes y contenedores CSS con degradados.
-  _generate(spritePath, cols, rows, mood, animation, badge, gradColors, customPctY = 0) {
+  _generate(spritePath, cols, rows, mood, animation, badge, gradColors, customPctY = 10) {
     const [c1, c2] = Array.isArray(gradColors) && gradColors.length === 2
       ? gradColors
       : ["#84fab0", "#8fd3f4"];
 
-    let colIdx = 0;
-    if (mood === "happy") colIdx = 2;
-    else if (mood === "shock" || mood === "angry") colIdx = 3;
+    const moodMap = {
+      normal: 0,
+      speaking: 1,
+      thinking: 2,
+      ok: 3,
+      happy: 3, // fallback para legacy 'happy'
+      streak: 4,
+      worried: 5,
+      shock: 6,
+      angry: 6, // angry y shock usan el mismo índice de crisis
+      exhausted: 7
+    };
+    
+    let colIdx = moodMap[mood] !== undefined ? moodMap[mood] : 0;
 
-    // Todas las tiras tienen 4 columnas, por lo que cols-1 es siempre 3
-    const pctX = (colIdx / 3) * 100;
+    const pctX = (cols > 1) ? (colIdx / (cols - 1)) * 100 : 0;
     const pctY = customPctY;
+
+    // Use 'auto' for height to prevent squishing non-square cells.
+    const bgSize = `${cols * 100}% auto`;
 
     return `
       <div class="kawaii-avatar ${animation ? animation : ''}" style="background: linear-gradient(135deg, ${c1}, ${c2}); display: flex; align-items: center; justify-content: center; position: relative; overflow: visible;">
         <div style="width: 100%; height: 100%; overflow: hidden; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
           <div class="sprite-frame" style="
             background-image: url('assets/sprites/${spritePath}');
-            background-size: ${cols * 100}% ${rows * 100}%;
+            background-size: ${bgSize};
             background-position: ${pctX}% ${pctY}%;
           "></div>
         </div>
@@ -133,13 +143,13 @@ const Avatars = {
   resident(name, mood = "normal", gradColors) {
     const res = ROSTER.find(r => r.name === name) || ROSTER[0];
     const initial = name ? name[0].toUpperCase() : "R";
-    const anim = mood === "happy" ? "bounce" : (mood === "shock" ? "shake" : "");
-    return this._generate(res.sprite, res.cols, res.rows, mood, anim, initial, gradColors || res.grad, res.pctY || 0);
+    const anim = (mood === "happy" || mood === "ok" || mood === "streak") ? "bounce" : ((mood === "shock" || mood === "angry") ? "shake" : "");
+    return this._generate(res.sprite, res.cols, res.rows, mood, anim, initial, gradColors || res.grad, res.pctY || 10);
   },
 
   boss(mood = "normal") {
     const anim = mood === "angry" ? "shake" : "";
-    return this._generate("Dr. Celada.png", 4, 1, mood, anim, "BOSS", ["#f5576c", "#f093fb"], 0);
+    return this._generate("celada_out.png", 8, 1, mood, anim, "BOSS", ["#f5576c", "#f093fb"], 10);
   },
 
   patient(caseId, ecgClass) {
@@ -151,20 +161,20 @@ const Avatars = {
     }
     const index = Math.abs(hash) % 3;
     const patients = [
-      { file: "paciente 1 Joven Adulto.png", cols: 4, rows: 1, pctY: 0, grad: ["#ff758c", "#ff7eb3"] },
-      { file: "Paciente 2 Adulta Mayor.png", cols: 4, rows: 1, pctY: 0, grad: ["#f6d365", "#fda085"] },
-      { file: "Paciente 3 Adulto de Mediana Edad.png", cols: 4, rows: 1, pctY: 0, grad: ["#a1c4fd", "#c2e9fb"] }
+      { file: "pac1_out.png", cols: 8, rows: 1, pctY: 10, grad: ["#ff758c", "#ff7eb3"] },
+      { file: "pac2_out.png", cols: 8, rows: 1, pctY: 10, grad: ["#f6d365", "#fda085"] },
+      { file: "pac3_out.png", cols: 8, rows: 1, pctY: 10, grad: ["#a1c4fd", "#c2e9fb"] }
     ];
     const pat = patients[index];
     let mood = "normal";
     let anim = "";
     if (ecgClass === "tachy") {
-      mood = "happy";
+      mood = "shock";
       anim = "shake";
     } else if (ecgClass === "brady" || ecgClass === "flat") {
-      mood = "shock";
+      mood = "exhausted";
     }
-    return this._generate(pat.file, pat.cols, pat.rows, mood, anim, "PAC", pat.grad, pat.pctY || 0);
+    return this._generate(pat.file, pat.cols, pat.rows, mood, anim, "PAC", pat.grad, pat.pctY || 10);
   }
 };
 
