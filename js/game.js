@@ -32,14 +32,14 @@ const NARRATIVE = {
 };
 
 const ROSTER = [
-  { name: "Aguilar",  title: "Dra.", grad: ["#84fab0", "#8fd3f4"], signature: "Ya lo interrogué; te resumo lo importante.", sprite: "aguilar_out.png", cols: 8, rows: 1, pctY: 10 },
-  { name: "Solis",    title: "Dr.",  grad: ["#fccb90", "#d57eeb"], signature: "Yo ya le hubiera dado algo, pero mejor dime tú.", sprite: "solis_out.png", cols: 8, rows: 1, pctY: 10 },
-  { name: "Ríos",     title: "Dra.", grad: ["#a1c4fd", "#c2e9fb"], signature: "Con calma: los datos están completos, la decisión es tuya.", sprite: "rios_out.png", cols: 8, rows: 1, pctY: 10 },
-  { name: "Mendoza",  title: "Dr.",  grad: ["#fbc2eb", "#a6c1ee"], signature: "No me gusta cómo se ve… ¿lo checas conmigo?", sprite: "mendoza_out.png", cols: 8, rows: 1, pctY: 10 },
-  { name: "Ferrer",   title: "Dra.", grad: ["#f6d365", "#fda085"], signature: "Te lo pongo en una línea: hay que decidir ya.", sprite: "ferrer_out.png", cols: 8, rows: 1, pctY: 10 },
-  { name: "Castañeda",title: "Dr.",  grad: ["#96e6a1", "#d4fc79"], signature: "El interrogatorio no me cuadra del todo, júzgalo tú.", sprite: "castaneda_out.png", cols: 8, rows: 1, pctY: 10 },
-  { name: "Herrera",  title: "Dra.", grad: ["#e0c3fc", "#8ec5fc"], signature: "La familia está afuera preguntando. ¿Qué les digo?", sprite: "herrera_out.png", cols: 8, rows: 1, pctY: 10 },
-  { name: "Valdez",   title: "Dr.",  grad: ["#ffecd2", "#fcb69f"], signature: "Tranquilidad… bueno, la que se pueda a esta hora.", sprite: "valdez_out.png", cols: 8, rows: 1, pctY: 10 }
+  { name: "Aguilar",  title: "Dra.", grad: ["#84fab0", "#8fd3f4"], signature: "Ya lo interrogué; te resumo lo importante.", sprite: "aguilar_atlas.png" },
+  { name: "Solis",    title: "Dr.",  grad: ["#fccb90", "#d57eeb"], signature: "Yo ya le hubiera dado algo, pero mejor dime tú.", sprite: "solis_atlas.png" },
+  { name: "Ríos",     title: "Dra.", grad: ["#a1c4fd", "#c2e9fb"], signature: "Con calma: los datos están completos, la decisión es tuya.", sprite: "rios_atlas.png" },
+  { name: "Mendoza",  title: "Dr.",  grad: ["#fbc2eb", "#a6c1ee"], signature: "No me gusta cómo se ve… ¿lo checas conmigo?", sprite: "mendoza_atlas.png" },
+  { name: "Ferrer",   title: "Dra.", grad: ["#f6d365", "#fda085"], signature: "Te lo pongo en una línea: hay que decidir ya.", sprite: "ferrer_atlas.png" },
+  { name: "Castañeda",title: "Dr.",  grad: ["#96e6a1", "#d4fc79"], signature: "El interrogatorio no me cuadra del todo, júzgalo tú.", sprite: "castaneda_atlas.png" },
+  { name: "Herrera",  title: "Dra.", grad: ["#e0c3fc", "#8ec5fc"], signature: "La familia está afuera preguntando. ¿Qué les digo?", sprite: "herrera_atlas.png" },
+  { name: "Valdez",   title: "Dr.",  grad: ["#ffecd2", "#fcb69f"], signature: "Tranquilidad… bueno, la que se pueda a esta hora.", sprite: "valdez_atlas.png" }
 ];
 
 // Frases por contexto. Las de "presentNormal" incluyen las citas originales de NARRATIVE.residents.
@@ -98,43 +98,50 @@ function pickLine(poolName) {
   return pool[idx];
 }
 
+// Geometría de las sprite sheets normalizadas (tools/normalize_sprites.py):
+// rejilla fija de 5x2 con celdas cuadradas y la cabeza centrada en cada una.
+const SPRITE_COLS = 5;
+const SPRITE_ROWS = 2;
+
+// Índice de cada ánimo en la hoja, en el mismo orden fila por fila con el que
+// la escribe la herramienta de normalización.
+const MOOD_FRAMES = {
+  normal: 0,
+  speaking: 1,
+  thinking: 2,
+  ok: 3,
+  happy: 3,      // alias heredado de 'ok'
+  streak: 4,
+  worried: 5,
+  shock: 6,
+  exhausted: 7,
+  surprised: 8,
+  angry: 9
+};
+
 const Avatars = {
-  // Genera un avatar usando sprite sheets transparentes y contenedores CSS con degradados.
-  _generate(spritePath, cols, rows, mood, animation, badge, gradColors, customPctY = 10) {
+  // Recorta una pose de la hoja normalizada. Como la rejilla es exacta
+  // (celdas cuadradas de 5x2), basta aritmética de porcentajes: no hay
+  // ajustes manuales de encuadre y la cara siempre queda centrada.
+  _generate(spritePath, mood, animation, badge, gradColors) {
     const [c1, c2] = Array.isArray(gradColors) && gradColors.length === 2
       ? gradColors
       : ["#84fab0", "#8fd3f4"];
 
-    const moodMap = {
-      normal: 0,
-      speaking: 1,
-      thinking: 2,
-      ok: 3,
-      happy: 3, // fallback para legacy 'happy'
-      streak: 4,
-      worried: 5,
-      shock: 6,
-      angry: 6, // angry y shock usan el mismo índice de crisis
-      exhausted: 7
-    };
-    
-    let colIdx = moodMap[mood] !== undefined ? moodMap[mood] : 0;
+    const frame = MOOD_FRAMES[mood] !== undefined ? MOOD_FRAMES[mood] : 0;
+    const col = frame % SPRITE_COLS;
+    const row = Math.floor(frame / SPRITE_COLS);
 
-    const pctX = (cols > 1) ? (colIdx / (cols - 1)) * 100 : 0;
-    const pctY = customPctY;
-
-    // Use 'auto' for height to prevent squishing non-square cells.
-    const bgSize = `${cols * 100}% auto`;
+    const pctX = (col / (SPRITE_COLS - 1)) * 100;
+    const pctY = (row / (SPRITE_ROWS - 1)) * 100;
 
     return `
-      <div class="kawaii-avatar ${animation ? animation : ''}" style="background: linear-gradient(135deg, ${c1}, ${c2}); display: flex; align-items: center; justify-content: center; position: relative; overflow: visible;">
-        <div style="width: 100%; height: 100%; overflow: hidden; border-radius: 20px; display: flex; align-items: center; justify-content: center;">
-          <div class="sprite-frame" style="
-            background-image: url('assets/sprites/${spritePath}');
-            background-size: ${bgSize};
-            background-position: ${pctX}% ${pctY}%;
-          "></div>
-        </div>
+      <div class="kawaii-avatar ${animation ? animation : ''}" style="background: linear-gradient(135deg, ${c1}, ${c2});">
+        <div class="sprite-frame" style="
+          background-image: url('assets/sprites/${spritePath}');
+          background-size: ${SPRITE_COLS * 100}% ${SPRITE_ROWS * 100}%;
+          background-position: ${pctX}% ${pctY}%;
+        "></div>
         ${badge ? `<div class="kawaii-tag">${badge}</div>` : ""}
       </div>
     `;
@@ -144,12 +151,12 @@ const Avatars = {
     const res = ROSTER.find(r => r.name === name) || ROSTER[0];
     const initial = name ? name[0].toUpperCase() : "R";
     const anim = (mood === "happy" || mood === "ok" || mood === "streak") ? "bounce" : ((mood === "shock" || mood === "angry") ? "shake" : "");
-    return this._generate(res.sprite, res.cols, res.rows, mood, anim, initial, gradColors || res.grad, res.pctY || 10);
+    return this._generate(res.sprite, mood, anim, initial, gradColors || res.grad);
   },
 
   boss(mood = "normal") {
     const anim = mood === "angry" ? "shake" : "";
-    return this._generate("celada_out.png", 8, 1, mood, anim, "BOSS", ["#f5576c", "#f093fb"], 10);
+    return this._generate("celada_atlas.png", mood, anim, "BOSS", ["#f5576c", "#f093fb"]);
   },
 
   patient(caseId, ecgClass) {
@@ -161,9 +168,9 @@ const Avatars = {
     }
     const index = Math.abs(hash) % 3;
     const patients = [
-      { file: "pac1_out.png", cols: 8, rows: 1, pctY: 10, grad: ["#ff758c", "#ff7eb3"] },
-      { file: "pac2_out.png", cols: 8, rows: 1, pctY: 10, grad: ["#f6d365", "#fda085"] },
-      { file: "pac3_out.png", cols: 8, rows: 1, pctY: 10, grad: ["#a1c4fd", "#c2e9fb"] }
+      { file: "pac1_atlas.png", grad: ["#ff758c", "#ff7eb3"] },
+      { file: "pac2_atlas.png", grad: ["#f6d365", "#fda085"] },
+      { file: "pac3_atlas.png", grad: ["#a1c4fd", "#c2e9fb"] }
     ];
     const pat = patients[index];
     let mood = "normal";
@@ -174,7 +181,7 @@ const Avatars = {
     } else if (ecgClass === "brady" || ecgClass === "flat") {
       mood = "exhausted";
     }
-    return this._generate(pat.file, pat.cols, pat.rows, mood, anim, "PAC", pat.grad, pat.pctY || 10);
+    return this._generate(pat.file, mood, anim, "PAC", pat.grad);
   }
 };
 
@@ -408,30 +415,52 @@ const Game = (() => {
       <div class="miami-card hero-card">
         <div class="hero-title">PsyCase</div>
         <div class="hero-subtitle">Guardia crítica · decide en segundos</div>
-        <div class="hero-grid">
-          <div class="hero-pill">⏱️ Tiempo real</div>
-          <div class="hero-pill">🩺 Decisiones clínicas</div>
-          <div class="hero-pill">🔥 Rachas y recompensas</div>
-        </div>
-        <button class="btn-action" id="btnStart">Iniciar guardia</button>
-        <button class="btn-action" id="btnStudyMode" style="margin-top:10px; background:linear-gradient(135deg, var(--miami-cyan), var(--miami-purple)); box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);">Modo Estudio</button>
-        ${failedList.length > 0 ? `
-          <button class="btn-action" id="btnMenuReviewFailed" 
-            style="margin-top:10px; background:${dueList.length > 0 ? 'linear-gradient(135deg, #ffd700, #ff8c00)' : 'rgba(255, 255, 255, 0.06)'}; 
-            box-shadow: ${dueList.length > 0 ? '0 0 15px rgba(255, 215, 0, 0.4)' : 'none'}; 
-            border: ${dueList.length > 0 ? 'none' : '1px dashed rgba(255, 255, 255, 0.15)'}; 
-            color: ${dueList.length > 0 ? '#fff' : 'rgba(255,255,255,0.4)'}; 
-            font-size:16px;" 
-            ${dueList.length === 0 ? 'disabled' : ''}>
-            ${dueList.length > 0 ? `📖 Repasar Errores (${dueList.length} ${dueList.length === 1 ? "listo" : "listos"} / ${failedList.length} total)` : `✅ Repaso al día (${failedList.length} en maestría)`}
-          </button>
-        ` : ""}
+
         <div class="hero-meta">
-          <span>Rango: ${escapeHtml(Economy.getRank())}</span>
-          <span>🪙 ${Economy.getCoins()}</span>
+          <div class="hud-stat">
+            <span class="hud-stat-label">Rango</span>
+            <span class="hud-stat-value">${escapeHtml(Economy.getRank())}</span>
+          </div>
+          <div class="hud-stat hud-stat--coins">
+            <span class="hud-stat-label">Monedas</span>
+            <span class="hud-stat-value">🪙 ${Economy.getCoins()}</span>
+          </div>
+        </div>
+
+        <!-- Cada modo dice en qué se diferencia: antes eran dos botones con
+             el mismo aspecto y había que entrar para descubrirlo. -->
+        <div class="mode-list">
+          <button class="btn-action btn-mode" id="btnStart">
+            <span class="btn-mode-icon" aria-hidden="true">🚨</span>
+            <span class="btn-mode-text">
+              <span class="btn-mode-title">Iniciar guardia</span>
+              <span class="btn-mode-desc">${GAME_CONFIG.maxLives} vidas y reloj corriendo · ganas monedas</span>
+            </span>
+          </button>
+
+          <button class="btn-action btn-mode btn-mode--study" id="btnStudyMode">
+            <span class="btn-mode-icon" aria-hidden="true">📚</span>
+            <span class="btn-mode-text">
+              <span class="btn-mode-title">Modo estudio</span>
+              <span class="btn-mode-desc">Sin reloj ni vidas · para aprender sin presión</span>
+            </span>
+          </button>
+
+          ${failedList.length > 0 ? `
+            <button class="btn-action btn-mode btn-mode--review" id="btnMenuReviewFailed"
+              ${dueList.length === 0 ? 'disabled' : ''}>
+              <span class="btn-mode-icon" aria-hidden="true">${dueList.length > 0 ? "🔁" : "✅"}</span>
+              <span class="btn-mode-text">
+                <span class="btn-mode-title">${dueList.length > 0 ? "Repasar errores" : "Repaso al día"}</span>
+                <span class="btn-mode-desc">${dueList.length > 0
+                  ? `${dueList.length} ${dueList.length === 1 ? "caso listo" : "casos listos"} de ${failedList.length} en repaso`
+                  : `${failedList.length} ${failedList.length === 1 ? "caso" : "casos"} esperando su próxima vuelta`}</span>
+              </span>
+            </button>
+          ` : ""}
         </div>
       </div>
-      
+
       <div class="miami-card">
         <div class="narrative-title" style="margin-bottom:12px;">📊 FILTRAR CASOS (OPCIONAL)</div>
         <div style="display:grid; grid-template-columns: 1fr 1fr; gap:12px;">
@@ -670,67 +699,134 @@ const Game = (() => {
     const hud = $("#hudRoot");
     if (!hud) return;
 
-    const hearts = state.studyMode ? "💖 ♾️" : "💖".repeat(state.lives);
-    const streakLabel = state.streak >= 3 ? "RACHA" : "COMBO";
-    
     const isEduDoc = state.current?.case_type === "documento_educativo";
-    const timeLabel = state.studyMode ? 'MODO ESTUDIO' : (isEduDoc ? 'LECTURA LIBRE' : 'TIEMPO');
-
+    const untimed = state.studyMode || isEduDoc;
+    const coins = Economy.getCoins();
     const res = state.resident || ROSTER[0];
 
+    // Vidas: los corazones se leen de un vistazo, pero sin número no se sabe
+    // cuántas quedan cuando hay más de tres; el texto lo desambigua.
+    const livesText = state.studyMode
+      ? `<span class="hud-lives-icons">💖</span><span class="hud-lives-count">sin límite</span>`
+      : `<span class="hud-lives-icons">${"💖".repeat(state.lives)}${"🖤".repeat(Math.max(0, GAME_CONFIG.maxLives - state.lives))}</span>` +
+        `<span class="hud-lives-count">${state.lives} ${state.lives === 1 ? "vida" : "vidas"}</span>`;
+
+    const difficultyLevel = Math.floor(state.maxStreak / 3) + 1;
+
+    // Cada ayuda dice qué hace y por qué está bloqueada. Un botón apagado con
+    // sólo un emoji y un número no explica nada al que lo necesita.
+    const helpers = [
+      {
+        id: "btnHint", icon: "💡", label: "Pista", cost: 50,
+        desc: "Descarta una opción incorrecta",
+        blocked: state.hintUsedInTurn ? "Ya usaste la pista en este caso" : "",
+        blockedShort: "Ya usada"
+      },
+      {
+        id: "btnBuyLife", icon: "❤️", label: "Vida", cost: 100,
+        desc: "Recupera una vida perdida",
+        blocked: state.lives >= GAME_CONFIG.maxLives ? "Ya tienes todas tus vidas" : "",
+        blockedShort: "Al máximo"
+      },
+      {
+        id: "btnBuyTime", icon: "⏱️", label: "+30s", cost: 30,
+        desc: "Suma 30 segundos al reloj",
+        blocked: untimed ? "Este caso no tiene reloj" : "",
+        blockedShort: "Sin reloj"
+      }
+    ];
+
+    const helperButtons = helpers.map(h => {
+      const poor = !h.blocked && coins < h.cost;
+      const reason = h.blocked || (poor ? `Te faltan ${h.cost - coins} monedas` : h.desc);
+      // El segundo renglón es el precio mientras la ayuda sirva; si no,
+      // pasa a decir por qué no, que es lo único útil en ese momento.
+      const detail = h.blocked
+        ? `<span class="btn-help-cost btn-help-cost--reason">${escapeHtml(h.blockedShort)}</span>`
+        : `<span class="btn-help-cost ${poor ? "btn-help-cost--short" : ""}">🪙 ${h.cost}</span>`;
+      return `
+        <button class="btn-help" id="${h.id}" ${h.blocked || poor ? "disabled" : ""}
+                title="${escapeHtml(reason)}" aria-label="${escapeHtml(`${h.label}: ${reason}`)}">
+          <span class="btn-help-icon" aria-hidden="true">${h.icon}</span>
+          <span class="btn-help-text">
+            <span class="btn-help-label">${h.label}</span>
+            ${detail}
+          </span>
+        </button>`;
+    }).join("");
+
     hud.innerHTML = `
-      <div class="miami-card">
+      <div class="miami-card hud-card">
         <div class="hudRow">
           <div class="hudBox">
             <div class="avatar" id="resBox">${Avatars.resident(res.name, state.residentMood, res.grad)}</div>
-            <div>
-              <div class="badge">${escapeHtml(res.title)} ${escapeHtml(res.name)}</div>
-              <div style="font-weight:900;">${hearts}</div>
+            <div class="hud-person">
+              <div class="hud-person-role">Residente</div>
+              <div class="hud-person-name">${escapeHtml(res.title)} ${escapeHtml(res.name)}</div>
+              <div class="hud-lives" aria-label="${escapeHtml(state.studyMode ? "Vidas ilimitadas" : `${state.lives} vidas`)}">${livesText}</div>
             </div>
           </div>
 
-          <div class="track" aria-label="tiempo">
-            <div class="bar" id="tBar" style="width:100%"></div>
-            <div class="track-label">${timeLabel}</div>
-          </div>
-
-          <div class="hudBox">
-            <div>
-              <div class="badge">Dr. Celada</div>
-              <div style="font-weight:900; font-style:italic;">${getBossStatus()}</div>
-              <div style="color:rgba(255,43,214,.9);font-weight:900;">🪙 ${Economy.getCoins()} · ${escapeHtml(Economy.getRank())}</div>
+          <div class="hudBox hudBox--right">
+            <div class="hud-person hud-person--right">
+              <div class="hud-person-role">Adscrito</div>
+              <div class="hud-person-name">Dr. Celada</div>
+              <div class="hud-boss-status">${getBossStatus()}</div>
             </div>
             <div class="avatar" id="bossBox">${Avatars.boss(state.bossMood)}</div>
           </div>
         </div>
-        <div class="hudMeta">
-          <div class="combo-chip" id="comboChip" style="${state.studyMode ? 'opacity:0.4;' : ''}">
-            <span class="combo-label">${streakLabel}</span>
-            <span class="combo-value">x${state.streak}</span>
+
+        <div class="hud-timer ${untimed ? "hud-timer--free" : ""}">
+          <div class="hud-timer-head">
+            <span class="hud-timer-value" id="tValue">${untimed ? (state.studyMode ? "Modo estudio" : "Lectura libre") : `${Math.ceil(state.timeLeft)}s`}</span>
+            <span class="hud-timer-note" id="tNote">${untimed ? "sin reloj" : "para decidir"}</span>
           </div>
-          <div class="powerups-row" id="pwrRow">
-             <button class="btn-powerup" id="btnHint" ${Economy.getCoins() < 50 || state.hintUsedInTurn ? 'disabled' : ''} title="Descartar una opción incorrecta">
-               <span>💡</span><span class="btn-powerup-label"> Pista</span><span class="btn-powerup-cost"> (50)</span>
-             </button>
-             <button class="btn-powerup" id="btnBuyLife" ${Economy.getCoins() < 100 || state.lives >= GAME_CONFIG.maxLives ? 'disabled' : ''} title="Recuperar una vida">
-               <span>❤️</span><span class="btn-powerup-label"> +Vida</span><span class="btn-powerup-cost"> (100)</span>
-             </button>
-             <button class="btn-powerup" id="btnBuyTime" ${Economy.getCoins() < 30 || state.studyMode || isEduDoc ? 'disabled' : ''} title="Añadir 30 segundos al reloj">
-               <span>⏱️</span><span class="btn-powerup-label"> +30s</span><span class="btn-powerup-cost"> (30)</span>
-             </button>
-             <button class="btn-powerup" id="btnSoundToggle" title="Activar/Silenciar sonido">
-               <span>${state.soundEnabled ? '🔊' : '🔇'}</span>
-             </button>
-             <button class="btn-powerup" id="btnAutoToggle" title="Auto-avance de retroalimentación">
-               <span>${state.autoAdvance ? '⏱️' : '⏸️'}</span><span class="btn-powerup-label"> ${state.autoAdvance ? 'Auto' : 'Manual'}</span>
-             </button>
-             <button class="btn-powerup" id="btnMenuFromGame" title="Volver al menú principal">
-               <span>🏠</span>
-             </button>
+          ${untimed ? "" : `
+          <div class="track" role="progressbar" aria-label="Tiempo restante">
+            <div class="bar" id="tBar" style="width:100%"></div>
+          </div>`}
+        </div>
+
+        <div class="hud-stats">
+          <div class="hud-stat" title="Aciertos seguidos · tu mejor marca de esta guardia es ${state.maxStreak}">
+            <span class="hud-stat-label">Racha</span>
+            <span class="hud-stat-value">${state.streak}</span>
           </div>
-          <div class="combo-chip combo-chip--alt" style="${state.studyMode ? 'opacity:0.4;' : ''}">
-            <span class="combo-label">MEJOR</span>
-            <span class="combo-value">x${state.maxStreak}</span>
+          <div class="hud-stat" title="Sube cada 3 aciertos seguidos y recorta el reloj">
+            <span class="hud-stat-label">Dificultad</span>
+            <span class="hud-stat-value">${difficultyLevel}</span>
+          </div>
+          <div class="hud-stat hud-stat--coins" title="Monedas para gastar en ayudas · rango ${escapeHtml(Economy.getRank())}">
+            <span class="hud-stat-label">Monedas</span>
+            <span class="hud-stat-value">🪙 ${coins}</span>
+          </div>
+        </div>
+
+        <div class="hud-actions">
+          <div class="hud-help-group" role="group" aria-label="Ayudas de pago">
+            ${helperButtons}
+          </div>
+          <div class="hud-tool-group" role="group" aria-label="Ajustes de la partida">
+            <button class="btn-tool" id="btnSoundToggle"
+                    aria-pressed="${state.soundEnabled}"
+                    aria-label="${state.soundEnabled ? "Sonido activado. Silenciar" : "Sonido silenciado. Activar"}"
+                    title="${state.soundEnabled ? "Silenciar sonido" : "Activar sonido"}">
+              <span aria-hidden="true">${state.soundEnabled ? "🔊" : "🔇"}</span>
+              <span class="btn-tool-label">${state.soundEnabled ? "Sonido" : "Silencio"}</span>
+            </button>
+            <button class="btn-tool" id="btnAutoToggle"
+                    aria-pressed="${state.autoAdvance}"
+                    aria-label="${state.autoAdvance ? "Avance automático activado. Pasar a manual" : "Avance manual. Activar automático"}"
+                    title="${state.autoAdvance ? "El caso avanza solo tras la retroalimentación" : "Tú decides cuándo avanzar"}">
+              <span aria-hidden="true">${state.autoAdvance ? "▶️" : "⏸️"}</span>
+              <span class="btn-tool-label">${state.autoAdvance ? "Auto" : "Manual"}</span>
+            </button>
+            <button class="btn-tool btn-tool--exit" id="btnMenuFromGame"
+                    aria-label="Salir al menú principal" title="Salir al menú principal">
+              <span aria-hidden="true">🏠</span>
+              <span class="btn-tool-label">Menú</span>
+            </button>
           </div>
         </div>
       </div>
@@ -970,10 +1066,10 @@ const Game = (() => {
       const b = $("#tBar");
       if (b) b.style.width = pct + "%";
 
-      const label = b ? b.parentElement.querySelector(".track-label") : null;
-      if (label && !state.studyMode) {
-        label.textContent = `TIEMPO: ${Math.ceil(state.timeLeft)}s (Dificultad +${Math.floor(state.streak / 3) + 1})`;
-      }
+      // Los segundos van en su propia línea, fuera de la barra: dentro no
+      // cabían y el texto se cortaba a media palabra.
+      const value = $("#tValue");
+      if (value && !state.studyMode) value.textContent = `${Math.ceil(state.timeLeft)}s`;
 
       // Hot Zone: Efecto visual sutil cuando queda < 20%
       const isHot = (pct <= 20);
