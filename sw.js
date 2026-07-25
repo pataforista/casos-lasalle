@@ -5,7 +5,7 @@
    - Limpieza de caches: borra TODO lo que no sea el cache actual
    ============================================================================ */
 
-   const CACHE_VERSION = "psycase-v1.5.0";
+   const CACHE_VERSION = "psycase-v1.6.0";
    const CACHE_NAME = `psycase-${CACHE_VERSION}`;
    
    const APP_SHELL = [
@@ -25,18 +25,21 @@
      "./data/manifest_v1.json",
      "./data/packs/cases_real_v1.json",
 
-     "./assets/sprites/Dr. Castañeda.png",
-     "./assets/sprites/Dr. Celada.png",
-     "./assets/sprites/Dr. Mendoza.png",
-     "./assets/sprites/Dr. Solís.png",
-     "./assets/sprites/Dr. Valdez.png",
-     "./assets/sprites/Dra. Aguilar.png",
-     "./assets/sprites/Dra. Ferrer.png",
-     "./assets/sprites/Dra. Herrera.png",
-     "./assets/sprites/Dra. Ríos.png",
-     "./assets/sprites/paciente 1 Joven Adulto.png",
-     "./assets/sprites/Paciente 2 Adulta Mayor.png",
-     "./assets/sprites/Paciente 3 Adulto de Mediana Edad.png"
+     // Nombres reales de las hojas normalizadas. Si alguna ruta de esta lista
+     // no existe, cache.addAll() rechaza entera y la instalación del SW falla:
+     // la app se queda sin caché offline aunque el resto sí exista.
+     "./assets/sprites/aguilar_atlas.png",
+     "./assets/sprites/castaneda_atlas.png",
+     "./assets/sprites/celada_atlas.png",
+     "./assets/sprites/ferrer_atlas.png",
+     "./assets/sprites/herrera_atlas.png",
+     "./assets/sprites/mendoza_atlas.png",
+     "./assets/sprites/rios_atlas.png",
+     "./assets/sprites/solis_atlas.png",
+     "./assets/sprites/valdez_atlas.png",
+     "./assets/sprites/pac1_atlas.png",
+     "./assets/sprites/pac2_atlas.png",
+     "./assets/sprites/pac3_atlas.png"
    ];
    
    /* ----------------------------- INSTALL ----------------------------- */

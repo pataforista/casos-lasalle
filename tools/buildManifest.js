@@ -4,91 +4,64 @@
 /**
  * buildManifest.js
  *
- * Uso:
- *   node tools/buildManifest.js ./data/cases_v1.json ./data/manifest_v1.json
+ * Reconstruye data/manifest_v1.json a partir de un pack ya existente, sin
+ * volver a repartir los casos. Úsalo cuando sólo se ha editado el contenido de
+ * un pack y hay que refrescar el índice.
  *
- * Crea un manifest “ligero” SIN packs (si lo quisieras usar),
- * pero en tu arquitectura con packs normalmente usarás splitPacks.js.
+ * Si lo que quieres es repartir cases_v1.json en packs desde cero, la
+ * herramienta es splitPacks.js.
+ *
+ * Uso:
+ *   node tools/buildManifest.js [--pack=packs/cases_real_v1.json] [--data=./data] [--version=v1]
+ *
+ * ANTES: generaba un índice sin el campo `pack`, que js/caseLoader.js exige
+ * (`if (!meta.pack) throw`). Un manifest así dejaba la app sin banco de casos.
+ * Ahora el formato lo fija tools/lib/manifest.js y se valida antes de escribir.
  */
 
 const fs = require("fs");
 const path = require("path");
+const { buildManifest, writeManifest } = require("./lib/manifest");
 
-function readJson(p) {
-  const abs = path.resolve(p);
-  return JSON.parse(fs.readFileSync(abs, "utf-8"));
-}
-function writeJson(p, obj) {
-  const abs = path.resolve(p);
-  fs.mkdirSync(path.dirname(abs), { recursive: true });
-  fs.writeFileSync(abs, JSON.stringify(obj, null, 2), "utf-8");
-}
-function uniq(a) { return Array.from(new Set((a || []).filter(Boolean))); }
-
-function collectLabelsFromCase(c) {
-  const hitop = [];
-  const rdoc = [];
-  const chunks = Array.isArray(c.source_chunks) ? c.source_chunks : [];
-  for (const ch of chunks) {
-    if (ch?.labels) {
-      if (Array.isArray(ch.labels.hitop)) hitop.push(...ch.labels.hitop);
-      if (Array.isArray(ch.labels.rdoc)) rdoc.push(...ch.labels.rdoc);
-    }
-    if (ch?.label_refs) {
-      if (Array.isArray(ch.label_refs.hitop)) hitop.push(...ch.label_refs.hitop);
-      if (Array.isArray(ch.label_refs.rdoc)) rdoc.push(...ch.label_refs.rdoc);
+function parseFlags(argv) {
+  const flags = {};
+  for (const a of argv) {
+    if (a.startsWith("--")) {
+      const [k, v] = a.slice(2).split("=");
+      flags[k] = v === undefined ? true : v;
     }
   }
-  return { hitop: uniq(hitop), rdoc: uniq(rdoc) };
-}
-
-function today() {
-  const d = new Date();
-  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+  return flags;
 }
 
 function main() {
-  const input = process.argv[2] || "./data/cases_v1.json";
-  const output = process.argv[3] || "./data/manifest_v1.json";
+  const flags = parseFlags(process.argv.slice(2));
 
-  const cases = readJson(input);
-  if (!Array.isArray(cases)) throw new Error("cases_v1.json debe ser array.");
+  const dataDir = path.resolve(flags.data || "./data");
+  const version = flags.version || "v1";
+  const packRel = String(flags.pack || "packs/cases_real_v1.json").replace(/^\.?\//, "");
+  const packFile = packRel.replace(/^packs\//, "");
+  const packAbs = path.join(dataDir, "packs", packFile);
 
-  let real = 0, synth = 0;
-  const index = [];
-  const seen = new Set();
-
-  for (const c of cases) {
-    if (!c || typeof c !== "object") continue;
-    if (!c.case_id || seen.has(c.case_id)) continue;
-    seen.add(c.case_id);
-
-    const isReal = !!(c.metadata && c.metadata.is_real_data === true);
-    if (isReal) real++; else synth++;
-
-    const labels = collectLabelsFromCase(c);
-
-    index.push({
-      case_id: c.case_id,
-      title: c.title || "",
-      difficulty: c.difficulty || "",
-      educational_level: c.educational_level || "",
-      case_type: c.case_type || "",
-      is_real_data: isReal,
-      hitop: labels.hitop,
-      rdoc: labels.rdoc
-    });
+  if (!fs.existsSync(packAbs)) {
+    throw new Error(
+      `No existe el pack ${packAbs}.\n` +
+      `   Pásalo con --pack=packs/<archivo>.json o genera los packs con splitPacks.js.`
+    );
   }
 
-  const manifest = {
-    version: "v1",
-    updated: today(),
-    counts: { total: index.length, real, synthetic: synth },
-    index
-  };
+  const cases = JSON.parse(fs.readFileSync(packAbs, "utf-8"));
+  if (!Array.isArray(cases)) throw new Error(`El pack ${packRel} debe ser un array JSON.`);
 
-  writeJson(output, manifest);
-  console.log("✅ Manifest generado:", path.resolve(output));
+  const manifest = buildManifest({
+    realPack: { file: packFile, cases },
+    synthPacks: [],
+    version
+  });
+
+  const out = writeManifest(path.join(dataDir, `manifest_${version}.json`), manifest, dataDir);
+  console.log(`✅ Manifest generado: ${out}`);
+  console.log(`   ${manifest.index.length} casos indexados desde packs/${packFile}`);
 }
 
 try { main(); } catch (e) {

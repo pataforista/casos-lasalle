@@ -216,6 +216,7 @@ html {
 .kawaii-avatar {
   width: 72px;
   height: 72px;
+  flex: none;
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -336,28 +337,15 @@ body {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.hero-grid {
-  display: grid;
-  gap: 8px;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-}
-
-.hero-pill {
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.85);
-  font-size: 13px;
-}
-
 .hero-meta {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.mode-list {
+  display: grid;
+  gap: 10px;
 }
 
 .case-card {
@@ -460,21 +448,63 @@ body {
   letter-spacing: 1px;
 }
 
-.rules-list {
-  list-style: none;
-  margin: 14px 0 0;
-  padding: 0;
-  display: grid;
-  gap: 10px;
+/* Briefing del adscrito en el menú: mismas reglas, dichas por un personaje */
+.briefing-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.rules-list li {
+.briefing-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.briefing-who {
+  min-width: 0;
+}
+
+.briefing-quote {
   padding: 10px 14px;
-  border-radius: 14px;
-  background: rgba(0, 243, 255, 0.08);
-  border: 1px solid rgba(0, 243, 255, 0.25);
-  color: rgba(255, 255, 255, 0.82);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border-left: 3px solid rgba(255, 43, 214, 0.7);
+  font-style: italic;
   font-weight: 600;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.briefing-rules {
+  display: grid;
+  gap: 8px;
+}
+
+.briefing-rule {
+  position: relative;
+  padding: 8px 12px 8px 26px;
+  border-radius: 12px;
+  background: rgba(0, 243, 255, 0.07);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.briefing-rule::before {
+  content: "▸";
+  position: absolute;
+  left: 10px;
+  color: rgba(0, 243, 255, 0.8);
+}
+
+.briefing-sign {
+  font-size: 12px;
+  font-style: italic;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .narrative-title {
@@ -484,21 +514,6 @@ body {
   letter-spacing: 2px;
 }
 
-.narrative-body {
-  color: rgba(255, 255, 255, 0.78);
-  margin-top: 10px;
-  line-height: 1.5;
-}
-
-.narrative-quote {
-  margin-top: 14px;
-  padding: 10px 14px;
-  border-left: 4px solid rgba(0, 243, 255, 0.6);
-  color: rgba(255, 255, 255, 0.9);
-  font-style: italic;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-}
 
 .narrative-footer {
   margin-top: 12px;
@@ -541,25 +556,11 @@ body {
   margin-bottom: 6px;
 }
 
-.hudMeta {
-  margin-top: 18px;
+.hudRow {
   display: flex;
   gap: 12px;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.hudRow {
-  display: grid;
-  gap: 12px;
   align-items: center;
-  padding-bottom: 4px;
-}
-
-@media (min-width: 520px) {
-  .hudRow {
-    grid-template-columns: 1fr 1.2fr 1fr;
-  }
+  justify-content: space-between;
 }
 
 /* Celulares: compactar el HUD para que la pregunta y las opciones
@@ -584,53 +585,18 @@ body {
     padding: 12px;
   }
 
-  .hudRow {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-  }
-
   .hudBox {
-    gap: 6px;
-  }
-
-  .hudBox .badge {
-    display: none;
+    gap: 8px;
   }
 
   .kawaii-avatar {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
   }
 
   .kawaii-tag {
     display: none;
-  }
-
-  .hudBox div {
-    font-size: 11px;
-  }
-
-  .avatar-svg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .hudMeta {
-    margin-top: 8px;
-    gap: 6px;
-  }
-
-  .combo-chip {
-    padding: 4px 8px;
-    gap: 4px;
-  }
-
-  .combo-value {
-    font-size: 13px;
   }
 
   .hero-title {
@@ -641,30 +607,20 @@ body {
     padding: 12px;
     font-size: 16px;
   }
-
-  /* Power-ups a solo ícono + costo: 6 botones con etiqueta completa
-     ocupaban 2-3 filas y empujaban la pregunta fuera de pantalla */
-  .btn-powerup-label {
-    display: none;
-  }
-
-  .btn-powerup {
-    padding: 8px 10px;
-  }
 }
 
 @media (max-width: 380px) {
-  .hudBox .badge {
-    display: none;
-  }
-
   .hudBox {
-    gap: 8px;
+    gap: 6px;
   }
 
   .kawaii-avatar {
-    width: 32px;
-    height: 32px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .hud-person-name {
+    font-size: 12px;
   }
 
   .hero-title {
@@ -692,16 +648,25 @@ body {
 .hudBox {
   display: flex;
   align-items: center;
-  gap: 12px;
-  justify-content: space-between;
+  gap: 10px;
+  min-width: 0;
+}
+
+.hudBox--right {
+  justify-content: flex-end;
+  text-align: right;
 }
 
 .track {
-  flex: 1;
-  height: 12px;
+  /* flex:none — dentro de .hud-timer (columna) un flex:1 le daba base 0 y la
+     barra quedaba en 2px, casi invisible. */
+  flex: none;
+  width: 100%;
+  height: 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-sizing: border-box;
   overflow: hidden;
   position: relative;
 }
@@ -713,60 +678,308 @@ body {
   transition: width 0.1s linear;
 }
 
-.track-label {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  font-size: 10px;
-  letter-spacing: 1px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.7);
-  text-transform: uppercase;
-  pointer-events: none;
-}
-
 .track--danger .bar {
   background: linear-gradient(90deg, #ff0055, #ff9a9e);
   box-shadow: 0 0 15px rgba(255, 0, 85, 0.8);
 }
 
-.combo-chip {
+/* ---------------------------------------------------------------------------
+   HUD de guardia
+   Tres bloques con jerarquía explícita: quién está en la sala, cuánto tiempo
+   queda, y qué puedes hacer. Antes todo iba en una fila de píldoras iguales
+   donde comprar una vida se veía igual que silenciar el sonido.
+   ------------------------------------------------------------------------- */
+.hud-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hud-person {
+  min-width: 0;
+}
+
+.hud-person-role {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.hud-person-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.hud-lives {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  background: linear-gradient(135deg, rgba(0, 243, 255, 0.25), rgba(255, 0, 255, 0.2));
-  box-shadow: 0 0 18px rgba(0, 243, 255, 0.25);
-  text-transform: uppercase;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.hud-lives-icons {
+  font-size: 13px;
+  letter-spacing: -1px;
+}
+
+.hud-lives-count {
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.hud-boss-status {
+  margin-top: 2px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 43, 214, 0.95);
 }
 
-.combo-chip--alt {
-  border-color: rgba(255, 255, 255, 0.15);
-  background: linear-gradient(135deg, rgba(255, 0, 255, 0.25), rgba(112, 0, 255, 0.2));
-  box-shadow: 0 0 18px rgba(255, 0, 255, 0.25);
+/* Temporizador: los segundos son el dato que se mira a media pregunta, así
+   que van en grande y fuera de la barra. Dentro de una barra de 8px el texto
+   se recortaba a media palabra. */
+.hud-timer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
-/* La racha máxima es un dato secundario durante el turno; se oculta
-   en móvil para dejar sitio a la pregunta y las opciones */
-@media (max-width: 480px) {
-  .combo-chip--alt {
+.hud-timer-head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.hud-timer-value {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--miami-cyan);
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-timer-note {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.hud-timer--free .hud-timer-value {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+body.time-critical .hud-timer-value {
+  color: #ff4d6d;
+}
+
+/* Marcador compacto. Cada dato lleva su etiqueta: "x0" sin más no dice si
+   cuenta aciertos, monedas o vidas. */
+.hud-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.hud-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 4px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hud-stat-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.hud-stat-value {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud-stat--coins {
+  background: rgba(255, 215, 0, 0.08);
+  border-color: rgba(255, 215, 0, 0.25);
+}
+
+.hud-stat--coins .hud-stat-value {
+  font-size: 13px;
+  color: #ffd166;
+}
+
+.hud-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Ayudas de pago: tres columnas fijas para que nunca envuelvan en filas
+   desiguales, cada una con nombre y precio visibles. */
+.hud-help-group {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.btn-help {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 8px 6px;
+  border-radius: 14px;
+  border: 1px solid rgba(157, 0, 255, 0.45);
+  background: rgba(157, 0, 255, 0.16);
+  color: #e9d5ff;
+  font-family: "Chakra Petch", sans-serif;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-help-icon {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.btn-help-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  line-height: 1.1;
+}
+
+.btn-help-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #fff;
+}
+
+.btn-help-cost {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffd166;
+  white-space: nowrap;
+}
+
+/* En móvil no hay hover, así que el title nunca se lee: cuando la ayuda no
+   está disponible el motivo ocupa el sitio del precio. */
+.btn-help-cost--reason {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.btn-help-cost--short {
+  color: #ff8fa3;
+}
+
+.btn-help:hover:not(:disabled) {
+  background: rgba(157, 0, 255, 0.3);
+  border-color: var(--miami-pink);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-help:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  filter: grayscale(0.8);
+}
+
+/* Ajustes y salida: son controles, no compras. Se distinguen por forma y
+   color para que no compitan con las ayudas. */
+.hud-tool-group {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-tool {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 40px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-tool:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 243, 255, 0.5);
+}
+
+/* El estado activo se marca también con color, no sólo con la palabra: en
+   pantallas estrechas la etiqueta se oculta y sólo queda el icono. */
+.btn-tool[aria-pressed="true"] {
+  border-color: rgba(0, 243, 255, 0.45);
+  color: rgba(0, 243, 255, 0.95);
+}
+
+.btn-tool[aria-pressed="false"] {
+  opacity: 0.65;
+}
+
+.btn-tool--exit {
+  border-color: rgba(255, 0, 85, 0.35);
+  color: rgba(255, 154, 178, 0.95);
+}
+
+.btn-tool--exit:hover {
+  border-color: rgba(255, 0, 85, 0.8);
+  background: rgba(255, 0, 85, 0.12);
+}
+
+@media (max-width: 380px) {
+  .btn-help {
+    flex-direction: column;
+    gap: 2px;
+    padding: 6px 4px;
+  }
+
+  .btn-help-text {
+    align-items: center;
+  }
+
+  .btn-tool-label {
     display: none;
   }
-}
 
-.combo-label {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.combo-value {
-  font-size: 18px;
-  color: #fff;
+  .btn-tool {
+    padding: 6px 12px;
+  }
 }
 
 .modalNote {
@@ -934,11 +1147,86 @@ body {
   transition: 0.5s;
 }
 
-.btn-action:hover {
+.btn-action:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow:
     0 0 25px rgba(255, 0, 255, 0.7),
     inset 0 2px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Botones de modo: título + qué implica jugar así. Comparten el aspecto de
+   .btn-action pero en dos líneas y alineados a la izquierda, porque el texto
+   ya no es una sola palabra en versalitas. Van después de .btn-action a
+   propósito: misma especificidad, así que gana el que se declara al final. */
+.btn-mode {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 20px;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 16px;
+}
+
+.btn-mode-icon {
+  font-size: 24px;
+  line-height: 1;
+  flex: none;
+}
+
+.btn-mode-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.btn-mode-title {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.btn-mode-desc {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-mode--study {
+  background: linear-gradient(135deg, var(--miami-cyan), var(--miami-purple));
+  box-shadow:
+    0 0 15px rgba(0, 243, 255, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.35);
+}
+
+.btn-mode--review {
+  background: linear-gradient(135deg, #ffd700, #ff8c00);
+  color: #2b1400;
+  box-shadow:
+    0 0 15px rgba(255, 215, 0, 0.35),
+    inset 0 2px 0 rgba(255, 255, 255, 0.45);
+}
+
+.btn-mode--review .btn-mode-desc {
+  color: rgba(43, 20, 0, 0.78);
+}
+
+/* Sin casos que tocan hoy: sigue visible para que se vea el progreso, pero
+   deja de pedir atención. */
+.btn-mode--review:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.55);
+  box-shadow: none;
+  cursor: default;
+}
+
+.btn-mode--review:disabled .btn-mode-desc {
+  color: rgba(255, 255, 255, 0.38);
 }
 
 .btn-action:hover::before {
@@ -1148,21 +1436,7 @@ body {
   100% { filter: contrast(1) saturate(1); }
 }
 
-/* Botones de Power-up */
-.powerups-row {
-  display: flex;
-  flex-wrap: wrap; /* en pantallas angostas los botones envuelven en vez de clipearse */
-  gap: 12px;
-  margin-top: 10px;
-  justify-content: center;
-}
-
-@media (max-width: 480px) {
-  .powerups-row {
-    gap: 8px;
-  }
-}
-
+/* Botones de la barra de retroalimentación (Ver explicación / Siguiente) */
 .btn-powerup {
   background: rgba(157, 0, 255, 0.15);
   border: 1px solid rgba(157, 0, 255, 0.4);
@@ -1415,6 +1689,82 @@ body {
   color: rgba(255, 255, 255, 0.95);
 }
 
+/* ---------------------------------------------------------------------------
+   Consecuencias de guardia
+   Fallar una tarea de un caso con varias descompensa al paciente. La mecánica
+   ya existía pero era invisible: sólo cambiaba el ECG y metía un "[URGENCIA:…]"
+   en texto plano dentro del enunciado.
+   ------------------------------------------------------------------------- */
+.case-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 0, 85, 0.14);
+  border: 1px solid rgba(255, 0, 85, 0.5);
+  animation: alert-pulse 1.4s ease-in-out infinite;
+}
+
+.case-alert-icon {
+  font-size: 22px;
+  line-height: 1.1;
+  flex: none;
+}
+
+.case-alert-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.case-alert-text strong {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #ff4d6d;
+}
+
+@keyframes alert-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255, 0, 85, 0); }
+  50% { box-shadow: 0 0 18px rgba(255, 0, 85, 0.45); }
+}
+
+/* La tarjeta entera acusa el estado, no sólo el aviso */
+.case-card--critical {
+  border-color: rgba(255, 0, 85, 0.55);
+  box-shadow: 0 0 28px rgba(255, 0, 85, 0.18);
+}
+
+.feedback-consequence {
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  background: rgba(255, 0, 85, 0.14);
+  border: 1px solid rgba(255, 0, 85, 0.45);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.feedback-consequence strong {
+  color: #ff4d6d;
+}
+
+.feedback-consequence--good {
+  background: rgba(57, 255, 20, 0.12);
+  border-color: rgba(57, 255, 20, 0.45);
+}
+
+.feedback-consequence--good strong {
+  color: #39ff14;
+}
+
 /* Contador de casos disponibles bajo los filtros */
 .pool-info {
   margin-top: 12px;
@@ -1440,7 +1790,11 @@ body {
   margin-top: 6px;
 }
 
-/* Sprite frame inside avatar containers */
+/* Sprite frame inside avatar containers.
+   La hoja está normalizada a una rejilla exacta de 5x2 con celdas cuadradas
+   (tools/normalize_sprites.py), así que el recorte lo resuelve el
+   background-position que calcula Avatars._generate y aquí no hace falta
+   ningún ajuste de encuadre. */
 .sprite-frame {
   width: 100%;
   height: 100%;
@@ -1457,10 +1811,6 @@ body {
 @keyframes idleBreathe {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-2px) scaleY(1.02); }
-}
-     esquinas redondeadas sin recortar la cabeza (antes translateY(-3%)
-     subía la imagen y cortaba el pelo). */
-  transform: scale(1.04);
 }
 
 /* Accessibility: Support reduced motion settings */

@@ -1,371 +1,1445 @@
 {
-  "version": "v1_simplified",
+  "version": "v1",
   "updated": "2026-07-25",
   "counts": {
-    "total": 85,
-    "real": 85,
+    "total": 94,
+    "real": 94,
     "synthetic": 0,
     "synth_packs": 0,
     "pack_size": 25
   },
   "packs": {
-    "real": "packs/cases_real_v1_simplified.json",
+    "real": "packs/cases_real_v1.json",
     "synth": []
   },
   "index": [
     {
-      "pack": "packs/cases_real_v1_final.json",
-      "cases": [
-        {
-          "id": "REAL_GEN_SCH_001_A",
-          "title": "Esquizofrenia: Fenomenología y Criterios"
-        },
-        {
-          "id": "REAL_GEN_SCH_002_A",
-          "title": "Esquizofrenia: Heterogeneidad Clínica"
-        },
-        {
-          "id": "REAL_GEN_SUI_001_A",
-          "title": "Suicidio: Fenomenología y Definiciones"
-        },
-        {
-          "id": "REAL_GEN_SUI_002_A",
-          "title": "Suicidio: Factores de Riesgo"
-        },
-        {
-          "id": "REAL_GEN_DEP_001_A",
-          "title": "Trastorno Depresivo Mayor: Criterios Diagnósticos"
-        },
-        {
-          "id": "REAL_GEN_ADHD_001_A",
-          "title": "TDAH: Fenotipo y Evolución"
-        },
-        {
-          "id": "REAL_GEN_ADHD_002_A",
-          "title": "TDAH: Diagnóstico y Circuitos"
-        },
-        {
-          "id": "REAL_GEN_DELIR_001_A",
-          "title": "Delirium: Fenomenología Aguda"
-        },
-        {
-          "id": "REAL_GEN_DELIR_002_A",
-          "title": "Delirium: Fisiopatología y Manejo"
-        },
-        {
-          "id": "REAL_GEN_BIP_001_A",
-          "title": "Trastorno Bipolar: Definiciones"
-        },
-        {
-          "id": "REAL_GEN_BIP_002_A",
-          "title": "Trastorno Bipolar: Neurobiología y Manejo"
-        },
-        {
-          "id": "REAL_GEN_ASD_001_A",
-          "title": "Autismo: Dominios Nucleares"
-        },
-        {
-          "id": "REAL_GEN_ASD_002_A",
-          "title": "Autismo: Neurobiología y Clínica"
-        },
-        {
-          "id": "REAL_GEN_PTSD_001_A",
-          "title": "TEPT: Clusters Sintomáticos"
-        },
-        {
-          "id": "REAL_GEN_PTSD_002_A",
-          "title": "TEPT: Neurobiología y Emoción"
-        },
-        {
-          "id": "REAL_GEN_SLEEP_001_A",
-          "title": "Parasomnias: Fenomenología"
-        },
-        {
-          "id": "REAL_GEN_SEX_001_A",
-          "title": "Disfunciones Sexuales: Definición"
-        },
-        {
-          "id": "REAL_GEN_HIST_001_A",
-          "title": "Historia de la Psiquiatría: Evolución Conceptual"
-        },
-        {
-          "id": "EDU_01_HIST",
-          "title": "Evaluación: Signos de Psicosis Activa"
-        },
-        {
-          "id": "EDU_03_AFECTO",
-          "title": "Depresión: Rasgos Melancólicos"
-        },
-        {
-          "id": "EDU_04_ANSIEDAD",
-          "title": "Ansiedad: Diagnóstico Diferencial Orgánico"
-        },
-        {
-          "id": "EDU_05_TEPT",
-          "title": "TEPT: Diagnóstico Sindromático"
-        },
-        {
-          "id": "EDU_06_NEURO",
-          "title": "Autismo Nivel 1 en Adultos"
-        },
-        {
-          "id": "EDU_07_TDAH",
-          "title": "TDAH: Fenotipo Adulto"
-        },
-        {
-          "id": "EDU_08_IMPULSOS",
-          "title": "Control de Impulsos: Trastorno Explosivo Intermitente"
-        },
-        {
-          "id": "EDU_09_TOC",
-          "title": "TOC: Función de la Compulsión"
-        },
-        {
-          "id": "EDU_10_SUBST",
-          "title": "Urgencias: Delirium Tremens"
-        },
-        {
-          "id": "EDU_11_PSIC",
-          "title": "Psicosis: Fenomenología y HiTOP"
-        },
-        {
-          "id": "EDU_12_ORG",
-          "title": "Psiquiatría de Enlace: Delirium Infeccioso"
-        },
-        {
-          "id": "EDU_16_URGENCIAS",
-          "title": "Urgencias: Síndrome Serotoninérgico"
-        },
-        {
-          "id": "EDU_17_SEXUAL",
-          "title": "Sexualidad: Disfunción por ISRS"
-        },
-        {
-          "id": "EDU_18_TCA",
-          "title": "TCA: Criterios de Ingreso en Anorexia"
-        },
-        {
-          "id": "EDU_19_PERS",
-          "title": "Personalidad: Trastorno Límite (TLP)"
-        },
-        {
-          "id": "EDU_20_TALLER",
-          "title": "Catatonia: Diagnóstico y Manejo"
-        },
-        {
-          "id": "EDU_21_ANSIEDAD_GAD",
-          "title": "Ansiedad Generalizada (TAG): Diferencial"
-        },
-        {
-          "id": "CLIN_001_PANICO",
-          "title": "Trastorno de Pánico: Crisis vs. Ansiedad Generalizada"
-        },
-        {
-          "id": "CLIN_002_FOBIA_SOCIAL",
-          "title": "Fobia Social: Ansiedad de Actuación"
-        },
-        {
-          "id": "CLIN_003_ANOREXIA",
-          "title": "Anorexia Nerviosa: Criterios Diagnósticos"
-        },
-        {
-          "id": "CLIN_004_BULIMIA",
-          "title": "Bulimia Nerviosa: Ciclo Atracón-Compensación"
-        },
-        {
-          "id": "CLIN_005_TDM_ESPECIFICADOR",
-          "title": "Depresión Mayor: Especificador Atípico"
-        },
-        {
-          "id": "CLIN_006_TRASTORNO_ADAPTACION",
-          "title": "Trastorno de Adaptación: Estrés Psicosocial"
-        },
-        {
-          "id": "CLIN_007_TOC_INSIGHT",
-          "title": "TOC: Niveles de Insight"
-        },
-        {
-          "id": "CLIN_008_HIPOCONDRIA",
-          "title": "Trastorno de Ansiedad por Enfermedad (Hipocondría)"
-        },
-        {
-          "id": "CLIN_009_CONVERSION",
-          "title": "Trastorno de Conversión (Síntomas Neurológicos Funcionales)"
-        },
-        {
-          "id": "CLIN_010_TRASTORNO_FACTICIO",
-          "title": "Trastorno Facticio (Síndrome de Münchausen)"
-        },
-        {
-          "id": "CLIN_011_ABSTINENCIA_ALCOHOL",
-          "title": "Síndrome de Abstinencia Alcohólica"
-        },
-        {
-          "id": "CLIN_012_DUELO_COMPLICADO",
-          "title": "Duelo vs. Depresión Mayor"
-        },
-        {
-          "id": "CLIN_013_INSOMNIO",
-          "title": "Trastorno de Insomnio: Criterios"
-        },
-        {
-          "id": "CLIN_014_NARCOLEPSIA",
-          "title": "Narcolepsia: Tetrada Clásica"
-        },
-        {
-          "id": "CLIN_015_TRASTORNO_PERSONALIDAD_LIMITE_CRITERIOS",
-          "title": "TLP: Criterios DSM-5"
-        },
-        {
-          "id": "CLIN_016_TRASTORNO_PERSONALIDAD_ANTISOCIAL",
-          "title": "Trastorno Antisocial de la Personalidad (TASP)"
-        },
-        {
-          "id": "CLIN_017_EFECTOS_ADVERSOS_ISRS",
-          "title": "Efectos Adversos de ISRS: Síndrome Serotoninérgico Leve"
-        },
-        {
-          "id": "CLIN_018_ANTIPSICOTICOS_METABOLICOS",
-          "title": "Antipsicóticos Atípicos: Síndrome Metabólico"
-        },
-        {
-          "id": "CLIN_019_LITIO_MONITOREO",
-          "title": "Litio: Niveles Terapéuticos y Tóxicos"
-        },
-        {
-          "id": "CLIN_020_BENZODIACEPINAS_DEPENDENCIA",
-          "title": "Benzodiacepinas: Tolerancia y Dependencia"
-        },
-        {
-          "id": "HOSP_001_DELIRIUM_UCI",
-          "title": "Delirium en Paciente Crítico: Manejo de Agitación"
-        },
-        {
-          "id": "HOSP_002_DEMENCIA_VASCULAR",
-          "title": "Demencia Vascular: Inicio Escalonado"
-        },
-        {
-          "id": "HOSP_003_DEPRESION_POSTPARTO",
-          "title": "Depresión Postparto: 'Maternity Blues' vs. Depresión"
-        },
-        {
-          "id": "HOSP_004_MANIA_CRITERIOS",
-          "title": "Episodio Maníaco: Criterios DSM-5"
-        },
-        {
-          "id": "HOSP_005_ESQUIZOFRENIA_PROGNOSTICO",
-          "title": "Esquizofrenia: Factores de Buen Pronóstico"
-        },
-        {
-          "id": "HOSP_006_TRASTORNO_CORTA_DURACION",
-          "title": "Espectro Psicótico: Criterios Temporales"
-        },
-        {
-          "id": "HOSP_007_INDICACIONES_TEC",
-          "title": "Terapia Electroconvulsiva (TEC): Indicaciones"
-        },
-        {
-          "id": "HOSP_008_SINDROME_NEUROLEPTICO_MALIGNO",
-          "title": "SNM: Clínica y Manejo"
-        },
-        {
-          "id": "HOSP_009_WERNICKE",
-          "title": "Encefalopatía de Wernicke"
-        },
-        {
-          "id": "HOSP_010_INTOXICACION_LITIO",
-          "title": "Intoxicación Aguda por Litio: Manejo"
-        },
-        {
-          "id": "HOSP_011_PARADIGMA_REDUCCION_DAÑOS",
-          "title": "Reducción de Daños en Sustancias"
-        },
-        {
-          "id": "HOSP_012_CRISIS_AGITACION_AGUDO",
-          "title": "Protocolo de Agitación Aguda"
-        },
-        {
-          "id": "HOSP_013_TCA_BULIMIA_SIGNOS",
-          "title": "Signos Físicos en Bulimia Nerviosa"
-        },
-        {
-          "id": "HOSP_014_COMPLICACION_ANTIPSICOTICOS",
-          "title": "Antipsicóticos: Distonía Aguda"
-        },
-        {
-          "id": "HOSP_015_DELIRIUM_TREMENS_CLINICA",
-          "title": "Delirium Tremens: Características"
-        },
-        {
-          "id": "HOSP_016_SINDROME_SEROTONINERGICO_GRAVE",
-          "title": "Síndrome Serotoninérgico Severo"
-        },
-        {
-          "id": "HOSP_017_REACCION_COCAINA",
-          "title": "Intoxicación por Cocaína: Manejo Inicial"
-        },
-        {
-          "id": "HOSP_018_DEMENCIA_FRONTOTEMPORAL",
-          "title": "Demencia Frontotemporal: Variante Conductual"
-        },
-        {
-          "id": "HOSP_019_TDAH_NIÑOS_CRITERIOS",
-          "title": "TDAH: Criterios de Escolaridad"
-        },
-        {
-          "id": "HOSP_020_PSICOSIS_BREVE",
-          "title": "Trastorno Psicótico Breve post-estrés"
-        },
-        {
-          "id": "REAL_GEN_GAD_001_A",
-          "title": "Trastorno de Ansiedad Generalizada: Preocupación Excesiva"
-        },
-        {
-          "id": "REAL_GEN_PANIC_001_A",
-          "title": "Trastorno de Pánico: Crisis Inesperadas"
-        },
-        {
-          "id": "REAL_GEN_SAD_001_A",
-          "title": "Trastorno de Ansiedad Social: Miedo a la Evaluación"
-        },
-        {
-          "id": "REAL_GEN_OCD_001_A",
-          "title": "TOC: Obsesiones y Compulsiones"
-        },
-        {
-          "id": "REAL_GEN_PTSD_003_A",
-          "title": "TEPT: Clasificación y Síntomas Nucleares"
-        },
-        {
-          "id": "REAL_GEN_BIP_003_A",
-          "title": "Trastorno Bipolar: Episodio Hipomaníaco vs. Maníaco"
-        },
-        {
-          "id": "REAL_GEN_SUD_001_A",
-          "title": "Trastorno por Consumo de Sustancias: Criterios"
-        },
-        {
-          "id": "REAL_GEN_NCD_001_A",
-          "title": "Trastorno Neurocognitivo Mayor: Demencia"
-        },
-        {
-          "id": "REAL_GEN_ASD_003_A",
-          "title": "TEA: Comunicación Social y Conductas Restrictivas"
-        },
-        {
-          "id": "REAL_GEN_ADHD_003_A",
-          "title": "TDAH: Subtipos y Persistencia en Adultos"
-        },
-        {
-          "id": "REAL_GEN_TCA_001_A",
-          "title": "Trastorno por Atracón: Sin Conductas Compensatorias"
-        },
-        {
-          "id": "HOSP_021_TDPM",
-          "title": "Trastorno Disfórico Premenstrual: Diagnóstico Diferencial"
-        }
-      ]
+      "case_id": "REAL_GEN_SCH_001_A",
+      "title": "Esquizofrenia: Fenomenología y Criterios",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder",
+        "detachment"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SCH_002_A",
+      "title": "Esquizofrenia: Heterogeneidad Clínica",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems",
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SCH_002_B",
+      "title": "Esquizofrenia: Diagnóstico Diferencial y RDoC",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SUI_001_A",
+      "title": "Suicidio: Fenomenología y Definiciones",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems",
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SUI_002_A",
+      "title": "Suicidio: Factores de Riesgo",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_DEP_001_A",
+      "title": "Trastorno Depresivo Mayor: Criterios Diagnósticos",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems",
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ADHD_001_A",
+      "title": "TDAH: Fenotipo y Evolución",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing",
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Cognitive Systems",
+        "Positive Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ADHD_002_A",
+      "title": "TDAH: Diagnóstico y Circuitos",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing",
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ADHD_002_B",
+      "title": "TDAH: Neurobiología y RDoC",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing",
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_DELIR_001_A",
+      "title": "Delirium: Fenomenología Aguda",
+      "difficulty": "media",
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems",
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_DELIR_002_A",
+      "title": "Delirium: Fisiopatología y Manejo",
+      "difficulty": "media",
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems",
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_DELIR_002_B",
+      "title": "Delirium: Mecanismos y RDoC",
+      "difficulty": "dificil",
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems",
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_BIP_001_A",
+      "title": "Trastorno Bipolar: Definiciones",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Positive Valence Systems",
+        "Arousal/Regulatory Systems",
+        "Cognitive Systems",
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_BIP_002_A",
+      "title": "Trastorno Bipolar: Neurobiología y Manejo",
+      "difficulty": "media",
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Positive Valence Systems",
+        "Arousal/Regulatory Systems",
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_BIP_002_B",
+      "title": "Trastorno Bipolar: RDoC y Mecanismos",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Positive Valence Systems",
+        "Arousal/Regulatory Systems",
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ASD_001_A",
+      "title": "Autismo: Dominios Nucleares",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Social Processes"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ASD_002_A",
+      "title": "Autismo: Neurobiología y Clínica",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Social Processes"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ASD_002_B",
+      "title": "Autismo: Intervención Avanzada",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Social Processes"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_PTSD_001_A",
+      "title": "TEPT: Clusters Sintomáticos",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_PTSD_002_A",
+      "title": "TEPT: Neurobiología y Emoción",
+      "difficulty": "media",
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_PTSD_002_B",
+      "title": "TEPT: Terapéutica y RDoC",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SLEEP_001_A",
+      "title": "Parasomnias: Fenomenología",
+      "difficulty": "media",
+      "educational_level": "especialidad",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SEX_001_A",
+      "title": "Disfunciones Sexuales: Definición",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_HIST_001_A",
+      "title": "Historia de la Psiquiatría: Evolución Conceptual",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_HIST_001_B",
+      "title": "Historia de la Psiquiatría: Derechos Humanos",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_01_HIST",
+      "title": "Evaluación: Signos de Psicosis Activa",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_02_CLASS",
+      "title": "Clasificaciones: HiTOP y RDoC",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_03_AFECTO",
+      "title": "Depresión: Rasgos Melancólicos",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing",
+        "detachment"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_04_ANSIEDAD",
+      "title": "Ansiedad: Diagnóstico Diferencial Orgánico",
+      "difficulty": "dificil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_05_TEPT",
+      "title": "TEPT: Diagnóstico Sindromático",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_06_NEURO",
+      "title": "Neurodesarrollo: TEA Nivel 1 en Adultos",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Social Processes"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_07_TDAH",
+      "title": "TDAH: Fenotipo Adulto",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing",
+        "internalizing"
+      ],
+      "rdoc": [
+        "Cognitive Systems",
+        "Positive Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_08_IMPULSOS",
+      "title": "Control de Impulsos: Trastorno Explosivo Intermitente",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems",
+        "Positive Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_09_TOC",
+      "title": "TOC: Función de la Compulsión",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_10_SUBST",
+      "title": "Urgencias: Delirium Tremens",
+      "difficulty": "dificil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems",
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_11_PSIC",
+      "title": "Psicosis: Fenomenología y HiTOP",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_12_ORG",
+      "title": "Psiquiatría de Enlace: Delirium Infeccioso",
+      "difficulty": "dificil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems",
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_16_URGENCIAS",
+      "title": "Urgencias: Síndrome Serotoninérgico",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_17_SEXUAL",
+      "title": "Sexualidad: Disfunción por ISRS",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_18_TCA",
+      "title": "TCA: Criterios de Ingreso en Anorexia",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_19_PERS",
+      "title": "Personalidad: Trastorno Límite (TLP)",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing",
+        "detachment"
+      ],
+      "rdoc": [
+        "Negative Valence Systems",
+        "Positive Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_20_TALLER",
+      "title": "Catatonia: Diagnóstico y Manejo",
+      "difficulty": "dificil",
+      "educational_level": "residencia",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems",
+        "Sensorimotor Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "EDU_21_ANSIEDAD_GAD",
+      "title": "Ansiedad Generalizada (TAG): Diferencial",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_001_PANICO",
+      "title": "Trastorno de Pánico: Crisis vs. Ansiedad Generalizada",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_002_FOBIA_SOCIAL",
+      "title": "Fobia Social: Ansiedad de Actuación",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_003_ANOREXIA",
+      "title": "Anorexia Nerviosa: Criterios Diagnósticos",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_004_BULIMIA",
+      "title": "Bulimia Nerviosa: Ciclo Atracón-Compensación",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_005_TDM_ESPECIFICADOR",
+      "title": "Depresión Mayor: Especificador Atípico",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_006_TRASTORNO_ADAPTACION",
+      "title": "Trastorno de Adaptación: Estrés Psicosocial",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_007_TOC_INSIGHT",
+      "title": "TOC: Niveles de Insight",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_008_HIPOCONDRIA",
+      "title": "Trastorno de Ansiedad por Enfermedad (Hipocondría)",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing",
+        "somatoform"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_009_CONVERSION",
+      "title": "Trastorno de Conversión (Síntomas Neurológicos Funcionales)",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "somatoform"
+      ],
+      "rdoc": [
+        "Sensorimotor Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_010_TRASTORNO_FACTICIO",
+      "title": "Trastorno Facticio (Síndrome de Münchausen)",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing",
+        "somatoform"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_011_ABSTINENCIA_ALCOHOL",
+      "title": "Síndrome de Abstinencia Alcohólica",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems",
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_012_DUELO_COMPLICADO",
+      "title": "Duelo vs. Depresión Mayor",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing",
+        "detachment"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_013_INSOMNIO",
+      "title": "Trastorno de Insomnio: Criterios",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_014_NARCOLEPSIA",
+      "title": "Narcolepsia: Tetrada Clásica",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_015_TRASTORNO_PERSONALIDAD_LIMITE_CRITERIOS",
+      "title": "TLP: Criterios DSM-5",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems",
+        "Positive Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_016_TRASTORNO_PERSONALIDAD_ANTISOCIAL",
+      "title": "Trastorno Antisocial de la Personalidad (TASP)",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing"
+      ],
+      "rdoc": [
+        "Positive Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_017_EFECTOS_ADVERSOS_ISRS",
+      "title": "Efectos Adversos de ISRS: Síndrome Serotoninérgico Leve",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "farmacologia",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_018_ANTIPSICOTICOS_METABOLICOS",
+      "title": "Antipsicóticos Atípicos: Síndrome Metabólico",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "farmacologia",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_019_LITIO_MONITOREO",
+      "title": "Litio: Niveles Terapéuticos y Tóxicos",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "farmacologia",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Positive Valence Systems",
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "CLIN_020_BENZODIACEPINAS_DEPENDENCIA",
+      "title": "Benzodiacepinas: Tolerancia y Dependencia",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "farmacologia",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems",
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_001_DELIRIUM_UCI",
+      "title": "Delirium en Paciente Crítico: Manejo de Agitación",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems",
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_002_DEMENCIA_VASCULAR",
+      "title": "Demencia Vascular: Inicio Escalonado",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_003_DEPRESION_POSTPARTO",
+      "title": "Depresión Postparto: 'Maternity Blues' vs. Depresión",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_004_MANIA_CRITERIOS",
+      "title": "Episodio Maníaco: Criterios DSM-5",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems",
+        "Positive Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_005_ESQUIZOFRENIA_PROGNOSTICO",
+      "title": "Esquizofrenia: Factores de Buen Pronóstico",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_006_TRASTORNO_CORTA_DURACION",
+      "title": "Espectro Psicótico: Criterios Temporales",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_007_INDICACIONES_TEC",
+      "title": "Terapia Electroconvulsiva (TEC): Indicaciones",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems",
+        "Positive Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_008_SINDROME_NEUROLEPTICO_MALIGNO",
+      "title": "SNM: Clínica y Manejo",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [
+        "Arousal/Regulatory Systems",
+        "Sensorimotor Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_009_WERNICKE",
+      "title": "Encefalopatía de Wernicke",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [
+        "Cognitive Systems",
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_010_INTOXICACION_LITIO",
+      "title": "Intoxicación Aguda por Litio: Manejo",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "farmacologia",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_011_PARADIGMA_REDUCCION_DAÑOS",
+      "title": "Reducción de Daños en Sustancias",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "psiquiatria_social",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_012_CRISIS_AGITACION_AGUDO",
+      "title": "Protocolo de Agitación Aguda",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_013_TCA_BULIMIA_SIGNOS",
+      "title": "Signos Físicos en Bulimia Nerviosa",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_014_COMPLICACION_ANTIPSICOTICOS",
+      "title": "Antipsicóticos: Distonía Aguda",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "farmacologia",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [
+        "Sensorimotor Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_015_DELIRIUM_TREMENS_CLINICA",
+      "title": "Delirium Tremens: Características",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems",
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_016_SINDROME_SEROTONINERGICO_GRAVE",
+      "title": "Síndrome Serotoninérgico Severo",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "farmacologia",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_017_REACCION_COCAINA",
+      "title": "Intoxicación por Cocaína: Manejo Inicial",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_018_DEMENCIA_FRONTOTEMPORAL",
+      "title": "Demencia Frontotemporal: Variante Conductual",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [
+        "Negative Valence Systems",
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_019_TDAH_NIÑOS_CRITERIOS",
+      "title": "TDAH: Criterios de Escolaridad",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing",
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Cognitive Systems",
+        "Positive Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_020_PSICOSIS_BREVE",
+      "title": "Trastorno Psicótico Breve post-estrés",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "thought_disorder"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_GAD_001_A",
+      "title": "Trastorno de Ansiedad Generalizada: Preocupación Excesiva",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_PANIC_001_A",
+      "title": "Trastorno de Pánico: Crisis Inesperadas",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SAD_001_A",
+      "title": "Trastorno de Ansiedad Social: Miedo a la Evaluación",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_OCD_001_A",
+      "title": "TOC: Obsesiones y Compulsiones",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_PTSD_003_A",
+      "title": "TEPT: Clasificación y Síntomas Nucleares",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_BIP_003_A",
+      "title": "Trastorno Bipolar: Episodio Hipomaníaco vs. Maníaco",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Positive Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_SUD_001_A",
+      "title": "Trastorno por Consumo de Sustancias: Criterios",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing"
+      ],
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_NCD_001_A",
+      "title": "Trastorno Neurocognitivo Mayor: Demencia",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ASD_003_A",
+      "title": "TEA: Comunicación Social y Conductas Restrictivas",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Social Processes"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_ADHD_003_A",
+      "title": "TDAH: Subtipos y Persistencia en Adultos",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "externalizing",
+        "neurodevelopmental"
+      ],
+      "rdoc": [
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "REAL_GEN_TCA_001_A",
+      "title": "Trastorno por Atracón: Sin Conductas Compensatorias",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
     }
-  ],
-  "total_cases": 87
+  ]
 }
