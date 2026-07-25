@@ -275,9 +275,9 @@ const Game = (() => {
     },
 
     showMenu() {
-      // Clear game screens
+      updatePoolInfo(); // init count
+      $("#caseRoot").innerHTML = ""; // clear caseRoot
       $("#hudRoot").innerHTML = "";
-      $("#caseRoot").innerHTML = "";
       $("#modalRoot").innerHTML = "";
 
       // Render menu in hudRoot (acting as main container)
@@ -442,15 +442,34 @@ const Game = (() => {
     return { summary, details };
   }
 
-  // --- RENDERERS ---
+  // --- RENDERERS & FX ---
+  function withTransition(callback) {
+    if (document.startViewTransition) {
+      document.startViewTransition(callback);
+    } else {
+      callback();
+    }
+  }
+
+  function flashScreen(isCorrect) {
+    const root = $("#fxRoot");
+    if (!root) return;
+    const flash = document.createElement("div");
+    flash.className = "flash-overlay " + (isCorrect ? "flash-correct" : "flash-incorrect");
+    root.appendChild(flash);
+    setTimeout(() => {
+      if (root.contains(flash)) root.removeChild(flash);
+    }, 500);
+  }
 
   function renderMenu() {
-    const root = $("#hudRoot");
-    if (!root) return;
+    withTransition(() => {
+      const root = $("#hudRoot");
+      if (!root) return;
 
-    Economy.init(); // Refresh data
-    const failedList = getFailedCases();
-    const dueList = getDueFailedCases();
+      Economy.init(); // Refresh data
+      const failedList = getFailedCases();
+      const dueList = getDueFailedCases();
 
     root.innerHTML = `
       <div class="miami-card hero-card">
@@ -510,8 +529,6 @@ const Game = (() => {
             <select class="miami-select" id="selectLevel">
               <option value="">Todos los niveles</option>
               <option value="licenciatura">Licenciatura</option>
-              <option value="residencia">Residencia (RDoC)</option>
-              <option value="especialidad">Especialidad</option>
             </select>
           </div>
           <div>
@@ -585,7 +602,8 @@ const Game = (() => {
         setTimeout(() => startTurn(true, true), 400);
       };
     }
-  }
+  });
+}
 
   function renderGameOver() {
     const modal = $("#modalRoot");
@@ -1083,7 +1101,7 @@ const Game = (() => {
       </div>
       <div class="options">
         ${options.map((o, idx) => `
-          <button class="option-btn" data-ok="${o.ok ? "1" : "0"}" data-index="${idx + 1}">
+          <button class="option-btn stagger-in" data-ok="${o.ok ? "1" : "0"}" data-index="${idx + 1}" style="--stagger-order: ${idx}">
             <span class="option-index">${idx + 1}</span>
             <span class="option-text">${escapeHtml(String(o.t))}</span>
           </button>
@@ -1414,6 +1432,7 @@ const Game = (() => {
     const isEduDoc = state.current?.case_type === "documento_educativo";
 
     if (ok) {
+      flashScreen(true);
       btn.classList.add("correct");
       if (!state.studyMode && !isEduDoc) {
         state.streak++;
@@ -1433,6 +1452,7 @@ const Game = (() => {
       state.decompensated = false; // ¡El paciente ha sido estabilizado!
       if (state.justRescued && state.soundEnabled) playTone(1320, 0.18);
     } else {
+      flashScreen(false);
       btn.classList.add("incorrect");
       // Revelar cuál era la opción correcta (igual que en timeout)
       document.querySelectorAll('.option-btn[data-ok="1"]').forEach(b => b.classList.add("correct"));

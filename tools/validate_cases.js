@@ -2,113 +2,26 @@
 "use strict";
 
 /**
- * assign_and_validate.js
+ * validate_cases.js
  *
  * Uso:
- *   node tools/assign_and_validate.js <input.json> <output.json>
+ *   node tools/validate_cases.js <input.json> <output.json>
  *
  * Funcionalidades:
- * 1. Asigna automáticamente hitop (espectros HiTOP) y rdoc (dominios RDoC) a cada caso,
- *    basándose en título, case_type y contenido de los source_chunks.
- * 2. Valida la estructura completa de cada caso:
+ * 1. Valida la estructura completa de cada caso:
  *    - Campos obligatorios (case_id, title, difficulty, educational_level, etc.)
  *    - source_chunks con chunk_id y texto
  *    - tasks con expected_answer, distractors (al menos 2)
  *    - explanation con rationale, take_home, why_not (para cada distractor)
- * 3. Genera un informe de cambios y advertencias.
- * 4. Guarda el JSON anotado.
+ * 2. Genera un informe de cambios y advertencias.
+ * 3. Guarda el JSON anotado.
  */
 
 const fs = require("fs");
 const path = require("path");
 
 // ---------- Configuración de mapeos ----------
-// Espectros HiTOP (basados en descripciones del manual)
-const HITOP_MAP = {
-  // Palabras clave -> espectro (principal)
-  thought_disorder: ["esquizofrenia", "psicosis", "delirio", "alucinación", "ideas delirantes", "pensamiento desorganizado", "trastorno esquizotípico"],
-  internalizing: ["depresión", "ansiedad", "pánico", "fobia", "tept", "estrés postraumático", "trastorno de adaptación", "duelo", "hipocondría", "toc"],
-  externalizing: ["tdah", "impulsividad", "trastorno explosivo", "antisocial", "conducta antisocial", "consumo de sustancias", "abuso de alcohol", "adicción"],
-  neurodevelopmental: ["autismo", "tea", "trastorno del espectro autista", "discapacidad intelectual", "retraso mental", "tdah"],
-  somatoform: ["conversión", "síntomas somáticos", "hipocondría", "trastorno de síntomas somáticos", "disfunción sexual"],
-  detachment: ["esquizoide", "evitativo", "anhedonia", "alogia", "aplanamiento afectivo"] // síntomas negativos
-};
-
-// Dominios RDoC
-const RDOC_MAP = {
-  "Negative Valence Systems": ["miedo", "ansiedad", "pánico", "tept", "trauma", "amenaza", "pérdida", "depresión", "anhedonia", "desesperanza", "culpa"],
-  "Positive Valence Systems": ["recompensa", "manía", "euforia", "adicción", "craving", "impulsividad", "grandiosidad"],
-  "Cognitive Systems": ["atención", "memoria", "funciones ejecutivas", "tdah", "delirium", "confusión", "déficit cognitivo", "atención", "planificación"],
-  "Social Processes": ["autismo", "tea", "interacción social", "empatía", "teoría de la mente", "reciprocidad", "comunicación social"],
-  "Arousal/Regulatory Systems": ["sueño", "insomnio", "vigilia", "arousal", "delirium", "abstinencia", "agitación", "catatonia"],
-  "Sensorimotor Systems": ["tics", "catatonia", "conversión", "debilidad funcional", "movimientos anormales", "estereotipias"]
-};
-
-// ---------- Utilidades ----------
-function readJson(filePath) {
-  const abs = path.resolve(filePath);
-  const raw = fs.readFileSync(abs, "utf-8");
-  try {
-    return JSON.parse(raw);
-  } catch (e) {
-    throw new Error(`JSON inválido en ${abs}: ${e.message}`);
-  }
-}
-
-function writeJson(filePath, obj) {
-  const abs = path.resolve(filePath);
-  fs.mkdirSync(path.dirname(abs), { recursive: true });
-  fs.writeFileSync(abs, JSON.stringify(obj, null, 2), "utf-8");
-}
-
-function isNonEmptyString(s) {
-  return typeof s === "string" && s.trim().length > 0;
-}
-
-function normalizeText(t) {
-  return String(t || "").toLowerCase().replace(/[^\w\s]/g, " ").replace(/\s+/g, " ").trim();
-}
-
-// Asignar hitop basado en keywords
-function assignHitop(caseObj) {
-  const title = caseObj.title || "";
-  const caseType = caseObj.case_type || "";
-  const chunks = Array.isArray(caseObj.source_chunks) ? caseObj.source_chunks.map(c => c.text_content || "").join(" ") : "";
-  const fullText = `${title} ${caseType} ${chunks}`.toLowerCase();
-  
-  const scores = {};
-  for (const [spectrum, keywords] of Object.entries(HITOP_MAP)) {
-    let count = 0;
-    for (const kw of keywords) {
-      if (fullText.includes(kw)) count++;
-    }
-    if (count > 0) scores[spectrum] = count;
-  }
-  // Ordenar por relevancia y tomar los dos primeros
-  const sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]);
-  const hitop = sorted.slice(0,2).map(s => s[0]);
-  return hitop.length ? hitop : ["internalizing"]; // fallback por defecto
-}
-
-// Asignar rdoc basado en keywords
-function assignRdoc(caseObj) {
-  const title = caseObj.title || "";
-  const caseType = caseObj.case_type || "";
-  const chunks = Array.isArray(caseObj.source_chunks) ? caseObj.source_chunks.map(c => c.text_content || "").join(" ") : "";
-  const fullText = `${title} ${caseType} ${chunks}`.toLowerCase();
-  
-  const scores = {};
-  for (const [domain, keywords] of Object.entries(RDOC_MAP)) {
-    let count = 0;
-    for (const kw of keywords) {
-      if (fullText.includes(kw)) count++;
-    }
-    if (count > 0) scores[domain] = count;
-  }
-  const sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]);
-  const rdoc = sorted.slice(0,2).map(s => s[0]);
-  return rdoc.length ? rdoc : ["Cognitive Systems"]; // fallback
-}
+// (Se eliminó la asignación automática de RDoC/HiTOP para enfoque pregrado)
 
 // ---------- Validación de un caso ----------
 function validateCase(caseObj, index, stats) {
@@ -209,28 +122,33 @@ function validateCase(caseObj, index, stats) {
   return valid;
 }
 
-// ---------- Anotación de un caso (añadir hitop/rdoc a cada chunk) ----------
-function annotateCase(caseObj) {
-  const hitopList = assignHitop(caseObj);
-  const rdocList = assignRdoc(caseObj);
-
-  // Añadir labels a cada source_chunk
-  const chunks = caseObj.source_chunks;
-  if (Array.isArray(chunks)) {
-    for (const chunk of chunks) {
-      if (!chunk.labels) chunk.labels = {};
-      if (!chunk.labels.hitop || chunk.labels.hitop.length === 0) {
-        chunk.labels.hitop = hitopList;
-      }
-      if (!chunk.labels.rdoc || chunk.labels.rdoc.length === 0) {
-        chunk.labels.rdoc = rdocList;
-      }
-    }
+// ---------- Utilidades ----------
+function readJson(filePath) {
+  const abs = path.resolve(filePath);
+  const raw = fs.readFileSync(abs, "utf-8");
+  try {
+    return JSON.parse(raw);
+  } catch (e) {
+    throw new Error(`JSON inválido en ${abs}: ${e.message}`);
   }
-  
-  if (!caseObj.hitop) caseObj.hitop = hitopList;
-  if (!caseObj.rdoc) caseObj.rdoc = rdocList;
-  
+}
+
+function writeJson(filePath, obj) {
+  const abs = path.resolve(filePath);
+  fs.mkdirSync(path.dirname(abs), { recursive: true });
+  fs.writeFileSync(abs, JSON.stringify(obj, null, 2), "utf-8");
+}
+
+function isNonEmptyString(s) {
+  return typeof s === "string" && s.trim().length > 0;
+}
+
+function normalizeText(t) {
+  return String(t || "").toLowerCase().replace(/[^\w\s]/g, " ").replace(/\s+/g, " ").trim();
+}
+
+// ---------- Anotación de un caso (actualmente no añade hitop/rdoc) ----------
+function annotateCase(caseObj) {
   return caseObj;
 }
 

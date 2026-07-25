@@ -275,9 +275,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background-image:
-    linear-gradient(rgba(157, 0, 255, 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(157, 0, 255, 0.07) 1px, transparent 1px),
-    radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.03) 0%, rgba(0, 0, 0, 0) 70%);
+    linear-gradient(rgba(157, 0, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(157, 0, 255, 0.035) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.04) 0%, rgba(0, 0, 0, 0) 80%);
   background-size: 40px 40px, 40px 40px, 100% 100%;
   background-attachment: fixed;
   animation: bg-scroll 20s linear infinite;
@@ -293,7 +293,7 @@ body {
 }
 
 .miami-card {
-  background: rgba(10, 5, 25, 0.7);
+  background: rgba(6, 4, 15, 0.92);
   border: 1px solid var(--glass-border);
   border-radius: 24px;
   box-shadow:
@@ -397,9 +397,10 @@ body {
 }
 
 .caseBody {
-  color: #ffffff;
-  line-height: 1.6;
-  font-size: 17px;
+  color: #f0f0f5;
+  line-height: 1.7;
+  font-size: 16px;
+  letter-spacing: 0.2px;
 }
 
 .caseDetails {
@@ -1825,3 +1826,77 @@ body.time-critical .hud-timer-value {
     transition-delay: 0s !important;
   }
 }
+/* ============================================================================
+   UI Modernization: Animations, View Transitions & FX
+   ============================================================================ */
+
+/* Flash overlays */
+#fxRoot {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.flash-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
+.flash-correct {
+  background: rgba(0, 243, 255, 0.15);
+  animation: flash-fade 0.5s ease-out forwards;
+}
+
+.flash-incorrect {
+  background: rgba(255, 0, 85, 0.2);
+  animation: flash-fade 0.5s ease-out forwards;
+}
+
+@keyframes flash-fade {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Screen Transitions */
+.screen-transition {
+  animation: fade-in-up 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(15px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* View Transitions API overrides */
+::view-transition-old(root) {
+  animation: fade-out 0.2s ease-in both;
+}
+::view-transition-new(root) {
+  animation: fade-in-up 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@keyframes fade-out {
+  0% { opacity: 1; }
+  100% { opacity: 0; transform: scale(0.98); }
+}
+
+/* Staggered entry for options */
+.stagger-in {
+  opacity: 0;
+  animation: slide-in-right 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.stagger-in:nth-child(1) { animation-delay: 0.05s; }
+.stagger-in:nth-child(2) { animation-delay: 0.1s; }
+.stagger-in:nth-child(3) { animation-delay: 0.15s; }
+.stagger-in:nth-child(4) { animation-delay: 0.2s; }
+.stagger-in:nth-child(5) { animation-delay: 0.25s; }
+.stagger-in:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes slide-in-right {
+  0% { opacity: 0; transform: translateX(20px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+

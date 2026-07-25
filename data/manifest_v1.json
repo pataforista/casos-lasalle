@@ -2,8 +2,8 @@
   "version": "v1",
   "updated": "2026-07-25",
   "counts": {
-    "total": 94,
-    "real": 94,
+    "total": 87,
+    "real": 87,
     "synthetic": 0,
     "synth_packs": 0,
     "pack_size": 25
@@ -42,21 +42,6 @@
       "rdoc": [
         "Cognitive Systems",
         "Negative Valence Systems"
-      ],
-      "pack": "packs/cases_real_v1.json"
-    },
-    {
-      "case_id": "REAL_GEN_SCH_002_B",
-      "title": "Esquizofrenia: Diagnóstico Diferencial y RDoC",
-      "difficulty": "dificil",
-      "educational_level": "residencia",
-      "case_type": "razonamiento_clinico",
-      "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
-      "rdoc": [
-        "Cognitive Systems"
       ],
       "pack": "packs/cases_real_v1.json"
     },
@@ -141,22 +126,6 @@
       "pack": "packs/cases_real_v1.json"
     },
     {
-      "case_id": "REAL_GEN_ADHD_002_B",
-      "title": "TDAH: Neurobiología y RDoC",
-      "difficulty": "dificil",
-      "educational_level": "residencia",
-      "case_type": "razonamiento_clinico",
-      "is_real_data": true,
-      "hitop": [
-        "externalizing",
-        "neurodevelopmental"
-      ],
-      "rdoc": [
-        "Cognitive Systems"
-      ],
-      "pack": "packs/cases_real_v1.json"
-    },
-    {
       "case_id": "REAL_GEN_DELIR_001_A",
       "title": "Delirium: Fenomenología Aguda",
       "difficulty": "media",
@@ -176,22 +145,6 @@
       "case_id": "REAL_GEN_DELIR_002_A",
       "title": "Delirium: Fisiopatología y Manejo",
       "difficulty": "media",
-      "educational_level": "especialidad",
-      "case_type": "razonamiento_clinico",
-      "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
-      "rdoc": [
-        "Cognitive Systems",
-        "Arousal/Regulatory Systems"
-      ],
-      "pack": "packs/cases_real_v1.json"
-    },
-    {
-      "case_id": "REAL_GEN_DELIR_002_B",
-      "title": "Delirium: Mecanismos y RDoC",
-      "difficulty": "dificil",
       "educational_level": "especialidad",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
@@ -240,23 +193,6 @@
       "pack": "packs/cases_real_v1.json"
     },
     {
-      "case_id": "REAL_GEN_BIP_002_B",
-      "title": "Trastorno Bipolar: RDoC y Mecanismos",
-      "difficulty": "dificil",
-      "educational_level": "residencia",
-      "case_type": "razonamiento_clinico",
-      "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
-      "rdoc": [
-        "Positive Valence Systems",
-        "Arousal/Regulatory Systems",
-        "Cognitive Systems"
-      ],
-      "pack": "packs/cases_real_v1.json"
-    },
-    {
       "case_id": "REAL_GEN_ASD_001_A",
       "title": "Autismo: Dominios Nucleares",
       "difficulty": "facil",
@@ -287,21 +223,6 @@
       "pack": "packs/cases_real_v1.json"
     },
     {
-      "case_id": "REAL_GEN_ASD_002_B",
-      "title": "Autismo: Intervención Avanzada",
-      "difficulty": "dificil",
-      "educational_level": "residencia",
-      "case_type": "razonamiento_clinico",
-      "is_real_data": true,
-      "hitop": [
-        "neurodevelopmental"
-      ],
-      "rdoc": [
-        "Social Processes"
-      ],
-      "pack": "packs/cases_real_v1.json"
-    },
-    {
       "case_id": "REAL_GEN_PTSD_001_A",
       "title": "TEPT: Clusters Sintomáticos",
       "difficulty": "media",
@@ -321,21 +242,6 @@
       "title": "TEPT: Neurobiología y Emoción",
       "difficulty": "media",
       "educational_level": "especialidad",
-      "case_type": "razonamiento_clinico",
-      "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
-      "rdoc": [
-        "Negative Valence Systems"
-      ],
-      "pack": "packs/cases_real_v1.json"
-    },
-    {
-      "case_id": "REAL_GEN_PTSD_002_B",
-      "title": "TEPT: Terapéutica y RDoC",
-      "difficulty": "dificil",
-      "educational_level": "residencia",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
@@ -388,17 +294,6 @@
       "pack": "packs/cases_real_v1.json"
     },
     {
-      "case_id": "REAL_GEN_HIST_001_B",
-      "title": "Historia de la Psiquiatría: Derechos Humanos",
-      "difficulty": "dificil",
-      "educational_level": "residencia",
-      "case_type": "razonamiento_clinico",
-      "is_real_data": true,
-      "hitop": [],
-      "rdoc": [],
-      "pack": "packs/cases_real_v1.json"
-    },
-    {
       "case_id": "EDU_01_HIST",
       "title": "Evaluación: Signos de Psicosis Activa",
       "difficulty": "media",
@@ -410,21 +305,6 @@
       ],
       "rdoc": [
         "Cognitive Systems"
-      ],
-      "pack": "packs/cases_real_v1.json"
-    },
-    {
-      "case_id": "EDU_02_CLASS",
-      "title": "Clasificaciones: HiTOP y RDoC",
-      "difficulty": "dificil",
-      "educational_level": "residencia",
-      "case_type": "razonamiento_clinico",
-      "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
-      "rdoc": [
-        "Negative Valence Systems"
       ],
       "pack": "packs/cases_real_v1.json"
     },
@@ -476,9 +356,9 @@
     },
     {
       "case_id": "EDU_06_NEURO",
-      "title": "Neurodesarrollo: TEA Nivel 1 en Adultos",
-      "difficulty": "dificil",
-      "educational_level": "residencia",
+      "title": "Autismo Nivel 1 en Adultos",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
@@ -540,7 +420,7 @@
     {
       "case_id": "EDU_10_SUBST",
       "title": "Urgencias: Delirium Tremens",
-      "difficulty": "dificil",
+      "difficulty": "media",
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
@@ -571,7 +451,7 @@
     {
       "case_id": "EDU_12_ORG",
       "title": "Psiquiatría de Enlace: Delirium Infeccioso",
-      "difficulty": "dificil",
+      "difficulty": "media",
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
@@ -587,8 +467,8 @@
     {
       "case_id": "EDU_16_URGENCIAS",
       "title": "Urgencias: Síndrome Serotoninérgico",
-      "difficulty": "dificil",
-      "educational_level": "residencia",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
@@ -649,8 +529,8 @@
     {
       "case_id": "EDU_20_TALLER",
       "title": "Catatonia: Diagnóstico y Manejo",
-      "difficulty": "dificil",
-      "educational_level": "residencia",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
       "hitop": [
@@ -1429,6 +1309,21 @@
     {
       "case_id": "REAL_GEN_TCA_001_A",
       "title": "Trastorno por Atracón: Sin Conductas Compensatorias",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "hitop": [
+        "internalizing"
+      ],
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "HOSP_021_TDPM",
+      "title": "Trastorno Disfórico Premenstrual: Diagnóstico Diferencial",
       "difficulty": "media",
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
