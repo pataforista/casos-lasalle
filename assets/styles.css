@@ -448,21 +448,63 @@ body {
   letter-spacing: 1px;
 }
 
-.rules-list {
-  list-style: none;
-  margin: 14px 0 0;
-  padding: 0;
-  display: grid;
-  gap: 10px;
+/* Briefing del adscrito en el menú: mismas reglas, dichas por un personaje */
+.briefing-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.rules-list li {
+.briefing-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.briefing-who {
+  min-width: 0;
+}
+
+.briefing-quote {
   padding: 10px 14px;
-  border-radius: 14px;
-  background: rgba(0, 243, 255, 0.08);
-  border: 1px solid rgba(0, 243, 255, 0.25);
-  color: rgba(255, 255, 255, 0.82);
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.35);
+  border-left: 3px solid rgba(255, 43, 214, 0.7);
+  font-style: italic;
   font-weight: 600;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.briefing-rules {
+  display: grid;
+  gap: 8px;
+}
+
+.briefing-rule {
+  position: relative;
+  padding: 8px 12px 8px 26px;
+  border-radius: 12px;
+  background: rgba(0, 243, 255, 0.07);
+  border: 1px solid rgba(0, 243, 255, 0.2);
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.briefing-rule::before {
+  content: "▸";
+  position: absolute;
+  left: 10px;
+  color: rgba(0, 243, 255, 0.8);
+}
+
+.briefing-sign {
+  font-size: 12px;
+  font-style: italic;
+  text-align: right;
+  color: rgba(255, 255, 255, 0.45);
 }
 
 .narrative-title {
@@ -472,21 +514,6 @@ body {
   letter-spacing: 2px;
 }
 
-.narrative-body {
-  color: rgba(255, 255, 255, 0.78);
-  margin-top: 10px;
-  line-height: 1.5;
-}
-
-.narrative-quote {
-  margin-top: 14px;
-  padding: 10px 14px;
-  border-left: 4px solid rgba(0, 243, 255, 0.6);
-  color: rgba(255, 255, 255, 0.9);
-  font-style: italic;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-}
 
 .narrative-footer {
   margin-top: 12px;
@@ -1660,6 +1687,82 @@ body.time-critical .hud-timer-value {
   font-style: italic;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.95);
+}
+
+/* ---------------------------------------------------------------------------
+   Consecuencias de guardia
+   Fallar una tarea de un caso con varias descompensa al paciente. La mecánica
+   ya existía pero era invisible: sólo cambiaba el ECG y metía un "[URGENCIA:…]"
+   en texto plano dentro del enunciado.
+   ------------------------------------------------------------------------- */
+.case-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(255, 0, 85, 0.14);
+  border: 1px solid rgba(255, 0, 85, 0.5);
+  animation: alert-pulse 1.4s ease-in-out infinite;
+}
+
+.case-alert-icon {
+  font-size: 22px;
+  line-height: 1.1;
+  flex: none;
+}
+
+.case-alert-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.case-alert-text strong {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #ff4d6d;
+}
+
+@keyframes alert-pulse {
+  0%, 100% { box-shadow: 0 0 0 rgba(255, 0, 85, 0); }
+  50% { box-shadow: 0 0 18px rgba(255, 0, 85, 0.45); }
+}
+
+/* La tarjeta entera acusa el estado, no sólo el aviso */
+.case-card--critical {
+  border-color: rgba(255, 0, 85, 0.55);
+  box-shadow: 0 0 28px rgba(255, 0, 85, 0.18);
+}
+
+.feedback-consequence {
+  margin-bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.4;
+  background: rgba(255, 0, 85, 0.14);
+  border: 1px solid rgba(255, 0, 85, 0.45);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.feedback-consequence strong {
+  color: #ff4d6d;
+}
+
+.feedback-consequence--good {
+  background: rgba(57, 255, 20, 0.12);
+  border-color: rgba(57, 255, 20, 0.45);
+}
+
+.feedback-consequence--good strong {
+  color: #39ff14;
 }
 
 /* Contador de casos disponibles bajo los filtros */

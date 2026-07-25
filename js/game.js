@@ -84,6 +84,19 @@ const RESIDENT_LINES = {
     "Nos quedamos pensando demasiado…",
     "No decidimos a tiempo; ya intervino el adscrito.",
     "La demora también es una decisión, y esta costó."
+  ],
+  // El paciente se descompensó por la decisión anterior: el residente lo dice
+  // en voz alta en vez de dejarlo escondido en un prefijo del enunciado.
+  decompensated: [
+    "¡Se nos está yendo! Necesito una maniobra de rescate ya.",
+    "Reaccionó mal a lo anterior y ahora está inestable. ¿Qué hacemos?",
+    "Se descompensó. No hay margen para otra equivocación.",
+    "Está peor que hace un minuto. Rápido, ¿qué indicamos?"
+  ],
+  rescued: [
+    "Lo estabilizaste. Respiramos otra vez.",
+    "Ya remonta. Buen rescate.",
+    "Vuelve a estar estable. Estuvo cerca."
   ]
 };
 
@@ -145,6 +158,19 @@ const Avatars = {
         ${badge ? `<div class="kawaii-tag">${badge}</div>` : ""}
       </div>
     `;
+  },
+
+  // Cambia la pose de un avatar ya pintado sin rehacer el HUD entero. Lo usa
+  // el reloj para que el residente se preocupe cuando queda poco tiempo:
+  // volver a pintar todo el HUD diez veces por segundo sería absurdo.
+  setMood(container, mood) {
+    const frame = container && container.querySelector(".sprite-frame");
+    if (!frame) return;
+    const idx = MOOD_FRAMES[mood] !== undefined ? MOOD_FRAMES[mood] : 0;
+    const col = idx % SPRITE_COLS;
+    const row = Math.floor(idx / SPRITE_COLS);
+    frame.style.backgroundPosition =
+      `${(col / (SPRITE_COLS - 1)) * 100}% ${(row / (SPRITE_ROWS - 1)) * 100}%`;
   },
 
   resident(name, mood = "normal", gradColors) {
@@ -212,8 +238,12 @@ const Game = (() => {
     recentCases: [],
     recentFeedbackTimer: null,
     residentMood: "normal",
-    bossMood: "normal",
+    // null = usa el estado derivado de BOSS_STATES. Sólo se fija a mano para
+    // una reacción puntual (el enojo justo después de un error) que la tabla,
+    // que sólo mira vidas y racha, no sabría representar.
+    bossMood: null,
     hintUsedInTurn: false,
+    justRescued: false,
     failedCaseIds: [],
     decompensated: false
   };
@@ -377,14 +407,25 @@ const Game = (() => {
     return pickLine("presentNormal");
   }
 
-  // Estado del jefe: evalúa resultados — rachas altas ganan elogio, vidas bajas ganan tensión
+  // Estado del jefe: evalúa resultados — rachas altas ganan elogio, vidas bajas ganan tensión.
+  // La etiqueta y el retrato salen de la misma tabla para que nunca se
+  // contradigan: antes el texto tenía seis estados y la cara sólo dos.
+  const BOSS_STATES = [
+    { when: () => state.studyMode,      label: "EDUCANDO",      mood: "speaking" },
+    { when: () => state.lives <= 1,     label: "¡FURIOSO!",     mood: "angry"    },
+    { when: () => state.streak >= 8,    label: "IMPRESIONADO",  mood: "streak"   },
+    { when: () => state.streak >= 5,    label: "ASINTIENDO",    mood: "ok"       },
+    { when: () => state.decompensated,  label: "ALERTA",        mood: "surprised"},
+    { when: () => state.lives === 2,    label: "TENSO",         mood: "worried"  },
+    { when: () => true,                 label: "VIGILANDO",     mood: "normal"   }
+  ];
+
+  function getBossState() {
+    return BOSS_STATES.find(s => s.when()) || BOSS_STATES[BOSS_STATES.length - 1];
+  }
+
   function getBossStatus() {
-    if (state.studyMode) return "EDUCANDO";
-    if (state.lives <= 1) return "¡FURIOSO!";
-    if (state.streak >= 8) return "IMPRESIONADO";
-    if (state.streak >= 5) return "ASINTIENDO";
-    if (state.lives === 2) return "TENSO";
-    return "VIGILANDO";
+    return getBossState().label;
   }
 
   function splitCaseText(text) {
@@ -486,12 +527,22 @@ const Game = (() => {
         <div class="pool-info" id="poolInfo" aria-live="polite"></div>
       </div>
 
-      <div class="miami-card">
-        <div class="narrative-title">${escapeHtml(NARRATIVE.welcomeTitle)}</div>
-        <ul class="rules-list">
-           ${NARRATIVE.rules.slice(0, 3).map(r => `<li>${escapeHtml(r)}</li>`).join("")}
-        </ul>
-        <div class="narrative-quote">${escapeHtml(NARRATIVE.boss)}</div>
+      <!-- Briefing en vez de temario: las mismas reglas, pero dichas por el
+           adscrito y con su cara delante. Una lista de viñetas bajo el título
+           "Bienvenida a la guardia" se leía como el encuadre de una clase. -->
+      <div class="miami-card briefing-card">
+        <div class="briefing-head">
+          <div class="avatar">${Avatars.boss("speaking")}</div>
+          <div class="briefing-who">
+            <div class="hud-person-role">Adscrito de guardia</div>
+            <div class="hud-person-name">Dr. Celada</div>
+          </div>
+        </div>
+        <div class="briefing-quote">“${escapeHtml(NARRATIVE.intro)}”</div>
+        <div class="briefing-rules">
+          ${NARRATIVE.rules.slice(0, 3).map(r => `<div class="briefing-rule">${escapeHtml(r)}</div>`).join("")}
+        </div>
+        <div class="briefing-sign">${escapeHtml(NARRATIVE.consequence)}</div>
       </div>
     `;
 
@@ -663,7 +714,7 @@ const Game = (() => {
     state.recentCases = [];
     state.recentFeedbackTimer = null;
     state.residentMood = "normal";
-    state.bossMood = "normal";
+    state.bossMood = null;
     state.hintUsedInTurn = false;
     state.solvedCasesCount = 0;
     state.currentTaskIndex = 0;
@@ -773,7 +824,7 @@ const Game = (() => {
               <div class="hud-person-name">Dr. Celada</div>
               <div class="hud-boss-status">${getBossStatus()}</div>
             </div>
-            <div class="avatar" id="bossBox">${Avatars.boss(state.bossMood)}</div>
+            <div class="avatar" id="bossBox">${Avatars.boss(state.bossMood || getBossState().mood)}</div>
           </div>
         </div>
 
@@ -910,20 +961,12 @@ const Game = (() => {
     };
     
     if (!t) return base;
-    
-    // Consecuencias de Guardia (Branching Scenarios)
-    if (state.decompensated && index > 0) {
-      const adapted = { ...base, ...t };
-      const prefix = "🚨 [URGENCIA: ¡El paciente se ha descompensado debido a tu conducta anterior! Realiza una maniobra de rescate]\n\n";
-      if (adapted.question) {
-        adapted.question = prefix + adapted.question;
-      } else if (adapted.instruction) {
-        adapted.instruction = prefix + adapted.instruction;
-      }
-      return adapted;
-    }
-    
-    return { ...base, ...t, question: t.question || "" };
+
+    // Consecuencias de Guardia (Branching Scenarios). La urgencia ya no se
+    // concatena al enunciado: iba como texto plano dentro del párrafo de la
+    // pregunta y se leía como parte del caso. Ahora renderCase la pinta como
+    // alerta propia y aquí sólo se marca.
+    return { ...base, ...t, question: t.question || "", urgent: state.decompensated && index > 0 };
   }
 
   function getPatientEcgClass(c) {
@@ -997,14 +1040,20 @@ const Game = (() => {
       </svg>
     `;
 
-    // El residente presenta el caso (solo en la primera tarea, no en documentos didácticos)
+    // El residente presenta el caso (solo en la primera tarea, no en documentos didácticos).
+    // Si el paciente se descompensó por la respuesta anterior, habla en todas
+    // las tareas: es la voz que anuncia la consecuencia.
     const res = state.resident || ROSTER[0];
-    const presentLine = (state.currentTaskIndex === 0 && c.case_type !== "documento_educativo")
-      ? getResidentPresentLine(ecgClass)
-      : "";
+    const isUrgent = !!task.urgent;
+    let presentLine = "";
+    if (isUrgent) {
+      presentLine = pickLine("decompensated");
+    } else if (state.currentTaskIndex === 0 && c.case_type !== "documento_educativo") {
+      presentLine = getResidentPresentLine(ecgClass);
+    }
 
     root.innerHTML = `
-      <div class="miami-card case-card">
+      <div class="miami-card case-card ${isUrgent ? "case-card--critical" : ""}">
         <div class="caseHeader" style="display: flex; align-items: center; gap: 16px;">
           ${Avatars.patient(c.case_id, ecgClass)}
           <div style="flex: 1; min-width: 0;">
@@ -1015,6 +1064,14 @@ const Game = (() => {
             </div>
           </div>
         </div>
+        ${isUrgent ? `
+          <div class="case-alert" role="alert">
+            <span class="case-alert-icon" aria-hidden="true">🚨</span>
+            <span class="case-alert-text">
+              <strong>El paciente se descompensó</strong>
+              Tu conducta anterior lo empeoró. Esta decisión es de rescate.
+            </span>
+          </div>` : ""}
         ${presentLine ? `<div class="residentQuote">💬 <strong>${escapeHtml(res.title)} ${escapeHtml(res.name)}:</strong> “${escapeHtml(presentLine)}”</div>` : ""}
         ${questionText ? `<div class="caseQuestion">${escapeHtml(questionText)}</div>` : ""}
         <div class="caseSummary">
@@ -1057,6 +1114,7 @@ const Game = (() => {
 
     state.timeLeft = state.turnSeconds;
     state.timerStart = Date.now();
+    state.residentWorried = false;
 
     state.timer = setInterval(() => {
       const elapsed = (Date.now() - state.timerStart) / 1000;
@@ -1075,6 +1133,15 @@ const Game = (() => {
       const isHot = (pct <= 20);
       document.body.classList.toggle("hot-zone-active", isHot);
 
+      // El residente se pone nervioso al entrar en la zona caliente y se
+      // recompone si compras tiempo. Sólo se escribe en la transición: el
+      // tick corre diez veces por segundo.
+      if (isHot !== state.residentWorried) {
+        state.residentWorried = isHot;
+        state.residentMood = isHot ? "worried" : "speaking";
+        Avatars.setMood($("#resBox"), state.residentMood);
+      }
+
       // Parpadeo de fondo rojo cuando quedan ≤ 5 segundos
       const isCritical = (state.timeLeft <= 5);
       document.body.classList.toggle("time-critical", isCritical);
@@ -1091,6 +1158,11 @@ const Game = (() => {
           state.streak = 0; // Timeout rompe racha igual que error
           saveFailedCase(state.current?.case_id);
         }
+
+        // Agotar el reloj no es equivocarse: el residente se queda preocupado,
+        // no en shock, y el adscrito no se enoja por una decisión concreta.
+        state.residentMood = "worried";
+        state.residentWorried = true;
 
         // Resaltar respuesta correcta visualmente
         document.querySelectorAll(".option-btn").forEach(b => {
@@ -1115,8 +1187,11 @@ const Game = (() => {
     if (overlay) overlay.innerHTML = "";
 
     state.resident = pickResident();
-    state.residentMood = "normal";
-    state.bossMood = state.lives <= 1 ? "angry" : "normal";
+    // El residente entra presentando el caso, así que la pose es la de hablar:
+    // el retrato acompaña a la frase que aparece justo debajo.
+    state.residentMood = "speaking";
+    state.bossMood = null; // vuelve al estado derivado de vidas y racha
+    state.justRescued = false;
     state.hintUsedInTurn = false;
     state.currentTaskIndex = 0; // Reset index for new case
     state.decompensated = false; // Reset descompensación para el nuevo caso
@@ -1207,18 +1282,33 @@ const Game = (() => {
     const whyNotList = state.current?.explanation?.why_not || [];
     const takeHomeText = details.takeHome;
 
-    // Reacción del residente al resultado (racha alta tiene frases propias)
+    // Reacción del residente al resultado (racha alta tiene frases propias).
+    // Un rescate tiene voz propia: no es un acierto más.
     const res = state.resident || ROSTER[0];
-    const reactLine = pickLine(ok ? (state.streak >= 3 ? "okStreak" : "ok") : "error");
+    const reactLine = state.justRescued
+      ? pickLine("rescued")
+      : pickLine(ok ? (state.streak >= 3 ? "okStreak" : "ok") : "error");
+
+    // Consecuencia visible del error: el jugador tiene que ver que el paciente
+    // empeoró, no descubrirlo en la siguiente pregunta.
+    const consequenceNote = state.decompensated
+      ? `<div class="feedback-consequence">🚨 <strong>El paciente se descompensó.</strong> La siguiente decisión es de rescate.</div>`
+      : (state.justRescued
+        ? `<div class="feedback-consequence feedback-consequence--good">💚 <strong>Paciente estabilizado.</strong> Lo sacaste de la descompensación.</div>`
+        : "");
+
+    const headerIcon = state.justRescued ? "💚" : (ok ? "💎" : "⚠️");
+    const headerText = state.justRescued ? "RESCATE LOGRADO" : (ok ? "EXCELENTE" : "ERROR CLÍNICO");
 
     root.innerHTML = `
       <div class="feedback-overlay show" style="border-color:${ok ? "rgba(57,255,20,0.4)" : "rgba(255,0,85,0.4)"}; cursor: default;">
         <div class="feedback-header">
-          <div style="font-size:32px;">${ok ? "💎" : "⚠️"}</div>
+          <div style="font-size:32px;">${headerIcon}</div>
           <div class="feedback-status" style="color:${ok ? "#39ff14" : "#ff0055"}">
-            ${ok ? "EXCELENTE" : "ERROR CLÍNICO"}
+            ${headerText}
           </div>
         </div>
+        ${consequenceNote}
         ${reactLine ? `<div class="feedback-resident">${escapeHtml(res.title)} ${escapeHtml(res.name)}: “${escapeHtml(reactLine)}”</div>` : ""}
         <div class="modalFeedback" style="margin:0; font-size:14px;">${escapeHtml(details.reason || brief)}</div>
         
@@ -1330,12 +1420,18 @@ const Game = (() => {
         state.maxStreak = Math.max(state.maxStreak, state.streak);
         Economy.add(25 + (state.streak * 5), 50);
       }
-      state.residentMood = "happy";
+      // En racha la cara acompaña a la frase: el residente ya decía "hoy estás
+      // en modo intratable" con el mismo gesto de un acierto cualquiera.
+      state.residentMood = state.streak >= 3 ? "streak" : "ok";
       if (state.soundEnabled) playTone(880, 0.12);
 
       // Promocionar nivel de maestría en repaso espaciado al responder bien
       promoteFailedCase(state.current?.case_id);
+      // Rescate: si el paciente venía descompensado, estabilizarlo es un
+      // acontecimiento y se anuncia, no un flag que se apaga en silencio.
+      state.justRescued = state.decompensated;
       state.decompensated = false; // ¡El paciente ha sido estabilizado!
+      if (state.justRescued && state.soundEnabled) playTone(1320, 0.18);
     } else {
       btn.classList.add("incorrect");
       // Revelar cuál era la opción correcta (igual que en timeout)
@@ -1346,11 +1442,12 @@ const Game = (() => {
       }
       state.residentMood = "shock";
       state.bossMood = "angry";
+      state.justRescued = false;
       if (state.soundEnabled) playTone(220, 0.2);
 
       // Guardar caso real en la lista de fallados al errar
       saveFailedCase(state.current?.case_id);
-      
+
       // Si tiene más tareas el caso actual, marcar como descompensado para la siguiente tarea
       if (state.current && state.current.tasks && state.currentTaskIndex + 1 < state.current.tasks.length) {
         state.decompensated = true;
