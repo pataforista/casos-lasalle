@@ -404,18 +404,22 @@ body {
 }
 
 .caseDetails {
-  margin-top: 10px;
-  padding: 10px 12px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: rgba(255, 255, 255, 0.78);
+  margin-top: 14px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .caseDetails summary {
   cursor: pointer;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.85);
+  font-weight: 800;
+  color: var(--miami-cyan);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 14px;
   list-style: none;
 }
 
@@ -535,15 +539,20 @@ body {
 }
 
 .caseQuestion {
-  margin-top: 14px;
-  padding: 14px 16px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.5);
-  border-left: 4px solid var(--miami-pink);
+  margin: 14px 0 20px 0;
+  padding: 20px 24px;
+  border-radius: 16px;
+  background: rgba(6, 4, 15, 0.95);
+  border: 1px solid var(--glass-border);
+  border-left: 5px solid var(--miami-pink);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   color: #ffffff;
-  font-weight: 800;
-  font-size: 17px;
+  font-weight: 900;
+  font-size: 19px;
   line-height: 1.5;
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  animation: pop-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 .caseQuestion::before {

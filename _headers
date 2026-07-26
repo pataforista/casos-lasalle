@@ -1,0 +1,6 @@
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+/manifest.webmanifest
+  Cache-Control: no-cache
+/data/*
+  Cache-Control: no-cache

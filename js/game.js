@@ -155,7 +155,6 @@ const Avatars = {
           background-size: ${SPRITE_COLS * 100}% ${SPRITE_ROWS * 100}%;
           background-position: ${pctX}% ${pctY}%;
         "></div>
-        ${badge ? `<div class="kawaii-tag">${badge}</div>` : ""}
       </div>
     `;
   },
@@ -1090,15 +1089,20 @@ const Game = (() => {
               Tu conducta anterior lo empeoró. Esta decisión es de rescate.
             </span>
           </div>` : ""}
+        
+        <details class="caseDetails">
+          <summary>📋 Ver Historia Clínica</summary>
+          <div class="caseBody" style="margin-top: 12px;">
+            ${escapeHtml(summary)}
+            ${details ? `<br><br>${escapeHtml(details)}` : ""}
+          </div>
+        </details>
+
         ${presentLine ? `<div class="residentQuote">💬 <strong>${escapeHtml(res.title)} ${escapeHtml(res.name)}:</strong> “${escapeHtml(presentLine)}”</div>` : ""}
-        ${questionText ? `<div class="caseQuestion">${escapeHtml(questionText)}</div>` : ""}
-        <div class="caseSummary">
-          <div class="caseLabel">Lectura rápida</div>
-          <div class="caseBody">${escapeHtml(summary)}</div>
-        </div>
-        ${details ? `<details class="caseDetails"><summary>Ver detalles</summary><div class="caseBody">${escapeHtml(details)}</div></details>` : ""}
         ${consequenceText ? `<div class="caseAside">${escapeHtml(consequenceText)}</div>` : ""}
       </div>
+      
+      ${questionText ? `<div class="caseQuestion">${escapeHtml(questionText)}</div>` : ""}
       <div class="options">
         ${options.map((o, idx) => `
           <button class="option-btn stagger-in" data-ok="${o.ok ? "1" : "0"}" data-index="${idx + 1}" style="--stagger-order: ${idx}">
