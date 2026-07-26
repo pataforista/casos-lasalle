@@ -275,9 +275,9 @@ const Game = (() => {
     },
 
     showMenu() {
-      updatePoolInfo(); // init count
-      $("#caseRoot").innerHTML = ""; // clear caseRoot
+      // Clear game screens
       $("#hudRoot").innerHTML = "";
+      $("#caseRoot").innerHTML = "";
       $("#modalRoot").innerHTML = "";
 
       // Render menu in hudRoot (acting as main container)
