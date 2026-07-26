@@ -273,7 +273,7 @@ body {
   background-color: var(--bg-dark);
   color: var(--text-main);
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
   background-image:
     linear-gradient(rgba(157, 0, 255, 0.035) 1px, transparent 1px),
     linear-gradient(90deg, rgba(157, 0, 255, 0.035) 1px, transparent 1px),
@@ -319,6 +319,7 @@ body {
 .hero-card {
   text-align: center;
   display: grid;
+  margin: auto 0;
   gap: 14px;
 }
 
@@ -652,12 +653,11 @@ body {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
 #hudRoot {
   position: sticky;
-  top: 12px;
+  top: calc(12px + var(--safe-top, 0px));
   z-index: 100;
 }
 
