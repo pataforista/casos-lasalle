@@ -655,6 +655,12 @@ body {
   justify-content: center;
 }
 
+#hudRoot {
+  position: sticky;
+  top: 12px;
+  z-index: 100;
+}
+
 .hudBox {
   display: flex;
   align-items: center;
