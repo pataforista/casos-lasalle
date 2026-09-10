@@ -214,8 +214,8 @@ html {
 }
 
 .kawaii-avatar {
-  width: 72px;
-  height: 72px;
+  width: 60px;
+  height: 60px;
   flex: none;
   border-radius: 20px;
   display: flex;
@@ -231,24 +231,7 @@ html {
   overflow: hidden;
 }
 
-.avatar-svg {
-  width: 46px;
-  height: 46px;
-  display: block;
-}
 
-.kawaii-tag {
-  position: absolute;
-  bottom: -5px;
-  right: -5px;
-  font-size: 14px;
-  background: #fff;
-  border-radius: 10px;
-  padding: 2px 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-weight: bold;
-  color: #555;
-}
 
 :root {
   --bg-dark: #050510;
@@ -258,6 +241,23 @@ html {
   --glass-bg: rgba(20, 10, 40, 0.65);
   --glass-border: rgba(255, 255, 255, 0.15);
   --text-main: #f0f0f5;
+
+  /* Escala de tinta: el texto deja de ser todo blanco puro o todo neón.
+     Tres niveles bastan para ordenar una pantalla. */
+  --ink-1: #f4f4f8;
+  --ink-2: rgba(244, 244, 248, 0.72);
+  --ink-3: rgba(244, 244, 248, 0.44);
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.15);
+  --surface-1: rgba(255, 255, 255, 0.035);
+  --surface-2: rgba(255, 255, 255, 0.065);
+  --gold: #ffd166;
+
+  /* Radios por función, no por capricho: control, panel, tarjeta. */
+  --r-sm: 10px;
+  --r-md: 14px;
+  --r-lg: 20px;
+
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 16px);
   --safe-left: env(safe-area-inset-left, 0px);
@@ -294,15 +294,13 @@ body {
 
 .miami-card {
   background: rgba(6, 4, 15, 0.92);
-  border: 1px solid var(--glass-border);
-  border-radius: 24px;
-  box-shadow:
-    0 10px 30px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
   backdrop-filter: blur(24px) saturate(150%);
   -webkit-backdrop-filter: blur(24px) saturate(150%);
-  padding: 24px;
-  margin-bottom: 20px;
+  padding: 20px;
+  margin-bottom: 14px;
   position: relative;
   overflow: hidden;
   animation: pop-in 0.4s cubic-bezier(0.19, 1, 0.22, 1);
@@ -340,7 +338,9 @@ body {
 
 .hero-meta {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* Con rango, monedas, récord y precisión ya no caben en dos columnas fijas:
+     que se repartan solas en vez de dejar una tarjeta huérfana abajo. */
+  grid-template-columns: repeat(auto-fit, minmax(96px, 1fr));
   gap: 8px;
 }
 
@@ -372,29 +372,15 @@ body {
   font-weight: 700;
 }
 
+/* El título es la etiqueta del expediente, no el titular. Cuando iba en
+   mayúsculas, cian y 20px gritaba más fuerte que la pregunta que hay que
+   responder: la jerarquía estaba invertida. */
 .caseTitle {
-  font-size: 20px;
-  font-weight: 900;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(0, 243, 255, 0.9);
-}
-
-.caseLabel {
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 14.5px;
   font-weight: 700;
-  margin-bottom: 6px;
-}
-
-.caseSummary {
-  margin-top: 12px;
-  padding: 10px 14px;
-  border-radius: 14px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.2px;
+  line-height: 1.35;
+  color: var(--ink-2);
 }
 
 .caseBody {
@@ -406,23 +392,22 @@ body {
 
 .caseDetails {
   margin-top: 14px;
-  padding: 12px 16px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  color: rgba(255, 255, 255, 0.85);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  padding: 10px 0 0;
+  border-top: 1px solid var(--line);
+  color: var(--ink-2);
 }
 
 .caseDetails summary {
   cursor: pointer;
-  font-weight: 800;
-  color: var(--miami-cyan);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-2);
+  letter-spacing: 0.3px;
+  font-size: 13px;
   list-style: none;
+  transition: color 0.15s ease;
 }
+
+.caseDetails summary:hover { color: var(--miami-cyan); }
 
 .caseDetails summary::-webkit-details-marker {
   display: none;
@@ -430,9 +415,9 @@ body {
 
 .caseDetails summary::after {
   content: "▼";
-  font-size: 12px;
-  margin-left: 8px;
-  color: rgba(0, 243, 255, 0.8);
+  font-size: 9px;
+  margin-left: 7px;
+  color: var(--ink-3);
 }
 
 .caseDetails[open] summary::after {
@@ -542,30 +527,23 @@ body {
 .caseQuestion {
   margin: 14px 0 20px 0;
   padding: 20px 24px;
-  border-radius: 16px;
-  background: rgba(6, 4, 15, 0.95);
-  border: 1px solid var(--glass-border);
-  border-left: 5px solid var(--miami-pink);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  font-weight: 900;
-  font-size: 19px;
-  line-height: 1.5;
+  border-radius: var(--r-md);
+  background: rgba(8, 5, 20, 0.9);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--miami-pink);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  color: var(--ink-1);
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 1.45;
+  letter-spacing: -0.2px;
   backdrop-filter: blur(24px) saturate(150%);
   -webkit-backdrop-filter: blur(24px) saturate(150%);
   animation: pop-in 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.caseQuestion::before {
-  content: "❓ Pregunta";
-  display: block;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  font-weight: 800;
-  color: var(--miami-pink);
-  margin-bottom: 6px;
-}
+/* Sin etiqueta "❓ Pregunta": lo que aparece encima de cuatro opciones ya se
+   entiende. La barra magenta de la izquierda basta como acento. */
 
 .hudRow {
   display: flex;
@@ -604,10 +582,6 @@ body {
     width: 44px;
     height: 44px;
     border-radius: 12px;
-  }
-
-  .kawaii-tag {
-    display: none;
   }
 
   .hero-title {
@@ -673,32 +647,6 @@ body {
   text-align: right;
 }
 
-.track {
-  /* flex:none — dentro de .hud-timer (columna) un flex:1 le daba base 0 y la
-     barra quedaba en 2px, casi invisible. */
-  flex: none;
-  width: 100%;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-sizing: border-box;
-  overflow: hidden;
-  position: relative;
-}
-
-.bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--miami-cyan), var(--miami-pink));
-  box-shadow: 0 0 15px var(--miami-cyan);
-  transition: width 0.1s linear;
-}
-
-.track--danger .bar {
-  background: linear-gradient(90deg, #ff0055, #ff9a9e);
-  box-shadow: 0 0 15px rgba(255, 0, 85, 0.8);
-}
-
 /* ---------------------------------------------------------------------------
    HUD de guardia
    Tres bloques con jerarquía explícita: quién está en la sala, cuánto tiempo
@@ -709,6 +657,38 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding-top: 18px; /* deja respirar la barra de tiempo del borde */
+  /* Opaco a propósito: es un panel fijo que tiene que ocultar el caso que
+     corre por detrás, no dejarlo entrever. La sombra lo despega del texto. */
+  background: #0a0718;
+  box-shadow:
+    0 16px 34px rgba(0, 0, 0, 0.7),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Barra de tiempo a sangre en el borde superior de la tarjeta: se lee como
+   el estado del turno y no cuesta un solo píxel de altura. Antes ocupaba un
+   bloque propio con su número, su nota y su pista. */
+.hud-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.07);
+  overflow: hidden;
+}
+
+.hud-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--miami-cyan), var(--miami-pink));
+  box-shadow: 0 0 12px rgba(0, 243, 255, 0.6);
+  transition: width 0.1s linear;
+}
+
+.hud-progress--danger .hud-progress-bar {
+  background: linear-gradient(90deg, #ff0055, #ff7a9a);
+  box-shadow: 0 0 14px rgba(255, 0, 85, 0.8);
 }
 
 .hud-person {
@@ -759,96 +739,84 @@ body {
   color: rgba(255, 43, 214, 0.95);
 }
 
-/* Temporizador: los segundos son el dato que se mira a media pregunta, así
-   que van en grande y fuera de la barra. Dentro de una barra de 8px el texto
-   se recortaba a media palabra. */
-.hud-timer {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+body.time-critical .hud-stat--timer {
+  border-color: rgba(255, 77, 109, 0.5);
+  background: rgba(255, 0, 85, 0.1);
 }
 
-.hud-timer-head {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-}
-
-.hud-timer-value {
-  font-family: "Chakra Petch", sans-serif;
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1;
-  color: var(--miami-cyan);
-  font-variant-numeric: tabular-nums;
-}
-
-.hud-timer-note {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45);
-}
-
-.hud-timer--free .hud-timer-value {
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.75);
-}
-
-body.time-critical .hud-timer-value {
+body.time-critical .hud-stat--timer .hud-stat-value {
   color: #ff4d6d;
 }
 
 /* Marcador compacto. Cada dato lleva su etiqueta: "x0" sin más no dice si
    cuenta aciertos, monedas o vidas. */
+/* Una sola fila para reloj, racha, pase y monedas. Cuatro celdas iguales
+   salvo el reloj, que es el dato que se mira a media pregunta. */
 .hud-stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 6px;
 }
 
 .hud-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  padding: 6px 4px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 1px;
+  padding: 5px 3px;
+  border-radius: var(--r-sm);
+  background: var(--surface-1);
+  border: 1px solid var(--line);
+  min-width: 0;
 }
 
 .hud-stat-label {
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 0.9px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--ink-3);
+  white-space: nowrap;
 }
 
 .hud-stat-value {
-  font-size: 15px;
-  font-weight: 800;
-  color: #fff;
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink-1);
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
 }
 
+.hud-stat--timer {
+  background: rgba(0, 243, 255, 0.07);
+  border-color: rgba(0, 243, 255, 0.22);
+}
+
+.hud-stat--timer .hud-stat-value { color: var(--miami-cyan); }
+
+.hud-stat--free .hud-stat-value { font-size: 13px; color: var(--ink-2); }
+
 .hud-stat--coins {
-  background: rgba(255, 215, 0, 0.08);
-  border-color: rgba(255, 215, 0, 0.25);
+  background: rgba(255, 209, 102, 0.07);
+  border-color: rgba(255, 209, 102, 0.22);
 }
 
 .hud-stat--coins .hud-stat-value {
-  font-size: 13px;
-  color: #ffd166;
+  font-size: 13.5px;
+  color: var(--gold);
 }
 
 .hud-actions {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
+
+.hud-actions .hud-help-group { flex: 1 1 240px; }
 
 /* Ayudas de pago: tres columnas fijas para que nunca envuelvan en filas
    desiguales, cada una con nombre y precio visibles. */
@@ -926,35 +894,35 @@ body.time-critical .hud-timer-value {
 
 /* Ajustes y salida: son controles, no compras. Se distinguen por forma y
    color para que no compitan con las ayudas. */
+/* Sonido, avance y salida son preferencias que se tocan una vez. Como
+   píldoras con texto pesaban lo mismo que comprar una vida; ahora son tres
+   iconos discretos a un lado. El nombre vive en aria-label y en el title. */
 .hud-tool-group {
   display: flex;
-  gap: 8px;
-  justify-content: center;
-  flex-wrap: wrap;
+  gap: 6px;
+  /* Cuando el grupo cae a su propia línea en teléfono, se va a la derecha en
+     vez de quedarse huérfano bajo la primera ayuda. */
+  margin-left: auto;
 }
 
 .btn-tool {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  min-height: 40px;
-  padding: 6px 14px;
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.85);
-  font-family: "Chakra Petch", sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
+  border: 1px solid var(--line);
+  background: var(--surface-1);
+  color: var(--ink-2);
+  font-size: 14px;
   cursor: pointer;
-  transition: background 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
 }
 
 .btn-tool:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(0, 243, 255, 0.5);
+  background: var(--surface-2);
+  border-color: rgba(0, 243, 255, 0.45);
 }
 
 /* El estado activo se marca también con color, no sólo con la palabra: en
@@ -989,13 +957,6 @@ body.time-critical .hud-timer-value {
     align-items: center;
   }
 
-  .btn-tool-label {
-    display: none;
-  }
-
-  .btn-tool {
-    padding: 6px 12px;
-  }
 }
 
 .modalNote {
@@ -1021,17 +982,19 @@ body.time-critical .hud-timer-value {
 .modalCard {
   box-sizing: border-box;
   width: min(520px, 100%);
-  max-height: 85vh;
-  background: rgba(10, 5, 25, 0.95);
-  border: 1px solid var(--glass-border);
-  border-radius: 32px;
-  padding: 24px;
+  max-height: 86vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: rgba(10, 5, 25, 0.97);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  padding: 22px;
   box-shadow:
     0 20px 50px rgba(0, 0, 0, 0.6),
     0 0 0 1px rgba(255, 255, 255, 0.1);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   animation: pop-in 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   backdrop-filter: blur(20px);
 }
@@ -1270,14 +1233,14 @@ body.time-critical .hud-timer-value {
   min-height: 54px;
   /* Mobile touch target */
   padding: 16px;
-  background: rgba(13, 10, 33, 0.6);
-  border: 1px solid var(--glass-border);
-  color: var(--text-main);
-  border-radius: 16px;
+  background: var(--surface-1);
+  border: 1px solid var(--line-strong);
+  color: var(--ink-1);
+  border-radius: var(--r-md);
   text-align: left;
   font-weight: 600;
   font-size: 16px;
-  transition: all 0.2s ease-out;
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.12s ease;
   cursor: pointer;
   display: grid;
   grid-template-columns: auto 1fr;
@@ -1287,11 +1250,11 @@ body.time-critical .hud-timer-value {
 }
 
 .option-index {
-  width: 32px;
-  height: 32px;
-  border-radius: 8px;
-  background: rgba(0, 243, 255, 0.1);
-  border: 1px solid rgba(0, 243, 255, 0.3);
+  width: 30px;
+  height: 30px;
+  border-radius: var(--r-sm);
+  background: rgba(0, 243, 255, 0.08);
+  border: 1px solid rgba(0, 243, 255, 0.22);
   display: grid;
   place-items: center;
   font-size: 14px;
@@ -1305,11 +1268,11 @@ body.time-critical .hud-timer-value {
   line-height: 1.4;
 }
 
+/* El desplazamiento lateral hacía saltar la lista entera al recorrerla con
+   el ratón. Basta con que la opción se ilumine. */
 .option-btn:hover:not(:disabled) {
-  border-color: var(--miami-cyan);
-  background: rgba(0, 243, 255, 0.1);
-  box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
-  transform: translateX(4px) scale(1.01);
+  border-color: rgba(0, 243, 255, 0.45);
+  background: rgba(0, 243, 255, 0.07);
 }
 
 .option-btn:active:not(:disabled) {
@@ -1343,24 +1306,6 @@ body.time-critical .hud-timer-value {
   filter: grayscale(0.5);
 }
 
-.patience-track {
-  height: 12px;
-  background: #111;
-  border-radius: 10px;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-}
-
-.patience-bar {
-  height: 100%;
-  background: linear-gradient(90deg, var(--miami-cyan), var(--miami-pink));
-  box-shadow: 0 0 15px var(--miami-cyan);
-  transition: width 0.1s linear;
-}
-
-.avatar-glow {
-  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.3));
-}
 
 .shake {
   animation: shake 0.4s ease-in-out;
@@ -1500,7 +1445,12 @@ body.time-critical .hud-timer-value {
   border-radius: 20px;
   padding: 16px;
   z-index: 1500;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  /* El segundo reborde es un velo a pantalla completa sin marcado extra: el
+     panel flota sobre una lista de opciones que siguen encendidas en verde y
+     rojo por los bordes, y compiten con lo único que hay que leer aquí. */
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.8),
+    0 0 0 100vmax rgba(3, 2, 8, 0.72);
   transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   pointer-events: none;
 }
@@ -1632,30 +1582,41 @@ body.time-critical .hud-timer-value {
   0% { stroke-dashoffset: 100; }
   100% { stroke-dashoffset: 0; }
 }
+/* A 90px fijos la traza se veía como un guión suelto al lado del título.
+   Que ocupe el ancho disponible: entonces sí parece un monitor. */
 .ecg-svg {
-  width: 90px;
+  flex: 1;
+  min-width: 60px;
+  max-width: 200px;
   height: 24px;
   opacity: 0.85;
 }
+/* Un ritmo normal no es una noticia: va apagado. El verde encendido está
+   reservado para los aciertos, y la alarma se la quedan taquicardia y
+   bradicardia, que sí tienen algo que avisar. */
 .ecg-line {
-  stroke: #39ff14; /* Verde neón estándar */
-  stroke-width: 2.5;
+  stroke: rgba(57, 255, 20, 0.55);
+  stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;
   fill: none;
-  filter: drop-shadow(0 0 4px #39ff14);
-  stroke-dasharray: 100;
+  filter: none;
+  /* Hueco mayor que el propio trazo: así el barrido nunca deja el rabo del
+     ciclo anterior colgando al otro lado de la pantalla. */
+  stroke-dasharray: 100 140;
   animation: ecg-pulse 2.5s linear infinite;
 }
 /* Variantes de ritmo cardíaco */
 .ecg-line.ecg-tachy {
-  stroke: #ff0055; /* Rosa neón rápido */
-  filter: drop-shadow(0 0 4px #ff0055);
+  stroke: #ff0055;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 5px rgba(255, 0, 85, 0.9));
   animation: ecg-pulse 1.2s linear infinite; /* Taquicardia */
 }
 .ecg-line.ecg-brady {
-  stroke: #00f3ff; /* Celeste neón lento */
-  filter: drop-shadow(0 0 4px #00f3ff);
+  stroke: #00f3ff;
+  stroke-width: 2.5;
+  filter: drop-shadow(0 0 5px rgba(0, 243, 255, 0.75));
   animation: ecg-pulse 4.5s linear infinite; /* Bradicardia */
 }
 .ecg-line.ecg-flat {
@@ -1674,22 +1635,23 @@ body.time-critical .hud-timer-value {
 }
 
 /* Voz del residente: presentación del caso y reacción en el feedback */
+/* La cita se sostiene con una línea y un cambio de estilo. Un fondo negro
+   con borde propio la convertía en otra caja más de la pila. */
 .residentQuote {
   margin-top: 12px;
-  padding: 9px 12px;
-  border-radius: 12px;
-  background: rgba(0, 0, 0, 0.4);
-  border-left: 3px solid rgba(0, 243, 255, 0.6);
-  color: #ffffff;
+  padding: 2px 0 2px 12px;
+  border-left: 2px solid rgba(0, 243, 255, 0.45);
+  color: var(--ink-2);
   font-style: italic;
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 500;
+  font-size: 14.5px;
   line-height: 1.5;
 }
 
 .residentQuote strong {
   font-style: normal;
-  color: rgba(0, 243, 255, 0.85);
+  font-weight: 700;
+  color: rgba(0, 243, 255, 0.8);
 }
 
 .feedback-resident {
@@ -1915,3 +1877,643 @@ body.time-critical .hud-timer-value {
   100% { opacity: 1; transform: translateX(0); }
 }
 
+
+/* ============================================================================
+   Dinámica de juego: multiplicador, firma de nota, pase de visita y feedback
+   de recompensa. Todo lo que convierte una lista de preguntas en una guardia.
+   ============================================================================ */
+
+/* --- Sacudida del caso al fallar --- */
+@keyframes screen-shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-9px) rotate(-0.4deg); }
+  30% { transform: translateX(8px) rotate(0.4deg); }
+  45% { transform: translateX(-6px); }
+  60% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+}
+
+.screen-shake {
+  animation: screen-shake 0.42s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+/* --- Número flotante de recompensa --- */
+@keyframes float-reward {
+  0%   { opacity: 0; transform: translate(-50%, 10px) scale(0.85); }
+  18%  { opacity: 1; transform: translate(-50%, -6px) scale(1.06); }
+  70%  { opacity: 1; transform: translate(-50%, -46px) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -78px) scale(0.95); }
+}
+
+.float-reward {
+  position: absolute;
+  left: 50%;
+  top: 26%;
+  transform: translate(-50%, 0);
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  text-shadow: 0 0 18px currentColor, 0 3px 10px rgba(0, 0, 0, 0.75);
+  animation: float-reward 1.4s ease-out forwards;
+}
+
+.float-reward--good { color: #39ff14; }
+.float-reward--bad { color: #ff0055; }
+.float-reward--signed { color: #ffd700; }
+
+/* --- Banner de subida de multiplicador --- */
+@keyframes combo-banner {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.6) rotate(-6deg); }
+  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.12) rotate(0deg); }
+  75%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.25); }
+}
+
+.combo-banner {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  animation: combo-banner 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.combo-banner-mult {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 62px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 0 24px var(--miami-pink), 0 0 46px var(--miami-purple);
+}
+
+.combo-banner-label {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--miami-cyan);
+  text-shadow: 0 0 14px rgba(0, 243, 255, 0.8);
+}
+
+/* --- Aviso de logro --- */
+@keyframes toast-in {
+  0%   { opacity: 0; transform: translate(-50%, -22px); }
+  12%  { opacity: 1; transform: translate(-50%, 0); }
+  86%  { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -14px); }
+}
+
+.toast-achievement {
+  position: absolute;
+  left: 50%;
+  top: calc(14px + var(--safe-top, 0px));
+  transform: translate(-50%, 0);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: rgba(10, 6, 22, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.55);
+  box-shadow: 0 0 26px rgba(255, 215, 0, 0.28);
+  animation: toast-in 3.1s ease-out forwards;
+  max-width: min(92vw, 380px);
+}
+
+.toast-icon { font-size: 24px; }
+
+.toast-text { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+
+.toast-title {
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #ffd700;
+  font-weight: 800;
+}
+
+.toast-name {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* --- Multiplicador en el HUD --- */
+.hud-mult {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  vertical-align: middle;
+}
+
+.hud-mult--on {
+  color: #050510;
+  background: linear-gradient(135deg, var(--miami-cyan), var(--miami-pink));
+  border-color: transparent;
+  box-shadow: 0 0 12px rgba(255, 0, 255, 0.45);
+}
+
+.hud-stat--hot {
+  border-color: rgba(255, 0, 255, 0.35);
+  box-shadow: inset 0 0 18px rgba(255, 0, 255, 0.12);
+}
+
+/* --- Firmar la nota (apuesta) --- */
+.sign-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 12px 0 4px;
+  padding: 11px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 215, 0, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.sign-toggle:hover:not(:disabled) {
+  border-color: rgba(255, 215, 0, 0.7);
+  background: rgba(255, 215, 0, 0.06);
+}
+
+.sign-toggle:active:not(:disabled) { transform: scale(0.985); }
+
+.sign-toggle--on {
+  border-style: solid;
+  border-color: #ffd700;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.16), rgba(255, 0, 255, 0.08));
+  box-shadow: 0 0 22px rgba(255, 215, 0, 0.25);
+}
+
+.sign-toggle:disabled { opacity: 0.5; cursor: default; }
+
+.sign-toggle-icon { font-size: 22px; flex-shrink: 0; }
+
+.sign-toggle-text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+
+.sign-toggle-title {
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.sign-toggle-desc {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.35;
+}
+
+.sign-toggle-state {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.sign-toggle--on .sign-toggle-state {
+  color: #050510;
+  background: #ffd700;
+  border-color: transparent;
+}
+
+/* Cuando la nota va firmada, las opciones avisan que el riesgo está doblado. */
+.options--signed .option-btn {
+  border-color: rgba(255, 215, 0, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.1);
+}
+
+/* --- Desglose de recompensa en la retroalimentación --- */
+.reward-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 10px 0 4px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reward-total {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #39ff14;
+  text-shadow: 0 0 14px rgba(57, 255, 20, 0.5);
+}
+
+.reward-total--bad {
+  color: #ff0055;
+  text-shadow: 0 0 14px rgba(255, 0, 85, 0.5);
+}
+
+.reward-parts { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.reward-chip {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+
+.reward-chip--fast { color: var(--miami-cyan); border-color: rgba(0, 243, 255, 0.4); }
+.reward-chip--mult { color: var(--miami-pink); border-color: rgba(255, 0, 255, 0.4); }
+.reward-chip--sign { color: #ffd700; border-color: rgba(255, 215, 0, 0.45); }
+.reward-chip--fine { color: #ff0055; border-color: rgba(255, 0, 85, 0.45); }
+
+/* --- Pase de visita --- */
+.round-card { text-align: left; }
+
+.round-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.round-head-text { min-width: 0; }
+
+.round-title {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  color: var(--miami-cyan);
+}
+
+.round-card--perfect .round-title { color: #39ff14; }
+.round-card--good .round-title { color: var(--miami-cyan); }
+.round-card--ok .round-title { color: #ffd700; }
+.round-card--bad .round-title { color: #ff0055; }
+
+.round-card--perfect { border-color: rgba(57, 255, 20, 0.45); box-shadow: 0 0 45px rgba(57, 255, 20, 0.2); }
+.round-card--bad { border-color: rgba(255, 0, 85, 0.45); box-shadow: 0 0 45px rgba(255, 0, 85, 0.18); }
+
+.round-quote {
+  font-size: 14px;
+  line-height: 1.5;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  border-left: 3px solid var(--miami-pink);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0 12px 12px 0;
+}
+
+.round-bonus {
+  margin-top: 10px;
+  padding: 9px 13px;
+  border-radius: 12px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 243, 255, 0.07);
+  border: 1px solid rgba(0, 243, 255, 0.25);
+}
+
+.round-bonus strong { color: #ffd700; }
+
+.round-bonus--none {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.round-bonus--heal {
+  background: rgba(57, 255, 20, 0.08);
+  border-color: rgba(57, 255, 20, 0.3);
+}
+
+.round-bonus--heal strong { color: #39ff14; }
+
+/* --- Resumen de guardia --- */
+.record-flag {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  color: #050510;
+  background: linear-gradient(135deg, #ffd700, #ff9d00);
+  box-shadow: 0 0 24px rgba(255, 215, 0, 0.45);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.stat-grid--wide { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 420px) {
+  .stat-grid--wide { grid-template-columns: repeat(2, 1fr); }
+}
+
+.shift-extras {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 12px 0 4px;
+}
+
+/* --- Vitrina de logros del menú --- */
+.achievement-shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.achievement-chip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 11px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  opacity: 0.55;
+}
+
+.achievement-chip--on {
+  opacity: 1;
+  background: rgba(255, 215, 0, 0.06);
+  border-color: rgba(255, 215, 0, 0.35);
+}
+
+.achievement-chip-icon { font-size: 20px; flex-shrink: 0; }
+
+.achievement-chip-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+
+.achievement-chip-name {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.achievement-chip-desc {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.achievement-chip--on .achievement-chip-name { color: #ffd700; }
+
+/* El pase de visita muestra tres cifras: en dos columnas la tercera queda
+   suelta. Que se acomoden solas y se apilen sólo cuando ya no quepan. */
+.round-card .stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  gap: 10px;
+  margin: 4px 0 0;
+}
+
+/* ============================================================================
+   Contención estética: jerarquía de acción, foco visible y legibilidad.
+   El neón se reserva para lo que decide; lo demás baja la voz.
+   ============================================================================ */
+
+/* Antes ninguna acción era navegable con teclado de forma visible, y el juego
+   se juega con las teclas 1-4 y F. */
+button:focus-visible,
+select:focus-visible,
+summary:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--miami-cyan);
+  outline-offset: 2px;
+}
+
+/* Dos degradados a plena saturación compitiendo no son dos opciones: son
+   ruido. La guardia es la acción principal; estudiar es la alternativa. */
+.btn-mode--study {
+  background: var(--surface-1);
+  border: 1px solid rgba(0, 243, 255, 0.35);
+  box-shadow: none;
+  color: var(--ink-1);
+}
+
+.btn-mode--study:hover:not(:disabled) {
+  background: rgba(0, 243, 255, 0.08);
+  border-color: rgba(0, 243, 255, 0.6);
+}
+
+.btn-mode--study .btn-mode-title { color: var(--miami-cyan); }
+.btn-mode--study .btn-mode-desc { color: var(--ink-2); }
+
+/* Un logro por ganar tiene que leerse: si no, no es una meta, es un borrón. */
+.achievement-chip { opacity: 1; }
+
+.achievement-chip:not(.achievement-chip--on) .achievement-chip-icon { opacity: 0.45; }
+.achievement-chip:not(.achievement-chip--on) .achievement-chip-name { color: var(--ink-2); }
+.achievement-chip-desc { color: var(--ink-3); }
+
+/* Cabecera del caso: retrato, título y traza comparten una rejilla en vez de
+   empujarse con flex-wrap. */
+.caseHeader { gap: 14px; }
+
+.caseHeader .ecg-svg { margin-right: 4px; }
+
+.caseBadge {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Etiquetas de sección: mismo peso en todo el juego, sin cian encendido. */
+.narrative-title {
+  color: var(--ink-2);
+  letter-spacing: 1.4px;
+}
+
+/* El cuerpo del expediente es texto largo: se lee mejor algo más suave que
+   el blanco puro sobre negro. */
+.caseBody {
+  color: var(--ink-2);
+  font-size: 15px;
+}
+
+.hud-person-role { color: var(--ink-3); }
+.hud-person-name { color: var(--ink-1); }
+
+/* Las ayudas son compras: que se note que cuestan, sin gritar. */
+.btn-help {
+  border-radius: var(--r-md);
+  border-color: var(--line-strong);
+}
+
+@media (max-width: 480px) {
+  /* En teléfono el marcador de cuatro celdas necesita cada píxel. */
+  .hud-stat-value { font-size: 14px; }
+  .hud-stat--coins .hud-stat-value,
+  .hud-stat--free .hud-stat-value { font-size: 12px; }
+  .hud-mult { margin-left: 2px; padding: 1px 5px; font-size: 10px; }
+  .caseQuestion { font-size: 18px; padding: 16px 18px; margin: 12px 0 14px; }
+  .options { gap: 8px; }
+  .option-btn { min-height: 50px; padding: 13px 14px; font-size: 15px; }
+}
+
+@media (max-width: 480px) {
+  /* El subtítulo partía en dos por el interletrado, no por falta de sitio. */
+  .hero-subtitle {
+    font-size: 12px;
+    letter-spacing: 1.2px;
+  }
+}
+
+/* ============================================================================
+   Retratos: el fondo dice el papel, no el capricho
+   Cada residente arrastraba su propio degradado — ocho colores sin significado
+   compitiendo con el resto de la paleta. El sprite y el nombre ya identifican
+   a la persona; el fondo queda libre para lo que el jugador no puede deducir:
+   quién le habla y cómo está el paciente.
+   ============================================================================ */
+
+.kawaii-avatar--resident {
+  background: linear-gradient(150deg, #123a4d, #0e2233);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(0, 243, 255, 0.28);
+}
+
+.kawaii-avatar--boss {
+  background: linear-gradient(150deg, #3d1240, #24102e);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 43, 214, 0.32);
+}
+
+/* Paciente estable: sin color, porque no hay nada que avisar. */
+.kawaii-avatar--patient {
+  background: linear-gradient(150deg, #23202e, #16141f);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Acelerado: el retrato se enciende antes de que leas el trazo del monitor. */
+.kawaii-avatar--patient-tachy {
+  background: linear-gradient(150deg, #4d1226, #2b0d18);
+  box-shadow: 0 6px 16px rgba(255, 0, 85, 0.22), inset 0 0 0 1px rgba(255, 0, 85, 0.42);
+}
+
+/* Hipoactivo: azul frío, la contraparte visual de la taquicardia. */
+.kawaii-avatar--patient-brady {
+  background: linear-gradient(150deg, #102f4a, #0b1b2b);
+  box-shadow: 0 6px 14px rgba(0, 243, 255, 0.12), inset 0 0 0 1px rgba(0, 243, 255, 0.3);
+}
+
+/* --- Cabecera del caso: rejilla en la hoja, no estilos en el atributo --- */
+.caseHeader-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.caseHeader-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+/* --- Botones que se pintaban a mano con ternarios en línea --- */
+.game-over-actions {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn-action--review {
+  background: linear-gradient(135deg, var(--miami-cyan), var(--miami-purple));
+}
+
+.btn-action--review:disabled {
+  background: var(--surface-1);
+  border: 1px dashed var(--line-strong);
+  box-shadow: none;
+  color: var(--ink-3);
+  cursor: default;
+}
+
+/* Volver al menú es la salida, no una acción que compita con reintentar. */
+.btn-action--ghost {
+  background: var(--surface-1);
+  border: 1px solid var(--line-strong);
+  box-shadow: none;
+  color: var(--ink-2);
+}
+
+.btn-action--ghost:hover:not(:disabled) {
+  background: var(--surface-2);
+  color: var(--ink-1);
+}
+
+.feedback-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.feedback-controls .btn-powerup {
+  flex: 1;
+  justify-content: center;
+}
+
+.btn-powerup--primary {
+  background: linear-gradient(135deg, var(--miami-pink), var(--miami-purple));
+  color: #fff;
+  border: none;
+  font-weight: 800;
+}
+
+/* El resumen de guardia creció con el récord y las cuatro cifras: apretarlo
+   para que quepa entero en un teléfono sin obligar a desplazar. */
+.game-over-card .hero-title {
+  font-size: 23px;
+  letter-spacing: 1.4px;
+  line-height: 1.15;
+}
+
+.game-over-mark {
+  font-size: 38px;
+  line-height: 1;
+}
+
+.game-over-card .stat-grid { margin: 8px 0; }
+.game-over-card .stat-box { padding: 9px; }
+.game-over-card .stat-value { font-size: 22px; }
+.game-over-actions { margin-top: 14px; }
+.record-flag { margin-bottom: 4px; }
+
+/* En el resumen hay tres acciones apiladas. A 20px de tipo, 20px de relleno y
+   3px de interletrado cada una medía 62px y la tercera caía fuera de la
+   pantalla. Siguen siendo cómodas de tocar: 48px de alto. */
+.game-over-actions .btn-action {
+  padding: 13px 16px;
+  font-size: 16px;
+  letter-spacing: 1.6px;
+  margin-top: 0;
+}
+
+.game-over-actions .btn-action--review { font-size: 14px; }
