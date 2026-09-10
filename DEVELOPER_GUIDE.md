@@ -151,7 +151,37 @@ emergentes lo recogen solos.
 
 ---
 
-## 5. Scripts de Utilidad (Package.json)
+## 5. Lenguaje Visual
+
+El CSS trabaja sobre una escala corta de variables (`assets/styles.css`, bloque
+`:root`). Usa los tokens antes de inventar un valor nuevo: es lo único que
+sostiene la coherencia de un archivo de dos mil líneas.
+
+| Token | Uso |
+|---|---|
+| `--ink-1` / `--ink-2` / `--ink-3` | Texto principal, secundario y de etiqueta |
+| `--line` / `--line-strong` | Bordes de reposo y de control interactivo |
+| `--surface-1` / `--surface-2` | Fondo de control y su estado hover |
+| `--r-sm` / `--r-md` / `--r-lg` | Radio de control, panel y tarjeta |
+| `--miami-cyan` / `--miami-pink` / `--gold` | Acentos con significado fijo |
+
+**Los acentos no son decoración, son semántica.** El cian marca el tiempo y la
+acción principal; el magenta, la racha y la firma; el oro, las monedas; el
+verde y el rojo, acierto y error. Un elemento que no sea ninguna de esas cosas
+va en la escala de tinta. Cuando todo brillaba por igual, nada destacaba.
+
+### Reglas de jerarquía
+
+- **La pregunta es el elemento más grande y brillante de la pantalla.** El
+  título del caso es una etiqueta de expediente y va en `--ink-2`.
+- **El HUD es un panel fijo y opaco.** Tiene que tapar el caso que corre por
+  debajo, no dejarlo entrever: nada de fondos translúcidos ahí.
+- **Las ayudas de pago y los ajustes no pesan igual.** Comprar una vida es una
+  decisión; silenciar el sonido es una preferencia, y va como icono.
+
+---
+
+## 6. Scripts de Utilidad (Package.json)
 - `npm run validate` → `node tools/validate_cases.js data/cases_v1.json data/cases_v1_validated.json`
 - `npm run validate:packs` → `node tools/validateAllPacks.js ./data/manifest_v1.json`
 - `npm run enhance` → `node tools/enhanceCases.js data/cases_v1_validated.json data/cases_v1.json`

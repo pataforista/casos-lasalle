@@ -1005,6 +1005,53 @@ const Game = (() => {
     const multLabel = getMultiplierLabel(nextMult);
     const roundProgress = `${state.round.cases}/${GAME_CONFIG.casesPerRound}`;
 
+    // El reloj entra como una cifra más del marcador en vez de reclamar su
+    // propio bloque, y la barra se muda al borde superior de la tarjeta: ahí
+    // se lee como el estado del turno y no cuesta un solo píxel de altura.
+    const statCells = [];
+    if (untimed) {
+      statCells.push({
+        label: state.studyMode ? "Modo" : "Lectura",
+        value: state.studyMode ? "Estudio" : "Libre",
+        cls: "hud-stat--free",
+        title: "Este turno corre sin reloj"
+      });
+    } else {
+      statCells.push({
+        label: "Reloj",
+        value: `${Math.ceil(state.timeLeft)}s`,
+        cls: "hud-stat--timer",
+        valueId: "tValue",
+        title: "Segundos para decidir"
+      });
+    }
+    statCells.push({
+      label: "Racha",
+      value: `${state.streak}<span class="hud-mult ${nextMult > 1 ? "hud-mult--on" : ""}">${formatMultiplier(nextMult)}</span>`,
+      cls: nextMult > 1 ? "hud-stat--hot" : "",
+      title: `Aciertos seguidos · mejor marca de la guardia: ${state.maxStreak}${multLabel ? " · " + multLabel : ""}`
+    });
+    if (!state.studyMode) {
+      statCells.push({
+        label: `Pase ${state.round.index}`,
+        value: roundProgress,
+        cls: "",
+        title: `Cada ${GAME_CONFIG.casesPerRound} pacientes el Dr. Celada pasa lista y reparte bono`
+      });
+    }
+    statCells.push({
+      label: "Monedas",
+      value: `🪙 ${coins}`,
+      cls: "hud-stat--coins",
+      title: `Para gastar en ayudas · rango ${Economy.getRank()}`
+    });
+
+    const statsHtml = statCells.map(cell => `
+      <div class="hud-stat ${cell.cls}" title="${escapeHtml(cell.title)}">
+        <span class="hud-stat-label">${escapeHtml(cell.label)}</span>
+        <span class="hud-stat-value"${cell.valueId ? ` id="${cell.valueId}"` : ""}>${cell.value}</span>
+      </div>`).join("");
+
     // Cada ayuda dice qué hace y por qué está bloqueada. Un botón apagado con
     // sólo un emoji y un número no explica nada al que lo necesita.
     const helpers = [
@@ -1049,6 +1096,10 @@ const Game = (() => {
 
     hud.innerHTML = `
       <div class="miami-card hud-card">
+        ${untimed ? "" : `
+        <div class="hud-progress" role="progressbar" aria-label="Tiempo restante">
+          <div class="hud-progress-bar" id="tBar" style="width:100%"></div>
+        </div>`}
         <div class="hudRow">
           <div class="hudBox">
             <div class="avatar" id="resBox">${Avatars.resident(res.name, state.residentMood, res.grad)}</div>
@@ -1069,35 +1120,7 @@ const Game = (() => {
           </div>
         </div>
 
-        <div class="hud-timer ${untimed ? "hud-timer--free" : ""}">
-          <div class="hud-timer-head">
-            <span class="hud-timer-value" id="tValue">${untimed ? (state.studyMode ? "Modo estudio" : "Lectura libre") : `${Math.ceil(state.timeLeft)}s`}</span>
-            <span class="hud-timer-note" id="tNote">${untimed ? "sin reloj" : "para decidir"}</span>
-          </div>
-          ${untimed ? "" : `
-          <div class="track" role="progressbar" aria-label="Tiempo restante">
-            <div class="bar" id="tBar" style="width:100%"></div>
-          </div>`}
-        </div>
-
-        <div class="hud-stats">
-          <div class="hud-stat ${nextMult > 1 ? "hud-stat--hot" : ""}"
-               title="Aciertos seguidos · tu mejor marca de esta guardia es ${state.maxStreak}${multLabel ? " · " + multLabel : ""}">
-            <span class="hud-stat-label">Racha ${multLabel ? `· ${escapeHtml(multLabel)}` : ""}</span>
-            <span class="hud-stat-value">
-              ${state.streak}
-              <span class="hud-mult ${nextMult > 1 ? "hud-mult--on" : ""}">${formatMultiplier(nextMult)}</span>
-            </span>
-          </div>
-          <div class="hud-stat" title="${state.studyMode ? "El modo estudio no tiene pase de visita" : `Cada ${GAME_CONFIG.casesPerRound} pacientes el Dr. Celada pasa lista y paga bono`}">
-            <span class="hud-stat-label">${state.studyMode ? "Modo" : `Pase ${state.round.index}`}</span>
-            <span class="hud-stat-value">${state.studyMode ? "Libre" : roundProgress}</span>
-          </div>
-          <div class="hud-stat hud-stat--coins" title="Monedas para gastar en ayudas · rango ${escapeHtml(Economy.getRank())}">
-            <span class="hud-stat-label">Monedas</span>
-            <span class="hud-stat-value">🪙 ${coins}</span>
-          </div>
-        </div>
+        <div class="hud-stats">${statsHtml}</div>
 
         <div class="hud-actions">
           <div class="hud-help-group" role="group" aria-label="Ayudas de pago">
@@ -1109,19 +1132,16 @@ const Game = (() => {
                     aria-label="${state.soundEnabled ? "Sonido activado. Silenciar" : "Sonido silenciado. Activar"}"
                     title="${state.soundEnabled ? "Silenciar sonido" : "Activar sonido"}">
               <span aria-hidden="true">${state.soundEnabled ? "🔊" : "🔇"}</span>
-              <span class="btn-tool-label">${state.soundEnabled ? "Sonido" : "Silencio"}</span>
             </button>
             <button class="btn-tool" id="btnAutoToggle"
                     aria-pressed="${state.autoAdvance}"
                     aria-label="${state.autoAdvance ? "Avance automático activado. Pasar a manual" : "Avance manual. Activar automático"}"
                     title="${state.autoAdvance ? "El caso avanza solo tras la retroalimentación" : "Tú decides cuándo avanzar"}">
               <span aria-hidden="true">${state.autoAdvance ? "▶️" : "⏸️"}</span>
-              <span class="btn-tool-label">${state.autoAdvance ? "Auto" : "Manual"}</span>
             </button>
             <button class="btn-tool btn-tool--exit" id="btnMenuFromGame"
                     aria-label="Salir al menú principal" title="Salir al menú principal">
               <span aria-hidden="true">🏠</span>
-              <span class="btn-tool-label">Menú</span>
             </button>
           </div>
         </div>
@@ -1285,8 +1305,10 @@ const Game = (() => {
 
     const ecgClass = getPatientEcgClass(c);
     const ecgSvg = `
-      <svg viewBox="0 0 100 30" class="ecg-svg" aria-hidden="true">
-        <path d="M 0 15 L 30 15 L 35 12 L 40 18 L 45 15 L 48 5 L 52 28 L 56 15 L 60 17 L 65 15 L 100 15" pathLength="100" class="ecg-line ecg-${ecgClass}"></path>
+      <svg viewBox="0 0 100 30" preserveAspectRatio="none" class="ecg-svg" aria-hidden="true">
+        <path d="M 0 15 L 30 15 L 35 12 L 40 18 L 45 15 L 48 5 L 52 28 L 56 15 L 60 17 L 65 15 L 100 15"
+              pathLength="100" vector-effect="non-scaling-stroke"
+              class="ecg-line ecg-${ecgClass}"></path>
       </svg>
     `;
 
@@ -1347,7 +1369,7 @@ const Game = (() => {
           <span class="sign-toggle-icon" aria-hidden="true">✍️</span>
           <span class="sign-toggle-text">
             <span class="sign-toggle-title">${state.signed ? "Nota firmada" : "Firmar la nota"}</span>
-            <span class="sign-toggle-desc">Doble recompensa si aciertas · multa de ${GAME_CONFIG.signFine} 🪙 si fallas</span>
+            <span class="sign-toggle-desc">×2 si aciertas · −${GAME_CONFIG.signFine} 🪙 si fallas</span>
           </span>
           <span class="sign-toggle-state">${state.signed ? "ACTIVA" : "OFF"}</span>
         </button>` : ""}
@@ -1436,8 +1458,8 @@ const Game = (() => {
       const isCritical = (state.timeLeft <= 5);
       document.body.classList.toggle("time-critical", isCritical);
 
-      const track = b ? b.closest(".track") : null;
-      if (track) track.classList.toggle("track--danger", isCritical);
+      const track = b ? b.parentElement : null;
+      if (track) track.classList.toggle("hud-progress--danger", isCritical);
 
       if (state.timeLeft <= 0) {
         clearInterval(state.timer);
