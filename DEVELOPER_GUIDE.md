@@ -170,6 +170,24 @@ acción principal; el magenta, la racha y la firma; el oro, las monedas; el
 verde y el rojo, acierto y error. Un elemento que no sea ninguna de esas cosas
 va en la escala de tinta. Cuando todo brillaba por igual, nada destacaba.
 
+### Retratos
+
+El fondo de cada retrato es una clase, no un degradado en línea, y dice el
+papel de quien aparece:
+
+| Clase | Quién | Color |
+|---|---|---|
+| `kawaii-avatar--resident` | El residente que te presenta el caso | Cian frío |
+| `kawaii-avatar--boss` | El Dr. Celada | Magenta |
+| `kawaii-avatar--patient` | Paciente estable | Neutro |
+| `kawaii-avatar--patient-tachy` | Paciente acelerado | Rojo |
+| `kawaii-avatar--patient-brady` | Paciente hipoactivo | Azul frío |
+
+El tono del paciente lo decide `getPatientEcgClass()`, el mismo que colorea la
+traza del monitor: retrato y ECG nunca se contradicen. Para añadir un
+residente basta con su sprite y su firma en `ROSTER` — ya no hay que inventarle
+un color, porque su cara y su nombre son lo que lo distingue.
+
 ### Reglas de jerarquía
 
 - **La pregunta es el elemento más grande y brillante de la pantalla.** El

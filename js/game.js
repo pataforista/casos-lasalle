@@ -81,15 +81,19 @@ const BOSS_ROUNDS = [
   }
 ];
 
+// Cada residente tenía su propio degradado: ocho colores que no significaban
+// nada. La cara del sprite y el nombre al lado ya los distinguen; el fondo del
+// retrato queda libre para decir lo único que el jugador no puede deducir de
+// un vistazo — quién te habla y cómo está el paciente.
 const ROSTER = [
-  { name: "Aguilar",  title: "Dra.", grad: ["#84fab0", "#8fd3f4"], signature: "Ya lo interrogué; te resumo lo importante.", sprite: "aguilar_atlas.png" },
-  { name: "Solis",    title: "Dr.",  grad: ["#fccb90", "#d57eeb"], signature: "Yo ya le hubiera dado algo, pero mejor dime tú.", sprite: "solis_atlas.png" },
-  { name: "Ríos",     title: "Dra.", grad: ["#a1c4fd", "#c2e9fb"], signature: "Con calma: los datos están completos, la decisión es tuya.", sprite: "rios_atlas.png" },
-  { name: "Mendoza",  title: "Dr.",  grad: ["#fbc2eb", "#a6c1ee"], signature: "No me gusta cómo se ve… ¿lo checas conmigo?", sprite: "mendoza_atlas.png" },
-  { name: "Ferrer",   title: "Dra.", grad: ["#f6d365", "#fda085"], signature: "Te lo pongo en una línea: hay que decidir ya.", sprite: "ferrer_atlas.png" },
-  { name: "Castañeda",title: "Dr.",  grad: ["#96e6a1", "#d4fc79"], signature: "El interrogatorio no me cuadra del todo, júzgalo tú.", sprite: "castaneda_atlas.png" },
-  { name: "Herrera",  title: "Dra.", grad: ["#e0c3fc", "#8ec5fc"], signature: "La familia está afuera preguntando. ¿Qué les digo?", sprite: "herrera_atlas.png" },
-  { name: "Valdez",   title: "Dr.",  grad: ["#ffecd2", "#fcb69f"], signature: "Tranquilidad… bueno, la que se pueda a esta hora.", sprite: "valdez_atlas.png" }
+  { name: "Aguilar",  title: "Dra.", signature: "Ya lo interrogué; te resumo lo importante.", sprite: "aguilar_atlas.png" },
+  { name: "Solis",    title: "Dr.",  signature: "Yo ya le hubiera dado algo, pero mejor dime tú.", sprite: "solis_atlas.png" },
+  { name: "Ríos",     title: "Dra.", signature: "Con calma: los datos están completos, la decisión es tuya.", sprite: "rios_atlas.png" },
+  { name: "Mendoza",  title: "Dr.",  signature: "No me gusta cómo se ve… ¿lo checas conmigo?", sprite: "mendoza_atlas.png" },
+  { name: "Ferrer",   title: "Dra.", signature: "Te lo pongo en una línea: hay que decidir ya.", sprite: "ferrer_atlas.png" },
+  { name: "Castañeda",title: "Dr.",  signature: "El interrogatorio no me cuadra del todo, júzgalo tú.", sprite: "castaneda_atlas.png" },
+  { name: "Herrera",  title: "Dra.", signature: "La familia está afuera preguntando. ¿Qué les digo?", sprite: "herrera_atlas.png" },
+  { name: "Valdez",   title: "Dr.",  signature: "Tranquilidad… bueno, la que se pueda a esta hora.", sprite: "valdez_atlas.png" }
 ];
 
 // Frases por contexto. Las de "presentNormal" incluyen las citas originales de NARRATIVE.residents.
@@ -196,11 +200,7 @@ const Avatars = {
   // Recorta una pose de la hoja normalizada. Como la rejilla es exacta
   // (celdas cuadradas de 5x2), basta aritmética de porcentajes: no hay
   // ajustes manuales de encuadre y la cara siempre queda centrada.
-  _generate(spritePath, mood, animation, badge, gradColors) {
-    const [c1, c2] = Array.isArray(gradColors) && gradColors.length === 2
-      ? gradColors
-      : ["#84fab0", "#8fd3f4"];
-
+  _generate(spritePath, mood, animation, tone) {
     const frame = MOOD_FRAMES[mood] !== undefined ? MOOD_FRAMES[mood] : 0;
     const col = frame % SPRITE_COLS;
     const row = Math.floor(frame / SPRITE_COLS);
@@ -209,7 +209,7 @@ const Avatars = {
     const pctY = (row / (SPRITE_ROWS - 1)) * 100;
 
     return `
-      <div class="kawaii-avatar ${animation ? animation : ''}" style="background: linear-gradient(135deg, ${c1}, ${c2});">
+      <div class="kawaii-avatar kawaii-avatar--${tone || "resident"} ${animation ? animation : ''}">
         <div class="sprite-frame" style="
           background-image: url('assets/sprites/${spritePath}');
           background-size: ${SPRITE_COLS * 100}% ${SPRITE_ROWS * 100}%;
@@ -232,16 +232,15 @@ const Avatars = {
       `${(col / (SPRITE_COLS - 1)) * 100}% ${(row / (SPRITE_ROWS - 1)) * 100}%`;
   },
 
-  resident(name, mood = "normal", gradColors) {
+  resident(name, mood = "normal") {
     const res = ROSTER.find(r => r.name === name) || ROSTER[0];
-    const initial = name ? name[0].toUpperCase() : "R";
     const anim = (mood === "happy" || mood === "ok" || mood === "streak") ? "bounce" : ((mood === "shock" || mood === "angry") ? "shake" : "");
-    return this._generate(res.sprite, mood, anim, initial, gradColors || res.grad);
+    return this._generate(res.sprite, mood, anim, "resident");
   },
 
   boss(mood = "normal") {
     const anim = mood === "angry" ? "shake" : "";
-    return this._generate("celada_atlas.png", mood, anim, "BOSS", ["#f5576c", "#f093fb"]);
+    return this._generate("celada_atlas.png", mood, anim, "boss");
   },
 
   patient(caseId, ecgClass) {
@@ -252,21 +251,21 @@ const Avatars = {
       }
     }
     const index = Math.abs(hash) % 3;
-    const patients = [
-      { file: "pac1_atlas.png", grad: ["#ff758c", "#ff7eb3"] },
-      { file: "pac2_atlas.png", grad: ["#f6d365", "#fda085"] },
-      { file: "pac3_atlas.png", grad: ["#a1c4fd", "#c2e9fb"] }
-    ];
-    const pat = patients[index];
+    const files = ["pac1_atlas.png", "pac2_atlas.png", "pac3_atlas.png"];
     let mood = "normal";
     let anim = "";
+    // El fondo del retrato sigue al ritmo, no al azar del identificador: rojo
+    // si va acelerado, azul frío si está hipoactivo, neutro si nada urge.
+    let tone = "patient";
     if (ecgClass === "tachy") {
       mood = "shock";
       anim = "shake";
+      tone = "patient-tachy";
     } else if (ecgClass === "brady" || ecgClass === "flat") {
       mood = "exhausted";
+      tone = "patient-brady";
     }
-    return this._generate(pat.file, mood, anim, "PAC", pat.grad);
+    return this._generate(files[index], mood, anim, tone);
   }
 };
 
@@ -819,9 +818,9 @@ const Game = (() => {
     modal.innerHTML = `
       <div class="modal">
         <div class="modalCard game-over-card">
-          <div style="font-size:48px;">💀</div>
+          <div class="game-over-mark" aria-hidden="true">💀</div>
           <div class="hero-title" style="color:#ff0055;">GUARDIA TERMINADA</div>
-          <div style="color:rgba(255,255,255,0.7); margin-bottom:10px;">El servicio ha colapsado.</div>
+          <div style="color:var(--ink-2);">El servicio ha colapsado.</div>
 
           ${isRecord && sh.cases > 0 ? `<div class="record-flag">🏅 ¡NUEVO RÉCORD DE GUARDIA!</div>` : ""}
 
@@ -854,7 +853,7 @@ const Game = (() => {
           
           ${unlocked.length ? `
             <div style="margin:10px 0;">
-              <div class="stat-label" style="color:#ffd700;">VITRINA · ${unlocked.length} LOGROS</div>
+              <div class="stat-label" style="color:#ffd700;">Vitrina · ${unlocked.length} ${unlocked.length === 1 ? "logro" : "logros"}</div>
               <div class="achievement-list">
                 ${unlocked.map(a => `
                   <div class="achievement-badge" title="${escapeHtml(a.name)}">${escapeHtml(a.icon)}</div>
@@ -865,19 +864,17 @@ const Game = (() => {
 
           <div class="stat-label">Rango Actual: ${Economy.getRank()}</div>
           
-          <div style="display:grid; gap:10px; margin-top:20px;">
+          <div class="game-over-actions">
             <button class="btn-action" id="btnRestart">Nueva Guardia</button>
             ${showReviewBtn ? `
-              <button class="btn-action" id="btnReviewFailed" 
-                style="background:${dueList.length > 0 ? 'linear-gradient(135deg, var(--miami-cyan), var(--miami-purple))' : 'rgba(255, 255, 255, 0.06)'}; 
-                box-shadow: ${dueList.length > 0 ? '0 0 15px rgba(0, 243, 255, 0.4)' : 'none'}; 
-                border: ${dueList.length > 0 ? 'none' : '1px dashed rgba(255, 255, 255, 0.15)'}; 
-                color: ${dueList.length > 0 ? '#fff' : 'rgba(255,255,255,0.4)'};"
-                ${dueList.length === 0 ? 'disabled' : ''}>
-                ${dueList.length > 0 ? `Repasar Errores (${dueList.length} ${dueList.length === 1 ? "listo" : "listos"} / ${failedList.length} total)` : `Repaso al día (${failedList.length} en maestría)`}
+              <button class="btn-action btn-action--review" id="btnReviewFailed"
+                ${dueList.length === 0 ? "disabled" : ""}>
+                ${dueList.length > 0
+                  ? `Repasar errores (${dueList.length} ${dueList.length === 1 ? "listo" : "listos"} de ${failedList.length})`
+                  : `Repaso al día (${failedList.length} en maestría)`}
               </button>
             ` : ""}
-            <button class="option-btn" id="btnMenu" style="justify-content:center; text-align:center;">Volver al Menú</button>
+            <button class="btn-action btn-action--ghost" id="btnMenu">Volver al menú</button>
           </div>
         </div>
       </div>
@@ -1102,7 +1099,7 @@ const Game = (() => {
         </div>`}
         <div class="hudRow">
           <div class="hudBox">
-            <div class="avatar" id="resBox">${Avatars.resident(res.name, state.residentMood, res.grad)}</div>
+            <div class="avatar" id="resBox">${Avatars.resident(res.name, state.residentMood)}</div>
             <div class="hud-person">
               <div class="hud-person-role">Residente</div>
               <div class="hud-person-name">${escapeHtml(res.title)} ${escapeHtml(res.name)}</div>
@@ -1330,11 +1327,11 @@ const Game = (() => {
 
     root.innerHTML = `
       <div class="miami-card case-card ${isUrgent ? "case-card--critical" : ""}">
-        <div class="caseHeader" style="display: flex; align-items: center; gap: 16px;">
+        <div class="caseHeader">
           ${Avatars.patient(c.case_id, ecgClass)}
-          <div style="flex: 1; min-width: 0;">
-            <div class="caseTitle" style="font-size: 16px; margin-bottom: 6px;">${escapeHtml(getCaseTitle(c))}</div>
-            <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <div class="caseHeader-main">
+            <div class="caseTitle">${escapeHtml(getCaseTitle(c))}</div>
+            <div class="caseHeader-meta">
               ${ecgSvg}
               <div class="caseBadge">${escapeHtml(progressBadge)}</div>
             </div>
@@ -1762,9 +1759,9 @@ const Game = (() => {
           ` : ""}
         </div>
 
-        <div style="display:flex; gap:10px; margin-top:12px;" id="feedbackControls">
-          ${hasExplanation ? `<button class="btn-powerup" id="btnShowMoreFeedback" style="flex:1; justify-content:center;">📖 Ver Explicación</button>` : ""}
-          <button class="btn-powerup" id="btnNextFeedback" style="flex:1; justify-content:center; background:linear-gradient(135deg, var(--miami-pink), var(--miami-purple)); color:#fff; border:none; font-weight:800;">Siguiente</button>
+        <div class="feedback-controls" id="feedbackControls">
+          ${hasExplanation ? `<button class="btn-powerup" id="btnShowMoreFeedback">📖 Ver explicación</button>` : ""}
+          <button class="btn-powerup btn-powerup--primary" id="btnNextFeedback">Siguiente</button>
         </div>
 
         <div class="feedback-timer-bar animate-timer" id="feedbackTimerBar" style="background:${ok ? "#39ff14" : "#ff0055"}"></div>

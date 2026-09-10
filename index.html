@@ -98,8 +98,10 @@
           const reg = await navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" });
           logDebug("[sw] registered");
 
-          // Forzar la búsqueda de actualizaciones del Service Worker al cargar la página
-          reg.update();
+          // Forzar la búsqueda de actualizaciones del Service Worker al cargar la página.
+          // Sin catch, una red caída deja un rechazo sin capturar en consola, que
+          // es justo el escenario normal de una app pensada para usarse offline.
+          reg.update().catch((err) => logDebug("[sw] update failed: " + String(err)));
 
           // Si ya hay un SW esperando activación, enviarle SKIP_WAITING
           if (reg.waiting) {
