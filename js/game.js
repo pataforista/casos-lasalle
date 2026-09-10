@@ -6,7 +6,18 @@ const GAME_CONFIG = {
   minTurnSeconds: 15,   // Un poco más bajo para expertos
   difficultyScale: 4.5, // Factor logarítmico
   modalDelayMs: 450,
-  advanceDelayMs: 3500  // Tiempo para auto-avance
+  advanceDelayMs: 3500, // Tiempo para auto-avance
+
+  // Economía de la decisión. Antes cada acierto pagaba lo mismo sin importar
+  // si lo resolviste en tres segundos o en el último suspiro del reloj.
+  baseReward: 25,
+  baseXP: 50,
+  speedBonusMax: 30,    // monedas extra si respondes con el reloj casi intacto
+  fastThreshold: 0.6,   // por encima de esto cuenta como "reflejo clínico"
+  streakStep: 3,        // cada 3 aciertos seguidos sube el multiplicador
+  maxMultiplier: 3,
+  signFine: 60,         // multa por firmar una nota que resultó equivocada
+  casesPerRound: 5      // pacientes por bloque antes del pase de visita
 };
 
 const NARRATIVE = {
@@ -17,7 +28,9 @@ const NARRATIVE = {
   welcomeSubtitle: "Reglas rápidas antes de empezar.",
   rules: [
     "Decide con la información disponible: no siempre tendrás el panorama completo.",
-    "El tiempo y las vidas importan: cada demora cuesta.",
+    "Responde rápido: el reloj que te sobra se paga en monedas.",
+    "Firma la nota si estás seguro: cobras el doble, o pagas la multa.",
+    "Cada 5 pacientes el Dr. Celada pasa lista y reparte bono.",
     "Una decisión defendible pesa más que una respuesta perfecta.",
     "Las rachas aumentan tu recompensa; los errores cortan el ritmo.",
     "Lee la retroalimentación breve para ajustar tu criterio clínico."
@@ -30,6 +43,43 @@ const NARRATIVE = {
   boss: "Dr. Celada evalúa resultados, no intenciones. No pregunta: espera que sepas decidir.",
   consequence: "El error honesto pesa menos que una decisión mal razonada."
 };
+
+// Lo que dice el adscrito en el pase de visita, según cómo salió el bloque.
+// El Dr. Celada dejó de ser un retrato con etiqueta: ahora pasa lista.
+const BOSS_ROUNDS = [
+  {
+    min: 1, label: "PASE IMPECABLE", mood: "streak", tone: "perfect", bonus: 200, heal: true,
+    lines: [
+      "Cinco de cinco. Así se ve una guardia bien llevada.",
+      "Ni un tropiezo en todo el bloque. El servicio lo nota.",
+      "Impecable. Ni una decisión que reprocharte."
+    ]
+  },
+  {
+    min: 0.8, label: "BUEN BLOQUE", mood: "ok", tone: "good", bonus: 110, heal: false,
+    lines: [
+      "Sólido. Un desliz no arruina un bloque bien resuelto.",
+      "Vas bien. Sostén el criterio y no te enamores de la primera hipótesis.",
+      "Buen ritmo. Sigue así y salimos vivos del turno."
+    ]
+  },
+  {
+    min: 0.6, label: "ACEPTABLE", mood: "normal", tone: "ok", bonus: 55, heal: false,
+    lines: [
+      "Pasable. Te faltó rigor en un par de decisiones.",
+      "Ni brillante ni desastroso. Afina el razonamiento.",
+      "Aquí el margen es estrecho. Ajusta antes del siguiente bloque."
+    ]
+  },
+  {
+    min: 0, label: "REVISIÓN NECESARIA", mood: "angry", tone: "bad", bonus: 0, heal: false,
+    lines: [
+      "Demasiados errores. Vuelve a leer los casos que fallaste.",
+      "Esto no se sostiene. Baja la velocidad y piensa.",
+      "El servicio no aguanta este margen de error. Corrígelo ya."
+    ]
+  }
+];
 
 const ROSTER = [
   { name: "Aguilar",  title: "Dra.", grad: ["#84fab0", "#8fd3f4"], signature: "Ya lo interrogué; te resumo lo importante.", sprite: "aguilar_atlas.png" },
@@ -67,6 +117,16 @@ const RESIDENT_LINES = {
     "De acuerdo, tiene sentido. Procedo.",
     "Bien visto. Aviso a enfermería.",
     "Anotado. El paciente va a agradecerlo."
+  ],
+  okSigned: [
+    "Firmaste y acertaste. Eso es tenerlas bien puestas.",
+    "Con tu firma encima y salió limpio. Impresionante.",
+    "Te comprometiste y el paciente lo agradece."
+  ],
+  errorSigned: [
+    "Ay… y lo habías firmado. Eso va a doler.",
+    "Firmaste esa nota. El adscrito la va a leer.",
+    "Con tu nombre encima. Vamos a tener que rehacerlo."
   ],
   okStreak: [
     "Otra más… hoy estás en modo intratable.",
@@ -244,7 +304,15 @@ const Game = (() => {
     hintUsedInTurn: false,
     justRescued: false,
     failedCaseIds: [],
-    decompensated: false
+    decompensated: false,
+    // Apuesta clínica del turno actual: firmar la nota dobla lo que ganas y
+    // añade una multa si te equivocas. Se reinicia en cada pregunta.
+    signed: false,
+    lastReward: null,
+    // Bloque de 5 pacientes que cierra con el pase de visita del adscrito.
+    round: { answered: 0, correct: 0, coins: 0, index: 1 },
+    // Acumulado de toda la guardia, para el resumen final.
+    shift: { answered: 0, correct: 0, coins: 0, cases: 0, fast: 0, signed: 0 }
   };
 
   const $ = (sel) => document.querySelector(sel);
@@ -391,6 +459,41 @@ const Game = (() => {
     return String(text || "").replace(/\s+/g, " ").trim();
   }
 
+  // El multiplicador sube en escalones de racha. Se calcula para la racha que
+  // tendrás DESPUÉS de acertar, que es la que realmente se paga.
+  function getStreakMultiplier(streak) {
+    const steps = Math.floor(Math.max(0, streak) / GAME_CONFIG.streakStep);
+    return Math.min(GAME_CONFIG.maxMultiplier, 1 + steps * 0.5);
+  }
+
+  function getMultiplierLabel(mult) {
+    if (mult >= 3) return "LEYENDA DE GUARDIA";
+    if (mult >= 2.5) return "INTRATABLE";
+    if (mult >= 2) return "IMPARABLE";
+    if (mult >= 1.5) return "EN RITMO";
+    return "";
+  }
+
+  function isUntimed() {
+    return state.studyMode || state.current?.case_type === "documento_educativo";
+  }
+
+  // Cuánto queda del reloj en el instante de responder. El tiempo dejó de ser
+  // sólo una amenaza: ahora también es dinero.
+  function getSpeedInfo() {
+    if (isUntimed() || !state.turnSeconds) return { ratio: 0, coins: 0, fast: false };
+    const ratio = Math.max(0, Math.min(1, state.timeLeft / state.turnSeconds));
+    return {
+      ratio,
+      coins: Math.round(ratio * GAME_CONFIG.speedBonusMax),
+      fast: ratio >= GAME_CONFIG.fastThreshold
+    };
+  }
+
+  function formatMultiplier(mult) {
+    return "×" + (Number.isInteger(mult) ? mult.toFixed(0) : mult.toFixed(1));
+  }
+
   // Residente aleatorio evitando repetir el del caso anterior
   function pickResident() {
     const candidates = ROSTER.filter(r => r.name !== state.resident?.name);
@@ -461,6 +564,69 @@ const Game = (() => {
     }, 500);
   }
 
+  // Sacudida corta del contenedor. Un error debe sentirse, no sólo leerse.
+  function shakeScreen() {
+    // Se sacude el caso, no #app: transformar el contenedor rompería el
+    // posicionamiento fijo de #fxRoot, que cuelga de él.
+    const target = $("#caseRoot");
+    if (!target) return;
+    target.classList.remove("screen-shake");
+    void target.offsetWidth; // reinicia la animación si ya estaba corriendo
+    target.classList.add("screen-shake");
+    setTimeout(() => target.classList.remove("screen-shake"), 450);
+  }
+
+  // Número flotante con lo que acabas de ganar o perder.
+  function floatReward(text, tone = "good") {
+    const root = $("#fxRoot");
+    if (!root || !text) return;
+    const el = document.createElement("div");
+    el.className = "float-reward float-reward--" + tone;
+    el.textContent = text;
+    root.appendChild(el);
+    setTimeout(() => { if (root.contains(el)) root.removeChild(el); }, 1500);
+  }
+
+  // Banner de hito de racha: aparece sólo cuando el multiplicador sube de nivel.
+  function showComboBanner(mult) {
+    const root = $("#fxRoot");
+    if (!root) return;
+    const label = getMultiplierLabel(mult);
+    const el = document.createElement("div");
+    el.className = "combo-banner";
+    el.innerHTML = `<span class="combo-banner-mult">${formatMultiplier(mult)}</span>` +
+                   (label ? `<span class="combo-banner-label">${escapeHtml(label)}</span>` : "");
+    root.appendChild(el);
+    setTimeout(() => { if (root.contains(el)) root.removeChild(el); }, 1600);
+  }
+
+  // Aviso de logro. Antes sólo se enteraba uno al morir, cuando ya daba igual.
+  function showAchievementToasts(list) {
+    if (!Array.isArray(list) || !list.length) return;
+    const root = $("#fxRoot");
+    if (!root) return;
+    list.forEach((ach, i) => {
+      setTimeout(() => {
+        const el = document.createElement("div");
+        el.className = "toast-achievement";
+        el.innerHTML = `
+          <span class="toast-icon" aria-hidden="true">${escapeHtml(ach.icon)}</span>
+          <span class="toast-text">
+            <span class="toast-title">Logro desbloqueado</span>
+            <span class="toast-name">${escapeHtml(ach.name)}</span>
+          </span>`;
+        root.appendChild(el);
+        if (state.soundEnabled) playSequence([880, 1175, 1568], 0.07, 0.12);
+        setTimeout(() => { if (root.contains(el)) root.removeChild(el); }, 3200);
+      }, i * 500);
+    });
+  }
+
+  // Revisa logros y los anuncia en el momento en que se ganan.
+  function pushAchievements() {
+    showAchievementToasts(Economy.checkAchievements());
+  }
+
   function renderMenu() {
     withTransition(() => {
       const root = $("#hudRoot");
@@ -469,6 +635,10 @@ const Game = (() => {
       Economy.init(); // Refresh data
       const failedList = getFailedCases();
       const dueList = getDueFailedCases();
+      const board = Economy.getAchievementBoard();
+      const unlockedCount = board.filter(a => a.unlocked).length;
+      const bestShift = Economy.getBestShift();
+      const accuracy = Economy.getAccuracy();
 
     root.innerHTML = `
       <div class="miami-card hero-card">
@@ -484,6 +654,15 @@ const Game = (() => {
             <span class="hud-stat-label">Monedas</span>
             <span class="hud-stat-value">🪙 ${Economy.getCoins()}</span>
           </div>
+          <div class="hud-stat" title="Máximo de pacientes atendidos en una sola guardia">
+            <span class="hud-stat-label">Récord</span>
+            <span class="hud-stat-value">🏅 ${bestShift}</span>
+          </div>
+          ${accuracy === null ? "" : `
+          <div class="hud-stat" title="Aciertos sobre decisiones tomadas en toda tu carrera">
+            <span class="hud-stat-label">Precisión</span>
+            <span class="hud-stat-value">${accuracy}%</span>
+          </div>`}
         </div>
 
         <!-- Cada modo dice en qué se diferencia: antes eran dos botones con
@@ -543,6 +722,23 @@ const Game = (() => {
         <div class="pool-info" id="poolInfo" aria-live="polite"></div>
       </div>
 
+      <!-- La vitrina hace visible lo que antes sólo aparecía al morir: hay
+           metas concretas que perseguir entre guardia y guardia. -->
+      <div class="miami-card">
+        <div class="narrative-title" style="margin-bottom:12px;">🏅 VITRINA DE LOGROS · ${unlockedCount}/${board.length}</div>
+        <div class="achievement-shelf">
+          ${board.map(a => `
+            <div class="achievement-chip ${a.unlocked ? "achievement-chip--on" : ""}"
+                 title="${escapeHtml(a.name)}: ${escapeHtml(a.desc)}">
+              <span class="achievement-chip-icon" aria-hidden="true">${a.unlocked ? escapeHtml(a.icon) : "🔒"}</span>
+              <span class="achievement-chip-text">
+                <span class="achievement-chip-name">${escapeHtml(a.name)}</span>
+                <span class="achievement-chip-desc">${escapeHtml(a.desc)}</span>
+              </span>
+            </div>`).join("")}
+        </div>
+      </div>
+
       <!-- Briefing en vez de temario: las mismas reglas, pero dichas por el
            adscrito y con su cara delante. Una lista de viñetas bajo el título
            "Bienvenida a la guardia" se leía como el encuadre de una clase. -->
@@ -556,7 +752,7 @@ const Game = (() => {
         </div>
         <div class="briefing-quote">“${escapeHtml(NARRATIVE.intro)}”</div>
         <div class="briefing-rules">
-          ${NARRATIVE.rules.slice(0, 3).map(r => `<div class="briefing-rule">${escapeHtml(r)}</div>`).join("")}
+          ${NARRATIVE.rules.slice(0, 4).map(r => `<div class="briefing-rule">${escapeHtml(r)}</div>`).join("")}
         </div>
         <div class="briefing-sign">${escapeHtml(NARRATIVE.consequence)}</div>
       </div>
@@ -607,12 +803,14 @@ const Game = (() => {
   function renderGameOver() {
     const modal = $("#modalRoot");
 
+    let isRecord = false;
     if (!state.studyMode) {
-      Economy.registerGame(state.maxStreak);
+      isRecord = Economy.registerGame(state.maxStreak, state.shift.cases);
     }
-    const stats = Economy.getStats();
-    const achievements = Economy.checkAchievements();
+    Economy.checkAchievements();
     const unlocked = Economy.getUnlockedAchievements();
+    const sh = state.shift;
+    const accuracy = sh.answered ? Math.round((sh.correct / sh.answered) * 100) : 0;
 
     const failedList = getFailedCases();
     const dueList = getDueFailedCases();
@@ -624,21 +822,39 @@ const Game = (() => {
           <div style="font-size:48px;">💀</div>
           <div class="hero-title" style="color:#ff0055;">GUARDIA TERMINADA</div>
           <div style="color:rgba(255,255,255,0.7); margin-bottom:10px;">El servicio ha colapsado.</div>
-          
-          <div class="stat-grid">
+
+          ${isRecord && sh.cases > 0 ? `<div class="record-flag">🏅 ¡NUEVO RÉCORD DE GUARDIA!</div>` : ""}
+
+          <!-- Cerrar una guardia sin saber cómo te fue es lo mismo que no
+               jugarla. El resumen es la parte que se recuerda. -->
+          <div class="stat-grid stat-grid--wide">
+             <div class="stat-box">
+               <div class="stat-value">${sh.cases}</div>
+               <div class="stat-label">Pacientes</div>
+             </div>
+             <div class="stat-box">
+               <div class="stat-value">${accuracy}%</div>
+               <div class="stat-label">Precisión</div>
+             </div>
              <div class="stat-box">
                <div class="stat-value">${state.maxStreak}</div>
                <div class="stat-label">Mejor Racha</div>
              </div>
              <div class="stat-box">
-               <div class="stat-value">${Economy.getCoins()}</div>
-               <div class="stat-label">Monedas Totales</div>
+               <div class="stat-value">+${sh.coins}</div>
+               <div class="stat-label">🪙 de la guardia</div>
              </div>
+          </div>
+
+          <div class="shift-extras">
+            <span class="reward-chip reward-chip--fast">⚡ ${sh.fast === 1 ? "1 decisión veloz" : `${sh.fast} decisiones veloces`}</span>
+            <span class="reward-chip reward-chip--sign">✍️ ${sh.signed === 1 ? "1 nota firmada" : `${sh.signed} notas firmadas`}</span>
+            <span class="reward-chip">🏅 Récord: ${Economy.getBestShift()} pacientes</span>
           </div>
           
           ${unlocked.length ? `
             <div style="margin:10px 0;">
-              <div class="stat-label" style="color:#ffd700;">LOGROS OBTENIDOS</div>
+              <div class="stat-label" style="color:#ffd700;">VITRINA · ${unlocked.length} LOGROS</div>
               <div class="achievement-list">
                 ${unlocked.map(a => `
                   <div class="achievement-badge" title="${escapeHtml(a.name)}">${escapeHtml(a.icon)}</div>
@@ -735,6 +951,10 @@ const Game = (() => {
     state.hintUsedInTurn = false;
     state.solvedCasesCount = 0;
     state.currentTaskIndex = 0;
+    state.signed = false;
+    state.lastReward = null;
+    state.round = { answered: 0, correct: 0, coins: 0, cases: 0, index: 1 };
+    state.shift = { answered: 0, correct: 0, coins: 0, cases: 0, fast: 0, signed: 0 };
 
     // Read filters — review mode ignores filters to avoid excluding valid failed cases
     if (reviewMode) {
@@ -779,7 +999,11 @@ const Game = (() => {
       : `<span class="hud-lives-icons">${"💖".repeat(state.lives)}${"🖤".repeat(Math.max(0, GAME_CONFIG.maxLives - state.lives))}</span>` +
         `<span class="hud-lives-count">${state.lives} ${state.lives === 1 ? "vida" : "vidas"}</span>`;
 
-    const difficultyLevel = Math.floor(state.maxStreak / 3) + 1;
+    // El multiplicador que pagará el PRÓXIMO acierto: es el dato que importa
+    // mientras decides, no el histórico de la racha ya cobrada.
+    const nextMult = getStreakMultiplier(state.streak + 1);
+    const multLabel = getMultiplierLabel(nextMult);
+    const roundProgress = `${state.round.cases}/${GAME_CONFIG.casesPerRound}`;
 
     // Cada ayuda dice qué hace y por qué está bloqueada. Un botón apagado con
     // sólo un emoji y un número no explica nada al que lo necesita.
@@ -857,13 +1081,17 @@ const Game = (() => {
         </div>
 
         <div class="hud-stats">
-          <div class="hud-stat" title="Aciertos seguidos · tu mejor marca de esta guardia es ${state.maxStreak}">
-            <span class="hud-stat-label">Racha</span>
-            <span class="hud-stat-value">${state.streak}</span>
+          <div class="hud-stat ${nextMult > 1 ? "hud-stat--hot" : ""}"
+               title="Aciertos seguidos · tu mejor marca de esta guardia es ${state.maxStreak}${multLabel ? " · " + multLabel : ""}">
+            <span class="hud-stat-label">Racha ${multLabel ? `· ${escapeHtml(multLabel)}` : ""}</span>
+            <span class="hud-stat-value">
+              ${state.streak}
+              <span class="hud-mult ${nextMult > 1 ? "hud-mult--on" : ""}">${formatMultiplier(nextMult)}</span>
+            </span>
           </div>
-          <div class="hud-stat" title="Sube cada 3 aciertos seguidos y recorta el reloj">
-            <span class="hud-stat-label">Dificultad</span>
-            <span class="hud-stat-value">${difficultyLevel}</span>
+          <div class="hud-stat" title="${state.studyMode ? "El modo estudio no tiene pase de visita" : `Cada ${GAME_CONFIG.casesPerRound} pacientes el Dr. Celada pasa lista y paga bono`}">
+            <span class="hud-stat-label">${state.studyMode ? "Modo" : `Pase ${state.round.index}`}</span>
+            <span class="hud-stat-value">${state.studyMode ? "Libre" : roundProgress}</span>
           </div>
           <div class="hud-stat hud-stat--coins" title="Monedas para gastar en ayudas · rango ${escapeHtml(Economy.getRank())}">
             <span class="hud-stat-label">Monedas</span>
@@ -962,8 +1190,13 @@ const Game = (() => {
   }
 
   function buyTime() {
-    if (state.studyMode || state.current?.case_type === "documento_educativo" || !Economy.spend(30)) return;
-    state.timeLeft = Math.min(state.timeLeft + 30, state.turnSeconds);
+    if (isUntimed() || !Economy.spend(30)) return;
+    // El tick recalcula timeLeft desde timerStart, así que sumar segundos al
+    // marcador no servía de nada. Y topar la compra contra el reloj original
+    // la volvía una estafa: en un turno de 34s ya empezado devolvía 3s.
+    // Se alarga el turno completo: 30 segundos comprados son 30 segundos.
+    state.turnSeconds += 30;
+    state.timeLeft = Math.max(0, state.turnSeconds - (Date.now() - state.timerStart) / 1000);
     playTone(880, 0.1);
     renderHUD();
   }
@@ -1062,6 +1295,10 @@ const Game = (() => {
     // las tareas: es la voz que anuncia la consecuencia.
     const res = state.resident || ROSTER[0];
     const isUrgent = !!task.urgent;
+    // La apuesta sólo existe donde hay algo en juego: nada de firmar notas en
+    // modo estudio ni en una lectura didáctica.
+    const canSign = !state.studyMode && c.case_type !== "documento_educativo";
+    if (!canSign) state.signed = false;
     let presentLine = "";
     if (isUrgent) {
       presentLine = pickLine("decompensated");
@@ -1103,7 +1340,18 @@ const Game = (() => {
       </div>
       
       ${questionText ? `<div class="caseQuestion">${escapeHtml(questionText)}</div>` : ""}
-      <div class="options">
+      ${canSign ? `
+        <button class="sign-toggle ${state.signed ? "sign-toggle--on" : ""}" id="btnSignNote"
+                aria-pressed="${state.signed}"
+                title="Comprometes tu firma: doble recompensa si aciertas, multa de ${GAME_CONFIG.signFine} monedas si no">
+          <span class="sign-toggle-icon" aria-hidden="true">✍️</span>
+          <span class="sign-toggle-text">
+            <span class="sign-toggle-title">${state.signed ? "Nota firmada" : "Firmar la nota"}</span>
+            <span class="sign-toggle-desc">Doble recompensa si aciertas · multa de ${GAME_CONFIG.signFine} 🪙 si fallas</span>
+          </span>
+          <span class="sign-toggle-state">${state.signed ? "ACTIVA" : "OFF"}</span>
+        </button>` : ""}
+      <div class="options ${state.signed ? "options--signed" : ""}">
         ${options.map((o, idx) => `
           <button class="option-btn stagger-in" data-ok="${o.ok ? "1" : "0"}" data-index="${idx + 1}" style="--stagger-order: ${idx}">
             <span class="option-index">${idx + 1}</span>
@@ -1117,6 +1365,26 @@ const Game = (() => {
     root.querySelectorAll(".option-btn").forEach(btn => {
       btn.onclick = () => checkAnswer(btn, btn.dataset.ok === "1", task);
     });
+
+    const signBtn = $("#btnSignNote");
+    if (signBtn) signBtn.onclick = () => toggleSign();
+  }
+
+  // Alterna la firma sin repintar el caso: un re-render volvería a barajar las
+  // opciones y regalaría información al que firma y desfirma.
+  function toggleSign() {
+    const btn = $("#btnSignNote");
+    if (!btn || btn.disabled) return;
+    state.signed = !state.signed;
+    btn.classList.toggle("sign-toggle--on", state.signed);
+    btn.setAttribute("aria-pressed", String(state.signed));
+    const title = btn.querySelector(".sign-toggle-title");
+    if (title) title.textContent = state.signed ? "Nota firmada" : "Firmar la nota";
+    const flag = btn.querySelector(".sign-toggle-state");
+    if (flag) flag.textContent = state.signed ? "ACTIVA" : "OFF";
+    const opts = document.querySelector(".options");
+    if (opts) opts.classList.toggle("options--signed", state.signed);
+    if (state.soundEnabled) playTone(state.signed ? 740 : 420, 0.07);
   }
 
   function startTimer() {
@@ -1141,7 +1409,7 @@ const Game = (() => {
     state.timer = setInterval(() => {
       const elapsed = (Date.now() - state.timerStart) / 1000;
       state.timeLeft = Math.max(0, state.turnSeconds - elapsed);
-      const pct = (state.timeLeft / state.turnSeconds) * 100;
+      const pct = Math.min(100, (state.timeLeft / state.turnSeconds) * 100);
 
       const b = $("#tBar");
       if (b) b.style.width = pct + "%";
@@ -1179,6 +1447,11 @@ const Game = (() => {
           state.lives -= 1;
           state.streak = 0; // Timeout rompe racha igual que error
           saveFailedCase(state.current?.case_id);
+          // No decidir también cuenta como decisión fallida en el bloque.
+          state.round.answered++;
+          state.shift.answered++;
+          state.signed = false;
+          Economy.recordAnswer({ correct: false });
         }
 
         // Agotar el reloj no es equivocarse: el residente se queda preocupado,
@@ -1291,8 +1564,94 @@ const Game = (() => {
     } else {
       // Go to next case
       state.solvedCasesCount++;
+      state.round.cases++;
+      state.shift.cases++;
+      // Cada bloque de pacientes cierra con el pase de visita del adscrito:
+      // la guardia deja de ser una fila infinita de preguntas y adquiere ritmo.
+      if (!state.studyMode && state.round.cases >= GAME_CONFIG.casesPerRound) {
+        showRoundReview();
+        return;
+      }
       await nextCase();
     }
+  }
+
+  // Pase de visita: el Dr. Celada evalúa el bloque, paga bono y, si fue
+  // impecable, devuelve una vida. Es el único momento en que se recupera vida
+  // sin pasar por la caja.
+  function showRoundReview() {
+    clearInterval(state.timer);
+    clearTimeout(state.recentFeedbackTimer);
+    document.body.classList.remove("hot-zone-active", "time-critical");
+
+    const r = state.round;
+    const answered = Math.max(1, r.answered);
+    const ratio = Math.min(1, r.correct / answered);
+    const tier = BOSS_ROUNDS.find(t => ratio >= t.min) || BOSS_ROUNDS[BOSS_ROUNDS.length - 1];
+    const perfect = r.answered > 0 && r.correct === r.answered;
+    const line = tier.lines[Math.floor(Math.random() * tier.lines.length)];
+
+    const bonus = tier.bonus;
+    if (bonus > 0) Economy.add(bonus, Math.round(bonus / 2));
+    const healed = !!tier.heal && state.lives < GAME_CONFIG.maxLives;
+    if (healed) state.lives++;
+    Economy.recordRound(perfect);
+
+    if (state.soundEnabled) {
+      if (tier.tone === "perfect") playSequence([523, 659, 784, 1046, 1319], 0.09, 0.18);
+      else if (tier.tone === "good") playSequence([523, 659, 784], 0.09, 0.16);
+      else if (tier.tone === "bad") playSequence([392, 311, 233], 0.11, 0.22);
+      else playSequence([440, 523], 0.1, 0.16);
+    }
+
+    const modal = $("#modalRoot");
+    modal.innerHTML = `
+      <div class="modal">
+        <div class="modalCard round-card round-card--${tier.tone}">
+          <div class="round-head">
+            <div class="avatar">${Avatars.boss(tier.mood)}</div>
+            <div class="round-head-text">
+              <div class="hud-person-role">Pase de visita · bloque ${r.index}</div>
+              <div class="round-title">${escapeHtml(tier.label)}</div>
+            </div>
+          </div>
+
+          <div class="round-quote">“${escapeHtml(line)}”</div>
+
+          <div class="stat-grid">
+            <div class="stat-box">
+              <div class="stat-value">${r.correct}/${r.answered}</div>
+              <div class="stat-label">Aciertos</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value">${Math.round(ratio * 100)}%</div>
+              <div class="stat-label">Precisión</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value">${r.coins}</div>
+              <div class="stat-label">🪙 del bloque</div>
+            </div>
+          </div>
+
+          <div class="round-bonus ${bonus > 0 ? "" : "round-bonus--none"}">
+            ${bonus > 0
+              ? `Bono del adscrito: <strong>+${bonus} 🪙</strong>`
+              : "Sin bono este bloque. El siguiente se gana en la sala."}
+          </div>
+          ${healed ? `<div class="round-bonus round-bonus--heal">💖 <strong>Recuperas una vida.</strong></div>` : ""}
+
+          <button class="btn-action" id="btnRoundContinue" style="margin-top:16px;">Continuar la guardia</button>
+        </div>
+      </div>
+    `;
+
+    pushAchievements();
+
+    $("#btnRoundContinue").onclick = () => {
+      modal.innerHTML = "";
+      state.round = { answered: 0, correct: 0, coins: 0, cases: 0, index: r.index + 1 };
+      nextCase();
+    };
   }
 
   function showSmartFeedback(ok, task, selectedText) {
@@ -1307,9 +1666,35 @@ const Game = (() => {
     // Reacción del residente al resultado (racha alta tiene frases propias).
     // Un rescate tiene voz propia: no es un acierto más.
     const res = state.resident || ROSTER[0];
+    const rw = state.lastReward;
+    const wasSigned = !!(rw && rw.signed);
     const reactLine = state.justRescued
       ? pickLine("rescued")
-      : pickLine(ok ? (state.streak >= 3 ? "okStreak" : "ok") : "error");
+      : (wasSigned
+        ? pickLine(ok ? "okSigned" : "errorSigned")
+        : pickLine(ok ? (state.streak >= 3 ? "okStreak" : "ok") : "error"));
+
+    // Desglose de lo que acabas de cobrar (o pagar). Sin esto el multiplicador
+    // y el bono de rapidez serían números invisibles en un contador.
+    let rewardStrip = "";
+    if (rw && (rw.coins > 0 || rw.fine > 0)) {
+      const parts = [];
+      if (rw.coins > 0) {
+        parts.push(`<span class="reward-chip">+${rw.base} base</span>`);
+        if (rw.speed > 0) {
+          parts.push(`<span class="reward-chip ${rw.fast ? "reward-chip--fast" : ""}">+${rw.speed} rapidez</span>`);
+        }
+        if (rw.mult > 1) parts.push(`<span class="reward-chip reward-chip--mult">${formatMultiplier(rw.mult)} racha</span>`);
+        if (rw.signed) parts.push(`<span class="reward-chip reward-chip--sign">×2 firma</span>`);
+      }
+      if (rw.fine > 0) parts.push(`<span class="reward-chip reward-chip--fine">multa por firmar</span>`);
+      const total = rw.coins > 0 ? `+${rw.coins} 🪙` : `−${rw.fine} 🪙`;
+      rewardStrip = `
+        <div class="reward-strip">
+          <div class="reward-total ${rw.coins > 0 ? "" : "reward-total--bad"}">${total}</div>
+          <div class="reward-parts">${parts.join("")}</div>
+        </div>`;
+    }
 
     // Consecuencia visible del error: el jugador tiene que ver que el paciente
     // empeoró, no descubrirlo en la siguiente pregunta.
@@ -1319,8 +1704,13 @@ const Game = (() => {
         ? `<div class="feedback-consequence feedback-consequence--good">💚 <strong>Paciente estabilizado.</strong> Lo sacaste de la descompensación.</div>`
         : "");
 
-    const headerIcon = state.justRescued ? "💚" : (ok ? "💎" : "⚠️");
-    const headerText = state.justRescued ? "RESCATE LOGRADO" : (ok ? "EXCELENTE" : "ERROR CLÍNICO");
+    let headerIcon = "⚠️";
+    let headerText = "ERROR CLÍNICO";
+    if (state.justRescued) { headerIcon = "💚"; headerText = "RESCATE LOGRADO"; }
+    else if (ok && wasSigned) { headerIcon = "✍️"; headerText = "NOTA FIRMADA"; }
+    else if (ok && rw && rw.fast) { headerIcon = "⚡"; headerText = "REFLEJO CLÍNICO"; }
+    else if (ok) { headerIcon = "💎"; headerText = "EXCELENTE"; }
+    else if (wasSigned) { headerIcon = "🖊️"; headerText = "NOTA FIRMADA… Y ERRADA"; }
 
     root.innerHTML = `
       <div class="feedback-overlay show" style="border-color:${ok ? "rgba(57,255,20,0.4)" : "rgba(255,0,85,0.4)"}; cursor: default;">
@@ -1331,6 +1721,7 @@ const Game = (() => {
           </div>
         </div>
         ${consequenceNote}
+        ${rewardStrip}
         ${reactLine ? `<div class="feedback-resident">${escapeHtml(res.title)} ${escapeHtml(res.name)}: “${escapeHtml(reactLine)}”</div>` : ""}
         <div class="modalFeedback" style="margin:0; font-size:14px;">${escapeHtml(details.reason || brief)}</div>
         
@@ -1431,22 +1822,60 @@ const Game = (() => {
   function checkAnswer(btn, ok, task) {
     clearInterval(state.timer);
     document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
+    const signBtn = $("#btnSignNote");
+    if (signBtn) signBtn.disabled = true;
     document.body.classList.remove("time-critical");
 
     const isEduDoc = state.current?.case_type === "documento_educativo";
+    // Sólo puntúa lo que tiene consecuencias: el modo estudio y las lecturas
+    // didácticas no mueven monedas, rachas ni estadísticas de carrera.
+    const scores = !state.studyMode && !isEduDoc;
+    const signed = scores && state.signed;
+    const speed = getSpeedInfo();
+    state.lastReward = null;
 
     if (ok) {
       flashScreen(true);
       btn.classList.add("correct");
-      if (!state.studyMode && !isEduDoc) {
+      const prevMult = getStreakMultiplier(state.streak);
+
+      if (scores) {
         state.streak++;
         state.maxStreak = Math.max(state.maxStreak, state.streak);
-        Economy.add(25 + (state.streak * 5), 50);
+
+        const mult = getStreakMultiplier(state.streak);
+        const base = GAME_CONFIG.baseReward;
+        let coins = Math.round((base + speed.coins) * mult);
+        let xp = Math.round(GAME_CONFIG.baseXP * mult);
+        if (signed) {
+          coins *= 2;
+          xp = Math.round(xp * 1.5);
+        }
+        Economy.add(coins, xp);
+
+        state.lastReward = { base, speed: speed.coins, mult, signed, coins, xp, fine: 0, fast: speed.fast };
+        state.round.answered++; state.round.correct++; state.round.coins += coins;
+        state.shift.answered++; state.shift.correct++; state.shift.coins += coins;
+        if (speed.fast) state.shift.fast++;
+        if (signed) state.shift.signed++;
+
+        floatReward(`+${coins} 🪙`, signed ? "signed" : "good");
+
+        // El salto de multiplicador merece su propio momento; un acierto más
+        // dentro del mismo escalón, no.
+        if (mult > prevMult && mult > 1) {
+          showComboBanner(mult);
+          if (state.soundEnabled) playSequence([880, 1175, 1397, 1760], 0.075, 0.14);
+        } else if (state.soundEnabled) {
+          playSequence(signed ? [660, 988, 1319] : [660, 880, 1175], 0.06, 0.12);
+        }
+      } else if (state.soundEnabled) {
+        playSequence([660, 880, 1175], 0.06, 0.12);
       }
+
       // En racha la cara acompaña a la frase: el residente ya decía "hoy estás
       // en modo intratable" con el mismo gesto de un acierto cualquiera.
       state.residentMood = state.streak >= 3 ? "streak" : "ok";
-      if (state.soundEnabled) playTone(880, 0.12);
 
       // Promocionar nivel de maestría en repaso espaciado al responder bien
       promoteFailedCase(state.current?.case_id);
@@ -1455,19 +1884,34 @@ const Game = (() => {
       state.justRescued = state.decompensated;
       state.decompensated = false; // ¡El paciente ha sido estabilizado!
       if (state.justRescued && state.soundEnabled) playTone(1320, 0.18);
+
+      if (scores) Economy.recordAnswer({ correct: true, fast: speed.fast, signed, rescue: state.justRescued });
     } else {
       flashScreen(false);
+      shakeScreen();
       btn.classList.add("incorrect");
       // Revelar cuál era la opción correcta (igual que en timeout)
       document.querySelectorAll('.option-btn[data-ok="1"]').forEach(b => b.classList.add("correct"));
-      if (!state.studyMode && !isEduDoc) {
+
+      let fine = 0;
+      if (scores) {
         state.lives--;
         state.streak = 0;
+        // Firmar es apostar: si la nota lleva tu nombre y estaba mal, se paga.
+        if (signed) {
+          fine = Economy.fine(GAME_CONFIG.signFine);
+          if (fine > 0) floatReward(`−${fine} 🪙`, "bad");
+        }
+        state.round.answered++;
+        state.shift.answered++;
+        Economy.recordAnswer({ correct: false, signed });
       }
+      state.lastReward = { base: 0, speed: 0, mult: 1, signed, coins: 0, xp: 0, fine, fast: false };
+
       state.residentMood = "shock";
       state.bossMood = "angry";
       state.justRescued = false;
-      if (state.soundEnabled) playTone(220, 0.2);
+      if (state.soundEnabled) playSequence([320, 250, 190], 0.09, 0.2);
 
       // Guardar caso real en la lista de fallados al errar
       saveFailedCase(state.current?.case_id);
@@ -1478,6 +1922,7 @@ const Game = (() => {
       }
     }
 
+    if (scores) pushAchievements();
     renderHUD();
 
     // Mostrar la retroalimentación SIEMPRE, incluso al perder la última vida:
@@ -1492,12 +1937,41 @@ const Game = (() => {
     ScreenManager.showMenu();
     window.addEventListener("keydown", (e) => {
       if (e.key === "d") return; // debug
+
+      // Enter/Espacio avanza la retroalimentación o cierra el pase de visita:
+      // en escritorio nadie quiere ir al ratón entre caso y caso.
+      if (e.key === "Enter" || e.key === " ") {
+        const advanceBtn = document.querySelector("#btnRoundContinue, #btnNextFeedback");
+        if (advanceBtn) {
+          e.preventDefault();
+          advanceBtn.click();
+          return;
+        }
+      }
+
+      // F firma la nota antes de responder.
+      if (e.key.toLowerCase() === "f") {
+        const signBtn = document.querySelector("#btnSignNote");
+        if (signBtn && !signBtn.disabled) {
+          e.preventDefault();
+          toggleSign();
+        }
+        return;
+      }
+
       const idx = parseInt(e.key);
       if (!isNaN(idx)) {
         const b = document.querySelector(`.option-btn[data-index="${idx}"]`);
         if (b && !b.disabled) b.click();
       }
     });
+  }
+
+  // Una sucesión corta de notas se lee como "acierto" o "error" mucho mejor
+  // que un tono suelto: es la diferencia entre un pitido y una señal.
+  function playSequence(notes, step = 0.08, dur = 0.12) {
+    if (!state.soundEnabled || !Array.isArray(notes)) return;
+    notes.forEach((f, i) => setTimeout(() => playTone(f, dur), i * step * 1000));
   }
 
   let audioCtx;

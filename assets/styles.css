@@ -340,7 +340,9 @@ body {
 
 .hero-meta {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  /* Con rango, monedas, récord y precisión ya no caben en dos columnas fijas:
+     que se repartan solas en vez de dejar una tarjeta huérfana abajo. */
+  grid-template-columns: repeat(auto-fit, minmax(118px, 1fr));
   gap: 8px;
 }
 
@@ -1915,3 +1917,421 @@ body.time-critical .hud-timer-value {
   100% { opacity: 1; transform: translateX(0); }
 }
 
+
+/* ============================================================================
+   Dinámica de juego: multiplicador, firma de nota, pase de visita y feedback
+   de recompensa. Todo lo que convierte una lista de preguntas en una guardia.
+   ============================================================================ */
+
+/* --- Sacudida del caso al fallar --- */
+@keyframes screen-shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-9px) rotate(-0.4deg); }
+  30% { transform: translateX(8px) rotate(0.4deg); }
+  45% { transform: translateX(-6px); }
+  60% { transform: translateX(5px); }
+  75% { transform: translateX(-3px); }
+}
+
+.screen-shake {
+  animation: screen-shake 0.42s cubic-bezier(0.36, 0.07, 0.19, 0.97);
+}
+
+/* --- Número flotante de recompensa --- */
+@keyframes float-reward {
+  0%   { opacity: 0; transform: translate(-50%, 10px) scale(0.85); }
+  18%  { opacity: 1; transform: translate(-50%, -6px) scale(1.06); }
+  70%  { opacity: 1; transform: translate(-50%, -46px) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -78px) scale(0.95); }
+}
+
+.float-reward {
+  position: absolute;
+  left: 50%;
+  top: 26%;
+  transform: translate(-50%, 0);
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  text-shadow: 0 0 18px currentColor, 0 3px 10px rgba(0, 0, 0, 0.75);
+  animation: float-reward 1.4s ease-out forwards;
+}
+
+.float-reward--good { color: #39ff14; }
+.float-reward--bad { color: #ff0055; }
+.float-reward--signed { color: #ffd700; }
+
+/* --- Banner de subida de multiplicador --- */
+@keyframes combo-banner {
+  0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.6) rotate(-6deg); }
+  20%  { opacity: 1; transform: translate(-50%, -50%) scale(1.12) rotate(0deg); }
+  75%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.25); }
+}
+
+.combo-banner {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  animation: combo-banner 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.combo-banner-mult {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 62px;
+  font-weight: 800;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 0 24px var(--miami-pink), 0 0 46px var(--miami-purple);
+}
+
+.combo-banner-label {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--miami-cyan);
+  text-shadow: 0 0 14px rgba(0, 243, 255, 0.8);
+}
+
+/* --- Aviso de logro --- */
+@keyframes toast-in {
+  0%   { opacity: 0; transform: translate(-50%, -22px); }
+  12%  { opacity: 1; transform: translate(-50%, 0); }
+  86%  { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -14px); }
+}
+
+.toast-achievement {
+  position: absolute;
+  left: 50%;
+  top: calc(14px + var(--safe-top, 0px));
+  transform: translate(-50%, 0);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: rgba(10, 6, 22, 0.95);
+  border: 1px solid rgba(255, 215, 0, 0.55);
+  box-shadow: 0 0 26px rgba(255, 215, 0, 0.28);
+  animation: toast-in 3.1s ease-out forwards;
+  max-width: min(92vw, 380px);
+}
+
+.toast-icon { font-size: 24px; }
+
+.toast-text { display: flex; flex-direction: column; line-height: 1.2; min-width: 0; }
+
+.toast-title {
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #ffd700;
+  font-weight: 800;
+}
+
+.toast-name {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+}
+
+/* --- Multiplicador en el HUD --- */
+.hud-mult {
+  display: inline-block;
+  margin-left: 4px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  vertical-align: middle;
+}
+
+.hud-mult--on {
+  color: #050510;
+  background: linear-gradient(135deg, var(--miami-cyan), var(--miami-pink));
+  border-color: transparent;
+  box-shadow: 0 0 12px rgba(255, 0, 255, 0.45);
+}
+
+.hud-stat--hot {
+  border-color: rgba(255, 0, 255, 0.35);
+  box-shadow: inset 0 0 18px rgba(255, 0, 255, 0.12);
+}
+
+/* --- Firmar la nota (apuesta) --- */
+.sign-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 12px 0 4px;
+  padding: 11px 14px;
+  border-radius: 16px;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px dashed rgba(255, 215, 0, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.sign-toggle:hover:not(:disabled) {
+  border-color: rgba(255, 215, 0, 0.7);
+  background: rgba(255, 215, 0, 0.06);
+}
+
+.sign-toggle:active:not(:disabled) { transform: scale(0.985); }
+
+.sign-toggle--on {
+  border-style: solid;
+  border-color: #ffd700;
+  background: linear-gradient(135deg, rgba(255, 215, 0, 0.16), rgba(255, 0, 255, 0.08));
+  box-shadow: 0 0 22px rgba(255, 215, 0, 0.25);
+}
+
+.sign-toggle:disabled { opacity: 0.5; cursor: default; }
+
+.sign-toggle-icon { font-size: 22px; flex-shrink: 0; }
+
+.sign-toggle-text { display: flex; flex-direction: column; gap: 2px; flex: 1; min-width: 0; }
+
+.sign-toggle-title {
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.sign-toggle-desc {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.35;
+}
+
+.sign-toggle-state {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.sign-toggle--on .sign-toggle-state {
+  color: #050510;
+  background: #ffd700;
+  border-color: transparent;
+}
+
+/* Cuando la nota va firmada, las opciones avisan que el riesgo está doblado. */
+.options--signed .option-btn {
+  border-color: rgba(255, 215, 0, 0.45);
+  box-shadow: inset 0 0 0 1px rgba(255, 215, 0, 0.1);
+}
+
+/* --- Desglose de recompensa en la retroalimentación --- */
+.reward-strip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 10px 0 4px;
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reward-total {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  color: #39ff14;
+  text-shadow: 0 0 14px rgba(57, 255, 20, 0.5);
+}
+
+.reward-total--bad {
+  color: #ff0055;
+  text-shadow: 0 0 14px rgba(255, 0, 85, 0.5);
+}
+
+.reward-parts { display: flex; flex-wrap: wrap; gap: 6px; }
+
+.reward-chip {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  white-space: nowrap;
+}
+
+.reward-chip--fast { color: var(--miami-cyan); border-color: rgba(0, 243, 255, 0.4); }
+.reward-chip--mult { color: var(--miami-pink); border-color: rgba(255, 0, 255, 0.4); }
+.reward-chip--sign { color: #ffd700; border-color: rgba(255, 215, 0, 0.45); }
+.reward-chip--fine { color: #ff0055; border-color: rgba(255, 0, 85, 0.45); }
+
+/* --- Pase de visita --- */
+.round-card { text-align: left; }
+
+.round-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.round-head-text { min-width: 0; }
+
+.round-title {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  color: var(--miami-cyan);
+}
+
+.round-card--perfect .round-title { color: #39ff14; }
+.round-card--good .round-title { color: var(--miami-cyan); }
+.round-card--ok .round-title { color: #ffd700; }
+.round-card--bad .round-title { color: #ff0055; }
+
+.round-card--perfect { border-color: rgba(57, 255, 20, 0.45); box-shadow: 0 0 45px rgba(57, 255, 20, 0.2); }
+.round-card--bad { border-color: rgba(255, 0, 85, 0.45); box-shadow: 0 0 45px rgba(255, 0, 85, 0.18); }
+
+.round-quote {
+  font-size: 14px;
+  line-height: 1.5;
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.85);
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  border-left: 3px solid var(--miami-pink);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0 12px 12px 0;
+}
+
+.round-bonus {
+  margin-top: 10px;
+  padding: 9px 13px;
+  border-radius: 12px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 243, 255, 0.07);
+  border: 1px solid rgba(0, 243, 255, 0.25);
+}
+
+.round-bonus strong { color: #ffd700; }
+
+.round-bonus--none {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.round-bonus--heal {
+  background: rgba(57, 255, 20, 0.08);
+  border-color: rgba(57, 255, 20, 0.3);
+}
+
+.round-bonus--heal strong { color: #39ff14; }
+
+/* --- Resumen de guardia --- */
+.record-flag {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 1.2px;
+  color: #050510;
+  background: linear-gradient(135deg, #ffd700, #ff9d00);
+  box-shadow: 0 0 24px rgba(255, 215, 0, 0.45);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+
+.stat-grid--wide { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 420px) {
+  .stat-grid--wide { grid-template-columns: repeat(2, 1fr); }
+}
+
+.shift-extras {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin: 12px 0 4px;
+}
+
+/* --- Vitrina de logros del menú --- */
+.achievement-shelf {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.achievement-chip {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 11px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  opacity: 0.55;
+}
+
+.achievement-chip--on {
+  opacity: 1;
+  background: rgba(255, 215, 0, 0.06);
+  border-color: rgba(255, 215, 0, 0.35);
+}
+
+.achievement-chip-icon { font-size: 20px; flex-shrink: 0; }
+
+.achievement-chip-text { display: flex; flex-direction: column; min-width: 0; line-height: 1.25; }
+
+.achievement-chip-name {
+  font-family: "Chakra Petch", sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.achievement-chip-desc {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.achievement-chip--on .achievement-chip-name { color: #ffd700; }
+
+/* El pase de visita muestra tres cifras: en dos columnas la tercera queda
+   suelta. Que se acomoden solas y se apilen sólo cuando ya no quepan. */
+.round-card .stat-grid {
+  grid-template-columns: repeat(auto-fit, minmax(92px, 1fr));
+  gap: 10px;
+  margin: 4px 0 0;
+}

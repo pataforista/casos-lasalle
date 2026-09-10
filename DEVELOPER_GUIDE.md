@@ -97,7 +97,61 @@ js/
 └── game.js                 # Lógica principal del juego e interfaz
 ```
 
-## 4. Scripts de Utilidad (Package.json)
+## 4. Dinámica de Juego (Ajuste Fino)
+
+Toda la economía de la partida vive en `GAME_CONFIG` (`js/game.js`). Cambiar un
+número ahí reequilibra el juego entero sin tocar la lógica.
+
+| Parámetro | Qué controla |
+|---|---|
+| `baseReward` / `baseXP` | Pago fijo por acierto, antes de bonos |
+| `speedBonusMax` | Monedas extra si respondes con el reloj intacto (escala con el tiempo sobrante) |
+| `fastThreshold` | Fracción de reloj restante a partir de la cual cuenta como "reflejo clínico" |
+| `streakStep` / `maxMultiplier` | Cada cuántos aciertos sube el multiplicador y hasta dónde |
+| `signFine` | Multa por firmar una nota equivocada |
+| `casesPerRound` | Pacientes por bloque antes del pase de visita |
+
+### Las cuatro capas de recompensa
+
+1. **Base**: `baseReward` por acierto.
+2. **Rapidez**: proporcional al reloj que sobra. El tiempo dejó de ser sólo una
+   amenaza; ahora también paga.
+3. **Multiplicador de racha**: sube medio punto cada `streakStep` aciertos
+   seguidos. Se muestra en el HUD como el multiplicador que cobrará el
+   *próximo* acierto, no el ya cobrado.
+4. **Firma de la nota**: apuesta opcional por pregunta (tecla `F`). Dobla la
+   recompensa si aciertas y cobra `signFine` si no. Se desactiva sola en modo
+   estudio y en documentos educativos.
+
+Fórmula: `monedas = round((baseReward + bonoRapidez) × multiplicador) × (firmada ? 2 : 1)`
+
+### Pase de visita
+
+Cada `casesPerRound` pacientes resueltos, `showRoundReview()` interrumpe la
+guardia con la evaluación del Dr. Celada. El nivel sale de `BOSS_ROUNDS`, una
+tabla ordenada por proporción de aciertos del bloque: cada entrada define
+`min` (umbral), `bonus`, si devuelve una vida (`heal`) y el repertorio de
+frases. Para añadir un nivel, insértalo respetando el orden descendente de
+`min`.
+
+Un pase impecable es la única forma de recuperar una vida sin pagar monedas.
+
+### Logros
+
+Se definen en `ACHIEVEMENTS` (`js/economy.js`). Cada uno es un objeto con
+`icon`, `name`, `desc` y una `condition(d)` que lee el estado persistido. Los
+contadores que alimentan esas condiciones se actualizan desde
+`Economy.recordAnswer()`, `Economy.recordRound()` y `Economy.registerGame()`.
+Añadir un logro es añadir una entrada: la vitrina del menú y los avisos
+emergentes lo recogen solos.
+
+> **Compatibilidad de guardados:** la clave de `localStorage` sigue siendo
+> `psy_miami_save_v2`. Los campos nuevos se rellenan con cero al cargar una
+> partida vieja, así que nadie pierde monedas ni logros al actualizar.
+
+---
+
+## 5. Scripts de Utilidad (Package.json)
 - `npm run validate` → `node tools/validate_cases.js data/cases_v1.json data/cases_v1_validated.json`
 - `npm run validate:packs` → `node tools/validateAllPacks.js ./data/manifest_v1.json`
 - `npm run enhance` → `node tools/enhanceCases.js data/cases_v1_validated.json data/cases_v1.json`
