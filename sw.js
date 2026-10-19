@@ -5,7 +5,7 @@
    - Limpieza de caches: borra TODO lo que no sea el cache actual
    ============================================================================ */
 
-   const CACHE_VERSION = "psycase-v1.8.0";
+   const CACHE_VERSION = "psycase-v1.8.1";
    const CACHE_NAME = `psycase-${CACHE_VERSION}`;
    
    const APP_SHELL = [
@@ -15,6 +15,7 @@
      "./assets/styles.css",
    
      "./js/boot.js",
+     "./js/content.js",
      "./js/economy.js",
      "./js/caseLoader.js",
      "./js/generator.js",

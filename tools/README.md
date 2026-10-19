@@ -40,6 +40,7 @@ A continuación un resumen de los scripts que aún forman parte del pipeline ofi
 | `normalize_sprites.py` | Genera atlas finales de sprites (5x2) | `python tools/normalize_sprites.py` |
 | `check_img.js` | Chequeo rápido de completitud de sprites | `node tools/check_img.js` |
 | `buildManifest.js` | Refresca sólo el índice sin recrear los packs| `node tools/buildManifest.js` |
+| `editDoc.js` | Aplica `EDITAR_JUEGO.md` al juego (contenido y casos) | `npm run apply` |
 | `buildAppMap.js` | Regenera el mapa de la app y verifica la coherencia offline | `npm run map` / `npm run check` |
 | `hooks/pre-commit` | Ejecuta `buildAppMap.js` en cada commit | `npm run hooks` (una vez) |
 

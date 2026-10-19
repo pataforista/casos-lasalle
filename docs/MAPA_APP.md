@@ -19,7 +19,10 @@ clínicos en JSON. Abrir `index.html` desde un servidor estático basta.
 ```mermaid
 graph TD
   HTML[index.html<br/>raíces del DOM + CSP] --> BOOT[js/boot.js<br/>SafeStore · logDebug · errores · registro del SW]
-  BOOT --> ECO[js/economy.js<br/>Economy: monedas, XP, logros, récord]
+  DOC[EDITAR_JUEGO.md<br/>editable por humanos] -->|npm run apply| CONTENT[js/content.js<br/>GAME_CONFIG · NARRATIVE · BOSS_ROUNDS · ROSTER · RESIDENT_LINES]
+  DOC -->|título y dificultad| DATA
+  BOOT --> CONTENT
+  CONTENT --> ECO[js/economy.js<br/>Economy: monedas, XP, logros, récord]
   ECO --> DB[js/caseLoader.js<br/>CaseDB: manifest + packs, filtros]
   DB --> GEN[js/generator.js<br/>Generator: casos sintéticos de respaldo]
   GEN --> GAME[js/game.js<br/>Game: pantallas, turno, feedback, repaso]
@@ -32,14 +35,27 @@ graph TD
 | Módulo | Expone | Depende de | No debe |
 |---|---|---|---|
 | `boot.js` | `_esc`, `SafeStore`, `logDebug`, `PsyBoot` | nada | conocer la lógica del juego |
+| `content.js` | `GAME_CONFIG`, `NARRATIVE`, `BOSS_ROUNDS`, `ROSTER`, `RESIDENT_LINES` | nada | editarse a mano: lo genera `tools/editDoc.js` desde `EDITAR_JUEGO.md` |
 | `economy.js` | `Economy` | `localStorage` (clave `psy_miami_save_v2`) | tocar el DOM |
 | `caseLoader.js` | `CaseDB.init/pickRandomCase/getPoolSize/hasCase/isReady` | `fetch` | decidir qué hacer si no hay casos |
 | `generator.js` | `Generator.createCase(filters)` | nada | usarse si hay casos reales disponibles |
 | `game.js` | `Game.init()` (nada más) | todo lo anterior | escribir en `localStorage` sin `SafeStore` |
 
-`game.js` es un IIFE con un objeto `state` privado. Fuera de él viven las tablas
-de diseño que se ajustan sin tocar lógica: `GAME_CONFIG`, `NARRATIVE`,
-`BOSS_ROUNDS`, `ROSTER`, `RESIDENT_LINES`, `MOOD_FRAMES` y `Avatars`.
+`game.js` es un IIFE con un objeto `state` privado. Las tablas de diseño
+(`GAME_CONFIG`, `NARRATIVE`, `BOSS_ROUNDS`, `ROSTER`, `RESIDENT_LINES`) viven en
+`js/content.js`, generado desde `EDITAR_JUEGO.md`; en `game.js` quedan
+`MOOD_FRAMES` y `Avatars`, que dependen de la geometría de los sprites.
+
+### EDITAR_JUEGO.md ⇄ juego
+
+`tools/editDoc.js` lee el documento por secciones (marcadas con
+`<!-- sección: … -->`), valida cada valor con mensajes en castellano y la línea
+exacta, y sólo si todo es correcto escribe `js/content.js`, sube
+`CACHE_VERSION`, actualiza `display_title`/`difficulty` en
+`data/cases_v1.json` y regenera packs + manifest. Después reescribe el
+documento normalizado: las notas con sangría (respuesta esperada, aviso ⚠️ de
+título-spoiler) se recalculan. Lo ejecutan el gancho de pre-commit y la acción
+`.github/workflows/aplicar.yml` en cada push.
 
 ## 3. Raíces del DOM
 
@@ -119,20 +135,21 @@ Todas pasan por `SafeStore` (o por `try/catch` en `economy.js`): sin almacenamie
 <!-- AUTO:START -->
 > Bloque generado por `npm run map`. No lo edites a mano: se sobrescribe.
 
-**Huella del runtime:** `160ec91266d3` · **CACHE_VERSION:** `psycase-v1.8.0`
+**Huella del runtime:** `e09ca31c6514` · **CACHE_VERSION:** `psycase-v1.8.1`
 
 ### Archivos del runtime
 
 | Archivo | Líneas | KB |
 |---|---|---|
-| `index.html` | 74 | 3.4 |
-| `sw.js` | 142 | 4.7 |
+| `index.html` | 75 | 3.5 |
+| `sw.js` | 143 | 4.7 |
 | `manifest.webmanifest` | 41 | 0.9 |
 | `assets/styles.css` | 2477 | 58.5 |
 | `js/boot.js` | 115 | 4.2 |
 | `js/caseLoader.js` | 175 | 5.5 |
-| `js/economy.js` | 164 | 5.8 |
-| `js/game.js` | 2218 | 90.0 |
+| `js/content.js` | 213 | 6.3 |
+| `js/economy.js` | 165 | 6.0 |
+| `js/game.js` | 2063 | 83.2 |
 | `js/generator.js` | 751 | 58.7 |
 
 ### Índice de símbolos
@@ -163,104 +180,109 @@ Nivel superior y funciones internas de cada módulo, con su línea. Úsalo para 
 
 </details>
 
+<details><summary><code>js/content.js</code> · 5 símbolos</summary>
+
+- `js/content.js:8` `GAME_CONFIG`
+- `js/content.js:32` `NARRATIVE`
+- `js/content.js:43` `BOSS_ROUNDS`
+- `js/content.js:98` `ROSTER`
+- `js/content.js:149` `RESIDENT_LINES`
+
+</details>
+
 <details><summary><code>js/economy.js</code> · 6 símbolos</summary>
 
 - `js/economy.js:1` `Economy`
 - `js/economy.js:2` ↳ `STORAGE_KEY`
-- `js/economy.js:22` ↳ `num()`
-- `js/economy.js:26` ↳ `load()`
-- `js/economy.js:47` ↳ `save()`
-- `js/economy.js:55` ↳ `ACHIEVEMENTS`
+- `js/economy.js:23` ↳ `num()`
+- `js/economy.js:27` ↳ `load()`
+- `js/economy.js:48` ↳ `save()`
+- `js/economy.js:56` ↳ `ACHIEVEMENTS`
 
 </details>
 
-<details><summary><code>js/game.js</code> · 85 símbolos</summary>
+<details><summary><code>js/game.js</code> · 80 símbolos</summary>
 
-- `js/game.js:3` `GAME_CONFIG`
-- `js/game.js:30` `NARRATIVE`
-- `js/game.js:43` `BOSS_ROUNDS`
-- `js/game.js:82` `ROSTER`
-- `js/game.js:94` `RESIDENT_LINES`
-- `js/game.js:162` `_lineMemory`
-- `js/game.js:163` `pickLine()`
-- `js/game.js:174` `SPRITE_COLS`
-- `js/game.js:175` `SPRITE_ROWS`
-- `js/game.js:179` `MOOD_FRAMES`
-- `js/game.js:192` `Avatars`
-- `js/game.js:265` `Game`
-- `js/game.js:321` ↳ `newShift()`
-- `js/game.js:328` ↳ `later()`
-- `js/game.js:333` ↳ `setUrgency()`
-- `js/game.js:339` ↳ `stopTurnFx()`
-- `js/game.js:346` ↳ `ScreenManager`
-- `js/game.js:367` ↳ `escapeHtml()`
-- `js/game.js:379` ↳ `FAILED_KEY`
-- `js/game.js:380` ↳ `REVIEW_DELAYS_MS`
-- `js/game.js:381` ↳ `MASTERY_LEVEL`
-- `js/game.js:383` ↳ `getFailedCases()`
-- `js/game.js:405` ↳ `storeFailedCases()`
-- `js/game.js:409` ↳ `getDueFailedCases()`
-- `js/game.js:417` ↳ `pruneFailedCases()`
-- `js/game.js:424` ↳ `saveFailedCase()`
-- `js/game.js:439` ↳ `promoteFailedCase()`
-- `js/game.js:455` ↳ `SENTENCE_RE`
-- `js/game.js:457` ↳ `getBriefFeedback()`
-- `js/game.js:467` ↳ `getWhyNotForTask()`
-- `js/game.js:474` ↳ `getExplanationPayload()`
-- `js/game.js:491` ↳ `getCaseTitle()`
-- `js/game.js:495` ↳ `normalizeCaseText()`
-- `js/game.js:501` ↳ `getStreakMultiplier()`
-- `js/game.js:506` ↳ `getMultiplierLabel()`
-- `js/game.js:514` ↳ `isUntimed()`
-- `js/game.js:520` ↳ `getSpeedInfo()`
-- `js/game.js:530` ↳ `formatMultiplier()`
-- `js/game.js:535` ↳ `pickResident()`
-- `js/game.js:542` ↳ `getResidentPresentLine()`
-- `js/game.js:552` ↳ `BOSS_STATES`
-- `js/game.js:562` ↳ `getBossState()`
-- `js/game.js:566` ↳ `getBossStatus()`
-- `js/game.js:570` ↳ `splitCaseText()`
-- `js/game.js:585` ↳ `withTransition()`
-- `js/game.js:593` ↳ `flashScreen()`
-- `js/game.js:605` ↳ `shakeScreen()`
-- `js/game.js:617` ↳ `floatReward()`
-- `js/game.js:628` ↳ `showComboBanner()`
-- `js/game.js:641` ↳ `showAchievementToasts()`
-- `js/game.js:663` ↳ `pushAchievements()`
-- `js/game.js:667` ↳ `renderMenu()`
-- `js/game.js:856` ↳ `renderGameOver()`
-- `js/game.js:974` ↳ `showReviewSuccess()`
-- `js/game.js:998` ↳ `ensureCasesLoaded()`
-- `js/game.js:1011` ↳ `startTurn()`
-- `js/game.js:1065` ↳ `renderHUD()`
-- `js/game.js:1277` ↳ `useHint()`
-- `js/game.js:1292` ↳ `buyLife()`
-- `js/game.js:1299` ↳ `buyTime()`
-- `js/game.js:1311` ↳ `pickTask()`
-- `js/game.js:1329` ↳ `getPatientEcgClass()`
-- `js/game.js:1351` ↳ `renderCase()`
-- `js/game.js:1486` ↳ `toggleSign()`
-- `js/game.js:1503` ↳ `beginTask()`
-- `js/game.js:1523` ↳ `prepareTimer()`
-- `js/game.js:1530` ↳ `startTimer()`
-- `js/game.js:1590` ↳ `resolveTimeout()`
-- `js/game.js:1627` ↳ `hasMoreTasks()`
-- `js/game.js:1633` ↳ `recordMistake()`
-- `js/game.js:1643` ↳ `nextCase()`
-- `js/game.js:1710` ↳ `advanceNext()`
-- `js/game.js:1734` ↳ `showRoundReview()`
-- `js/game.js:1813` ↳ `bindFeedbackControls()`
-- `js/game.js:1860` ↳ `renderExpandedFeedback()`
-- `js/game.js:1878` ↳ `showSmartFeedback()`
-- `js/game.js:1955` ↳ `consequenceHtml()`
-- `js/game.js:1967` ↳ `nextLabel()`
-- `js/game.js:1974` ↳ `showTimeoutFeedback()`
-- `js/game.js:2009` ↳ `handleDeath()`
-- `js/game.js:2016` ↳ `checkAnswer()`
-- `js/game.js:2135` ↳ `init()`
-- `js/game.js:2174` ↳ `playSequence()`
-- `js/game.js:2180` ↳ `ensureAudio()`
-- `js/game.js:2194` ↳ `playTone()`
+- `js/game.js:7` `_lineMemory`
+- `js/game.js:8` `pickLine()`
+- `js/game.js:19` `SPRITE_COLS`
+- `js/game.js:20` `SPRITE_ROWS`
+- `js/game.js:24` `MOOD_FRAMES`
+- `js/game.js:37` `Avatars`
+- `js/game.js:110` `Game`
+- `js/game.js:166` ↳ `newShift()`
+- `js/game.js:173` ↳ `later()`
+- `js/game.js:178` ↳ `setUrgency()`
+- `js/game.js:184` ↳ `stopTurnFx()`
+- `js/game.js:191` ↳ `ScreenManager`
+- `js/game.js:212` ↳ `escapeHtml()`
+- `js/game.js:224` ↳ `FAILED_KEY`
+- `js/game.js:225` ↳ `REVIEW_DELAYS_MS`
+- `js/game.js:226` ↳ `MASTERY_LEVEL`
+- `js/game.js:228` ↳ `getFailedCases()`
+- `js/game.js:250` ↳ `storeFailedCases()`
+- `js/game.js:254` ↳ `getDueFailedCases()`
+- `js/game.js:262` ↳ `pruneFailedCases()`
+- `js/game.js:269` ↳ `saveFailedCase()`
+- `js/game.js:284` ↳ `promoteFailedCase()`
+- `js/game.js:300` ↳ `SENTENCE_RE`
+- `js/game.js:302` ↳ `getBriefFeedback()`
+- `js/game.js:312` ↳ `getWhyNotForTask()`
+- `js/game.js:319` ↳ `getExplanationPayload()`
+- `js/game.js:336` ↳ `getCaseTitle()`
+- `js/game.js:340` ↳ `normalizeCaseText()`
+- `js/game.js:346` ↳ `getStreakMultiplier()`
+- `js/game.js:351` ↳ `getMultiplierLabel()`
+- `js/game.js:359` ↳ `isUntimed()`
+- `js/game.js:365` ↳ `getSpeedInfo()`
+- `js/game.js:375` ↳ `formatMultiplier()`
+- `js/game.js:380` ↳ `pickResident()`
+- `js/game.js:387` ↳ `getResidentPresentLine()`
+- `js/game.js:397` ↳ `BOSS_STATES`
+- `js/game.js:407` ↳ `getBossState()`
+- `js/game.js:411` ↳ `getBossStatus()`
+- `js/game.js:415` ↳ `splitCaseText()`
+- `js/game.js:430` ↳ `withTransition()`
+- `js/game.js:438` ↳ `flashScreen()`
+- `js/game.js:450` ↳ `shakeScreen()`
+- `js/game.js:462` ↳ `floatReward()`
+- `js/game.js:473` ↳ `showComboBanner()`
+- `js/game.js:486` ↳ `showAchievementToasts()`
+- `js/game.js:508` ↳ `pushAchievements()`
+- `js/game.js:512` ↳ `renderMenu()`
+- `js/game.js:701` ↳ `renderGameOver()`
+- `js/game.js:819` ↳ `showReviewSuccess()`
+- `js/game.js:843` ↳ `ensureCasesLoaded()`
+- `js/game.js:856` ↳ `startTurn()`
+- `js/game.js:910` ↳ `renderHUD()`
+- `js/game.js:1122` ↳ `useHint()`
+- `js/game.js:1137` ↳ `buyLife()`
+- `js/game.js:1144` ↳ `buyTime()`
+- `js/game.js:1156` ↳ `pickTask()`
+- `js/game.js:1174` ↳ `getPatientEcgClass()`
+- `js/game.js:1196` ↳ `renderCase()`
+- `js/game.js:1331` ↳ `toggleSign()`
+- `js/game.js:1348` ↳ `beginTask()`
+- `js/game.js:1368` ↳ `prepareTimer()`
+- `js/game.js:1375` ↳ `startTimer()`
+- `js/game.js:1435` ↳ `resolveTimeout()`
+- `js/game.js:1472` ↳ `hasMoreTasks()`
+- `js/game.js:1478` ↳ `recordMistake()`
+- `js/game.js:1488` ↳ `nextCase()`
+- `js/game.js:1555` ↳ `advanceNext()`
+- `js/game.js:1579` ↳ `showRoundReview()`
+- `js/game.js:1658` ↳ `bindFeedbackControls()`
+- `js/game.js:1705` ↳ `renderExpandedFeedback()`
+- `js/game.js:1723` ↳ `showSmartFeedback()`
+- `js/game.js:1800` ↳ `consequenceHtml()`
+- `js/game.js:1812` ↳ `nextLabel()`
+- `js/game.js:1819` ↳ `showTimeoutFeedback()`
+- `js/game.js:1854` ↳ `handleDeath()`
+- `js/game.js:1861` ↳ `checkAnswer()`
+- `js/game.js:1980` ↳ `init()`
+- `js/game.js:2019` ↳ `playSequence()`
+- `js/game.js:2025` ↳ `ensureAudio()`
+- `js/game.js:2039` ↳ `playTone()`
 
 </details>
 
@@ -280,7 +302,7 @@ Nivel superior y funciones internas de cada módulo, con su línea. Úsalo para 
 
 ### Caché offline (APP_SHELL de `sw.js`)
 
-`./` · `./index.html` · `./manifest.webmanifest` · `./assets/styles.css` · `./js/boot.js` · `./js/economy.js` · `./js/caseLoader.js` · `./js/generator.js` · `./js/game.js` · `./assets/icons/icon-192.png` · `./assets/icons/icon-512.png` · `./data/manifest_v1.json` · `./data/packs/cases_real_v1.json` · `./assets/sprites/aguilar_atlas.png` · `./assets/sprites/castaneda_atlas.png` · `./assets/sprites/celada_atlas.png` · `./assets/sprites/ferrer_atlas.png` · `./assets/sprites/herrera_atlas.png` · `./assets/sprites/mendoza_atlas.png` · `./assets/sprites/rios_atlas.png` · `./assets/sprites/solis_atlas.png` · `./assets/sprites/valdez_atlas.png` · `./assets/sprites/pac1_atlas.png` · `./assets/sprites/pac2_atlas.png` · `./assets/sprites/pac3_atlas.png`
+`./` · `./index.html` · `./manifest.webmanifest` · `./assets/styles.css` · `./js/boot.js` · `./js/content.js` · `./js/economy.js` · `./js/caseLoader.js` · `./js/generator.js` · `./js/game.js` · `./assets/icons/icon-192.png` · `./assets/icons/icon-512.png` · `./data/manifest_v1.json` · `./data/packs/cases_real_v1.json` · `./assets/sprites/aguilar_atlas.png` · `./assets/sprites/castaneda_atlas.png` · `./assets/sprites/celada_atlas.png` · `./assets/sprites/ferrer_atlas.png` · `./assets/sprites/herrera_atlas.png` · `./assets/sprites/mendoza_atlas.png` · `./assets/sprites/rios_atlas.png` · `./assets/sprites/solis_atlas.png` · `./assets/sprites/valdez_atlas.png` · `./assets/sprites/pac1_atlas.png` · `./assets/sprites/pac2_atlas.png` · `./assets/sprites/pac3_atlas.png`
 
 ### Claves de almacenamiento local
 

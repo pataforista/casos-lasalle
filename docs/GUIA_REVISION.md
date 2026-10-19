@@ -9,12 +9,13 @@ vez para saber cuándo esa lectura caducó.
 
 | Pieza | Cómo se mantiene | Qué pasa si se olvida |
 |---|---|---|
-| Bloque automático de `docs/MAPA_APP.md` (archivos, símbolos con línea, caché offline, claves de almacenamiento, estadísticas del banco, coherencia) | `npm run map`. Con `npm run hooks` instalado, se regenera en cada commit | `npm run check` y la CI (`.github/workflows/check.yml`) fallan |
+| `EDITAR_JUEGO.md` → `js/content.js` + casos | `npm run apply`; en cada push lo hace la acción de GitHub y en cada commit el gancho local | `npm run check` falla («cambios sin aplicar») |
+| Bloque automático de `docs/MAPA_APP.md` (archivos, símbolos con línea, caché offline, claves de almacenamiento, estadísticas del banco, coherencia) | `npm run map`. Con `npm run hooks` instalado, se regenera en cada commit; la acción `.github/workflows/aplicar.yml` también | `npm run check` falla |
 | Coherencia offline: todo lo que carga `index.html` y todo sprite que usa `game.js` debe estar en `APP_SHELL` y existir | `tools/buildAppMap.js` | El commit, `npm run check` y la CI fallan con el archivo exacto |
 | Parte manual de `docs/MAPA_APP.md` (arquitectura, flujos, reglas) | A mano, cuando cambie la arquitectura | Nada falla: por eso existe la huella de abajo |
 | Esta guía (checklist, trampas, deuda, registro) | A mano, al cerrar cada revisión | `npm run map` avisa ⚠️ cuando la huella del runtime ya no coincide con la anotada aquí |
 
-**Huella revisada:** `160ec91266d3`
+**Huella revisada:** `e09ca31c6514`
 
 > La huella es un hash de los archivos del runtime (`index.html`, `sw.js`,
 > `manifest.webmanifest`, `assets/styles.css`, `js/*.js`). Sale en la cabecera
@@ -87,9 +88,9 @@ vez para saber cuándo esa lectura caducó.
 
 | # | Qué | Por qué importa | Esfuerzo |
 |---|---|---|---|
-| 1 | Títulos que nombran el diagnóstico-respuesta (p. ej. "SNM: Clínica y Manejo", "Delirium: Fisiopatología…"). El mapa cuenta los casos sin `display_title`, pero varios `display_title` también son spoilers | Regalan la respuesta en un juego de razonamiento | Editorial, medio |
+| 1 | Títulos que nombran el diagnóstico-respuesta. `EDITAR_JUEGO.md` los marca con ⚠️ (sección 6) y se corrigen ahí mismo | Regalan la respuesta en un juego de razonamiento | Editorial, medio |
 | 2 | Ninguna pregunta tiene `rationale` propio: la pregunta 2 de un caso usa el del caso, que explica la 1 | Feedback impreciso en 17 casos multi-pregunta | Editorial, medio |
-| 3 | Distribución de dificultad: 1 solo caso "difícil" | Ese filtro repite el mismo paciente (el menú ya lo avisa con el conteo) | Editorial |
+| 3 | Distribución de dificultad: 1 solo caso "difícil" | Ese filtro repite el mismo paciente. Se reequilibra cambiando «Dificultad» en `EDITAR_JUEGO.md` | Editorial |
 | 4 | Economía: pocas salidas para las monedas; el rango sube sólo con XP acumulado | Las monedas pierden valor tras unas guardias | Diseño, medio |
 | 5 | `js/game.js` supera las 2 000 líneas | Revisar y probar cuesta cada vez más; candidatos a módulo: repaso espaciado, feedback, HUD | Medio |
 | 6 | Los modales no atrapan el foco ni cierran con Esc | Accesibilidad con teclado | Bajo |
@@ -102,3 +103,4 @@ vez para saber cuándo esa lectura caducó.
 |---|---|---|---|
 | 2026-07-10 | — | Diagnóstico inicial (`docs/REVISION_DIAGNOSTICA_2026-07.md`) | B1–B7 corregidos |
 | 2026-10-19 | `160ec91266d3` | Revisión completa: flujo de turno, repaso, SW, animaciones, limpieza de código y repo, creación de este sistema de mapas | Ver sección 3 y commit de la revisión |
+| 2026-10-19 | `e09ca31c6514` | EDITAR_JUEGO.md: contenido y casos editables por humanos, aplicados por `tools/editDoc.js` y la acción de GitHub | Primer uso: título neutro para REAL_GEN_DEP_001_A |

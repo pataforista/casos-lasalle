@@ -1,8 +1,9 @@
 const Economy = (() => {
   const STORAGE_KEY = 'psy_miami_save_v2';
 
+  // Monedas iniciales: se editan en EDITAR_JUEGO.md (GAME_CONFIG.startCoins).
   const defaultData = {
-    coins: 150,
+    coins: (typeof GAME_CONFIG !== 'undefined' && Number.isFinite(GAME_CONFIG.startCoins)) ? GAME_CONFIG.startCoins : 150,
     xp: 0,
     maxStreak: 0,
     gamesPlayed: 0,

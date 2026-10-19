@@ -3,6 +3,13 @@
 Simulador de guardia psiquiátrica para estudiantes de licenciatura en medicina.
 PWA offline-first en HTML/CSS/JS vainilla: sin dependencias, sin build.
 
+## Cambiar el juego sin programar
+
+Abre **[`EDITAR_JUEGO.md`](EDITAR_JUEGO.md)**: vidas, reloj, precios, residentes,
+frases, pase de visita y el título y la dificultad de cada caso. Edítalo
+(también desde github.com en el móvil) y GitHub aplica el cambio solo. En
+local: `npm run apply`.
+
 ## Empezar
 
 ```bash
@@ -21,6 +28,7 @@ npm run check          # packs válidos + mapa al día + coherencia offline
 
 | Documento | Para qué |
 |---|---|
+| [`EDITAR_JUEGO.md`](EDITAR_JUEGO.md) | Lo que se ajusta sin programar. Al guardarlo se regeneran `js/content.js` y los casos |
 | [`docs/MAPA_APP.md`](docs/MAPA_APP.md) | Arquitectura, flujos y, abajo, un índice **autogenerado** de archivos, funciones con su línea, caché offline y estado del banco de casos |
 | [`docs/GUIA_REVISION.md`](docs/GUIA_REVISION.md) | Checklist de revisión, trampas conocidas, deuda priorizada y registro de revisiones |
 | [`DEVELOPER_GUIDE.md`](DEVELOPER_GUIDE.md) | Cómo añadir casos y personajes, y cómo ajustar la economía del juego |

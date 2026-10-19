@@ -64,7 +64,7 @@ python tools/pixelate_and_keyout.py
 # 3. Normalizar y generar atlas (cuadricula 5x2)
 python tools/normalize_sprites.py
 
-# 4. Registrar en js/game.js (añadir el residente a ROSTER con su sprite)
+# 4. Registrar el residente en EDITAR_JUEGO.md (sección 3: copia un bloque y pon su sprite)
 # 5. Añadir assets/sprites/<nombre>_atlas.png a APP_SHELL en sw.js y subir CACHE_VERSION
 #    (npm run check falla si se olvida)
 ```
@@ -108,8 +108,10 @@ El mapa completo, con cada función y su línea, está en `docs/MAPA_APP.md`
 
 ## 4. Dinámica de Juego (Ajuste Fino)
 
-Toda la economía de la partida vive en `GAME_CONFIG` (`js/game.js`). Cambiar un
-número ahí reequilibra el juego entero sin tocar la lógica.
+Toda la economía de la partida vive en `GAME_CONFIG`, que se edita en
+**`EDITAR_JUEGO.md`** (sección 1) y se genera en `js/content.js` con
+`npm run apply`. No edites `js/content.js` a mano: se sobrescribe. La tabla de
+abajo dice qué clave interna corresponde a cada etiqueta del documento.
 
 | Parámetro | Qué controla |
 |---|---|
@@ -196,7 +198,7 @@ papel de quien aparece:
 
 El tono del paciente lo decide `getPatientEcgClass()`, el mismo que colorea la
 traza del monitor: retrato y ECG nunca se contradicen. Para añadir un
-residente basta con su sprite y su firma en `ROSTER` — ya no hay que inventarle
+residente basta con su sprite y su frase propia en `EDITAR_JUEGO.md` (sección 3) — ya no hay que inventarle
 un color, porque su cara y su nombre son lo que lo distingue.
 
 ### Reglas de jerarquía
