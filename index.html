@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; worker-src 'self';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; worker-src 'self';">
 
   <!-- SEO Básico -->
   <title>PsyCase - Casos Clínicos de Psiquiatría para Estudiantes de Medicina y ENARM</title>
@@ -43,9 +43,11 @@
 
 <body>
   <div class="scanline" aria-hidden="true"></div>
+  <div class="urgency-fx" aria-hidden="true"></div>
 
-  <div id="app">
+  <main id="app">
     <!-- Raíces separadas: evita que UI borre el HUD por accidente -->
+    <h1 class="sr-only">PsyCase · simulador de guardia psiquiátrica</h1>
     <div id="hudRoot"></div>
     <div id="caseRoot">
       <div class="miami-card" style="text-align:center;">
@@ -54,96 +56,14 @@
       </div>
     </div>
     <div id="modalRoot"></div>
-    <div id="fxRoot"></div>
-  </div>
+    <div id="fxRoot" aria-live="polite"></div>
+  </main>
 
-  <div id="debug"></div>
+  <div id="debug" aria-hidden="true"></div>
 
-  <script>
-    function _esc(s) {
-      return String(s).replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#039;");
-    }
 
-    // Debug toggle: tecla D (solo en localhost)
-    const _isLocal = location.hostname === "localhost" || location.hostname === "127.0.0.1";
-    window.addEventListener("keydown", (e) => {
-      if (!_isLocal) return;
-      if (e.key.toLowerCase() === "d") {
-        const dbg = document.getElementById("debug");
-        if (dbg) dbg.style.display = (dbg.style.display === "block" ? "none" : "block");
-      }
-    });
-
-    function logDebug(msg){
-      if (!_isLocal) return;
-      const dbg = document.getElementById("debug");
-      if (!dbg) return;
-      dbg.textContent += (dbg.textContent ? "\n" : "") + msg;
-    }
-
-    window.addEventListener("error", (e) => {
-      logDebug("[error] " + (e.message || "unknown") + (e.filename ? ` @ ${e.filename}:${e.lineno}` : ""));
-      const root = document.getElementById("caseRoot");
-      if (root) root.innerHTML = `<div class="miami-card"><div style="font-weight:900;color:#f472b6;">Error</div><div style="opacity:.85;margin-top:8px;">${_esc(e.message || e)}</div></div>`;
-    });
-
-    window.addEventListener("unhandledrejection", (e) => {
-      logDebug("[promise] " + String(e.reason || "unhandled"));
-    });
-
-    // SW: si existe, se registra y se fuerza la actualización inmediata.
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", async () => {
-        try {
-          const reg = await navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" });
-          logDebug("[sw] registered");
-
-          // Forzar la búsqueda de actualizaciones del Service Worker al cargar la página.
-          // Sin catch, una red caída deja un rechazo sin capturar en consola, que
-          // es justo el escenario normal de una app pensada para usarse offline.
-          reg.update().catch((err) => logDebug("[sw] update failed: " + String(err)));
-
-          // Si ya hay un SW esperando activación, enviarle SKIP_WAITING
-          if (reg.waiting) {
-            reg.waiting.postMessage({ type: "SKIP_WAITING" });
-          }
-
-          // Escuchar cambios en la instalación
-          reg.addEventListener("updatefound", () => {
-            const installingWorker = reg.installing;
-            if (installingWorker) {
-              installingWorker.addEventListener("statechange", () => {
-                if (installingWorker.state === "installed") {
-                  if (navigator.serviceWorker.controller) {
-                    logDebug("[sw] Nueva versión detectada, notificando recarga...");
-                    if (installingWorker) {
-                      installingWorker.postMessage({ type: "SKIP_WAITING" });
-                    }
-                  } else {
-                    logDebug("[sw] Contenido cacheado para uso offline.");
-                  }
-                }
-              });
-            }
-          });
-        } catch (err) {
-          logDebug("[sw] register failed: " + String(err));
-        }
-      });
-
-      // Recargar automáticamente cuando el nuevo Service Worker toma el control (skipWaiting)
-      let refreshing = false;
-      navigator.serviceWorker.addEventListener("controllerchange", () => {
-        if (!refreshing) {
-          refreshing = true;
-          logDebug("[sw] Controlador activado, aplicando actualización...");
-          window.location.reload();
-        }
-      });
-    }
-  </script>
-
-  <!-- ORDEN CORRECTO DE CARGA -->
+  <!-- Orden de carga: boot (utilidades + SW) → economía → banco de casos → generador → juego -->
+  <script src="./js/boot.js"></script>
   <script src="./js/economy.js"></script>
   <script src="./js/caseLoader.js"></script>
   <script src="./js/generator.js"></script>

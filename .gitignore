@@ -1,6 +1,12 @@
-data/packs/
-data/manifest_v1.json
+# data/manifest_v1.json y data/packs/ SÍ se versionan: son lo que carga la app
+# publicada. Antes figuraban aquí y contradecían al repositorio.
 
-# Python
+# Salidas intermedias de las herramientas (se regeneran con npm run validate / enhance)
+data/cases_v1_validated.json
+data/cases_v1_annotated.json
+data/cases_v1_enhanced.json
+
+# Node / Python
+node_modules/
 __pycache__/
 *.pyc

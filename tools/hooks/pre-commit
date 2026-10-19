@@ -1,0 +1,7 @@
+#!/bin/sh
+# Regenera docs/MAPA_APP.md antes de cada commit y lo incluye en él.
+# Se activa una vez por clon con:  npm run hooks
+# Falla el commit si una comprobación de coherencia falla (p. ej. un sprite
+# que el juego usa pero sw.js no precachea).
+node tools/buildAppMap.js || exit 1
+git add docs/MAPA_APP.md

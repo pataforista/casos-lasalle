@@ -6,7 +6,11 @@
     "validate": "node tools/validate_cases.js data/cases_v1.json data/cases_v1_validated.json",
     "validate:packs": "node tools/validateAllPacks.js ./data/manifest_v1.json",
     "enhance": "node tools/enhanceCases.js data/cases_v1_validated.json data/cases_v1.json",
-    "split": "node tools/splitPacks.js"
+    "split": "node tools/splitPacks.js",
+    "map": "node tools/buildAppMap.js",
+    "check": "node tools/validateAllPacks.js ./data/manifest_v1.json && node tools/buildAppMap.js --check",
+    "hooks": "git config core.hooksPath tools/hooks",
+    "serve": "python3 -m http.server 8080"
   },
   "dependencies": {},
   "devDependencies": {}

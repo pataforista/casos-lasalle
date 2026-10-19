@@ -1,0 +1,19 @@
+# Red de seguridad para quien no instaló el gancho local (npm run hooks):
+# si el mapa está desactualizado o la app perdería su modo offline, el push
+# o la PR salen en rojo con el motivo exacto.
+name: check
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Validar packs, mapa y coherencia offline
+        run: npm run check

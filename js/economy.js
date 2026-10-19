@@ -66,8 +66,7 @@ const Economy = (() => {
   };
 
   return {
-    init: () => { data = load(); }, // Ensure fresh load
-    load: () => { data = load(); }, // Alias for compatibility
+    init: () => { data = load(); }, // relee el guardado (otra pestaña pudo cambiarlo)
     getCoins: () => data.coins,
     getXP: () => data.xp,
     getStats: () => ({ ...data }), // Read-only copy

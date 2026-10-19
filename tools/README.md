@@ -11,12 +11,11 @@ Esta carpeta contiene los scripts utilizados para procesar datos e imágenes.
 Antes y después de tocar datos:
 
 ```bash
-npm run validate:packs
-# o bien
-node tools/validateAllPacks.js ./data/manifest_v1.json
+npm run check
+# = validate:packs + mapa al día + coherencia offline
 ```
 
-Es la única comprobación que reproduce lo que `js/caseLoader.js` exige de verdad.
+`validate:packs` reproduce lo que `js/caseLoader.js` exige de verdad; `buildAppMap.js --check` comprueba que la app no perderá su modo offline.
 Si sale `✅ VALIDATION OK`, la app puede cargar el banco de casos.
 
 Para las hojas de sprites:
@@ -41,5 +40,7 @@ A continuación un resumen de los scripts que aún forman parte del pipeline ofi
 | `normalize_sprites.py` | Genera atlas finales de sprites (5x2) | `python tools/normalize_sprites.py` |
 | `check_img.js` | Chequeo rápido de completitud de sprites | `node tools/check_img.js` |
 | `buildManifest.js` | Refresca sólo el índice sin recrear los packs| `node tools/buildManifest.js` |
+| `buildAppMap.js` | Regenera el mapa de la app y verifica la coherencia offline | `npm run map` / `npm run check` |
+| `hooks/pre-commit` | Ejecuta `buildAppMap.js` en cada commit | `npm run hooks` (una vez) |
 
 > **Nota:** Todos los scripts de migración o correcciones de un solo uso que existían anteriormente (`add_display_titles.js`, `mergeCorrections.js`, `apply_clinical_corrections.js`, etc.) han sido eliminados del repositorio para mantener el pipeline limpio y seguro.
