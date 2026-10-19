@@ -310,26 +310,27 @@ Nivel superior y funciones internas de cada módulo, con su línea. Úsalo para 
 
 ### Banco de casos
 
-87 casos en `data/packs/cases_real_v1.json` · 17 con varias preguntas · 104 preguntas en total.
+95 casos en `data/packs/cases_real_v1.json` · 17 con varias preguntas · 112 preguntas en total.
 
 | Nivel · dificultad | Casos |
 |---|---|
 | especialidad · media | 5 |
-| licenciatura · dificil | 1 |
-| licenciatura · facil | 25 |
-| licenciatura · media | 56 |
+| licenciatura · dificil | 2 |
+| licenciatura · facil | 28 |
+| licenciatura · media | 60 |
 
 | Prefijo de case_id | Casos |
 |---|---|
 | `CLIN_` | 20 |
 | `EDU_` | 17 |
 | `HOSP_` | 21 |
+| `NEW_` | 8 |
 | `REAL_` | 29 |
 
 Deuda editorial medida automáticamente:
 
 - Casos sin `display_title` neutro: **28**
-- Preguntas con `rationale` propio: **0/104** (el resto usa el del caso)
+- Preguntas con `rationale` propio: **0/112** (el resto usa el del caso)
 - Casos `documento_educativo`: **0** (el código los soporta: sin reloj, ECG plano)
 
 ### Coherencia
