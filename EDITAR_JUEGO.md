@@ -221,12 +221,12 @@ El título es lo primero que ve el jugador. **No debe nombrar el diagnóstico si
 
 Dificultades posibles: fácil, media, difícil.
 
-**Resumen:** 87 casos · 30 con posible spoiler · 25 fácil · 61 media · 1 difícil
+**Resumen:** 95 casos · 36 con posible spoiler · 28 fácil · 65 media · 2 difícil
 
 ### REAL_GEN_SCH_001_A
 - **Título:** Psicosis y Criterios Clínicos: Fenomenología y Criterios
 - **Dificultad:** fácil
-  - Respuesta 1: Alteraciones del curso y contenido del pensamiento
+  - Respuesta 1: Delirios, alucinaciones y/o habla desorganizada
 
 ### REAL_GEN_SCH_002_A
 - **Título:** Psicosis y Criterios Clínicos: Heterogeneidad Clínica
@@ -247,7 +247,7 @@ Dificultades posibles: fácil, media, difícil.
 ### REAL_GEN_DEP_001_A
 - **Título:** Adulto con dos semanas de tristeza: ¿qué criterio pesa más?
 - **Dificultad:** fácil
-  - Respuesta 1: Estado de ánimo deprimido
+  - Respuesta 1: Estado de ánimo deprimido o anhedonia
 
 ### REAL_GEN_ADHD_001_A
 - **Título:** Trastorno del Neurodesarrollo: Fenotipo y Evolución
@@ -272,7 +272,7 @@ Dificultades posibles: fácil, media, difícil.
 ### REAL_GEN_BIP_001_A
 - **Título:** Trastorno del Afecto: Definiciones
 - **Dificultad:** media
-  - Respuesta 1: Elevación patológica del estado de ánimo
+  - Respuesta 1: Ánimo elevado, expansivo o irritable (con aumento de energía)
 
 ### REAL_GEN_BIP_002_A
 - **Título:** Trastorno del Afecto: Neurobiología y Manejo
@@ -376,10 +376,10 @@ Dificultades posibles: fácil, media, difícil.
   - ⚠️ El título comparte con la respuesta: delirium, tremens
 
 ### EDU_11_PSIC
-- **Título:** Psicosis: Fenomenología y HiTOP
+- **Título:** Psicosis: Fenomenología y Criterios
 - **Dificultad:** fácil
   - Respuesta 1: Ideas delirantes de referencia y alucinaciones auditivas
-  - Respuesta 2: Thought Disorder (Trastorno del Pensamiento)
+  - Respuesta 2: Espectro de la esquizofrenia y otros trastornos psicóticos
 
 ### ⚠️ EDU_12_ORG
 - **Título:** Psiquiatría de Enlace: Delirium Infeccioso
@@ -410,7 +410,7 @@ Dificultades posibles: fácil, media, difícil.
 ### EDU_19_PERS
 - **Título:** Personalidad: Rasgos de la Personalidad (Trastorno de la Personalidad)
 - **Dificultad:** media
-  - Respuesta 1: Desregulación emocional y Desinhibición (Externalización)
+  - Respuesta 1: Desregulación emocional e impulsividad con relaciones inestables y miedo al abandono
   - Respuesta 2: Evaluar riesgo suicida y crear Plan de Seguridad
 
 ### EDU_20_TALLER
@@ -476,13 +476,13 @@ Dificultades posibles: fácil, media, difícil.
   - Respuesta 1: Trastorno de conversión (síntoma neurológico funcional)
 
 ### ⚠️ CLIN_010_TRASTORNO_FACTICIO
-- **Título:** Producción Intencionada de Síntomas (Síndrome de Caso Clínico de Simulación)
+- **Título:** Trastorno Facticio (Síndrome de Münchausen)
 - **Dificultad:** media
   - Respuesta 1: Trastorno facticio (Síndrome de Münchausen)
-  - ⚠️ El título comparte con la respuesta: sindrome
+  - ⚠️ El título comparte con la respuesta: facticio, sindrome, munchausen
 
 ### CLIN_011_ABSTINENCIA_ALCOHOL
-- **Título:** Síndrome de Soporte de Soporte por Abstinencia por Consumo de Sustancias
+- **Título:** Síndrome de Abstinencia Alcohólica
 - **Dificultad:** media
   - Respuesta 1: Benzodiacepinas (ej. lorazepam o diazepam) con dosis ajustadas según síntomas
 
@@ -512,10 +512,11 @@ Dificultades posibles: fácil, media, difícil.
 - **Dificultad:** media
   - Respuesta 1: Trastorno antisocial de la personalidad
 
-### CLIN_017_EFECTOS_ADVERSOS_ISRS
-- **Título:** Efectos Adversos de ISRS: Toxicidad por Psicofármacos Leve
+### ⚠️ CLIN_017_EFECTOS_ADVERSOS_ISRS
+- **Título:** Efectos Adversos de ISRS: Náuseas, Cefalea y Disfunción Sexual
 - **Dificultad:** fácil
   - Respuesta 1: Informar que náuseas y cefalea son transitorias (1-2 semanas); la disfunción sexual puede persistir y manejarse específicamente; mantener dosis
+  - ⚠️ El título comparte con la respuesta: nauseas, cefalea, disfuncion, sexual
 
 ### CLIN_018_ANTIPSICOTICOS_METABOLICOS
 - **Título:** Antipsicóticos Atípicos: Síndrome Metabólico
@@ -591,7 +592,7 @@ Dificultades posibles: fácil, media, difícil.
   - Respuesta 1: Proporcionar naloxona a usuarios de heroína para revertir sobredosis
 
 ### HOSP_012_CRISIS_AGITACION_AGUDO
-- **Título:** ProAnsiedad y Conductas Repetitivasolo de Protocolo de Urgencias
+- **Título:** Protocolo de Agitación Aguda
 - **Dificultad:** media
   - Respuesta 1: Haloperidol 5 mg + Midazolam 5 mg IM
 
@@ -704,6 +705,51 @@ Dificultades posibles: fácil, media, difícil.
 - **Dificultad:** media
   - Respuesta 1: Síndrome Premenstrual (SPM)
   - ⚠️ El título comparte con la respuesta: sindrome, premenstrual
+
+### NEW_001_BDD
+- **Título:** Espectro Obsesivo-Compulsivo: Trastorno Dismórfico Corporal
+- **Dificultad:** media
+  - Respuesta 1: La capacidad de reconocer, al menos en algún momento, que la preocupación por el defecto es excesiva (insight)
+
+### ⚠️ NEW_002_LEWY
+- **Título:** Trastorno Deterioro Cognitivo: Demencia con Cuerpos de Lewy
+- **Dificultad:** media
+  - Respuesta 1: Demencia con cuerpos de Lewy; la extrema sensibilidad a los antipsicóticos D2 (parkinsonismo severo o síndrome neuroléptico maligno)
+  - ⚠️ El título comparte con la respuesta: demencia, cuerpos
+
+### NEW_003_TOURETTE
+- **Título:** Neurodesarrollo: Trastorno de Tourette
+- **Dificultad:** fácil
+  - Respuesta 1: Tics motores y vocales presentes, aunque no necesariamente concurrentes, por más de 1 año sin remisión >3 meses
+
+### ⚠️ NEW_004_OPIOID_OVERDOSE
+- **Título:** Urgencias por Consumo de Sustancias: Sobredosis por Opioides
+- **Dificultad:** fácil
+  - Respuesta 1: Naloxona IV/IM; vigilar recurrencia de la depresión respiratoria por vida media más corta que muchos opioides (dosis repetidas o infusión)
+  - ⚠️ El título comparte con la respuesta: opioides
+
+### ⚠️ NEW_005_SOMATIC_SYMPTOM
+- **Título:** Somatización: Trastorno de Síntomas Somáticos
+- **Dificultad:** media
+  - Respuesta 1: El foco está en el malestar y deterioro causados por el síntoma físico en sí, no en el miedo a una enfermedad subyacente
+  - ⚠️ El título comparte con la respuesta: sintomas
+
+### ⚠️ NEW_006_PROLONGED_GRIEF
+- **Título:** Reacción ante Pérdidas: Trastorno de Duelo Prolongado
+- **Dificultad:** media
+  - Respuesta 1: Trastorno de duelo prolongado; síntomas persistentes ≥12 meses después de la muerte en adultos
+  - ⚠️ El título comparte con la respuesta: duelo, prolongado
+
+### NEW_007_AGORAPHOBIA
+- **Título:** Ansiedad y Fobias: Agorafobia
+- **Dificultad:** fácil
+  - Respuesta 1: Miedo a situaciones de las que escapar sería difícil o donde no se recibiría ayuda si aparecen síntomas incapacitantes
+
+### ⚠️ NEW_008_SCHIZOAFFECTIVE
+- **Título:** Psicosis y Criterios Clínicos: Trastorno Esquizoafectivo
+- **Dificultad:** difícil
+  - Respuesta 1: Las 2 semanas de psicosis SÍNTOMAS afectivos (requisito DSM-5 para esquizoafectivo)
+  - ⚠️ El título comparte con la respuesta: psicosis, esquizoafectivo
 
 <!-- sección: notas -->
 ## Notas de revisión

@@ -14,10 +14,6 @@
         "chunk_id": "CH_SCH_001_A",
         "text_content": "La esquizofrenia es un trastorno mental grave que implica una distorsión significativa de la realidad. Se caracteriza por síntomas positivos (alucinaciones, delirios, habla desorganizada), síntomas negativos (aplanamiento afectivo, alogia, avolición) y déficits cognitivos. Para el diagnóstico, los signos deben persistir al menos 6 meses, con un mes de síntomas activos, causando un deterioro marcado en el funcionamiento social o laboral.",
         "labels": {
-          "hitop": [
-            "thought_disorder",
-            "detachment"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -29,7 +25,7 @@
         "task_id": "T_SCH_001_A_1",
         "type": "mcq_single_best",
         "instruction": "Identifique el descriptor fenomenológico más relevante asociado a los síntomas positivos de la esquizofrenia.",
-        "expected_answer": "Alteraciones del curso y contenido del pensamiento",
+        "expected_answer": "Delirios, alucinaciones y/o habla desorganizada",
         "distractors": [
           "Insomnio de conciliación",
           "Crisis de pánico",
@@ -38,7 +34,7 @@
       }
     ],
     "explanation": {
-      "rationale": "La esquizofrenia se define centralmente por la distorsión de la realidad. Las 'alteraciones del contenido del pensamiento' (delirios) y del curso (desorganización) son la base de los síntomas positivos descritos.",
+      "rationale": "La esquizofrenia se define centralmente por la distorsión de la realidad. Los síntomas positivos incluyen alteraciones del contenido del pensamiento (delirios), de la percepción (alucinaciones) y del curso del pensamiento/lenguaje (habla desorganizada).",
       "evidence_chunks": [
         "CH_SCH_001_A"
       ],
@@ -58,10 +54,6 @@
       ],
       "take_home": "El diagnóstico requiere la presencia de distorsión de la realidad (síntomas positivos) y persistencia temporal (>6 meses)."
     },
-    "hitop": [
-      "thought_disorder",
-      "detachment"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -82,9 +74,6 @@
         "chunk_id": "CH_SCH_002_A",
         "text_content": "La clínica es heterogénea: los síntomas positivos reflejan una exageración de funciones normales, mientras que los negativos implican una pérdida de capacidades. El deterioro cognitivo (atención, memoria de trabajo, funciones ejecutivas) es un predictor clave del pronóstico funcional. El diagnóstico requiere excluir causas orgánicas y trastornos del estado de ánimo con características psicóticas.",
         "labels": {
-          "hitop": [
-            "thought_disorder"
-          ],
           "rdoc": [
             "Cognitive Systems",
             "Negative Valence Systems"
@@ -126,9 +115,6 @@
       ],
       "take_home": "Diferenciar síntomas positivos (exceso/distorsión) de negativos (déficit) y cognitivos es esencial, ya que estos últimos predicen mejor la funcionalidad."
     },
-    "hitop": [
-      "thought_disorder"
-    ],
     "rdoc": [
       "Cognitive Systems",
       "Negative Valence Systems"
@@ -150,9 +136,6 @@
         "chunk_id": "CH_SUI_001_A",
         "text_content": "El suicidio es un problema de salud pública. Clínicamente, es crucial diferenciar entre: ideación suicida (pensamientos de muerte), planificación (método y oportunidad) e intento (conducta autolesiva con intención letal). Trastornos como depresión mayor y bipolaridad aumentan el riesgo en fases agudas.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems",
             "Cognitive Systems"
@@ -194,9 +177,6 @@
       ],
       "take_home": "Es vital distinguir ideación (pensamiento) de intento (acción), ya que la presencia de planificación marca la transición a alto riesgo."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems",
       "Cognitive Systems"
@@ -217,9 +197,6 @@
         "chunk_id": "CH_SUI_002_A",
         "text_content": "La evaluación del riesgo distingue factores estáticos (historia, género) de dinámicos (desesperanza, acceso a medios, intoxicación). La prevención prioriza la restricción de medios letales y el tratamiento de la patología de base.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -260,9 +237,6 @@
       ],
       "take_home": "La intervención en crisis se enfoca en los factores dinámicos (desesperanza, acceso a armas, intoxicación) porque son los únicos que podemos modificar en agudo."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ]
@@ -282,9 +256,6 @@
         "chunk_id": "CH_DEP_001_A",
         "text_content": "El Trastorno Depresivo Mayor se define por la presencia de al menos 5 síntomas durante un mínimo de 2 semanas, incluyendo obligatoriamente estado de ánimo deprimido o anhedonia. Otros síntomas incluyen cambios en peso/apetito, insomnio/hipersomnia, agitación/retraso psicomotor, fatiga, culpa excesiva e ideas de muerte o suicidio, y dificultad para concentrarse o tomar decisiones. La etiología abarca factores monoaminérgicos, inflamatorios y neuroendocrinos.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems",
             "Arousal/Regulatory Systems"
@@ -296,8 +267,8 @@
       {
         "task_id": "T_DEP_001_A_1",
         "type": "mcq_single_best",
-        "instruction": "Identifique el síntoma cardinal obligatorio para el diagnóstico según los criterios mencionados.",
-        "expected_answer": "Estado de ánimo deprimido",
+        "instruction": "Identifique uno de los dos síntomas cardinales obligatorios del criterio A para el diagnóstico.",
+        "expected_answer": "Estado de ánimo deprimido o anhedonia",
         "distractors": [
           "Déficit de atención",
           "Tics motores",
@@ -326,9 +297,6 @@
       ],
       "take_home": "Regla de oro: 5 síntomas por 2 semanas, y uno DEBE ser tristeza o anhedonia."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems",
       "Arousal/Regulatory Systems"
@@ -350,10 +318,6 @@
         "chunk_id": "CH_ADHD_001_A",
         "text_content": "El TDAH es un trastorno del neurodesarrollo caracterizado por patrones persistentes de inatención (desviación de tareas, falta de persistencia) y/o hiperactividad-impulsividad que interfieren con el funcionamiento. Aunque inicia en la infancia, los síntomas frecuentemente persisten en la adultez, donde la hiperactividad motora puede transformarse en una sensación de inquietud interna.",
         "labels": {
-          "hitop": [
-            "externalizing",
-            "neurodevelopmental"
-          ],
           "rdoc": [
             "Cognitive Systems",
             "Positive Valence Systems"
@@ -395,10 +359,6 @@
       ],
       "take_home": "En adultos, la hiperactividad se internaliza (inquietud), pero la inatención suele manifestarse como desorganización y falta de persistencia."
     },
-    "hitop": [
-      "externalizing",
-      "neurodevelopmental"
-    ],
     "rdoc": [
       "Cognitive Systems",
       "Positive Valence Systems"
@@ -420,10 +380,6 @@
         "chunk_id": "CH_ADHD_002_A",
         "text_content": "La etiología incluye alta heredabilidad y desregulación de circuitos frontoestriatales (dopamina/noradrenalina). Para el diagnóstico, los síntomas deben presentarse en dos o más contextos (ej. casa y escuela) y no explicarse mejor por otro trastorno. No existen biomarcadores definitivos; la evaluación se basa en la historia clínica y escalas estandarizadas.",
         "labels": {
-          "hitop": [
-            "externalizing",
-            "neurodevelopmental"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -464,10 +420,6 @@
       ],
       "take_home": "El TDAH es un trastorno de las funciones ejecutivas. El diagnóstico es estrictamente clínico y requiere afectación transversal (varios contextos)."
     },
-    "hitop": [
-      "externalizing",
-      "neurodevelopmental"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -488,9 +440,6 @@
         "chunk_id": "CH_DELIR_001_A",
         "text_content": "El delirium es una alteración aguda de la atención (capacidad reducida para dirigir, centrar y mantener la atención) y la conciencia. Se distingue por su inicio rápido (horas a días) y su curso fluctuante durante el día. Es una urgencia médica frecuente, precipitada por enfermedades sistémicas, fármacos, o abstinencia de sustancias.",
         "labels": {
-          "hitop": [
-            "thought_disorder"
-          ],
           "rdoc": [
             "Cognitive Systems",
             "Arousal/Regulatory Systems"
@@ -532,9 +481,6 @@
       ],
       "take_home": "Ante una alteración de conciencia aguda y fluctuante, piensa en Delirium (urgencia médica) antes que en Demencia o Psiquiatría."
     },
-    "hitop": [
-      "thought_disorder"
-    ],
     "rdoc": [
       "Cognitive Systems",
       "Arousal/Regulatory Systems"
@@ -555,9 +501,6 @@
         "chunk_id": "CH_DELIR_002_A",
         "text_content": "La fisiopatología del delirium implica desequilibrios en neurotransmisores (ej. déficit de acetilcolina, exceso de dopamina), neuroinflamación y estrés oxidativo. El manejo es etiológico: identificar y tratar la causa médica subyacente, asegurar medidas de soporte (hidratación, orientación) y minimizar estresores ambientales.",
         "labels": {
-          "hitop": [
-            "thought_disorder"
-          ],
           "rdoc": [
             "Cognitive Systems",
             "Arousal/Regulatory Systems"
@@ -599,9 +542,6 @@
       ],
       "take_home": "El delirium no es una enfermedad en sí misma, sino un signo de disfunción cerebral aguda. Busca la causa."
     },
-    "hitop": [
-      "thought_disorder"
-    ],
     "rdoc": [
       "Cognitive Systems",
       "Arousal/Regulatory Systems"
@@ -622,9 +562,6 @@
         "chunk_id": "CH_BIP_001_A",
         "text_content": "El Trastorno Bipolar se caracteriza por la alternancia de episodios anímicos. El Tipo I requiere al menos un episodio de Manía (ánimo elevado/irritable ≥1 semana, con deterioro funcional grave). El Tipo II implica episodios de Hipomanía (≥4 días, cambio observable sin deterioro grave) y Depresión Mayor. La distinción entre manía e hipomanía es crítica para el diagnóstico.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Positive Valence Systems",
             "Arousal/Regulatory Systems",
@@ -639,7 +576,7 @@
         "task_id": "T_BIP_001_A_1",
         "type": "mcq_single_best",
         "instruction": "Identifique el descriptor fenomenológico central de la fase maníaca.",
-        "expected_answer": "Elevación patológica del estado de ánimo",
+        "expected_answer": "Ánimo elevado, expansivo o irritable (con aumento de energía)",
         "distractors": [
           "Déficit de atención",
           "Tics motores",
@@ -648,7 +585,7 @@
       }
     ],
     "explanation": {
-      "rationale": "El núcleo de la manía es la alteración del ánimo (elevado, expansivo o irritable). Sin esto, no hay diagnóstico de bipolaridad.",
+      "rationale": "El núcleo de la manía es la alteración del ánimo (elevado, expansivo O irritable) junto con un aumento anormal de la actividad o la energía. Sin esto, no hay diagnóstico de bipolaridad.",
       "evidence_chunks": [
         "CH_BIP_001_A"
       ],
@@ -668,9 +605,6 @@
       ],
       "take_home": "La diferencia clave entre Bipolar I y II es la intensidad de la elevación: Manía (grave, ≥7 días o cualquier duración si requiere hospitalización) vs Hipomanía (leve, ≥4 días, sin hospitalización)."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Positive Valence Systems",
       "Arousal/Regulatory Systems",
@@ -694,9 +628,6 @@
         "chunk_id": "CH_BIP_002_A",
         "text_content": "Los modelos neurobiológicos implican desregulación de sistemas monoaminérgicos, alteraciones en ritmos circadianos y señalización intracelular. El Litio sigue siendo el tratamiento estándar ('gold standard'), junto con otros estabilizadores del ánimo y antipsicóticos atípicos, esenciales tanto para el manejo agudo de la manía como para el mantenimiento y prevención de recaídas.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Positive Valence Systems",
             "Arousal/Regulatory Systems",
@@ -739,9 +670,6 @@
       ],
       "take_home": "En Trastorno Bipolar, la prioridad es la estabilización del ánimo; el Litio es el pilar del tratamiento preventivo."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Positive Valence Systems",
       "Arousal/Regulatory Systems",
@@ -764,9 +692,6 @@
         "chunk_id": "CH_ASD_001_A",
         "text_content": "El Trastorno del Espectro Autista (TEA) se define por déficits persistentes en dos dominios: 1) Comunicación e interacción social (reciprocidad emocional, comunicación no verbal), y 2) Patrones restringidos y repetitivos de comportamiento (rigidez, intereses fijos).",
         "labels": {
-          "hitop": [
-            "neurodevelopmental"
-          ],
           "rdoc": [
             "Social Processes"
           ]
@@ -807,9 +732,6 @@
       ],
       "take_home": "El TEA se diagnostica por la díada: Déficit Social + Conductas Repetitivas/Restringidas."
     },
-    "hitop": [
-      "neurodevelopmental"
-    ],
     "rdoc": [
       "Social Processes"
     ]
@@ -829,9 +751,6 @@
         "chunk_id": "CH_ASD_002_A",
         "text_content": "La etiología del TEA es genética y ambiental. Los hallazgos incluyen conectividad atípica y alteraciones en el procesamiento sensorial (hiper o hiporreactividad a estímulos). La intervención temprana mejora el pronóstico.",
         "labels": {
-          "hitop": [
-            "neurodevelopmental"
-          ],
           "rdoc": [
             "Social Processes"
           ]
@@ -872,9 +791,6 @@
       ],
       "take_home": "La desregulación sensorial es tan prevalente en TEA que se incorporó formalmente como criterio diagnóstico en el DSM-5."
     },
-    "hitop": [
-      "neurodevelopmental"
-    ],
     "rdoc": [
       "Social Processes"
     ]
@@ -894,9 +810,6 @@
         "chunk_id": "CH_PTSD_001_A",
         "text_content": "El TEPT implica síntomas por >1 mes tras trauma. Clusters: 1) Intrusión (flashbacks, pesadillas), 2) Evitación, 3) Alteraciones cognitivas/anímicas negativas, 4) Hiperalerta (hipervigilancia).",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -937,9 +850,6 @@
       ],
       "take_home": "Para diagnosticar TEPT se requiere al menos un síntoma de intrusión; es la 'huella' del trauma que invade el presente."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ]
@@ -959,9 +869,6 @@
         "chunk_id": "CH_PTSD_002_A",
         "text_content": "La neurobiología del TEPT muestra hiperactividad de la amígdala (miedo) y fallo en la regulación prefrontal (freno). Esto explica la dificultad para regular la respuesta emocional y la extinción del miedo.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -1002,9 +909,6 @@
       ],
       "take_home": "El TEPT es una falla en los mecanismos de extinción del miedo; el cerebro 'no aprende' que ya está a salvo."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ]
@@ -1024,9 +928,6 @@
         "chunk_id": "CH_SLEEP_001_A",
         "text_content": "Las parasomnias son eventos físicos indeseables al dormir. Incluyen sonambulismo (NREM) y trastorno conductual del sueño REM (actuación de sueños). Se manifiestan como conductas automáticas o complejas durante el sueño.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems"
           ]
@@ -1067,9 +968,6 @@
       ],
       "take_home": "Es crucial distinguir parasomnias NREM (confusión, amnesia, infancia) de REM (actuación de sueños, riesgo neurodegenerativo)."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems"
     ]
@@ -1089,9 +987,6 @@
         "chunk_id": "CH_SEX_001_A",
         "text_content": "Las disfunciones sexuales son alteraciones clínicamente significativas en la capacidad de responder sexualmente o experimentar placer (deseo, excitación, orgasmo). Etiología biopsicosocial.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -1132,9 +1027,6 @@
       ],
       "take_home": "Para ser trastorno, la disfunción debe causar malestar clínicamente significativo; si no hay distrés, es una variación, no una patología."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ]
@@ -1154,7 +1046,6 @@
         "chunk_id": "CH_HIST_001_A",
         "text_content": "La historia de la psiquiatría refleja la evolución de las concepciones de la enfermedad mental, influenciada por cambios culturales y científicos. Desde explicaciones morales y sobrenaturales tempranas, hasta los modelos biomédicos y psicosociales contemporáneos, la teoría y práctica psiquiátrica han experimentado una profunda transformación hacia la medicina basada en evidencia y los derechos humanos.",
         "labels": {
-          "hitop": [],
           "rdoc": []
         }
       }
@@ -1193,7 +1084,6 @@
       ],
       "take_home": "La psiquiatría moderna no rechaza lo biológico ni lo social, sino que los integra bajo el paraguas de la evidencia científica."
     },
-    "hitop": [],
     "rdoc": []
   },
   {
@@ -1211,9 +1101,6 @@
         "chunk_id": "CH_EDU_01_A",
         "text_content": "Paciente de 28 años. Motivo: 'mis vecinos me vigilan'. Evolución: 5 meses de deterioro funcional. Observación: higiene deficiente, contacto visual pobre, actitud suspicaz. Conducta: hipervigilante.",
         "labels": {
-          "hitop": [
-            "thought_disorder"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -1223,9 +1110,6 @@
         "chunk_id": "CH_EDU_01_B",
         "text_content": "Pensamiento: contenido con ideas de autorreferencia ('cuando la gente ríe, es por mí'). Niega alucinaciones. Signos vitales estables.",
         "labels": {
-          "hitop": [
-            "thought_disorder"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -1285,9 +1169,6 @@
       ],
       "take_home": "En un primer episodio psicótico, prioriza descartar causas metabólicas (tiroides) y tóxicas antes que buscar causas estructurales raras."
     },
-    "hitop": [
-      "thought_disorder"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ]
@@ -1307,10 +1188,6 @@
         "chunk_id": "CH_EDU_03_A",
         "text_content": "50 años. 6 semanas de ánimo bajo y anhedonia. Empeoramiento matutino ('peor por las mañanas'). Despertar precoz (3:00 am). Pérdida de peso significativa y culpa excesiva.",
         "labels": {
-          "hitop": [
-            "internalizing",
-            "detachment"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -1362,10 +1239,6 @@
       ],
       "take_home": "Identificar melancolía es crucial porque suele responder mejor a fármacos duales o tricíclicos que a psicoterapia sola."
     },
-    "hitop": [
-      "internalizing",
-      "detachment"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -1386,9 +1259,6 @@
         "chunk_id": "CH_EDU_04_A",
         "text_content": "Mujer de 32 años con 'pánico'. Palpitaciones, intolerancia al calor, pérdida de peso. Bocio leve, exoftalmos y temblor fino. TA 155/95, FC 128, febrícula (37.8°C).",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -1435,7 +1305,7 @@
         },
         {
           "option": "Trastorno de personalidad",
-          "reason": "La alternativa 'Trastorno de personalidad' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Tirotoxicosis / Tormenta Tiroidea'."
+          "reason": "Un trastorno de personalidad no explica signos vitales objetivos (TA 155/95, FC 128, febrícula) ni hallazgos anatómicos (bocio, exoftalmos); estos obligan a descartar una causa médica con perfil tiroideo antes de cualquier diagnóstico psiquiátrico."
         },
         {
           "option": "Prueba de provocación con CO2",
@@ -1444,9 +1314,6 @@
       ],
       "take_home": "Taquicardia + Pérdida de Peso + Calor = Piensa en Tiroides. No psiquiatrices síntomas vitales alterados."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ]
@@ -1466,9 +1333,6 @@
         "chunk_id": "CH_EDU_05_A",
         "text_content": "Tras asalto hace 2 meses. Flashbacks, pesadillas, evitación e hipervigilancia. Disfunción laboral.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -1528,9 +1392,6 @@
       ],
       "take_home": "La cronología define el diagnóstico: Reacción normal (<3 días) -> Estrés Agudo (<1 mes) -> TEPT (>1 mes)."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ]
@@ -1550,9 +1411,6 @@
         "chunk_id": "CH_EDU_06_A",
         "text_content": "Ingeniero de 35 años. Dificultad persistente en reciprocidad social, literalidad extrema en el lenguaje, problemas para leer indirectas. Patrones restrictivos: rituales rígidos de organización; distrés notable si se alteran. Intereses circunscritos, colecciona datos de un tema específico.",
         "labels": {
-          "hitop": [
-            "neurodevelopmental"
-          ],
           "rdoc": [
             "Social Processes"
           ]
@@ -1562,9 +1420,6 @@
         "chunk_id": "CH_EDU_06_B",
         "text_content": "Historia: reporta 'siempre fui así', pocos amigos en infancia, preferencias por rutinas. No hay historia de delirios, alucinaciones ni deterioro cognitivo progresivo.",
         "labels": {
-          "hitop": [
-            "neurodevelopmental"
-          ],
           "rdoc": [
             "Social Processes"
           ]
@@ -1616,9 +1471,6 @@
       ],
       "take_home": "En adultos 'funcionales', busca la literalidad y la historia infantil para diferenciar TEA de trastornos de personalidad."
     },
-    "hitop": [
-      "neurodevelopmental"
-    ],
     "rdoc": [
       "Social Processes"
     ],
@@ -1639,10 +1491,6 @@
         "chunk_id": "CH_EDU_07_A",
         "text_content": "Femenina con fallas crónicas en funciones ejecutivas: procrastinación, olvidos y dificultad para sostener atención. Refiere impulsividad verbal. Describe 'inquietud interna' desde adolescencia; no necesariamente hiperactividad motora franca.",
         "labels": {
-          "hitop": [
-            "externalizing",
-            "internalizing"
-          ],
           "rdoc": [
             "Cognitive Systems",
             "Positive Valence Systems"
@@ -1653,10 +1501,6 @@
         "chunk_id": "CH_EDU_07_B",
         "text_content": "Impacto: proyectos inconclusos, retrasos. Niega episodios de ánimo elevado (manía) o disminución de sueño sin fatiga. Ansiedad presente, secundaria a desorganización.",
         "labels": {
-          "hitop": [
-            "externalizing",
-            "internalizing"
-          ],
           "rdoc": [
             "Cognitive Systems",
             "Positive Valence Systems"
@@ -1714,10 +1558,6 @@
       ],
       "take_home": "El TDAH es un trastorno del 'hacer' (ejecución), no del 'saber'. En adultos, la desorganización crónica es el sello distintivo."
     },
-    "hitop": [
-      "externalizing",
-      "internalizing"
-    ],
     "rdoc": [
       "Cognitive Systems",
       "Positive Valence Systems"
@@ -1739,9 +1579,6 @@
         "chunk_id": "CH_EDU_08_A",
         "text_content": "Masculino con estallidos de ira desproporcionados ante provocaciones mínimas (tráfico, filas). Episodios breves (<30 min), seguidos de culpa/remordimiento inmediatamente.",
         "labels": {
-          "hitop": [
-            "externalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems",
             "Positive Valence Systems"
@@ -1752,9 +1589,6 @@
         "chunk_id": "CH_EDU_08_B",
         "text_content": "No hay ganancia instrumental (no busca dinero ni poder). Niega consumo agudo de sustancias ni episodios maníacos.",
         "labels": {
-          "hitop": [
-            "externalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems",
             "Positive Valence Systems"
@@ -1781,7 +1615,7 @@
         "expected_answer": "Plan de seguridad: identificar disparadores y retirar acceso a armas",
         "distractors": [
           "Ignorar el riesgo por la presencia de culpa",
-          "Sedación fozada preventiva",
+          "Sedación forzada preventiva",
           "Confrontación directa durante la crisis"
         ]
       }
@@ -1808,9 +1642,6 @@
       ],
       "take_home": "La presencia de remordimiento genuino post-episodio es un diferenciador clave entre TEI y psicopatía/antisocial."
     },
-    "hitop": [
-      "externalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems",
       "Positive Valence Systems"
@@ -1831,9 +1662,6 @@
         "chunk_id": "CH_EDU_09_A",
         "text_content": "Paciente con obsesiones de contaminación (intrusivas, egodistónicas). Realiza lavado de manos 4 horas al día hasta sangrar (daño físico).",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -1843,9 +1671,6 @@
         "chunk_id": "CH_EDU_09_B",
         "text_content": "Reconoce que la probabilidad de contagio es baja (insight conservado), pero la ansiedad lo obliga a continuar. Deterioro laboral severo.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -1888,7 +1713,7 @@
         },
         {
           "option": "Higiene real necesaria",
-          "reason": "La alternativa 'Higiene real necesaria' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Neutralizar la ansiedad provocada por la obsesión (refuerzo negativo)'."
+          "reason": "El lavado compulsivo excede con creces cualquier estándar de higiene razonable (4 h/día hasta sangrar); responde a la neutralización de la ansiedad obsesiva, no a una necesidad higiénica real."
         },
         {
           "option": "Confirmar una idea delirante",
@@ -1897,9 +1722,6 @@
       ],
       "take_home": "El ciclo del TOC se mantiene por refuerzo negativo: la compulsión alivia la ansiedad momentáneamente, reforzando la conducta."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -1920,9 +1742,6 @@
         "chunk_id": "CH_EDU_10_A",
         "text_content": "Alcohólico crónico, suspende consumo hace 48h. Presenta agitación, temblor, micropsias (alucinaciones visuales) y desorientación.",
         "labels": {
-          "hitop": [
-            "externalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems",
             "Cognitive Systems"
@@ -1933,9 +1752,6 @@
         "chunk_id": "CH_EDU_10_B",
         "text_content": "Signos vitales: TA 160/100, FC 120, Temp 38.2°C (inestabilidad autonómica). Antecedente de convulsión reciente.",
         "labels": {
-          "hitop": [
-            "externalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems",
             "Cognitive Systems"
@@ -1988,9 +1804,6 @@
       ],
       "take_home": "Ante un paciente agitado con fiebre y taquicardia tras dejar el alcohol, trata como Delirium Tremens: Benzodiacepinas + Tiamina."
     },
-    "hitop": [
-      "externalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems",
       "Cognitive Systems"
@@ -2000,7 +1813,7 @@
   {
     "case_id": "EDU_11_PSIC",
     "case_type": "razonamiento_clinico",
-    "title": "Psicosis: Fenomenología y HiTOP",
+    "title": "Psicosis: Fenomenología y Criterios",
     "educational_level": "licenciatura",
     "difficulty": "facil",
     "metadata": {
@@ -2012,9 +1825,6 @@
         "chunk_id": "CH_EDU_11_A",
         "text_content": "19 años. 7 meses de voces críticas y creencia de mensajes cifrados (delirios de referencia). Afecto restringido, aislamiento y deterioro escolar.",
         "labels": {
-          "hitop": [
-            "thought_disorder"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -2036,17 +1846,17 @@
       {
         "task_id": "T_EDU_11_2",
         "type": "mcq_single_best",
-        "instruction": "¿En qué espectro HiTOP se ubica principalmente esta sintomatología?",
-        "expected_answer": "Thought Disorder (Trastorno del Pensamiento)",
+        "instruction": "¿Qué categoría diagnóstica del DSM-5 corresponde a esta sintomatología?",
+        "expected_answer": "Espectro de la esquizofrenia y otros trastornos psicóticos",
         "distractors": [
-          "Internalización",
-          "Externalización",
-          "Somatoformo"
+          "Trastorno depresivo mayor",
+          "Trastorno de ansiedad generalizada",
+          "Trastorno de síntomas somáticos"
         ]
       }
     ],
     "explanation": {
-      "rationale": "Los síntomas positivos (voces, delirios) son la esencia del 'Thought Disorder' en HiTOP. El afecto restringido corresponde a síntomas negativos.",
+      "rationale": "Las ideas delirantes de referencia y las alucinaciones auditivas son síntomas positivos y ubican el cuadro en el espectro de la esquizofrenia y otros trastornos psicóticos del DSM-5. El afecto restringido y el aislamiento corresponden a síntomas negativos.",
       "evidence_chunks": [
         "CH_EDU_11_A"
       ],
@@ -2057,22 +1867,27 @@
         },
         {
           "option": "Aislamiento social",
-          "reason": "La alternativa 'Aislamiento social' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Ideas delirantes de referencia y alucinaciones auditivas'."
+          "reason": "El aislamiento es un síntoma negativo (déficit conductual derivado del cuadro), no una producción psicótica nueva; la pregunta pide un ejemplo de síntoma positivo."
         },
         {
           "option": "Deterioro escolar",
-          "reason": "La alternativa 'Deterioro escolar' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Ideas delirantes de referencia y alucinaciones auditivas'."
+          "reason": "El deterioro funcional es una consecuencia del cuadro, no un síntoma psicótico en sí mismo; la pregunta pide un ejemplo de síntoma positivo."
         },
         {
-          "option": "Internalización",
-          "reason": "Domina en ansiedad/depresión, no en psicosis franca."
+          "option": "Trastorno depresivo mayor",
+          "reason": "Predominaría ánimo deprimido o anhedonia, no síntomas psicóticos."
+        },
+        {
+          "option": "Trastorno de ansiedad generalizada",
+          "reason": "Predominaría preocupación excesiva, no delirios ni alucinaciones."
+        },
+        {
+          "option": "Trastorno de síntomas somáticos",
+          "reason": "Predominarían síntomas físicos con malestar desproporcionado, no psicosis."
         }
       ],
-      "take_home": "HiTOP reclasifica la 'esquizofrenia' dentro del espectro de Trastornos del Pensamiento, reconociendo la dimensionalidad de los síntomas psicóticos."
+      "take_home": "Los síntomas positivos (delirios, alucinaciones) son el núcleo del espectro psicótico; el afecto restringido y el aislamiento corresponden a síntomas negativos."
     },
-    "hitop": [
-      "thought_disorder"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ]
@@ -2092,9 +1907,6 @@
         "chunk_id": "CH_EDU_12_A",
         "text_content": "85 años con demencia previa. Cambio súbito (horas) de conducta: agitación, desorientación y fiebre (38.8°C). Atención fluctuante. Disuria reciente.",
         "labels": {
-          "hitop": [
-            "thought_disorder"
-          ],
           "rdoc": [
             "Cognitive Systems",
             "Arousal/Regulatory Systems"
@@ -2147,9 +1959,6 @@
       ],
       "take_home": "En geriatría: Agitación súbita = Delirium. Busca la infección, el fármaco o la deshidratación."
     },
-    "hitop": [
-      "thought_disorder"
-    ],
     "rdoc": [
       "Cognitive Systems",
       "Arousal/Regulatory Systems"
@@ -2171,9 +1980,6 @@
         "chunk_id": "CH_EDU_16_A",
         "text_content": "Paciente que tomó fluoxetina + tramadol. Presenta clonus ocular y patelar, hiperreflexia generalizada, midriasis y ruidos intestinales aumentados.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -2183,9 +1989,6 @@
         "chunk_id": "CH_EDU_16_B",
         "text_content": "SIGNOS VITALES: TA 160/95 | Temp 39.0°C | FC 118. Diaforesis profusa.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -2238,9 +2041,6 @@
       ],
       "take_home": "Hiperreflexia + Clonus = Serotonina. Rigidez + Hiporreflexia = Dopamina (SNM)."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -2261,9 +2061,6 @@
         "chunk_id": "CH_EDU_17_A",
         "text_content": "Paciente en tratamiento con sertralina. Depresión mejoró, pero presenta anorgasmia y disminución de libido desde el inicio del fármaco.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -2273,9 +2070,6 @@
         "chunk_id": "CH_EDU_17_B",
         "text_content": "No hay disfunción eréctil previa. Niega síntomas depresivos actuales (eutimia). TSH normal.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -2323,14 +2117,11 @@
         },
         {
           "option": "Simulación",
-          "reason": "La alternativa 'Simulación' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Efecto adverso serotoninérgico (estimulación 5-HT2)'."
+          "reason": "No hay beneficio externo evidente, y la temporalidad (inicio coincidente con el fármaco, remisión de la depresión) sustenta un efecto adverso farmacológico genuino."
         }
       ],
       "take_home": "Pregunta siempre por la esfera sexual en pacientes con ISRS; muchos abandonan el tratamiento por este efecto silente."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -2351,9 +2142,6 @@
         "chunk_id": "CH_EDU_18_A",
         "text_content": "Adolescente con amenorrea, lanugo, restricción severa y miedo a ganar peso.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -2363,9 +2151,6 @@
         "chunk_id": "CH_EDU_18_B",
         "text_content": "SIGNOS VITALES: FC 42 lpm (bradicardia) | TA 80/50 | Temp 35.5°C.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -2412,14 +2197,11 @@
         },
         {
           "option": "Deseo de hacer ejercicio",
-          "reason": "La alternativa 'Deseo de hacer ejercicio' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Bradicardia severa (<45 lpm) e inestabilidad hemodinámica'."
+          "reason": "El deseo de ejercicio refleja la drive de pérdida de peso, común incluso en cuadros estables; no indica inestabilidad hemodinámica ni riesgo vital inminente."
         }
       ],
       "take_home": "La Anorexia Nervosa tiene la mayor mortalidad de todos los trastornos psiquiátricos. Los signos vitales son la brújula de la urgencia."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -2440,10 +2222,6 @@
         "chunk_id": "CH_EDU_19_A",
         "text_content": "Mujer con relaciones inestables, miedo al abandono y sensación crónica de vacío. Historial de autolesiones no suicidas.",
         "labels": {
-          "hitop": [
-            "externalizing",
-            "detachment"
-          ],
           "rdoc": [
             "Negative Valence Systems",
             "Positive Valence Systems"
@@ -2454,10 +2232,6 @@
         "chunk_id": "CH_EDU_19_B",
         "text_content": "Impulsividad (gastos), ira intensa. Ideación paranoide transitoria bajo estrés. Niega psicosis persistente.",
         "labels": {
-          "hitop": [
-            "externalizing",
-            "detachment"
-          ],
           "rdoc": [
             "Negative Valence Systems",
             "Positive Valence Systems"
@@ -2469,12 +2243,12 @@
       {
         "task_id": "T_EDU_19_1",
         "type": "mcq_single_best",
-        "instruction": "Dimensión psicopatológica dominante (HiTOP):",
-        "expected_answer": "Desregulación emocional y Desinhibición (Externalización)",
+        "instruction": "¿Cuál es el perfil clínico dominante del TLP?",
+        "expected_answer": "Desregulación emocional e impulsividad con relaciones inestables y miedo al abandono",
         "distractors": [
-          "Trastorno del Pensamiento puro",
-          "Aplanamiento afectivo",
-          "Antagonismo exclusivo"
+          "Desconfianza generalizada y rencor persistente, con interpretación hostil de los demás",
+          "Desapego social e indiferencia afectiva, con preferencia constante por la soledad",
+          "Grandiosidad y necesidad de admiración, con escasa empatía y sensación de privilegio"
         ]
       },
       {
@@ -2496,16 +2270,16 @@
       ],
       "why_not": [
         {
-          "option": "Trastorno del Pensamiento puro",
-          "reason": "Corresponde a esquizofrenia; en TLP la prueba de realidad se conserva fuera de crisis."
+          "option": "Desconfianza generalizada y rencor persistente, con interpretación hostil de los demás",
+          "reason": "Describe el trastorno paranoide de la personalidad. En el TLP la ideación paranoide es transitoria y aparece bajo estrés; no es un patrón estable de desconfianza."
         },
         {
-          "option": "Aplanamiento afectivo",
-          "reason": "La alternativa 'Aplanamiento afectivo' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Desregulación emocional y Desinhibición (Externalización)'."
+          "option": "Desapego social e indiferencia afectiva, con preferencia constante por la soledad",
+          "reason": "Describe el trastorno esquizoide. El TLP cursa con afecto intenso y lábil y con búsqueda ansiosa de vínculos, lo opuesto al desapego."
         },
         {
-          "option": "Antagonismo exclusivo",
-          "reason": "La alternativa 'Antagonismo exclusivo' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Desregulación emocional y Desinhibición (Externalización)'."
+          "option": "Grandiosidad y necesidad de admiración, con escasa empatía y sensación de privilegio",
+          "reason": "Describe el trastorno narcisista. En el TLP la autoimagen es inestable y predomina el miedo al abandono, no la grandiosidad."
         },
         {
           "option": "Ignorar para no reforzar la conducta",
@@ -2514,10 +2288,6 @@
       ],
       "take_home": "Las autolesiones en TLP suelen tener función de regulación emocional (alivio de tensión), no siempre intención de muerte, pero el riesgo suicida es alto."
     },
-    "hitop": [
-      "externalizing",
-      "detachment"
-    ],
     "rdoc": [
       "Negative Valence Systems",
       "Positive Valence Systems"
@@ -2539,9 +2309,6 @@
         "chunk_id": "CH_EDU_20_A",
         "text_content": "Paciente inmóvil, mutista, con flexibilidad cérea y negativismo. Ingesta pobre.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems",
             "Sensorimotor Systems"
@@ -2594,9 +2361,6 @@
       ],
       "take_home": "Ante un paciente psiquiátrico inmóvil y mudo: 1) Piensa en Catatonia, 2) No des antipsicóticos, 3) Prueba Lorazepam."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems",
       "Sensorimotor Systems"
@@ -2618,9 +2382,6 @@
         "chunk_id": "CH_EDU_21_A",
         "text_content": "27 años. 8 meses de preocupación excesiva y difusa ('por todo'). Fatiga, tensión muscular, irritabilidad. Niega pánico o síntomas físicos de hipertiroidismo.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -2672,9 +2433,6 @@
       ],
       "take_home": "El TAG suele ser crónico y se manifiesta somáticamente como 'tensión y fatiga'; mentalmente como '¿y si pasa algo malo?'."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -2695,9 +2453,6 @@
         "chunk_id": "CH_CLIN_001",
         "text_content": "El trastorno de pánico se caracteriza por crisis recurrentes e inesperadas de miedo intenso que alcanzan su máxima expresión en minutos. Los síntomas incluyen palpitaciones, sudoración, sensación de ahogo, miedo a morir o a perder el control. Para el diagnóstico, debe haber preocupación persistente por nuevas crisis o cambios conductuales maladaptativos durante al menos un mes.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -2738,9 +2493,6 @@
       ],
       "take_home": "Pánico = crisis aguda, breve e inesperada. TAG = preocupación crónica y difusa. Ambos pueden coexistir."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -2761,9 +2513,6 @@
         "chunk_id": "CH_CLIN_002",
         "text_content": "La fobia social (trastorno de ansiedad social) implica miedo intenso a ser evaluado negativamente por otros en situaciones sociales o de actuación. El individuo teme mostrar síntomas de ansiedad (sonrojarse, temblar) que sean juzgados como débiles o ridículos. Las situaciones se evitan o se soportan con gran malestar.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -2795,7 +2544,7 @@
         },
         {
           "option": "Trastorno de ansiedad generalizada",
-          "reason": "La alternativa 'Trastorno de ansiedad generalizada' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno de ansiedad social (fobia social) de tipo actuación'."
+          "reason": "La preocupación del TAG es difusa y crónica ('por todo'), no focalizada en situaciones de evaluación social con evitación específica como en este caso."
         },
         {
           "option": "Mutismo selectivo",
@@ -2804,9 +2553,6 @@
       ],
       "take_home": "La fobia social es más que timidez: causa deterioro funcional y se asocia a alto riesgo de depresión secundaria."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -2827,9 +2573,6 @@
         "chunk_id": "CH_CLIN_003",
         "text_content": "La anorexia nerviosa se define por: 1) Restricción de ingesta que lleva a un peso corporal significativamente bajo para la edad, el sexo y la trayectoria de desarrollo (Criterio A del DSM-5; sin umbral numérico fijo), 2) Miedo intenso a ganar peso o a la obesidad, incluso con bajo peso, y 3) Distorsión de la imagen corporal (verse 'gordo' a pesar de la delgadez, o negación de la gravedad del bajo peso).",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -2861,7 +2604,7 @@
         },
         {
           "option": "Restricción de la ingesta",
-          "reason": "La alternativa 'Restricción de la ingesta' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Distorsión de la imagen corporal (alteración en la percepción del peso)'."
+          "reason": "La restricción es el criterio A, pero la pregunta señala la frase 'se ve gorda', que corresponde específicamente a la distorsión de la imagen corporal (criterio C)."
         },
         {
           "option": "Amenorrea",
@@ -2870,9 +2613,6 @@
       ],
       "take_home": "La anorexia no es solo dieta; es un trastorno perceptual donde el espejo miente."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -2893,9 +2633,6 @@
         "chunk_id": "CH_CLIN_004",
         "text_content": "La bulimia nerviosa se caracteriza por episodios recurrentes de atracones (ingesta de gran cantidad de alimento en poco tiempo con sensación de pérdida de control), seguidos de conductas compensatorias inapropiadas (vómito, laxantes, ayuno, ejercicio excesivo). El peso no es un criterio diagnóstico de la bulimia en el DSM-5; los pacientes suelen presentarse con peso no significativamente bajo (frecuentemente en rango normal, aunque puede variar).",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -2931,14 +2668,11 @@
         },
         {
           "option": "Preocupación por el peso",
-          "reason": "La alternativa 'Preocupación por el peso' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Peso corporal normal o superior al mínimo esperado'."
+          "reason": "La preocupación por el peso es compartida por anorexia y bulimia; el dato diferencial es el peso corporal: IMC 23 (no bajo) excluye anorexia y confirma bulimia."
         }
       ],
       "take_home": "Diferenciador clave: Anorexia = bajo peso. Bulimia = peso normal o sobrepeso."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -2959,9 +2693,6 @@
         "chunk_id": "CH_CLIN_005",
         "text_content": "El especificador 'con características atípicas' en depresión mayor requiere reactividad del estado de ánimo (mejoría ante eventos positivos reales o potenciales) más al menos dos de: aumento de apetito/peso, hipersomnia, parálisis plúmbea (sensación de pesadez en extremidades) y patrón prolongado de rechazo interpersonal.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -3002,9 +2733,6 @@
       ],
       "take_home": "Depresión atípica = 'mejoro con buenas noticias' + duermo/como de más. Depresión melancólica = 'nada me alegra' + no duermo/no como."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -3025,9 +2753,6 @@
         "chunk_id": "CH_CLIN_006",
         "text_content": "El trastorno de adaptación es una respuesta emocional o conductual maladaptativa a un estresor psicosocial identificable (cambio laboral, separación, enfermedad). Los síntomas aparecen dentro de los 3 meses posteriores al estresor y no persisten más de 6 meses después de que cesa el estresor.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -3063,14 +2788,11 @@
         },
         {
           "option": "Trastorno de estrés postraumático",
-          "reason": "La alternativa 'Trastorno de estrés postraumático' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno de adaptación con estado de ánimo depresivo'."
+          "reason": "El divorcio no es un evento traumático criterio (muerte, amenaza de muerte, lesión grave o violencia sexual) y no hay clúster de intrusión ni de hiperalerta."
         }
       ],
       "take_home": "El trastorno de adaptación es el diagnóstico más frecuente en consulta de atención primaria. Recuerda: hay un 'gatillo' externo."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -3091,9 +2813,6 @@
         "chunk_id": "CH_CLIN_007",
         "text_content": "En el TOC, el insight se refiere a la capacidad de reconocer que las obsesiones y compulsiones son irracionales o excesivas. El DSM-5 especifica niveles: insight bueno o regular (reconoce que las creencias no son verdaderas), insight pobre (piensa que probablemente sean ciertas) y ausencia de insight (convicción delirante).",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -3134,9 +2853,6 @@
       ],
       "take_home": "Insight en TOC no significa que el paciente deje de hacer la compulsión, solo que reconoce su irracionalidad. La mayoría de pacientes con TOC tienen insight conservado."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -3157,10 +2873,6 @@
         "chunk_id": "CH_CLIN_008",
         "text_content": "El trastorno de ansiedad por enfermedad (antes hipocondría) se caracteriza por la preocupación persistente de tener o contraer una enfermedad grave, basada en la interpretación errónea de síntomas corporales normales o leves. A pesar de las evaluaciones médicas normales, la ansiedad persiste.",
         "labels": {
-          "hitop": [
-            "internalizing",
-            "somatoform"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -3192,7 +2904,7 @@
         },
         {
           "option": "Trastorno facticio",
-          "reason": "La alternativa 'Trastorno facticio' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno de ansiedad por enfermedad (hipocondría)'."
+          "reason": "No hay falsificación intencional ni asunción del rol de enfermo; la ansiedad del paciente por una enfermedad que cree tener es genuina."
         },
         {
           "option": "Simulación",
@@ -3201,10 +2913,6 @@
       ],
       "take_home": "Hipocondría = '¿y si tengo cáncer?'. Trastorno de síntomas somáticos = 'me duele mucho la cabeza, no puedo funcionar'. Diferencia sutil pero clave."
     },
-    "hitop": [
-      "internalizing",
-      "somatoform"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ]
@@ -3224,9 +2932,6 @@
         "chunk_id": "CH_CLIN_009",
         "text_content": "El trastorno de conversión (trastorno de síntomas neurológicos funcionales) cursa con síntomas motores o sensitivos incompatibles con enfermedad neurológica conocida (debilidad, temblor, crisis no epilépticas, anestesia). El síntoma no es intencional y causa malestar. Los hallazgos típicos incluyen patrón no dermatomal, fuerza variable y prueba de Hoover positiva.",
         "labels": {
-          "hitop": [
-            "somatoform"
-          ],
           "rdoc": [
             "Sensorimotor Systems"
           ]
@@ -3258,7 +2963,7 @@
         },
         {
           "option": "Miastenia gravis",
-          "reason": "La alternativa 'Miastenia gravis' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno de conversión (síntoma neurológico funcional)'."
+          "reason": "Cursa con fatiga fluctuante de músculos oculares y bulbares con pruebas de inervación anormales; no produce prueba de Hoover positiva ni variabilidad con la atención."
         },
         {
           "option": "Lesión de neurona motora superior",
@@ -3267,9 +2972,6 @@
       ],
       "take_home": "La prueba de Hoover es tu mejor aliada para diferenciar debilidad funcional de orgánica en extremidad inferior."
     },
-    "hitop": [
-      "somatoform"
-    ],
     "rdoc": [
       "Sensorimotor Systems"
     ],
@@ -3290,10 +2992,6 @@
         "chunk_id": "CH_CLIN_010",
         "text_content": "El trastorno facticio implica la falsificación intencional de síntomas físicos o psicológicos, sin un incentivo externo evidente (a diferencia de la simulación). El paciente asume el rol de 'enfermo'. Puede incluir autoinducción de lesiones, adulteración de muestras o mentiras sobre historia clínica. El motivo es psicológico (necesidad de atención médica, asumir rol de paciente).",
         "labels": {
-          "hitop": [
-            "internalizing",
-            "somatoform"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -3325,7 +3023,7 @@
         },
         {
           "option": "Trastorno de síntomas somáticos",
-          "reason": "La alternativa 'Trastorno de síntomas somáticos' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Trastorno facticio (Síndrome de Münchausen)'."
+          "reason": "En el trastorno de síntomas somáticos los síntomas NO son fabricados intencionalmente; aquí la autoinyección de heces demuestra falsificación deliberada, núcleo del trastorno facticio."
         },
         {
           "option": "Trastorno facticio por poderes",
@@ -3334,14 +3032,10 @@
       ],
       "take_home": "Trastorno facticio = paciente quiere estar enfermo. Simulación = paciente quiere un beneficio externo."
     },
-    "hitop": [
-      "internalizing",
-      "somatoform"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ],
-    "display_title": "Producción Intencionada de Síntomas (Síndrome de Caso Clínico de Simulación)"
+    "display_title": "Trastorno Facticio (Síndrome de Münchausen)"
   },
   {
     "case_id": "CLIN_011_ABSTINENCIA_ALCOHOL",
@@ -3358,9 +3052,6 @@
         "chunk_id": "CH_CLIN_011",
         "text_content": "La abstinencia alcohólica aparece dentro de las 6-24 horas posteriores a la reducción o cese del consumo intenso y prolongado. Los síntomas incluyen temblor, ansiedad, insomnio, náuseas, taquicardia e hipertensión. En formas graves (delirium tremens) se agregan desorientación, alucinaciones (típicamente visuales: zoopsias) e inestabilidad autonómica severa (fiebre, taquicardia marcada).",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems",
             "Negative Valence Systems"
@@ -3402,14 +3093,11 @@
       ],
       "take_home": "En abstinencia alcohólica: BZD + Tiamina. El CIWA-Ar es tu guía."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems",
       "Negative Valence Systems"
     ],
-    "display_title": "Síndrome de Soporte de Soporte por Abstinencia por Consumo de Sustancias"
+    "display_title": "Síndrome de Abstinencia Alcohólica"
   },
   {
     "case_id": "CLIN_012_DUELO_COMPLICADO",
@@ -3426,10 +3114,6 @@
         "chunk_id": "CH_CLIN_012",
         "text_content": "El duelo normal se caracteriza por sentimientos de pérdida que vienen en oleadas, preservación de la autoestima y capacidad de experimentar emociones positivas. La depresión mayor en cambio presenta ánimo deprimido persistente sin relación con pensamientos del ser querido, anhedonia generalizada, baja autoestima y pensamientos de muerte no relacionados con 'unirse' al fallecido.",
         "labels": {
-          "hitop": [
-            "internalizing",
-            "detachment"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -3450,7 +3134,7 @@
       }
     ],
     "explanation": {
-      "rationale": "La anhedonia generalizada (no puede disfrutar nada, ni con hijos ni hobbies), la baja autoestima ('soy inútil') y la ideación de muerte sin la intención de 'unirse' al ser querido son características del Trastorno Depresivo Mayor (TDM), no del duelo prolongado. El TDM puede precipitarse por una pérdida, pero se distingue por la anhedonia global y la pérdida de autoestima independientes del recuerdo del fallecido.",
+      "rationale": "La anhedonia generalizada (no puede disfrutar nada, ni con hijos ni hobbies), la baja autoestima ('soy inútil') y la ideación de muerte sin la intención de 'unirse' al ser querido son características del Trastorno Depresivo Mayor (TDM), no del duelo prolongado. El TDM puede precipitarse por una pérdida, pero se distingue por la anhedonia global y la pérdida de autoestima independientes del recuerdo del fallecido. Además, a los 8 meses no cumple el criterio temporal del trastorno de duelo prolongado del DSM-5-TR (≥12 meses en adultos; ≥6 meses en niños y adolescentes), por lo que la orientación de mayor peso es TDM comórbido al duelo.",
       "evidence_chunks": [
         "CH_CLIN_012"
       ],
@@ -3470,10 +3154,6 @@
       ],
       "take_home": "Si el paciente no puede sentir placer en nada (no solo en relación al fallecido) y tiene baja autoestima, piensa en depresión, no solo duelo."
     },
-    "hitop": [
-      "internalizing",
-      "detachment"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -3494,9 +3174,6 @@
         "chunk_id": "CH_CLIN_013",
         "text_content": "El trastorno de insomnio se caracteriza por dificultad para iniciar o mantener el sueño, o despertar temprano sin poder volver a dormir, al menos 3 noches por semana durante 3 meses, a pesar de una adecuada oportunidad para dormir. Causa malestar o deterioro diurno (fatiga, irritabilidad, problemas de concentración).",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems"
           ]
@@ -3537,9 +3214,6 @@
       ],
       "take_home": "Insomnio crónico requiere síntomas ≥3 meses. La higiene del sueño y TCC-I son primera línea, no solo fármacos."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems"
     ],
@@ -3560,7 +3234,6 @@
         "chunk_id": "CH_CLIN_014",
         "text_content": "La narcolepsia tipo 1 se asocia a cataplejía (pérdida súbita del tono muscular desencadenada por emociones intensas, especialmente risa o sorpresa). La tetrada incluye: somnolencia diurna excesiva, cataplejía, alucinaciones hipnagógicas (al dormir) e hipnopómpicas (al despertar), y parálisis del sueño.",
         "labels": {
-          "hitop": [],
           "rdoc": [
             "Arousal/Regulatory Systems"
           ]
@@ -3596,12 +3269,11 @@
         },
         {
           "option": "Trastorno de conducta del sueño REM",
-          "reason": "La alternativa 'Trastorno de conducta del sueño REM' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Narcolepsia tipo 1 (con cataplejía)'."
+          "reason": "En el RBD el paciente actúa sus sueños durante la fase REM nocturna; no hay pérdida de tono desencadenada por emociones durante la vigilia, que es la cataplejía."
         }
       ],
       "take_home": "Si un paciente se cae o se le caen objetos cuando se ríe o se enoja, piensa en cataplejía y narcolepsia tipo 1."
     },
-    "hitop": [],
     "rdoc": [
       "Arousal/Regulatory Systems"
     ],
@@ -3622,9 +3294,6 @@
         "chunk_id": "CH_CLIN_015",
         "text_content": "El trastorno límite de la personalidad (TLP) requiere al menos 5 de 9 criterios: 1) miedo al abandono, 2) relaciones inestables e intensas, 3) alteración de identidad, 4) impulsividad (gastos, sexo, sustancias), 5) conductas suicidas o autolesiones, 6) inestabilidad afectiva, 7) sentimiento de vacío, 8) ira intensa, 9) ideación paranoide transitoria o síntomas disociativos bajo estrés.",
         "labels": {
-          "hitop": [
-            "externalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems",
             "Positive Valence Systems"
@@ -3666,9 +3335,6 @@
       ],
       "take_home": "El TLP es el 'gran simulador' de la psiquiatría. El miedo al abandono y las autolesiones sin ideación suicida son pistas clave."
     },
-    "hitop": [
-      "externalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems",
       "Positive Valence Systems"
@@ -3690,9 +3356,6 @@
         "chunk_id": "CH_CLIN_016",
         "text_content": "El trastorno antisocial de la personalidad se caracteriza por un patrón general de desprecio y violación de los derechos de los demás desde los 15 años, con evidencia de trastorno de conducta previo a los 15. Incluye fracaso para adaptarse a normas sociales, mentiras repetidas, impulsividad, irritabilidad y agresividad, despreocupación por su seguridad o la de otros, irresponsabilidad consistente y falta de remordimiento.",
         "labels": {
-          "hitop": [
-            "externalizing"
-          ],
           "rdoc": [
             "Positive Valence Systems"
           ]
@@ -3733,9 +3396,6 @@
       ],
       "take_home": "El TASP requiere antecedente de trastorno de conducta antes de los 15 años. No hay remordimiento (a diferencia del TLP, donde sí lo hay post-crisis)."
     },
-    "hitop": [
-      "externalizing"
-    ],
     "rdoc": [
       "Positive Valence Systems"
     ],
@@ -3744,7 +3404,7 @@
   {
     "case_id": "CLIN_017_EFECTOS_ADVERSOS_ISRS",
     "case_type": "farmacologia",
-    "title": "Efectos Adversos de ISRS: Síndrome Serotoninérgico Leve",
+    "title": "Efectos Adversos de ISRS: Efectos Tempranos vs. Persistentes",
     "educational_level": "licenciatura",
     "difficulty": "facil",
     "metadata": {
@@ -3756,9 +3416,6 @@
         "chunk_id": "CH_CLIN_017",
         "text_content": "Los efectos adversos comunes de los ISRS (fluoxetina, sertralina, escitalopram) incluyen: náuseas, cefalea, insomnio o somnolencia, disfunción sexual (anorgasmia, disminución de libido), y bruxismo. Las náuseas y la cefalea son transitorias (1-2 semanas). La disfunción sexual puede persistir durante todo el tratamiento. El síndrome serotoninérgico (leve a grave) cursa con inquietud, diaforesis, temblor, hiperreflexia y clonus.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems"
           ]
@@ -3799,13 +3456,10 @@
       ],
       "take_home": "Los efectos adversos de ISRS: náuseas y cefalea son transitorias (ceden en 1-2 semanas). La disfunción sexual puede ser persistente y requiere manejo activo si interfiere con el tratamiento."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems"
     ],
-    "display_title": "Efectos Adversos de ISRS: Toxicidad por Psicofármacos Leve"
+    "display_title": "Efectos Adversos de ISRS: Náuseas, Cefalea y Disfunción Sexual"
   },
   {
     "case_id": "CLIN_018_ANTIPSICOTICOS_METABOLICOS",
@@ -3822,9 +3476,6 @@
         "chunk_id": "CH_CLIN_018",
         "text_content": "Los antipsicóticos atípicos (clozapina, olanzapina, risperidona, quetiapina) difieren en su perfil de efectos metabólicos. Clozapina y olanzapina tienen el mayor riesgo de aumento de peso, dislipidemia y diabetes mellitus tipo 2. Risperidona tiene riesgo moderado. Aripiprazol y ziprasidona tienen riesgo bajo. Se recomienda monitoreo de peso, perímetro abdominal, glucemia y perfil lipídico al inicio y periódicamente.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -3856,7 +3507,7 @@
         },
         {
           "option": "Hemograma completo y función hepática",
-          "reason": "La alternativa 'Hemograma completo y función hepática' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Peso, glucemia en ayunas, perfil lipídico y presión arterial'."
+          "reason": "El riesgo prioritario de olanzapina es el síndrome metabólico, que hemograma y hepático no detectan; el hemograma es obligatorio en clozapina (agranulocitosis), no aquí."
         },
         {
           "option": "Niveles de prolactina exclusivamente",
@@ -3865,9 +3516,6 @@
       ],
       "take_home": "Olanzapina y clozapina = campeones en efectividad, también campeones en diabetes y obesidad. Monitorea cada 3 meses."
     },
-    "hitop": [
-      "thought_disorder"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ]
@@ -3887,9 +3535,6 @@
         "chunk_id": "CH_CLIN_019",
         "text_content": "El litio tiene un índice terapéutico estrecho. Niveles recomendados: para manía aguda 0.8-1.2 mEq/L, para mantenimiento 0.6-0.8 mEq/L. Toxicidad leve (1.5-2.0): náuseas, temblor fino, letargo. Toxicidad moderada (2.0-2.5): ataxia, disartria, confusión. Toxicidad severa (>2.5): convulsiones, coma, falla renal. La deshidratación, AINEs y diuréticos tiazídicos aumentan los niveles.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Positive Valence Systems",
             "Cognitive Systems"
@@ -3926,14 +3571,11 @@
         },
         {
           "option": "Progresión de enfermedad de base",
-          "reason": "La alternativa 'Progresión de enfermedad de base' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Aumento del nivel de litio por interacción con AINE (ibuprofeno)'."
+          "reason": "La estabilidad previa con nivel 0.7 y el inicio temporal tras el AINE señalan interacción farmacocinética, no progresión del trastorno bipolar."
         }
       ],
       "take_home": "Siempre pregunta por AINEs de venta libre en pacientes con litio. Ibuprofeno y naproxeno son peligrosos."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Positive Valence Systems",
       "Cognitive Systems"
@@ -3954,9 +3596,6 @@
         "chunk_id": "CH_CLIN_020",
         "text_content": "Las benzodiacepinas (alprazolam, lorazepam, clonazepam, diazepam) son efectivas a corto plazo para ansiedad e insomnio. El uso crónico (>4 semanas) conlleva riesgo de tolerancia (necesidad de dosis crecientes), dependencia física y síndrome de abstinencia al suspender (ansiedad rebote, insomnio, irritabilidad, temblor, crisis convulsivas). Se recomienda uso intermitente o por menos de 2-4 semanas.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems",
             "Negative Valence Systems"
@@ -3972,13 +3611,13 @@
         "expected_answer": "Reducción gradual de la dosis (desescalada) durante semanas o meses",
         "distractors": [
           "Suspensión abrupta del alprazolam",
-          "Cambio a dosis equivalente de diazepam y luego reducción lenta",
+          "Sustituir el alprazolam por zolpidem a dosis equivalentes, sin reducción gradual",
           "Aumentar dosis de alprazolam a 4 mg/día"
         ]
       }
     ],
     "explanation": {
-      "rationale": "La suspensión abrupta de BZD después de uso crónico (>8 meses) puede causar abstinencia severa, incluyendo crisis convulsivas. La desescalada lenta es obligatoria. El cambio a diazepam (vida media larga) facilita la reducción (opción también válida, pero la respuesta más directa es reducción gradual).",
+      "rationale": "La suspensión abrupta de BZD después de uso crónico (>8 meses) puede causar abstinencia severa, incluyendo crisis convulsivas. La desescalada lenta es obligatoria (10-25% de la dosis cada 1-2 semanas). El cambio a diazepam previo al taper (protocolo de Ashton) es una alternativa válida en la práctica, pero la respuesta más directa y segura en cualquier contexto es la reducción gradual del propio fármaco.",
       "evidence_chunks": [
         "CH_CLIN_020"
       ],
@@ -3988,8 +3627,8 @@
           "reason": "Peligroso: riesgo de abstinencia grave y convulsiones."
         },
         {
-          "option": "Cambio a dosis equivalente de diazepam y luego reducción lenta",
-          "reason": "Esta es también una estrategia clínicamente válida (Ashton Protocol, NICE) para BZD de vida media corta como el alprazolam. Sin embargo, la respuesta más directa, universal y aplicable en cualquier contexto es la reducción gradual de la dosis del propio fármaco. Ambas son aceptables en la práctica clínica."
+          "option": "Sustituir el alprazolam por zolpidem a dosis equivalentes, sin reducción gradual",
+          "reason": "El zolpidem también produce dependencia y su intercambio sin taper no evita la abstinencia de benzodiacepinas ni trata la ansiedad de retirada; además no es eficaz para la indicación original (ansiedad)."
         },
         {
           "option": "Aumentar dosis de alprazolam a 4 mg/día",
@@ -3998,9 +3637,6 @@
       ],
       "take_home": "Las benzodiacepinas no son para uso crónico. Si llevan >4 semanas, no suspendas de golpe. La retirada debe ser lenta (10-25% de la dosis cada 1-2 semanas)."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems",
       "Negative Valence Systems"
@@ -4021,9 +3657,6 @@
         "chunk_id": "CH_HOSP_001",
         "text_content": "El delirium (síndrome confusional agudo) es muy frecuente en UCI. Se caracteriza por alteración de la atención y la conciencia, de inicio agudo y curso fluctuante. El manejo no farmacológico (reorientación, luz diurna, evitar sujeciones) es prioritario. Las guías actuales (SCCM PADIS 2018) no recomiendan el uso rutinario de antipsicóticos para tratar el delirium; sin embargo, si hay agitación grave que pone en riesgo al paciente o los dispositivos, pueden usarse antipsicóticos a dosis bajas (haloperidol, quetiapina) como manejo sintomático. Las benzodiacepinas suelen empeorar el cuadro (excepto en abstinencia de alcohol/BZD).",
         "labels": {
-          "hitop": [
-            "thought_disorder"
-          ],
           "rdoc": [
             "Cognitive Systems",
             "Arousal/Regulatory Systems"
@@ -4060,14 +3693,11 @@
         },
         {
           "option": "Sujeción mecánica de cuatro puntos inmediatamente",
-          "reason": "La alternativa 'Sujeción mecánica de cuatro puntos inmediatamente' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Identificar y tratar la causa subyacente (ej. infección, hipoxia, fármacos)'."
+          "reason": "Es medida de último recurso: intensifica el delirium, aumenta el riesgo de lesiones y complicaciones; la prioridad es tratar la causa y aplicar medidas no farmacológicas."
         }
       ],
       "take_home": "Delirium = ¡Busca la causa médica! (Infección, Fármacos, Electrolitos, Hipoxia)."
     },
-    "hitop": [
-      "thought_disorder"
-    ],
     "rdoc": [
       "Cognitive Systems",
       "Arousal/Regulatory Systems"
@@ -4088,7 +3718,6 @@
         "chunk_id": "CH_HOSP_002",
         "text_content": "La demencia vascular se distingue por un deterioro cognitivo con relación temporal a eventos cerebrovasculares o evidencia de enfermedad de pequeños vasos. El curso suele ser 'en escalones' (deterioro brusco seguido de estabilidad), con síntomas focales neurológicos y disfunción ejecutiva prominente.",
         "labels": {
-          "hitop": [],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -4124,12 +3753,11 @@
         },
         {
           "option": "Demencia frontotemporal",
-          "reason": "La alternativa 'Demencia frontotemporal' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Demencia vascular'."
+          "reason": "La frontotemporal inicia antes de los 65 años con cambios de personalidad y desinhibición y memoria preservada; aquí predominan el curso en escalones, la focalidad y los factores de riesgo cardiovascular."
         }
       ],
       "take_home": "Demencia vascular: Antecedente de riesgo CV + Deterioro en escalones + Focalidad neurológica."
     },
-    "hitop": [],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -4150,9 +3778,6 @@
         "chunk_id": "CH_HOSP_003",
         "text_content": "La tristeza postparto (maternity blues) afecta hasta al 80% de las madres, inicia a los 2-3 días del parto y resuelve en 2 semanas; no requiere tratamiento. La depresión postparto es más grave, persiste más de 2 semanas, afecta el vínculo con el bebé y requiere intervención (psicoterapia o antidepresivos).",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -4188,14 +3813,11 @@
         },
         {
           "option": "Trastorno de adaptación",
-          "reason": "La alternativa 'Trastorno de adaptación' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Depresión postparto'."
+          "reason": "El inicio es propio del puerperio (no un estresor psicosocial externo identificable) y los síntomas cumplen criterios de episodio depresivo mayor con duración >2 semanas."
         }
       ],
       "take_home": "Postparto + Tristeza > 2 semanas = Depresión. Evaluar riesgo de infanticidio/suicidio siempre."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -4214,11 +3836,8 @@
     "source_chunks": [
       {
         "chunk_id": "CH_HOSP_004",
-        "text_content": "Un episodio maníaco requiere: Ánimo elevado, expansivo o irritable persistente (al menos 1 semana, o cualquier duración si requiere hospitalización) más 3 o más de: 1) Autoestima inflada/grandeza, 2) Disminución de necesidad de sueño, 3) Verborrea, 4) Fuga de ideas, 5) Distraibilidad, 6) Aumento de actividad dirigida o agitación, 7) Participación excesiva en actividades riesgosas.",
+        "text_content": "Un episodio maníaco requiere: Ánimo elevado, expansivo o irritable persistente (al menos 1 semana, o cualquier duración si requiere hospitalización) más 3 o más de: 1) Autoestima inflada/grandeza, 2) Disminución de necesidad de sueño, 3) Verborrea, 4) Fuga de ideas, 5) Distraibilidad, 6) Aumento de actividad dirigida o agitación, 7) Participación excesiva en actividades riesgosas. Ante el riesgo financiero grave y la imposibilidad de cuidado en casa, el equipo de urgencias decide su hospitalización.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems",
             "Positive Valence Systems"
@@ -4255,14 +3874,11 @@
         },
         {
           "option": "Consumo de cocaína (intoxicación)",
-          "reason": "La alternativa 'Consumo de cocaína (intoxicación)' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Episodio maníaco'."
+          "reason": "No hay antecedente de consumo ni intoxicación aguda descrita; el patrón (disminución de necesidad de sueño + gastos + verborrea) es un episodio maníaco completo que además requiere hospitalización."
         }
       ],
       "take_home": "Manía = 1 semana + gran disfunción. Hipomanía = 4 días + no disfunción grave."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems",
       "Positive Valence Systems"
@@ -4284,9 +3900,6 @@
         "chunk_id": "CH_HOSP_005",
         "text_content": "Factores de buen pronóstico en esquizofrenia: inicio tardío, factores precipitantes claros (estrés), inicio agudo, buen ajuste social previo, síntomas positivos predominantes, género femenino, ausencia de anomalías cerebrales estructurales.",
         "labels": {
-          "hitop": [
-            "thought_disorder"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -4318,18 +3931,15 @@
         },
         {
           "option": "Paciente con predominio de síntomas negativos (alogia, avolición)",
-          "reason": "La alternativa 'Paciente con predominio de síntomas negativos (alogia, avolición)' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Mujer de 35 años con inicio brusco tras despido laboral y delirios de persecución'."
+          "reason": "El predominio de síntomas negativos se asocia a peor respuesta funcional y peor pronóstico, no a mejor pronóstico."
         },
         {
           "option": "Paciente con antecedentes familiares directos de esquizofrenia",
-          "reason": "La alternativa 'Paciente con antecedentes familiares directos de esquizofrenia' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Mujer de 35 años con inicio brusco tras despido laboral y delirios de persecución'."
+          "reason": "La carga genética familiar se asocia a mayor vulnerabilidad y peor pronóstico, no a mejor pronóstico."
         }
       ],
       "take_home": "Buen pronóstico = 'Brote agudo en persona estable'. Mal pronóstico = 'Deterioro lento en joven'."
     },
-    "hitop": [
-      "thought_disorder"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -4350,9 +3960,6 @@
         "chunk_id": "CH_HOSP_006",
         "text_content": "Diferenciación temporal de trastornos psicóticos: 1) Trastorno psicótico breve: <1 mes con retorno al funcionamiento basal. 2) Trastorno esquizofreniforme: 1-6 meses. 3) Esquizofrenia: >6 meses.",
         "labels": {
-          "hitop": [
-            "thought_disorder"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -4393,9 +4000,6 @@
       ],
       "take_home": "En psicosis, el tiempo es el diagnóstico: <1 mes, 1 a 6 meses, o >6 meses."
     },
-    "hitop": [
-      "thought_disorder"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -4416,9 +4020,6 @@
         "chunk_id": "CH_HOSP_007",
         "text_content": "La TEC es una intervención segura y eficaz. Indicaciones de primera línea: 1) Depresión con riesgo suicida inminente, 2) Depresión con catatonia, 3) Depresión con rechazo alimentario grave, 4) Depresión psicótica en el embarazo, 5) Manía resistente o maligna.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems",
             "Positive Valence Systems"
@@ -4460,9 +4061,6 @@
       ],
       "take_home": "La TEC es una intervención de primera línea y alta efectividad en urgencias psiquiátricas con riesgo de vida inminente, tales como depresión con rechazo alimentario, riesgo de suicidio y catatonia severa."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems",
       "Positive Valence Systems"
@@ -4483,7 +4081,6 @@
         "chunk_id": "CH_HOSP_008",
         "text_content": "El Síndrome Neuroléptico Maligno (SNM) es una urgencia causada por antipsicóticos. Clínica: Tetrada de 1) Hipertermia extrema, 2) Rigidez muscular severa ('en tubo de plomo'), 3) Alteración del estado mental, 4) Inestabilidad autonómica. Laboratorio: Elevación marcada de CPK y leucocitosis. Manejo: Suspender antipsicótico, soporte vital, dantroleno o bromocriptina.",
         "labels": {
-          "hitop": [],
           "rdoc": [
             "Arousal/Regulatory Systems",
             "Sensorimotor Systems"
@@ -4525,7 +4122,6 @@
       ],
       "take_home": "SNM = Fiebre + Rigidez + CPK alta. ¡Suspende el neuroléptico ya!"
     },
-    "hitop": [],
     "rdoc": [
       "Arousal/Regulatory Systems",
       "Sensorimotor Systems"
@@ -4546,7 +4142,6 @@
         "chunk_id": "CH_HOSP_009",
         "text_content": "La encefalopatía de Wernicke se debe a deficiencia de tiamina (Vitamina B1), común en alcoholismo crónico. Tríada clásica: 1) Ataxia, 2) Oftalmoplejía (usualmente nistagmo o parálisis del VI par), 3) Confusión. El tratamiento es tiamina parenteral inmediata. Si se da glucosa antes que tiamina, el cuadro puede empeorar drásticamente.",
         "labels": {
-          "hitop": [],
           "rdoc": [
             "Cognitive Systems",
             "Arousal/Regulatory Systems"
@@ -4588,7 +4183,6 @@
       ],
       "take_home": "En urgencias: 'Tiamina antes que Glucosa' en el paciente alcohólico o desnutrido."
     },
-    "hitop": [],
     "rdoc": [
       "Cognitive Systems",
       "Arousal/Regulatory Systems"
@@ -4610,7 +4204,6 @@
         "chunk_id": "CH_HOSP_010",
         "text_content": "La intoxicación por litio puede ser aguda o crónica. Síntomas: gastrointestinales (tempranos en aguda), neurológicos (ataxia, temblor grueso, confusión, convulsiones). Manejo: hidratación agresiva con solución salina. Si el nivel es >4.0 mEq/L (aguda) o >2.5 mEq/L con síntomas severos, la hemodiálisis es el tratamiento de elección.",
         "labels": {
-          "hitop": [],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -4651,7 +4244,6 @@
       ],
       "take_home": "Litio alto + síntomas neurológicos = Hemodiálisis."
     },
-    "hitop": [],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -4672,9 +4264,6 @@
         "chunk_id": "CH_HOSP_011",
         "text_content": "La reducción de daños es un enfoque que prioriza disminuir las consecuencias negativas del consumo de sustancias (ej. sobredosis, VIH) sin exigir necesariamente la abstinencia inmediata. Ejemplos: programas de intercambio de jeringas, salas de consumo seguro y terapia de sustitución con metadona.",
         "labels": {
-          "hitop": [
-            "externalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems"
           ]
@@ -4706,18 +4295,15 @@
         },
         {
           "option": "Prohibición estricta de cualquier parafernalia",
-          "reason": "La alternativa 'Prohibición estricta de cualquier parafernalia' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Proporcionar naloxona a usuarios de heroína para revertir sobredosis'."
+          "reason": "La prohibición punitiva no reduce muertes por sobredosis y aumenta el riesgo (parafernalia compartida); la reducción de daños acepta el consumo y minimiza sus consecuencias."
         },
         {
           "option": "Sanciones legales por posesión de consumo",
-          "reason": "La alternativa 'Sanciones legales por posesión de consumo' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Proporcionar naloxona a usuarios de heroína para revertir sobredosis'."
+          "reason": "Las sanciones penales criminalizan sin reducir mortalidad ni transmisión de VIH; son contrarias al paradigma de reducción de daños."
         }
       ],
       "take_home": "Reducción de daños = 'Si no puedes dejar de usar, hagamos que mueras menos por usar'."
     },
-    "hitop": [
-      "externalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems"
     ],
@@ -4738,7 +4324,6 @@
         "chunk_id": "CH_HOSP_012",
         "text_content": "En agitación psicomotriz, la desescalada verbal es el primer paso. Si falla y hay riesgo inminente, se usa contención farmacológica. El 'cóctel' clásico incluye un antipsicótico (haloperidol) y una benzodiacepina (midazolam o lorazepam). El monitoreo de signos vitales post-sedación es obligatorio.",
         "labels": {
-          "hitop": [],
           "rdoc": [
             "Arousal/Regulatory Systems"
           ]
@@ -4770,20 +4355,19 @@
         },
         {
           "option": "Solo Fluoxetina 20 mg",
-          "reason": "La alternativa 'Solo Fluoxetina 20 mg' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Haloperidol 5 mg + Midazolam 5 mg IM'."
+          "reason": "Un ISRS no tiene efecto sedante inmediato y tarda semanas en actuar; es inútil ante agitación con riesgo inminente."
         },
         {
           "option": "Diazepam 10 mg solo (riesgo de depresión respiratoria)",
-          "reason": "La alternativa 'Diazepam 10 mg solo (riesgo de depresión respiratoria)' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Haloperidol 5 mg + Midazolam 5 mg IM'."
+          "reason": "La monoterapia con BZD a dosis altas aumenta el riesgo de depresión respiratoria sin controlar la psicosis; la combinación haloperidol + midazolam permite dosis menores de cada fármaco."
         }
       ],
       "take_home": "Agitación = 1) Verbal, 2) Fármacos IM, 3) Sujeción (último recurso)."
     },
-    "hitop": [],
     "rdoc": [
       "Arousal/Regulatory Systems"
     ],
-    "display_title": "ProAnsiedad y Conductas Repetitivasolo de Protocolo de Urgencias"
+    "display_title": "Protocolo de Agitación Aguda"
   },
   {
     "case_id": "HOSP_013_TCA_BULIMIA_SIGNOS",
@@ -4800,9 +4384,6 @@
         "chunk_id": "CH_HOSP_013",
         "text_content": "Hallazgos físicos en bulimia (por vómito): Signo de Russell (callosidades en nudillos), erosión del esmalte dental (perimólisis), tumefacción de glándulas parótidas, alcalosis metabólica e hipopotasemia.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -4843,9 +4424,6 @@
       ],
       "take_home": "En TCA, las manos y la boca dicen lo que el paciente calla."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -4866,7 +4444,6 @@
         "chunk_id": "CH_HOSP_014",
         "text_content": "La distonía aguda es una reacción extrapiramidal temprana (horas a días). Clínica: contracción involuntaria de cuello (tortícolis), mandíbula (trismo) o mirada (crisis oculógiras). Manejo: Anticolinérgicos como biperideno o difenhidramina IM/IV.",
         "labels": {
-          "hitop": [],
           "rdoc": [
             "Sensorimotor Systems"
           ]
@@ -4898,16 +4475,15 @@
         },
         {
           "option": "Administrar un ISRS",
-          "reason": "La alternativa 'Administrar un ISRS' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Biperideno o Difenhidramina IM'."
+          "reason": "No corrige el desequilibrio dopamina/acetilcolina de la distonía y puede empeorar la rigidez extrapiramidal."
         },
         {
           "option": "Observación solamente",
-          "reason": "La alternativa 'Observación solamente' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'Biperideno o Difenhidramina IM'."
+          "reason": "La distonía aguda es dolorosa y el trismo puede comprometer la vía aérea; requiere tratamiento inmediato con anticolinérgico."
         }
       ],
       "take_home": "Distonía aguda = ¡Rápida respuesta a biperideno!"
     },
-    "hitop": [],
     "rdoc": [
       "Sensorimotor Systems"
     ]
@@ -4927,9 +4503,6 @@
         "chunk_id": "CH_HOSP_015",
         "text_content": "El Delirium Tremens (DT) es la forma más grave de abstinencia alcohólica (mortalidad histórica 5-15% sin tratamiento; con manejo actual en UCI <5%). Aparece a las 48-96 horas tras la última ingesta. Se caracteriza por delirium, agitación extrema, alucinaciones visuales/táctiles y tormenta autonómica (fiebre, diaforesis, taquicardia severa).",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems",
             "Cognitive Systems"
@@ -4971,9 +4544,6 @@
       ],
       "take_home": "Delirium Tremens: El tiempo pico es al 3er o 4to día sin alcohol."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems",
       "Cognitive Systems"
@@ -4994,9 +4564,6 @@
         "chunk_id": "CH_HOSP_016",
         "text_content": "El síndrome serotoninérgico severo ocurre por exceso de serotonina (ej. mezclar ISRS con IMAO, tramadol o éxtasis). Tríada: 1) Alteración mental, 2) Autonómica (midriasis, fiebre), 3) Neuromuscular (hiperreflexia, clonus espontáneo). El clonus es el signo más característico.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems"
           ]
@@ -5037,9 +4604,6 @@
       ],
       "take_home": "Serotoninérgico = Hiperreflexia/Clonus. Neuroléptico Maligno = Rigidez extrema."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems"
     ],
@@ -5060,9 +4624,6 @@
         "chunk_id": "CH_HOSP_017",
         "text_content": "La intoxicación por cocaína causa midriasis, taquicardia, HTA y riesgo de arritmias o infarto. El manejo para la agitación y HTA son las benzodiacepinas. ¡Cuidado!: Los beta-bloqueadores están contraindicados en la fase aguda por riesgo de estimulación alfa-adrenérgica sin oposición (empeorando la HTA).",
         "labels": {
-          "hitop": [
-            "externalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems"
           ]
@@ -5103,9 +4664,6 @@
       ],
       "take_home": "Cocaína = ¡Prohibido Beta-bloqueadores!"
     },
-    "hitop": [
-      "externalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems"
     ],
@@ -5126,7 +4684,6 @@
         "chunk_id": "CH_HOSP_018",
         "text_content": "La demencia frontotemporal (variante conductual) suele iniciar jóvenes (50-60 años). Se caracteriza por cambios en la personalidad, desinhibición social (comportamientos inapropiados), apatía y pérdida de la empatía. La memoria suele estar preservada al inicio.",
         "labels": {
-          "hitop": [],
           "rdoc": [
             "Negative Valence Systems",
             "Cognitive Systems"
@@ -5168,7 +4725,6 @@
       ],
       "take_home": "Cambio de personalidad + Desinhibición + Paciente < 65 años = Frontotemporal."
     },
-    "hitop": [],
     "rdoc": [
       "Negative Valence Systems",
       "Cognitive Systems"
@@ -5190,10 +4746,6 @@
         "chunk_id": "CH_HOSP_019",
         "text_content": "El TDAH requiere que los síntomas (inatención e/o hiperactividad-impulsividad) estén presentes antes de los 12 años y se manifiesten en al menos DOS ambientes (ej. casa y escuela).",
         "labels": {
-          "hitop": [
-            "externalizing",
-            "neurodevelopmental"
-          ],
           "rdoc": [
             "Cognitive Systems",
             "Positive Valence Systems"
@@ -5226,19 +4778,15 @@
         },
         {
           "option": "Sí, porque tiene menos de 12 años",
-          "reason": "La alternativa 'Sí, porque tiene menos de 12 años' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'No, porque los síntomas no se presentan en dos o más ambientes'."
+          "reason": "Tener menos de 12 años no es criterio suficiente; se requiere que los síntomas se manifiesten en al menos dos ambientes, lo que aquí no ocurre."
         },
         {
           "option": "No, requiere tener al menos 12 años para el diagnóstico",
-          "reason": "La alternativa 'No, requiere tener al menos 12 años para el diagnóstico' no es correcta en esta presentación clínica, ya que los hallazgos descritos, la evolución temporal y los criterios de exclusión sustentan el diagnóstico y manejo prioritario de 'No, porque los síntomas no se presentan en dos o más ambientes'."
+          "reason": "El criterio es que los síntomas inicien ANTES de los 12 años, no tener 12 años al diagnóstico; la verdadera razón de exclusión es la falta de manifestación en dos ambientes."
         }
       ],
       "take_home": "TDAH = ¡Preguntar siempre por el reporte escolar!"
     },
-    "hitop": [
-      "externalizing",
-      "neurodevelopmental"
-    ],
     "rdoc": [
       "Cognitive Systems",
       "Positive Valence Systems"
@@ -5260,9 +4808,6 @@
         "chunk_id": "CH_HOSP_020",
         "text_content": "El trastorno psicótico breve a menudo ocurre tras un estresor traumático. Los síntomas (delirios, alucinaciones o lenguaje desorganizado) duran entre 1 día y 1 mes. El tratamiento suele ser con antipsicóticos a dosis bajas por tiempo corto.",
         "labels": {
-          "hitop": [
-            "thought_disorder"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -5303,9 +4848,6 @@
       ],
       "take_home": "Psicosis breve: < 1 mes. Es la reacción 'fractura' ante un estrés masivo."
     },
-    "hitop": [
-      "thought_disorder"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ]
@@ -5325,9 +4867,6 @@
         "chunk_id": "CH_GAD_001_A",
         "text_content": "El Trastorno de Ansiedad Generalizada (TAG) se caracteriza por una ansiedad y preocupación excesivas que ocurren la mayoría de los días durante al menos seis meses. La persona encuentra difícil controlar la preocupación. Se asocia a síntomas como inquietud, fatiga, dificultad para concentrarse, irritabilidad, tensión muscular y alteraciones del sueño. Causa malestar clínicamente significativo o deterioro en el funcionamiento social, laboral u otras áreas importantes.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -5348,7 +4887,7 @@
       }
     ],
     "explanation": {
-      "rationale": "La preocupación excesiva y difícil de controlar es la característica central del TAG. Los ataques de pánico son propios del trastorno de pánico, el miedo a la evaluación es típico de la ansiedad social y las conductas repetitivas son características del TOC.[reference:1]",
+      "rationale": "La preocupación excesiva y difícil de controlar es la característica central del TAG. Los ataques de pánico son propios del trastorno de pánico, el miedo a la evaluación es típico de la ansiedad social y las conductas repetitivas son características del TOC.",
       "evidence_chunks": [
         "CH_GAD_001_A"
       ],
@@ -5368,9 +4907,6 @@
       ],
       "take_home": "El TAG se define por una preocupación crónica, excesiva e incontrolable que persiste durante al menos seis meses y se acompaña de síntomas somáticos como tensión muscular y fatiga."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -5391,9 +4927,6 @@
         "chunk_id": "CH_PANIC_001_A",
         "text_content": "El Trastorno de Pánico se caracteriza por la presencia de ataques de pánico recurrentes e inesperados. Un ataque de pánico es un período de miedo o malestar intenso en el que aparecen de forma súbita cuatro o más de los siguientes síntomas: palpitaciones, sudoración, temblores, sensación de ahogo, dolor torácico, náuseas, mareo, desrealización, miedo a perder el control o a morir. Para el diagnóstico, al menos uno de los ataques debe ir seguido de un mes o más de preocupación persistente por tener más ataques o un cambio de comportamiento maladaptativo.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -5414,7 +4947,7 @@
       }
     ],
     "explanation": {
-      "rationale": "La presencia de ataques de pánico recurrentes e inesperados, con síntomas somáticos y cognitivos intensos, es el sello distintivo del Trastorno de Pánico. La preocupación persistente por las crisis es clave para el diagnóstico.[reference:2]",
+      "rationale": "La presencia de ataques de pánico recurrentes e inesperados, con síntomas somáticos y cognitivos intensos, es el sello distintivo del Trastorno de Pánico. La preocupación persistente por las crisis es clave para el diagnóstico.",
       "evidence_chunks": [
         "CH_PANIC_001_A"
       ],
@@ -5434,9 +4967,6 @@
       ],
       "take_home": "El Trastorno de Pánico se define por ataques de pánico inesperados y recurrentes, seguidos de una preocupación persistente por las consecuencias de los ataques o un cambio significativo en el comportamiento relacionado con ellos."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -5457,9 +4987,6 @@
         "chunk_id": "CH_SAD_001_A",
         "text_content": "El Trastorno de Ansiedad Social (Fobia Social) se caracteriza por un miedo o ansiedad intensa y persistente en una o más situaciones sociales o de actuación en las que la persona está expuesta al posible escrutinio por parte de otros. El individuo teme actuar de una manera que sea evaluada negativamente. Las situaciones sociales casi siempre provocan miedo o ansiedad y se evitan o soportan con gran malestar. El miedo o la ansiedad es desproporcionado y causa un deterioro clínicamente significativo.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -5480,7 +5007,7 @@
       }
     ],
     "explanation": {
-      "rationale": "El miedo intenso y persistente a ser evaluado negativamente en situaciones sociales, con la consiguiente evitación, es el núcleo del Trastorno de Ansiedad Social.[reference:3]",
+      "rationale": "El miedo intenso y persistente a ser evaluado negativamente en situaciones sociales, con la consiguiente evitación, es el núcleo del Trastorno de Ansiedad Social.",
       "evidence_chunks": [
         "CH_SAD_001_A"
       ],
@@ -5500,9 +5027,6 @@
       ],
       "take_home": "El Trastorno de Ansiedad Social no es timidez; es un miedo intenso y debilitante a la evaluación negativa que conduce a la evitación de situaciones sociales, interfiriendo significativamente en la vida de la persona."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ]
@@ -5522,9 +5046,6 @@
         "chunk_id": "CH_OCD_001_A",
         "text_content": "El Trastorno Obsesivo-Compulsivo (TOC) se caracteriza por la presencia de obsesiones, compulsiones, o ambas. Las obsesiones son pensamientos, impulsos o imágenes recurrentes y persistentes que se experimentan como intrusivos y no deseados, causando ansiedad o malestar. Las compulsiones son comportamientos repetitivos o actos mentales que la persona se siente impulsada a realizar en respuesta a una obsesión, con el objetivo de neutralizarla o reducir el malestar. Estas obsesiones y compulsiones consumen tiempo (más de una hora al día) o causan un deterioro clínicamente significativo.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -5545,7 +5066,7 @@
       }
     ],
     "explanation": {
-      "rationale": "La presencia de obsesiones (pensamientos de contaminación) y compulsiones (lavado de manos) que consumen tiempo y causan deterioro, junto con el reconocimiento de su irracionalidad (insight), es el cuadro clásico del TOC.[reference:4]",
+      "rationale": "La presencia de obsesiones (pensamientos de contaminación) y compulsiones (lavado de manos) que consumen tiempo y causan deterioro, junto con el reconocimiento de su irracionalidad (insight), es el cuadro clásico del TOC.",
       "evidence_chunks": [
         "CH_OCD_001_A"
       ],
@@ -5565,9 +5086,6 @@
       ],
       "take_home": "El TOC se diferencia de la preocupación normal por la naturaleza egodistónica de las obsesiones (el paciente las reconoce como producto de su mente) y el tiempo significativo que consumen las compulsiones, causando un deterioro funcional."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -5588,9 +5106,6 @@
         "chunk_id": "CH_PTSD_003_A",
         "text_content": "El Trastorno de Estrés Postraumático (TEPT) puede desarrollarse tras la exposición a la muerte, amenaza de muerte, lesión grave o violencia sexual. Los síntomas se agrupan en cuatro clusters: 1) Intrusión (recuerdos angustiosos, pesadillas, flashbacks), 2) Evitación (de estímulos relacionados con el trauma), 3) Alteraciones negativas en la cognición y el estado de ánimo, y 4) Alteraciones en la activación y reactividad (hipervigilancia, respuesta de sobresalto exagerada). Los síntomas deben durar más de un mes.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -5611,7 +5126,7 @@
       }
     ],
     "explanation": {
-      "rationale": "La duración de más de un mes y los síntomas de los cuatro clusters (intrusión, evitación y activación) cumplen con los criterios para TEPT. Las pesadillas son una forma de reexperimentación o intrusión del evento traumático.[reference:5][reference:6]",
+      "rationale": "La duración de más de un mes y los síntomas de los cuatro clusters (intrusión, evitación y activación) cumplen con los criterios para TEPT. Las pesadillas son una forma de reexperimentación o intrusión del evento traumático.",
       "evidence_chunks": [
         "CH_PTSD_003_A"
       ],
@@ -5631,9 +5146,6 @@
       ],
       "take_home": "El TEPT se diagnostica cuando los síntomas persisten más de un mes después de la exposición a un trauma. Sus cuatro clusters de síntomas (intrusión, evitación, alteraciones cognitivo-anímicas y alteraciones de la activación) son clave para su identificación."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ]
@@ -5653,9 +5165,6 @@
         "chunk_id": "CH_BIP_003_A",
         "text_content": "El Trastorno Bipolar I se define por la presencia de al menos un episodio maníaco. Un episodio maníaco es un período de estado de ánimo anormal y persistentemente elevado, expansivo o irritable, y un aumento anormal y persistente de la actividad o la energía, que dura al menos una semana y está presente la mayor parte del día, casi todos los días. Causa un deterioro funcional marcado o requiere hospitalización. El Trastorno Bipolar II se caracteriza por uno o más episodios depresivos mayores y al menos un episodio hipomaníaco, pero nunca un episodio maníaco. La hipomanía dura al menos cuatro días y no causa un deterioro funcional grave.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Positive Valence Systems"
           ]
@@ -5676,7 +5185,7 @@
       }
     ],
     "explanation": {
-      "rationale": "La duración de 5 días, la ausencia de deterioro funcional grave en el episodio actual y la presencia de un episodio depresivo mayor previo apuntan a un episodio hipomaníaco, característico del Trastorno Bipolar II.[reference:7]",
+      "rationale": "La duración de 5 días, la ausencia de deterioro funcional grave en el episodio actual y la presencia de un episodio depresivo mayor previo apuntan a un episodio hipomaníaco, característico del Trastorno Bipolar II.",
       "evidence_chunks": [
         "CH_BIP_003_A"
       ],
@@ -5696,9 +5205,6 @@
       ],
       "take_home": "La diferencia clave entre un episodio maníaco (Bipolar I) y uno hipomaníaco (Bipolar II) es la duración (1 semana vs. 4 días) y la gravedad (deterioro marcado vs. cambio leve). El Bipolar II requiere además la presencia de al menos un episodio depresivo mayor."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Positive Valence Systems"
     ],
@@ -5719,9 +5225,6 @@
         "chunk_id": "CH_SUD_001_A",
         "text_content": "El Trastorno por Consumo de Sustancias (TCS) se diagnostica según 11 criterios que se agrupan en cuatro categorías: 1) Control deficiente (consumir en mayor cantidad o por más tiempo del deseado, deseo persistente o esfuerzos infructuosos por controlar el consumo), 2) Deterioro social (incumplimiento de obligaciones, problemas interpersonales), 3) Consumo de riesgo (uso en situaciones físicamente peligrosas, consumo a pesar de problemas físicos o psicológicos), y 4) Criterios farmacológicos (tolerancia y abstinencia). La gravedad se clasifica como leve (2-3 criterios), moderada (4-5) o grave (6 o más).",
         "labels": {
-          "hitop": [
-            "externalizing"
-          ],
           "rdoc": [
             "Arousal/Regulatory Systems"
           ]
@@ -5742,7 +5245,7 @@
       }
     ],
     "explanation": {
-      "rationale": "Los criterios de TCS incluyen 'consumir en mayor cantidad de lo planeado', 'intentos fallidos por controlar el consumo', 'incumplimiento de obligaciones' y 'problemas interpersonales'. Esto ejemplifica al menos 4 criterios, lo que constituye un trastorno moderado.[reference:8]",
+      "rationale": "Los criterios de TCS incluyen 'consumir en mayor cantidad de lo planeado', 'intentos fallidos por controlar el consumo', 'incumplimiento de obligaciones' y 'problemas interpersonales'. Esto ejemplifica al menos 4 criterios, lo que constituye un trastorno moderado.",
       "evidence_chunks": [
         "CH_SUD_001_A"
       ],
@@ -5762,9 +5265,6 @@
       ],
       "take_home": "El Trastorno por Consumo de Sustancias se basa en un patrón problemático de consumo que incluye falta de control, deterioro social, uso de riesgo y criterios farmacológicos. La presencia de 2-3 criterios indica un trastorno leve, 4-5 moderado y 6 o más grave."
     },
-    "hitop": [
-      "externalizing"
-    ],
     "rdoc": [
       "Arousal/Regulatory Systems"
     ],
@@ -5785,7 +5285,6 @@
         "chunk_id": "CH_NCD_001_A",
         "text_content": "El Trastorno Neurocognitivo Mayor (demencia) se caracteriza por un deterioro significativo en uno o más dominios cognitivos (atención compleja, función ejecutiva, aprendizaje y memoria, lenguaje, percepción motora o cognición social). El deterioro debe representar una disminución respecto a un nivel previo de funcionamiento, interferir con la independencia en las actividades cotidianas y no ocurrir exclusivamente en el contexto de un delirium. El diagnóstico de la Enfermedad de Alzheimer, la demencia vascular y otras causas se basa en la presentación clínica y los hallazgos de laboratorio o de neuroimagen.",
         "labels": {
-          "hitop": [],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -5806,7 +5305,7 @@
       }
     ],
     "explanation": {
-      "rationale": "La característica clave que distingue el trastorno neurocognitivo mayor (demencia) del menor es el deterioro significativo que interfiere con la independencia en las actividades cotidianas.[reference:9]",
+      "rationale": "La característica clave que distingue el trastorno neurocognitivo mayor (demencia) del menor es el deterioro significativo que interfiere con la independencia en las actividades cotidianas.",
       "evidence_chunks": [
         "CH_NCD_001_A"
       ],
@@ -5826,7 +5325,6 @@
       ],
       "take_home": "Los trastornos neurocognitivos se diagnostican por la presencia de un deterioro cognitivo que representa una disminución respecto a un nivel previo y que interfiere con la independencia funcional del paciente."
     },
-    "hitop": [],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -5847,9 +5345,6 @@
         "chunk_id": "CH_ASD_003_A",
         "text_content": "El Trastorno del Espectro Autista (TEA) se define por la presencia de: A) Déficits persistentes en la comunicación e interacción social en múltiples contextos, incluyendo problemas en la reciprocidad socioemocional, en las conductas comunicativas no verbales y en el desarrollo y mantenimiento de relaciones. B) Patrones restrictivos y repetitivos de comportamiento, intereses o actividades, como movimientos motores estereotipados, insistencia en la monotonía, intereses altamente restringidos o hiper o hiporreactividad a los estímulos sensoriales. Los síntomas deben estar presentes en las primeras fases del período de desarrollo y causar un deterioro clínicamente significativo.",
         "labels": {
-          "hitop": [
-            "neurodevelopmental"
-          ],
           "rdoc": [
             "Social Processes"
           ]
@@ -5870,7 +5365,7 @@
       }
     ],
     "explanation": {
-      "rationale": "El caso presenta claramente ambos dominios necesarios para el diagnóstico de TEA: déficits en la comunicación e interacción social y patrones de comportamiento, intereses o actividades restringidos y repetitivos.[reference:10]",
+      "rationale": "El caso presenta claramente ambos dominios necesarios para el diagnóstico de TEA: déficits en la comunicación e interacción social y patrones de comportamiento, intereses o actividades restringidos y repetitivos.",
       "evidence_chunks": [
         "CH_ASD_003_A"
       ],
@@ -5890,9 +5385,6 @@
       ],
       "take_home": "El diagnóstico de TEA requiere la presencia de déficits en ambos dominios: 1) Comunicación e interacción social, y 2) Patrones restrictivos y repetitivos de comportamiento, intereses o actividades."
     },
-    "hitop": [
-      "neurodevelopmental"
-    ],
     "rdoc": [
       "Social Processes"
     ],
@@ -5913,10 +5405,6 @@
         "chunk_id": "CH_ADHD_003_A",
         "text_content": "El Trastorno por Déficit de Atención e Hiperactividad (TDAH) es un trastorno del neurodesarrollo que se caracteriza por un patrón persistente de inatención y/o hiperactividad-impulsividad que interfiere con el funcionamiento o desarrollo. Los síntomas deben haber estado presentes antes de los 12 años y manifestarse en dos o más contextos. Existen tres presentaciones: predominantemente inatento, predominantemente hiperactivo-impulsivo, y combinada. En adultos, la hiperactividad a menudo se manifiesta como inquietud o dificultad para relajarse.",
         "labels": {
-          "hitop": [
-            "externalizing",
-            "neurodevelopmental"
-          ],
           "rdoc": [
             "Cognitive Systems"
           ]
@@ -5937,7 +5425,7 @@
       }
     ],
     "explanation": {
-      "rationale": "La descripción del paciente se centra en síntomas de inatención (dificultad para mantener la atención, desorganización, pérdida de objetos). La hiperactividad ha disminuido, lo cual es común en adultos con TDAH.[reference:11]",
+      "rationale": "La descripción del paciente se centra en síntomas de inatención (dificultad para mantener la atención, desorganización, pérdida de objetos). La hiperactividad ha disminuido, lo cual es común en adultos con TDAH.",
       "evidence_chunks": [
         "CH_ADHD_003_A"
       ],
@@ -5957,10 +5445,6 @@
       ],
       "take_home": "El TDAH puede persistir en la edad adulta, aunque sus manifestaciones cambien. La hiperactividad motora tiende a disminuir, pero los síntomas de inatención suelen persistir y causar problemas significativos en el funcionamiento diario."
     },
-    "hitop": [
-      "externalizing",
-      "neurodevelopmental"
-    ],
     "rdoc": [
       "Cognitive Systems"
     ],
@@ -5981,9 +5465,6 @@
         "chunk_id": "CH_TCA_001_A",
         "text_content": "El Trastorno por Atracón (Binge-Eating Disorder) se caracteriza por episodios recurrentes de atracones, que se definen por: 1) Ingesta de una cantidad de alimentos claramente superior a la que la mayoría de las personas ingerirían en un período de tiempo similar, y 2) Una sensación de falta de control sobre la ingesta durante el episodio. Los episodios se asocian a tres o más de los siguientes: comer mucho más rápido de lo normal, comer hasta sentirse incómodamente lleno, comer grandes cantidades cuando no se tiene hambre, comer solo por vergüenza, o sentirse disgustado, deprimido o culpable después. A diferencia de la bulimia, no hay conductas compensatorias inapropiadas recurrentes.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -6004,7 +5485,7 @@
       }
     ],
     "explanation": {
-      "rationale": "La presencia de atracones recurrentes con sensación de pérdida de control y malestar posterior, sin conductas compensatorias inapropiadas, es el sello distintivo del Trastorno por Atracón.[reference:12]",
+      "rationale": "La presencia de atracones recurrentes con sensación de pérdida de control y malestar posterior, sin conductas compensatorias inapropiadas, es el sello distintivo del Trastorno por Atracón.",
       "evidence_chunks": [
         "CH_TCA_001_A"
       ],
@@ -6024,9 +5505,6 @@
       ],
       "take_home": "El Trastorno por Atracón se diferencia de la Bulimia Nerviosa por la ausencia de conductas compensatorias recurrentes (vómitos, laxantes, ejercicio excesivo) después de los episodios de atracón."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
@@ -6045,11 +5523,8 @@
     "source_chunks": [
       {
         "chunk_id": "CH_TDPM_001",
-        "text_content": "El Trastorno Disfórico Premenstrual (TDPM) se caracteriza por síntomas de ánimo, irritabilidad, disforia y ansiedad que aparecen en la fase lútea del ciclo menstrual y remiten en la fase folicular. Los síntomas deben ser graves y causar deterioro funcional significativo. Se diferencia del Síndrome Premenstrual (SPM) por la severidad de los síntomas y el deterioro funcional. Los síntomas incluyen: labilidad afectiva, irritabilidad intensa, sentimientos de desesperanza, ansiedad, dificultad de concentración, fatiga, cambios en el apetito, insomnio o hipersomnia, y síntomas físicos como dolor o inflamación.",
+        "text_content": "El Trastorno Disfórico Premenstrual (TDPM) se caracteriza por síntomas de ánimo, irritabilidad, disforia y ansiedad que aparecen en la fase lútea del ciclo menstrual y remiten en la fase folicular. Los síntomas deben ser graves y causar deterioro funcional significativo. Se diferencia del Síndrome Premenstrual (SPM) por la severidad de los síntomas y el deterioro funcional. Los síntomas incluyen: labilidad afectiva, irritabilidad intensa, sentimientos de desesperanza, ansiedad, dificultad de concentración, fatiga, cambios en el apetito, insomnio o hipersomnia, y síntomas físicos como dolor o inflamación. Niega interferencia laboral o social grave derivada de estos síntomas.",
         "labels": {
-          "hitop": [
-            "internalizing"
-          ],
           "rdoc": [
             "Negative Valence Systems"
           ]
@@ -6090,12 +5565,503 @@
       ],
       "take_home": "El SPM se distingue del TDPM por la severidad de los síntomas y el grado de deterioro funcional. El TDPM es un diagnóstico psiquiátrico que requiere síntomas graves y deterioro significativo."
     },
-    "hitop": [
-      "internalizing"
-    ],
     "rdoc": [
       "Negative Valence Systems"
     ],
     "display_title": "Salud Reproductiva: Síndrome Premenstrual vs. Trastorno Disfórico Premenstrual"
+  },
+  {
+    "case_id": "NEW_001_BDD",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno Dismórfico Corporal: Insight",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette",
+      "status": "propuesto"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_BDD_001",
+        "text_content": "Joven de 22 años con preocupación persistente (6 horas/día) por sus poros faciales, que considera 'enormes y repulsivos', un defecto imperceptible o mínimo para los demás. Se mira al espejo repetidamente, evita salir y ha consultado a dos cirujanos plásticos. Refiere: 'sé que probablemente me veo normal, pero no puedo dejar de pensarlo'.",
+        "labels": {
+          "rdoc": [
+            "Negative Valence Systems",
+            "Cognitive Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_BDD_001_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué característica distingue al trastorno dismórfico corporal de un delirio somático?",
+        "expected_answer": "La capacidad de reconocer, al menos en algún momento, que la preocupación por el defecto es excesiva (insight)",
+        "distractors": [
+          "Convicción delirante fija e inamovible",
+          "Presencia de alucinaciones visuales complejas",
+          "Falsificación intencional del síntoma"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El TDC se diferencia del delirio somatotipo/hipocondriaco delirante porque el paciente conserva insight parcial: reconoce que su preocupación puede ser excesiva, aunque la convicción fluctúe.",
+      "evidence_chunks": [
+        "CH_BDD_001"
+      ],
+      "why_not": [
+        {
+          "option": "Convicción delirante fija e inamovible",
+          "reason": "Eso correspondería al especificador 'con ideas delirantes' (trastorno delirante somático), no al TDC típico con insight conservado."
+        },
+        {
+          "option": "Presencia de alucinaciones visuales complejas",
+          "reason": "Las alucinaciones visuales complejas son propias de psicosis o demencia con cuerpos de Lewy, no del TDC."
+        },
+        {
+          "option": "Falsificación intencional del síntoma",
+          "reason": "La falsificación intencional define al trastorno facticio o a la simulación, no al TDC (preocupación genuina y egodistónica)."
+        }
+      ],
+      "take_home": "TDC = preocupación por defecto mínimo + comportamientos compulsivos de chequeo/evitación + insight fluctuante. Es del espectro obsesivo-compulsivo."
+    },
+    "rdoc": [
+      "Negative Valence Systems",
+      "Cognitive Systems"
+    ],
+    "display_title": "Espectro Obsesivo-Compulsivo: Trastorno Dismórfico Corporal"
+  },
+  {
+    "case_id": "NEW_002_LEWY",
+    "case_type": "razonamiento_clinico",
+    "title": "Demencia con Cuerpos de Lewy: Tríada Clásica",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette",
+      "status": "propuesto"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_LEWY_001",
+        "text_content": "Varón de 78 años con deterioro cognitivo progresivo. Su familia refiere alucinaciones visuales recurrentes bien formadas (ve personas que no están), fluctuación marcada del estado de alerta (días buenos y malos) y parkinsonismo de inicio reciente (rigidez, marcha lenta). Al recibir haloperidol bajo por agitación, empeoró notablemente.",
+        "labels": {
+          "rdoc": [
+            "Cognitive Systems",
+            "Arousal/Regulatory Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_LEWY_001_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál es el diagnóstico más probable y qué característica obliga a evitar los antipsicóticos típicos?",
+        "expected_answer": "Demencia con cuerpos de Lewy; la extrema sensibilidad a los antipsicóticos D2 (parkinsonismo severo o síndrome neuroléptico maligno)",
+        "distractors": [
+          "Demencia de Alzheimer; la memoria episódica temprana",
+          "Delirium por infección; la fiebre",
+          "Trastorno psicótico breve; la duración <1 mes"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La tríada de alucinaciones visuales recurrentes + fluctuación cognitiva + parkinsonismo es característica de la demencia con cuerpos de Lewy. Hay hipersensibilidad acentuada a antipsicóticos típicos: se prefieren medidas no farmacológicas y, si se requiere fármaco, dosis mínimas de quetiapina o clozapina.",
+      "evidence_chunks": [
+        "CH_LEWY_001"
+      ],
+      "why_not": [
+        {
+          "option": "Demencia de Alzheimer; la memoria episódica temprana",
+          "reason": "El Alzheimer inicia con amnesia prominente y las alucinaciones visuales aparecen en fases tardías; el parkinsonismo temprano no es típico."
+        },
+        {
+          "option": "Delirium por infección; la fiebre",
+          "reason": "No se mencionan datos infecciosos ni un inicio agudo horas-días; el curso descrito es progresivo con fluctuación."
+        },
+        {
+          "option": "Trastorno psicótico breve; la duración <1 mes",
+          "reason": "El deterioro es progresivo y crónico, no un episodio psicótico agudo autolimitado."
+        }
+      ],
+      "take_home": "Alucinaciones visuales + parkinsonismo + fluctuación = Lewy. Evita haloperidol: empeora el parkinsonismo y riesgo de SNM."
+    },
+    "rdoc": [
+      "Cognitive Systems",
+      "Arousal/Regulatory Systems"
+    ],
+    "display_title": "Trastorno Deterioro Cognitivo: Demencia con Cuerpos de Lewy"
+  },
+  {
+    "case_id": "NEW_003_TOURETTE",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno de Tourette: Criterios de Tics",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette",
+      "status": "propuesto"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_TS_001",
+        "text_content": "Niño de 10 años con tics motores múltiples (parpadeo, encogimiento de hombros, contorsiones faciales) y tics vocales (gruñidos, aclaración de garganta) presentes casi a diario desde los 6 años. Los síntomas fluctúan pero nunca desaparecen por más de 2 meses consecutivos.",
+        "labels": {
+          "rdoc": [
+            "Sensorimotor Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_TS_001_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué conjunto de características confirma el trastorno de Tourette frente a un trastorno de tics transitorio o persistente (crónico) motor o vocal?",
+        "expected_answer": "Tics motores y vocales presentes, aunque no necesariamente concurrentes, por más de 1 año sin remisión >3 meses",
+        "distractors": [
+          "Tics motores únicamente, por más de 3 meses",
+          "Tics vocales únicamente, de inicio en la adultez",
+          "Tics presentes solo durante episodios de estrés agudo"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El DSM-5 distingue: tics transitorios (motor y/o vocal, <1 año), trastorno de tics persistente motor O vocal (≥1 año), y Tourette (tics motores Y vocales, ≥1 año). El inicio debe ser antes de los 18 años.",
+      "evidence_chunks": [
+        "CH_TS_001"
+      ],
+      "why_not": [
+        {
+          "option": "Tics motores únicamente, por más de 3 meses",
+          "reason": "Los tics motores aislados corresponden al trastorno de tics persistente (motor) o transitorio; Tourette requiere TAMBIÉN tics vocales."
+        },
+        {
+          "option": "Tics vocales únicamente, de inicio en la adultez",
+          "reason": "Los tics vocales aislados son trastorno de tics persistente (vocal), y el inicio adulto sugiere causa secundaria (fármacos, lesiones), no Tourette."
+        },
+        {
+          "option": "Tics presentes solo durante episodios de estrés agudo",
+          "reason": "Los tics del Tourette son crónicos y fluctuantes, no limitados a períodos de estrés."
+        }
+      ],
+      "take_home": "Tourette = tics motores + vocales, ≥1 año, inicio <18 años. Trastorno de tics persistente = solo motores O solo vocales."
+    },
+    "rdoc": [
+      "Sensorimotor Systems"
+    ],
+    "display_title": "Neurodesarrollo: Trastorno de Tourette"
+  },
+  {
+    "case_id": "NEW_004_OPIOID_OVERDOSE",
+    "case_type": "razonamiento_clinico",
+    "title": "Urgencias: Sobredosis por Opioides",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette",
+      "status": "propuesto"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_OPI_001",
+        "text_content": "Hombre de 29 años encontrado en la calle. Presenta miosis puntiforme bilaterales, frecuencia respiratoria de 6 rpm, hiporreflexia, letargo profundo y marca de pinchazos en el antebrazo. Su acompañante refiere consumo de heroína hace 1 hora.",
+        "labels": {
+          "rdoc": [
+            "Arousal/Regulatory Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_OPI_001_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál es el tratamiento específico de primera línea y qué precaución obliga su corta vida media?",
+        "expected_answer": "Naloxona IV/IM; vigilar recurrencia de la depresión respiratoria por vida media más corta que muchos opioides (dosis repetidas o infusión)",
+        "distractors": [
+          "Flumazenil IV; evita la resedación por vida media larga",
+          "Carbón activado oral; adsorbe los opioides eficazmente",
+          "Haloperidol IM; controla la agitación"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La tríada miosis + bradipnea + coma es el toxidrome opioide. La naloxona es antagonista específico; su vida media (30-90 min) es menor que la de muchos opioides (morfina, metadona, fentanilo), por lo que se requiere reevaluación continua y dosis repetidas o infusión.",
+      "evidence_chunks": [
+        "CH_OPI_001"
+      ],
+      "why_not": [
+        {
+          "option": "Flumazenil IV; evita la resedación por vida media larga",
+          "reason": "El flumazenil es antagonista de benzodiacepinas, no de opioides, y puede precipitar convulsiones en usuarios crónicos o mezclas."
+        },
+        {
+          "option": "Carbón activado oral; adsorbe los opioides eficazmente",
+          "reason": "El paciente con depresión respiratoria grave no protege su vía aérea; además la vía parenteral de la heroína hace inútil la adsorción gastrointestinal."
+        },
+        {
+          "option": "Haloperidol IM; controla la agitación",
+          "reason": "El haloperidol no revierte la depresión respiratoria opioide y añade riesgo de arritmias y convulsiones."
+        }
+      ],
+      "take_home": "Miosis + bradipnea + coma = opioides → naloxona. Ojo: la naloxona dura MENOS que el opioide; la resedación vuelve."
+    },
+    "rdoc": [
+      "Arousal/Regulatory Systems"
+    ],
+    "display_title": "Urgencias por Consumo de Sustancias: Sobredosis por Opioides"
+  },
+  {
+    "case_id": "NEW_005_SOMATIC_SYMPTOM",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno de Síntomas Somáticos: Diferencial con Ansiedad por Enfermedad",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette",
+      "status": "propuesto"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_SSD_001",
+        "text_content": "Mujer de 34 años con dolor lumbar intenso durante 18 meses. Múltiples evaluaciones médicas sin hallazgos que lo expliquen. Refiere: 'el dolor me consume la vida: no puedo trabajar, no puedo cuidar a mis hijos; pienso en él todo el día'. No teme tener una enfermedad grave específica, siente que el dolor mismo la incapacita.",
+        "labels": {
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_SSD_001_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué elemento distingue al trastorno de síntomas somáticos de la ansiedad por enfermedad (hipocondría)?",
+        "expected_answer": "El foco está en el malestar y deterioro causados por el síntoma físico en sí, no en el miedo a una enfermedad subyacente",
+        "distractors": [
+          "El miedo persistente a tener una enfermedad grave como cáncer",
+          "La falsificación intencional de los síntomas",
+          "Un beneficio externo evidente por estar enferma"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "En el DSM-5 la diferencia clave es el foco: en síntomas somáticos el síntoma (dolor) domina la experiencia y el deterioro; en ansiedad por enfermedad domina la preocupación por una enfermedad grave. Ambos pueden coexistir.",
+      "evidence_chunks": [
+        "CH_SSD_001"
+      ],
+      "why_not": [
+        {
+          "option": "El miedo persistente a tener una enfermedad grave como cáncer",
+          "reason": "Ese es el núcleo de la ansiedad por enfermedad; aquí la paciente niega ese miedo y su sufrimiento se centra en el dolor."
+        },
+        {
+          "option": "La falsificación intencional de los síntomas",
+          "reason": "La falsificación intencional define trastorno facticio o simulación; el síntoma somático es genuino y no intencional."
+        },
+        {
+          "option": "Un beneficio externo evidente por estar enferma",
+          "reason": "El beneficio externo definiría la simulación; no está presente."
+        }
+      ],
+      "take_home": "Síntomas somáticos = 'el dolor me incapacita'. Ansiedad por enfermedad = '¿y si es cáncer?'. Pregunta por el foco del malestar."
+    },
+    "rdoc": [
+      "Negative Valence Systems"
+    ],
+    "display_title": "Somatización: Trastorno de Síntomas Somáticos"
+  },
+  {
+    "case_id": "NEW_006_PROLONGED_GRIEF",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno de Duelo Prolongado (DSM-5-TR)",
+    "educational_level": "licenciatura",
+    "difficulty": "media",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette",
+      "status": "propuesto"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_PG_001",
+        "text_content": "Mujer de 45 años cuya hija falleció hace 16 meses. Refiere anhelo intenso por la fallecida casi a diario, dificultad marcada para aceptar la muerte ('no puede ser, va a regresar'), identidad profundamente centrada en la pérdida y evitación de todo lo que la recuerda. Preserva el interés por otras actividades y no tiene baja autoestima global ni ideación de unirse a la hija.",
+        "labels": {
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_PG_001_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Cuál es el diagnóstico más probable y qué criterio temporal lo sustenta?",
+        "expected_answer": "Trastorno de duelo prolongado; síntomas persistentes ≥12 meses después de la muerte en adultos",
+        "distractors": [
+          "Trastorno depresivo mayor; la anhedonia global y baja autoestima",
+          "Duelo normal; la ausencia de deterioro",
+          "Trastorno de adaptación; el estresor identificable"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El duelo prolongado (DSM-5-TR) requiere muerte de una persona cercana ≥12 meses atrás (≥6 en niños) más anhelo intenso o preocupación por el fallecido casi a diario, con ≥3 síntomas (dificultad para aceptar la muerte, identidad centrada en la pérdida, evitación, embotamiento, sensación de que la vida es vacía, etc.) causando deterioro. Se diferencia del TDM porque la anhedonia y baja autoestima son globales en éste, y del duelo normal por la persistencia y severidad.",
+      "evidence_chunks": [
+        "CH_PG_001"
+      ],
+      "why_not": [
+        {
+          "option": "Trastorno depresivo mayor; la anhedonia global y baja autoestima",
+          "reason": "La paciente preserva interés y autoestima fuera del anhelo por la hija; el sufrimiento se ancla en la pérdida, no es generalizado."
+        },
+        {
+          "option": "Duelo normal; la ausencia de deterioro",
+          "reason": "A los 16 meses con anhelo diario, negación de la muerte e identidad centrada en la pérdida, el cuadro excede lo esperable del duelo normal."
+        },
+        {
+          "option": "Trastorno de adaptación; el estresor identificable",
+          "reason": "El trastorno de adaptación se usa cuando no se cumplen criterios de otra categoría; aquí se cumplen criterios específicos de duelo prolongado y la duración (>6 meses tras el estresor) lo excede."
+        }
+      ],
+      "take_home": "Duelo prolongado = anhelo centrado en el fallecido + dificultad para aceptar la muerte, ≥12 meses (adultos). No es TDM si el afecto se preserva fuera del duelo."
+    },
+    "rdoc": [
+      "Negative Valence Systems"
+    ],
+    "display_title": "Reacción ante Pérdidas: Trastorno de Duelo Prolongado"
+  },
+  {
+    "case_id": "NEW_007_AGORAPHOBIA",
+    "case_type": "razonamiento_clinico",
+    "title": "Agorafobia: Miedo a la Inasistencia de Ayuda",
+    "educational_level": "licenciatura",
+    "difficulty": "facil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette",
+      "status": "propuesto"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_AGO_001",
+        "text_content": "Mujer de 29 años que evita el transporte público, las multitudes, los centros comerciales y quedarse sola fuera de casa. Refiere: 'me da terror que me dé algo en la calle y no haya nadie que me ayude o no pueda escapar'. Las evita o las soporta solo con un acompañante. No teme ser juzgada socialmente.",
+        "labels": {
+          "rdoc": [
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_AGO_001_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué define el núcleo del miedo en la agorafobia?",
+        "expected_answer": "Miedo a situaciones de las que escapar sería difícil o donde no se recibiría ayuda si aparecen síntomas incapacitantes",
+        "distractors": [
+          "Miedo a la evaluación negativa y la humillación social",
+          "Miedo a una enfermedad grave específica",
+          "Miedo intenso a un objeto o animal concreto"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "La agorafobia se define por miedo/ansiedad a dos o más situaciones (transporte público, espacios abiertos/cerrados, multitudes, fuera de casa sola) por la dificultad de escape o falta de ayuda. No requiere historia de crisis de pánico (aunque frecuentemente coexiste).",
+      "evidence_chunks": [
+        "CH_AGO_001"
+      ],
+      "why_not": [
+        {
+          "option": "Miedo a la evaluación negativa y la humillación social",
+          "reason": "Ese es el núcleo de la fobia social; la paciente niega temer al juicio de otros."
+        },
+        {
+          "option": "Miedo a una enfermedad grave específica",
+          "reason": "Ese es el núcleo de la ansiedad por enfermedad; aquí el miedo es a quedar atrapada sin ayuda."
+        },
+        {
+          "option": "Miedo intenso a un objeto o animal concreto",
+          "reason": "Eso define la fobia específica, que se limita a un estímulo particular, no a múltiples situaciones de escape."
+        }
+      ],
+      "take_home": "Agorafobia = miedo a 'no poder escapar ni recibir ayuda' en ≥2 situaciones. Fobia social = miedo al juicio. Fobia específica = un estímulo."
+    },
+    "rdoc": [
+      "Negative Valence Systems"
+    ],
+    "display_title": "Ansiedad y Fobias: Agorafobia"
+  },
+  {
+    "case_id": "NEW_008_SCHIZOAFFECTIVE",
+    "case_type": "razonamiento_clinico",
+    "title": "Trastorno Esquizoafectivo: Criterio Temporal Clave",
+    "educational_level": "licenciatura",
+    "difficulty": "dificil",
+    "metadata": {
+      "is_real_data": true,
+      "content_kind": "vignette",
+      "status": "propuesto"
+    },
+    "source_chunks": [
+      {
+        "chunk_id": "CH_SA_001",
+        "text_content": "Varón de 34 años. Durante 6 semanas presenta delirios persecutorios y alucinaciones auditivas CONCURRENTES con un episodio depresivo mayor completo (ánimo deprimido, anhedonia, culpa). Además, refiere 2 semanas previas de delirios y alucinaciones SIN ningún síntoma afectivo.",
+        "labels": {
+          "rdoc": [
+            "Cognitive Systems",
+            "Negative Valence Systems"
+          ]
+        }
+      }
+    ],
+    "tasks": [
+      {
+        "task_id": "T_SA_001_1",
+        "type": "mcq_single_best",
+        "instruction": "¿Qué dato obliga al diagnóstico de trastorno esquizoafectivo en lugar de esquizofrenia o depresión con características psicóticas?",
+        "expected_answer": "Las 2 semanas de psicosis SÍNTOMAS afectivos (requisito DSM-5 para esquizoafectivo)",
+        "distractors": [
+          "La concurrencia de psicosis y episodio depresivo",
+          "La duración total del cuadro de 6 semanas",
+          "El contenido persecutorio de los delirios"
+        ]
+      }
+    ],
+    "explanation": {
+      "rationale": "El DSM-5 exige para esquizoafectivo: (1) un período de enfermedad con episodio anímico mayor concurrente con criterios A de esquizofrenia, y (2) delirios o alucinaciones durante al menos 2 semanas SIN síntomas anímicos mayores. Si la psicosis nunca ocurre sin afecto, es trastornos del estado de ánimo con características psicóticas; si el afecto es episódico y breve, es esquizofrenia.",
+      "evidence_chunks": [
+        "CH_SA_001"
+      ],
+      "why_not": [
+        {
+          "option": "La concurrencia de psicosis y episodio depresivo",
+          "reason": "La concurrencia sola no define esquizoafectivo: también ocurre en depresión con características psicóticas; lo decisivo es la psicosis sin afecto ≥2 semanas."
+        },
+        {
+          "option": "La duración total del cuadro de 6 semanas",
+          "reason": "La duración total no diferencia estos diagnósticos; el esquizofreniforme (1-6 meses) tampoco exige el período psicótico sin afecto."
+        },
+        {
+          "option": "El contenido persecutorio de los delirios",
+          "reason": "El contenido temático no es criterio diferencial entre estos trastornos."
+        }
+      ],
+      "take_home": "Esquizoafectivo = psicosis + episodio anímico + al menos 2 semanas de psicosis SIN síntomas anímicos. Sin ese tramo, piensa en esquizofrenia o en trastorno del ánimo con psicosis."
+    },
+    "rdoc": [
+      "Cognitive Systems",
+      "Negative Valence Systems"
+    ],
+    "display_title": "Psicosis y Criterios Clínicos: Trastorno Esquizoafectivo"
   }
 ]

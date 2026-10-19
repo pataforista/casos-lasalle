@@ -40,21 +40,15 @@ function today() {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
 }
 
-/** Etiquetas HiTOP/RDoC que el índice expone para filtrar sin abrir el pack. */
+/** Etiquetas RDoC que el índice expone para filtrar sin abrir el pack.
+ *  HiTOP se retiró del banco de casos; ya no se indexa. */
 function collectLabelsFromCase(c) {
-  const hitop = [];
   const rdoc = [];
   for (const ch of Array.isArray(c.source_chunks) ? c.source_chunks : []) {
-    if (ch?.labels) {
-      if (Array.isArray(ch.labels.hitop)) hitop.push(...ch.labels.hitop);
-      if (Array.isArray(ch.labels.rdoc)) rdoc.push(...ch.labels.rdoc);
-    }
-    if (ch?.label_refs) {
-      if (Array.isArray(ch.label_refs.hitop)) hitop.push(...ch.label_refs.hitop);
-      if (Array.isArray(ch.label_refs.rdoc)) rdoc.push(...ch.label_refs.rdoc);
-    }
+    if (Array.isArray(ch?.labels?.rdoc)) rdoc.push(...ch.labels.rdoc);
+    if (Array.isArray(ch?.label_refs?.rdoc)) rdoc.push(...ch.label_refs.rdoc);
   }
-  return { hitop: uniq(hitop), rdoc: uniq(rdoc) };
+  return { rdoc: uniq(rdoc) };
 }
 
 function isReal(c) {
@@ -71,7 +65,6 @@ function buildIndexEntry(c, packRelPath) {
     educational_level: c.educational_level || "",
     case_type: c.case_type || "",
     is_real_data: isReal(c),
-    hitop: labels.hitop,
     rdoc: labels.rdoc,
     pack: packRelPath.startsWith("packs/") ? packRelPath : `packs/${packRelPath}`
   };

@@ -2,8 +2,8 @@
   "version": "v1",
   "updated": "2026-10-19",
   "counts": {
-    "total": 87,
-    "real": 87,
+    "total": 95,
+    "real": 95,
     "synthetic": 0,
     "synth_packs": 0,
     "pack_size": 25
@@ -20,10 +20,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "thought_disorder",
-        "detachment"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -36,9 +32,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
       "rdoc": [
         "Cognitive Systems",
         "Negative Valence Systems"
@@ -52,9 +45,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems",
         "Cognitive Systems"
@@ -68,9 +58,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -83,9 +70,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems",
         "Arousal/Regulatory Systems"
@@ -99,10 +83,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing",
-        "neurodevelopmental"
-      ],
       "rdoc": [
         "Cognitive Systems",
         "Positive Valence Systems"
@@ -116,10 +96,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing",
-        "neurodevelopmental"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -132,9 +108,6 @@
       "educational_level": "especialidad",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
       "rdoc": [
         "Cognitive Systems",
         "Arousal/Regulatory Systems"
@@ -148,9 +121,6 @@
       "educational_level": "especialidad",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
       "rdoc": [
         "Cognitive Systems",
         "Arousal/Regulatory Systems"
@@ -164,9 +134,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Positive Valence Systems",
         "Arousal/Regulatory Systems",
@@ -182,9 +149,6 @@
       "educational_level": "especialidad",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Positive Valence Systems",
         "Arousal/Regulatory Systems",
@@ -199,9 +163,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "neurodevelopmental"
-      ],
       "rdoc": [
         "Social Processes"
       ],
@@ -214,9 +175,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "neurodevelopmental"
-      ],
       "rdoc": [
         "Social Processes"
       ],
@@ -229,9 +187,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -244,9 +199,6 @@
       "educational_level": "especialidad",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -259,9 +211,6 @@
       "educational_level": "especialidad",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems"
       ],
@@ -274,9 +223,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -289,7 +235,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [],
       "rdoc": [],
       "pack": "packs/cases_real_v1.json"
     },
@@ -300,9 +245,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -315,10 +257,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing",
-        "detachment"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -331,9 +269,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -346,9 +281,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -361,9 +293,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "neurodevelopmental"
-      ],
       "rdoc": [
         "Social Processes"
       ],
@@ -376,10 +305,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing",
-        "internalizing"
-      ],
       "rdoc": [
         "Cognitive Systems",
         "Positive Valence Systems"
@@ -393,9 +318,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems",
         "Positive Valence Systems"
@@ -409,9 +331,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -424,9 +343,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems",
         "Cognitive Systems"
@@ -435,14 +351,11 @@
     },
     {
       "case_id": "EDU_11_PSIC",
-      "title": "Psicosis: Fenomenología y HiTOP",
+      "title": "Psicosis: Fenomenología y Criterios",
       "difficulty": "facil",
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -455,9 +368,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
       "rdoc": [
         "Cognitive Systems",
         "Arousal/Regulatory Systems"
@@ -471,9 +381,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -486,9 +393,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -501,9 +405,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -516,10 +417,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing",
-        "detachment"
-      ],
       "rdoc": [
         "Negative Valence Systems",
         "Positive Valence Systems"
@@ -533,9 +430,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems",
         "Sensorimotor Systems"
@@ -549,9 +443,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -564,9 +455,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -579,9 +467,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -594,9 +479,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -609,9 +491,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -624,9 +503,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -639,9 +515,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -654,9 +527,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -669,10 +539,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing",
-        "somatoform"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -685,9 +551,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "somatoform"
-      ],
       "rdoc": [
         "Sensorimotor Systems"
       ],
@@ -700,10 +563,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing",
-        "somatoform"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -716,9 +575,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems",
         "Negative Valence Systems"
@@ -732,10 +588,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing",
-        "detachment"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -748,9 +600,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems"
       ],
@@ -763,7 +612,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [],
       "rdoc": [
         "Arousal/Regulatory Systems"
       ],
@@ -776,9 +624,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems",
         "Positive Valence Systems"
@@ -792,9 +637,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing"
-      ],
       "rdoc": [
         "Positive Valence Systems"
       ],
@@ -802,14 +644,11 @@
     },
     {
       "case_id": "CLIN_017_EFECTOS_ADVERSOS_ISRS",
-      "title": "Efectos Adversos de ISRS: Síndrome Serotoninérgico Leve",
+      "title": "Efectos Adversos de ISRS: Efectos Tempranos vs. Persistentes",
       "difficulty": "facil",
       "educational_level": "licenciatura",
       "case_type": "farmacologia",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems"
       ],
@@ -822,9 +661,6 @@
       "educational_level": "licenciatura",
       "case_type": "farmacologia",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -837,9 +673,6 @@
       "educational_level": "licenciatura",
       "case_type": "farmacologia",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Positive Valence Systems",
         "Cognitive Systems"
@@ -853,9 +686,6 @@
       "educational_level": "licenciatura",
       "case_type": "farmacologia",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems",
         "Negative Valence Systems"
@@ -869,9 +699,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
       "rdoc": [
         "Cognitive Systems",
         "Arousal/Regulatory Systems"
@@ -885,7 +712,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -898,9 +724,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -913,9 +736,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems",
         "Positive Valence Systems"
@@ -929,9 +749,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -944,9 +761,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -959,9 +773,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems",
         "Positive Valence Systems"
@@ -975,7 +786,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [],
       "rdoc": [
         "Arousal/Regulatory Systems",
         "Sensorimotor Systems"
@@ -989,7 +799,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [],
       "rdoc": [
         "Cognitive Systems",
         "Arousal/Regulatory Systems"
@@ -1003,7 +812,6 @@
       "educational_level": "licenciatura",
       "case_type": "farmacologia",
       "is_real_data": true,
-      "hitop": [],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -1016,9 +824,6 @@
       "educational_level": "licenciatura",
       "case_type": "psiquiatria_social",
       "is_real_data": true,
-      "hitop": [
-        "externalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems"
       ],
@@ -1031,7 +836,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [],
       "rdoc": [
         "Arousal/Regulatory Systems"
       ],
@@ -1044,9 +848,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -1059,7 +860,6 @@
       "educational_level": "licenciatura",
       "case_type": "farmacologia",
       "is_real_data": true,
-      "hitop": [],
       "rdoc": [
         "Sensorimotor Systems"
       ],
@@ -1072,9 +872,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems",
         "Cognitive Systems"
@@ -1088,9 +885,6 @@
       "educational_level": "licenciatura",
       "case_type": "farmacologia",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems"
       ],
@@ -1103,9 +897,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems"
       ],
@@ -1118,7 +909,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [],
       "rdoc": [
         "Negative Valence Systems",
         "Cognitive Systems"
@@ -1132,10 +922,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing",
-        "neurodevelopmental"
-      ],
       "rdoc": [
         "Cognitive Systems",
         "Positive Valence Systems"
@@ -1149,9 +935,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "thought_disorder"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -1164,9 +947,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -1179,9 +959,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -1194,9 +971,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -1209,9 +983,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -1224,9 +995,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -1239,9 +1007,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Positive Valence Systems"
       ],
@@ -1254,9 +1019,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing"
-      ],
       "rdoc": [
         "Arousal/Regulatory Systems"
       ],
@@ -1269,7 +1031,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -1282,9 +1043,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "neurodevelopmental"
-      ],
       "rdoc": [
         "Social Processes"
       ],
@@ -1297,10 +1055,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "externalizing",
-        "neurodevelopmental"
-      ],
       "rdoc": [
         "Cognitive Systems"
       ],
@@ -1313,9 +1067,6 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
         "Negative Valence Systems"
       ],
@@ -1328,10 +1079,106 @@
       "educational_level": "licenciatura",
       "case_type": "razonamiento_clinico",
       "is_real_data": true,
-      "hitop": [
-        "internalizing"
-      ],
       "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "NEW_001_BDD",
+      "title": "Trastorno Dismórfico Corporal: Insight",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "rdoc": [
+        "Negative Valence Systems",
+        "Cognitive Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "NEW_002_LEWY",
+      "title": "Demencia con Cuerpos de Lewy: Tríada Clásica",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "rdoc": [
+        "Cognitive Systems",
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "NEW_003_TOURETTE",
+      "title": "Trastorno de Tourette: Criterios de Tics",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "rdoc": [
+        "Sensorimotor Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "NEW_004_OPIOID_OVERDOSE",
+      "title": "Urgencias: Sobredosis por Opioides",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "rdoc": [
+        "Arousal/Regulatory Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "NEW_005_SOMATIC_SYMPTOM",
+      "title": "Trastorno de Síntomas Somáticos: Diferencial con Ansiedad por Enfermedad",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "NEW_006_PROLONGED_GRIEF",
+      "title": "Trastorno de Duelo Prolongado (DSM-5-TR)",
+      "difficulty": "media",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "NEW_007_AGORAPHOBIA",
+      "title": "Agorafobia: Miedo a la Inasistencia de Ayuda",
+      "difficulty": "facil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "rdoc": [
+        "Negative Valence Systems"
+      ],
+      "pack": "packs/cases_real_v1.json"
+    },
+    {
+      "case_id": "NEW_008_SCHIZOAFFECTIVE",
+      "title": "Trastorno Esquizoafectivo: Criterio Temporal Clave",
+      "difficulty": "dificil",
+      "educational_level": "licenciatura",
+      "case_type": "razonamiento_clinico",
+      "is_real_data": true,
+      "rdoc": [
+        "Cognitive Systems",
         "Negative Valence Systems"
       ],
       "pack": "packs/cases_real_v1.json"
