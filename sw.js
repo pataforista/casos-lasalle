@@ -5,7 +5,7 @@
    - Limpieza de caches: borra TODO lo que no sea el cache actual
    ============================================================================ */
 
-   const CACHE_VERSION = "psycase-v1.7.2";
+   const CACHE_VERSION = "psycase-v1.8.1";
    const CACHE_NAME = `psycase-${CACHE_VERSION}`;
    
    const APP_SHELL = [
@@ -14,6 +14,8 @@
      "./manifest.webmanifest",
      "./assets/styles.css",
    
+     "./js/boot.js",
+     "./js/content.js",
      "./js/economy.js",
      "./js/caseLoader.js",
      "./js/generator.js",
@@ -76,8 +78,20 @@
 
    async function cacheFirst(request) {
      const cache = await caches.open(CACHE_NAME);
-     const cached = await cache.match(request);
+     // Las navegaciones ignoran la query (?utm=…, ?source=pwa): si no, una URL
+     // con parámetros no encontraba "./" en caché y fallaba offline.
+     const isNav = request.mode === "navigate";
+     const cached = await cache.match(request, { ignoreSearch: isNav });
      if (cached) return cached;
+
+     if (isNav) {
+       try {
+         return await fetch(request);
+       } catch {
+         // Sin red y sin coincidencia exacta: servir la app shell.
+         return (await cache.match("./index.html")) || (await cache.match("./"));
+       }
+     }
 
      const network = await fetch(request);
      if (isCacheable(network)) cache.put(request, network.clone());

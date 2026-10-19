@@ -35,6 +35,10 @@ const CaseDB = (() => {
       return manifestIndex;
     })();
 
+    // Un fallo (p. ej. primera visita sin red) no puede quedar cacheado: antes
+    // la promesa rechazada se devolvía para siempre y el banco real ya no se
+    // cargaba aunque volviera la conexión.
+    initPromise.catch(() => { initPromise = null; });
     return initPromise;
   }
 
@@ -77,6 +81,32 @@ const CaseDB = (() => {
   }
 
   /* ------------------------------------------------------------
+     Filtros (una sola implementación para elegir caso y para contar)
+     ------------------------------------------------------------ */
+  function isRealEntry(c) {
+    return (c.metadata?.is_real_data ?? c.is_real_data) === true;
+  }
+
+  function filterPool(filters = {}) {
+    let pool = manifestIndex;
+
+    if (filters.onlyReal === true) pool = pool.filter(isRealEntry);
+    if (filters.onlySynthetic === true) pool = pool.filter(c => !isRealEntry(c));
+    if (filters.difficulty) pool = pool.filter(c => c.difficulty === filters.difficulty);
+    if (filters.educational_level) pool = pool.filter(c => c.educational_level === filters.educational_level);
+
+    if (Array.isArray(filters.includeCaseIds)) {
+      const includeSet = new Set(filters.includeCaseIds);
+      pool = pool.filter(c => includeSet.has(c.case_id));
+    }
+
+    const excludeCaseIds = new Set(filters.excludeCaseIds || []);
+    if (excludeCaseIds.size) pool = pool.filter(c => !excludeCaseIds.has(c.case_id));
+
+    return pool;
+  }
+
+  /* ------------------------------------------------------------
      Selección aleatoria de caso
      ------------------------------------------------------------ */
   async function pickRandomCase(filters = {}) {
@@ -84,33 +114,7 @@ const CaseDB = (() => {
       throw new Error("CaseDB no inicializado. Llama a CaseDB.init() primero.");
     }
 
-    let pool = manifestIndex;
-    const excludeCaseIds = new Set(filters.excludeCaseIds || []);
-
-    if (filters.onlyReal === true) {
-      pool = pool.filter(c => (c.metadata?.is_real_data ?? c.is_real_data) === true);
-    }
-
-    if (filters.onlySynthetic === true) {
-      pool = pool.filter(c => (c.metadata?.is_real_data ?? c.is_real_data) === false);
-    }
-
-    if (filters.difficulty) {
-      pool = pool.filter(c => c.difficulty === filters.difficulty);
-    }
-
-    if (filters.educational_level) {
-      pool = pool.filter(c => c.educational_level === filters.educational_level);
-    }
-
-    if (filters.includeCaseIds && Array.isArray(filters.includeCaseIds)) {
-      const includeSet = new Set(filters.includeCaseIds);
-      pool = pool.filter(c => includeSet.has(c.case_id));
-    }
-
-    if (excludeCaseIds.size) {
-      pool = pool.filter(c => !excludeCaseIds.has(c.case_id));
-    }
+    const pool = filterPool(filters);
 
     if (!pool.length) {
       throw new Error("No hay casos que cumplan los filtros");
@@ -144,29 +148,17 @@ const CaseDB = (() => {
   }
 
   /* ------------------------------------------------------------
-     Contador de pool filtrado
+     Consultas sin cargar packs
      ------------------------------------------------------------ */
   function getPoolSize(filters = {}) {
     if (!manifestIndex.length) return 0;
-    let pool = manifestIndex;
+    return filterPool(filters).length;
+  }
 
-    if (filters.onlyReal === true) {
-      pool = pool.filter(c => (c.metadata?.is_real_data ?? c.is_real_data) === true);
-    }
-    if (filters.onlySynthetic === true) {
-      pool = pool.filter(c => (c.metadata?.is_real_data ?? c.is_real_data) === false);
-    }
-    if (filters.difficulty) {
-      pool = pool.filter(c => c.difficulty === filters.difficulty);
-    }
-    if (filters.educational_level) {
-      pool = pool.filter(c => c.educational_level === filters.educational_level);
-    }
-    if (filters.includeCaseIds && Array.isArray(filters.includeCaseIds)) {
-      const includeSet = new Set(filters.includeCaseIds);
-      pool = pool.filter(c => includeSet.has(c.case_id));
-    }
-    return pool.length;
+  // ¿Sigue existiendo este caso en el banco? El repaso lo usa para descartar
+  // errores guardados de casos que se retiraron del dataset.
+  function hasCase(caseId) {
+    return manifestIndex.some(c => c.case_id === caseId);
   }
 
   /* ------------------------------------------------------------
@@ -175,6 +167,8 @@ const CaseDB = (() => {
   return {
     init,
     pickRandomCase,
-    getPoolSize
+    getPoolSize,
+    hasCase,
+    isReady: () => manifestIndex.length > 0
   };
 })();

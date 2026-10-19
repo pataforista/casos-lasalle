@@ -1,5 +1,7 @@
 # Revisión diagnóstica — PsyCase (julio 2026)
 
+> **Documento histórico.** El estado vivo de la app está en `docs/MAPA_APP.md` y la deuda pendiente en `docs/GUIA_REVISION.md`. En la revisión del 2026-10-19 quedaron resueltos además B8 (tiempo agotado), el rendimiento de animaciones sobre `<body>`, `prefers-reduced-motion`, `aria-live` en el feedback y el README desactualizado.
+
 > **Actualización 2026-07-10:** los hallazgos urgentes (B1–B7 y los triviales de P3, salvo el README) fueron **corregidos en esta rama** y verificados en navegador. Quedan pendientes como trabajo editorial/diseño: B8, B9, títulos-spoiler, distribución de datos, HUD móvil, economía y accesibilidad. Cada ítem indica su estado.
 
 Alcance: código (runtime JS, SW, HTML/CSS), datos (`manifest_v1.json` + `cases_real_v1.json`, 94 casos), jugabilidad y estética. La app se ejecutó en navegador headless (móvil 390×844 y escritorio 1280×800) recorriendo menú → caso → feedback → game over → filtros, incluyendo un escenario sin acceso a CDNs.

@@ -1,168 +1,7 @@
 "use strict";
 
-const GAME_CONFIG = {
-  maxLives: 3,
-  baseTurnSeconds: 45,
-  minTurnSeconds: 15,   // Un poco más bajo para expertos
-  difficultyScale: 4.5, // Factor logarítmico
-  modalDelayMs: 450,
-  advanceDelayMs: 3500, // Tiempo para auto-avance
-
-  // Economía de la decisión. Antes cada acierto pagaba lo mismo sin importar
-  // si lo resolviste en tres segundos o en el último suspiro del reloj.
-  baseReward: 25,
-  baseXP: 50,
-  speedBonusMax: 30,    // monedas extra si respondes con el reloj casi intacto
-  fastThreshold: 0.6,   // por encima de esto cuenta como "reflejo clínico"
-  streakStep: 3,        // cada 3 aciertos seguidos sube el multiplicador
-  maxMultiplier: 3,
-  signFine: 60,         // multa por firmar una nota que resultó equivocada
-  casesPerRound: 5      // pacientes por bloque antes del pase de visita
-};
-
-const NARRATIVE = {
-  title: "Guardia crítica",
-  intro: "Estás de guardia. No eres observador: decides con información incompleta en un servicio saturado.",
-  premise: "Aquí no se resuelven casos perfectos. Se decide bajo presión clínica real.",
-  welcomeTitle: "Bienvenida a la guardia",
-  welcomeSubtitle: "Reglas rápidas antes de empezar.",
-  rules: [
-    "Decide con la información disponible: no siempre tendrás el panorama completo.",
-    "Responde rápido: el reloj que te sobra se paga en monedas.",
-    "Firma la nota si estás seguro: cobras el doble, o pagas la multa.",
-    "Cada 5 pacientes el Dr. Celada pasa lista y reparte bono.",
-    "Una decisión defendible pesa más que una respuesta perfecta.",
-    "Las rachas aumentan tu recompensa; los errores cortan el ritmo.",
-    "Lee la retroalimentación breve para ajustar tu criterio clínico."
-  ],
-  residents: [
-    "“No tengo tiempo para revisar todo, dime qué hacemos.”",
-    "“Esto puede esperar… o no. Tú decides.”",
-    "“Si lo mandamos a casa y se complica, va a rebotar.”"
-  ],
-  boss: "Dr. Celada evalúa resultados, no intenciones. No pregunta: espera que sepas decidir.",
-  consequence: "El error honesto pesa menos que una decisión mal razonada."
-};
-
-// Lo que dice el adscrito en el pase de visita, según cómo salió el bloque.
-// El Dr. Celada dejó de ser un retrato con etiqueta: ahora pasa lista.
-const BOSS_ROUNDS = [
-  {
-    min: 1, label: "PASE IMPECABLE", mood: "streak", tone: "perfect", bonus: 200, heal: true,
-    lines: [
-      "Cinco de cinco. Así se ve una guardia bien llevada.",
-      "Ni un tropiezo en todo el bloque. El servicio lo nota.",
-      "Impecable. Ni una decisión que reprocharte."
-    ]
-  },
-  {
-    min: 0.8, label: "BUEN BLOQUE", mood: "ok", tone: "good", bonus: 110, heal: false,
-    lines: [
-      "Sólido. Un desliz no arruina un bloque bien resuelto.",
-      "Vas bien. Sostén el criterio y no te enamores de la primera hipótesis.",
-      "Buen ritmo. Sigue así y salimos vivos del turno."
-    ]
-  },
-  {
-    min: 0.6, label: "ACEPTABLE", mood: "normal", tone: "ok", bonus: 55, heal: false,
-    lines: [
-      "Pasable. Te faltó rigor en un par de decisiones.",
-      "Ni brillante ni desastroso. Afina el razonamiento.",
-      "Aquí el margen es estrecho. Ajusta antes del siguiente bloque."
-    ]
-  },
-  {
-    min: 0, label: "REVISIÓN NECESARIA", mood: "angry", tone: "bad", bonus: 0, heal: false,
-    lines: [
-      "Demasiados errores. Vuelve a leer los casos que fallaste.",
-      "Esto no se sostiene. Baja la velocidad y piensa.",
-      "El servicio no aguanta este margen de error. Corrígelo ya."
-    ]
-  }
-];
-
-// Cada residente tenía su propio degradado: ocho colores que no significaban
-// nada. La cara del sprite y el nombre al lado ya los distinguen; el fondo del
-// retrato queda libre para decir lo único que el jugador no puede deducir de
-// un vistazo — quién te habla y cómo está el paciente.
-const ROSTER = [
-  { name: "Aguilar",  title: "Dra.", signature: "Ya lo interrogué; te resumo lo importante.", sprite: "aguilar_atlas.png" },
-  { name: "Solis",    title: "Dr.",  signature: "Yo ya le hubiera dado algo, pero mejor dime tú.", sprite: "solis_atlas.png" },
-  { name: "Ríos",     title: "Dra.", signature: "Con calma: los datos están completos, la decisión es tuya.", sprite: "rios_atlas.png" },
-  { name: "Mendoza",  title: "Dr.",  signature: "No me gusta cómo se ve… ¿lo checas conmigo?", sprite: "mendoza_atlas.png" },
-  { name: "Ferrer",   title: "Dra.", signature: "Te lo pongo en una línea: hay que decidir ya.", sprite: "ferrer_atlas.png" },
-  { name: "Castañeda",title: "Dr.",  signature: "El interrogatorio no me cuadra del todo, júzgalo tú.", sprite: "castaneda_atlas.png" },
-  { name: "Herrera",  title: "Dra.", signature: "La familia está afuera preguntando. ¿Qué les digo?", sprite: "herrera_atlas.png" },
-  { name: "Valdez",   title: "Dr.",  signature: "Tranquilidad… bueno, la que se pueda a esta hora.", sprite: "valdez_atlas.png" }
-];
-
-// Frases por contexto. Las de "presentNormal" incluyen las citas originales de NARRATIVE.residents.
-const RESIDENT_LINES = {
-  presentTachy: [
-    "Viene muy agitado, apenas podemos contenerlo. ¿Qué hacemos?",
-    "Está taquicárdico y no coopera. Necesito una indicación ya.",
-    "Se altera más con cada minuto. Tú decides.",
-    "Seguridad ya está enterada, pero esto es clínico. ¿Indicaciones?"
-  ],
-  presentBrady: [
-    "Casi no responde; lo trajeron los familiares.",
-    "Lleva horas sin moverse ni comer. Esto no me gusta.",
-    "Hipoactivo, apenas contesta. ¿Por dónde empezamos?"
-  ],
-  presentNormal: [
-    "No tengo tiempo para revisar todo, dime qué hacemos.",
-    "Esto puede esperar… o no. Tú decides.",
-    "Si lo mandamos a casa y se complica, va a rebotar.",
-    "Te presento el caso; la sala está llena y hay prisa.",
-    "Ya está el expediente. ¿Cuál es tu impresión?"
-  ],
-  ok: [
-    "¡Eso! Ya lo estamos indicando.",
-    "De acuerdo, tiene sentido. Procedo.",
-    "Bien visto. Aviso a enfermería.",
-    "Anotado. El paciente va a agradecerlo."
-  ],
-  okSigned: [
-    "Firmaste y acertaste. Eso es tenerlas bien puestas.",
-    "Con tu firma encima y salió limpio. Impresionante.",
-    "Te comprometiste y el paciente lo agradece."
-  ],
-  errorSigned: [
-    "Ay… y lo habías firmado. Eso va a doler.",
-    "Firmaste esa nota. El adscrito la va a leer.",
-    "Con tu nombre encima. Vamos a tener que rehacerlo."
-  ],
-  okStreak: [
-    "Otra más… hoy estás en modo intratable.",
-    "Así da gusto pasar la guardia.",
-    "El Dr. Celada tiene que estar viendo esto.",
-    "A este ritmo, vaciamos la sala antes del cambio de turno."
-  ],
-  error: [
-    "¿Seguro? El paciente no va bien…",
-    "Uy… eso no salió como esperábamos.",
-    "Se complicó. Hay que replantear.",
-    "El adscrito va a preguntar por esto…"
-  ],
-  timeout: [
-    "Nos quedamos pensando demasiado…",
-    "No decidimos a tiempo; ya intervino el adscrito.",
-    "La demora también es una decisión, y esta costó."
-  ],
-  // El paciente se descompensó por la decisión anterior: el residente lo dice
-  // en voz alta en vez de dejarlo escondido en un prefijo del enunciado.
-  decompensated: [
-    "¡Se nos está yendo! Necesito una maniobra de rescate ya.",
-    "Reaccionó mal a lo anterior y ahora está inestable. ¿Qué hacemos?",
-    "Se descompensó. No hay margen para otra equivocación.",
-    "Está peor que hace un minuto. Rápido, ¿qué indicamos?"
-  ],
-  rescued: [
-    "Lo estabilizaste. Respiramos otra vez.",
-    "Ya remonta. Buen rescate.",
-    "Vuelve a estar estable. Estuvo cerca."
-  ]
-};
+// GAME_CONFIG, NARRATIVE, BOSS_ROUNDS, ROSTER y RESIDENT_LINES viven en
+// js/content.js, que se genera desde EDITAR_JUEGO.md (npm run apply).
 
 // Anti-repetición: recuerda la última frase usada por pool
 const _lineMemory = {};
@@ -187,7 +26,6 @@ const MOOD_FRAMES = {
   speaking: 1,
   thinking: 2,
   ok: 3,
-  happy: 3,      // alias heredado de 'ok'
   streak: 4,
   worried: 5,
   shock: 6,
@@ -234,7 +72,7 @@ const Avatars = {
 
   resident(name, mood = "normal") {
     const res = ROSTER.find(r => r.name === name) || ROSTER[0];
-    const anim = (mood === "happy" || mood === "ok" || mood === "streak") ? "bounce" : ((mood === "shock" || mood === "angry") ? "shake" : "");
+    const anim = (mood === "ok" || mood === "streak") ? "bounce" : ((mood === "shock" || mood === "angry") ? "shake" : "");
     return this._generate(res.sprite, mood, anim, "resident");
   },
 
@@ -279,9 +117,8 @@ const Game = (() => {
     currentTaskIndex: 0,
     studyMode: false,
     reviewMode: false,
-    autoAdvance: localStorage.getItem('psy_pref_autoadvance') !== 'false',
-    soundEnabled: localStorage.getItem('psy_pref_sound') !== 'false',
-    // Creado dinámicamente
+    autoAdvance: SafeStore.get('psy_pref_autoadvance') !== 'false',
+    soundEnabled: SafeStore.get('psy_pref_sound') !== 'false',
     solvedCasesCount: 0,
     filters: {
       educational_level: "",
@@ -290,7 +127,6 @@ const Game = (() => {
     resident: ROSTER[0],
     turnSeconds: GAME_CONFIG.baseTurnSeconds, // Dinámico
     casesReady: false,
-    useGenerator: false,
     streak: 0,
     maxStreak: 0,
     recentCases: [],
@@ -304,6 +140,19 @@ const Game = (() => {
     justRescued: false,
     failedCaseIds: [],
     decompensated: false,
+    // La pregunta ya se decidió (respuesta o reloj agotado). Bloquea las
+    // ayudas de pago: antes se podía comprar una pista o +30s con el
+    // feedback ya en pantalla y las monedas se iban a la basura.
+    locked: false,
+    // Hubo algún fallo en alguna tarea del caso actual. El repaso espaciado
+    // sólo asciende un caso resuelto entero sin errores.
+    caseHadError: false,
+    // Contador de sesión: cada guardia y cada vuelta al menú lo incrementan.
+    // Los setTimeout diferidos comprueban que sigue siendo el suyo antes de
+    // pintar nada (si no, un feedback podía aparecer encima del menú).
+    runId: 0,
+    // Último reloj anunciado, para avisar cuando la racha lo acorta.
+    lastTurnSeconds: GAME_CONFIG.baseTurnSeconds,
     // Apuesta clínica del turno actual: firmar la nota dobla lo que ganas y
     // añade una multa si te equivocas. Se reinicia en cada pregunta.
     signed: false,
@@ -311,43 +160,51 @@ const Game = (() => {
     // Bloque de 5 pacientes que cierra con el pase de visita del adscrito.
     round: { answered: 0, correct: 0, coins: 0, index: 1 },
     // Acumulado de toda la guardia, para el resumen final.
-    shift: { answered: 0, correct: 0, coins: 0, cases: 0, fast: 0, signed: 0 }
+    shift: newShift()
   };
+
+  function newShift() {
+    return { answered: 0, correct: 0, coins: 0, cases: 0, fast: 0, signed: 0, mistakes: [] };
+  }
 
   const $ = (sel) => document.querySelector(sel);
 
+  // Programa un callback sólo válido para la sesión actual (ver state.runId).
+  function later(fn, ms) {
+    const run = state.runId;
+    return setTimeout(() => { if (run === state.runId) fn(); }, ms);
+  }
+
+  function setUrgency(hot, critical) {
+    document.body.classList.toggle("hot-zone-active", !!hot);
+    document.body.classList.toggle("time-critical", !!critical);
+  }
+
+  // Detiene todo lo que corre durante un turno: reloj, auto-avance y efectos.
+  function stopTurnFx() {
+    clearInterval(state.timer);
+    clearTimeout(state.recentFeedbackTimer);
+    setUrgency(false, false);
+  }
+
   // --- SCREEN MANAGER ---
   const ScreenManager = {
-    transition(fromId, toId, effect = "fade") {
-      const fromEl = $(fromId);
-      const toEl = $(toId);
-
-      if (fromEl && fromEl.innerHTML) {
-        fromEl.classList.add("fade-out", "screen-transition");
-        setTimeout(() => {
-          fromEl.innerHTML = "";
-          fromEl.classList.remove("fade-out", "screen-transition");
-        }, 500);
-      }
-
-      if (toEl) {
-        toEl.style.opacity = "0";
-        setTimeout(() => {
-          toEl.classList.add(effect === "slide" ? "slide-up" : "fade-in", "screen-transition");
-          toEl.style.opacity = "1";
-          setTimeout(() => toEl.classList.remove("slide-up", "fade-in", "screen-transition"), 500);
-        }, 100);
-      }
-    },
-
     showMenu() {
-      // Clear game screens
+      state.runId++;
+      stopTurnFx();
+      PsyBoot.inShift = false;
+      // Si llegó una versión nueva durante la guardia, éste es el momento de
+      // aplicarla: el jugador ya no pierde nada.
+      PsyBoot.applyPendingUpdate();
+
       $("#hudRoot").innerHTML = "";
       $("#caseRoot").innerHTML = "";
       $("#modalRoot").innerHTML = "";
+      $("#fxRoot").innerHTML = "";
 
-      // Render menu in hudRoot (acting as main container)
+      // El menú se pinta en hudRoot, que hace de contenedor principal.
       renderMenu();
+      $("#hudRoot").classList.remove("fade-out");
       $("#hudRoot").classList.add("fade-in", "screen-transition");
     }
   };
@@ -361,85 +218,111 @@ const Game = (() => {
       .replaceAll("'", "&#039;");
   }
 
+  // --- REPASO ESPACIADO ---
+  // Cada caso fallado guarda un nivel de maestría: 0 (repasar ya) → 1 (+24 h)
+  // → 2 (+72 h) → borrado al tercer acierto espaciado.
+  const FAILED_KEY = "psycase_failed_cases";
+  const REVIEW_DELAYS_MS = [0, 24 * 3600 * 1000, 72 * 3600 * 1000];
+  const MASTERY_LEVEL = 3;
+
   function getFailedCases() {
     try {
-      const raw = JSON.parse(localStorage.getItem('psycase_failed_cases') || '[]');
+      const raw = JSON.parse(SafeStore.get(FAILED_KEY, "[]"));
       if (!Array.isArray(raw)) return [];
       return raw
-        .filter(item => item !== null && typeof item === 'object' || typeof item === 'string')
+        .filter(item => (item !== null && typeof item === "object") || typeof item === "string")
         .map(item => {
-          if (typeof item === 'string') {
+          if (typeof item === "string") {
             return { caseId: item, level: 0, nextReview: 0 };
           }
           return {
-            caseId: typeof item.caseId === 'string' ? item.caseId : '',
+            caseId: typeof item.caseId === "string" ? item.caseId : "",
             level: Number.isFinite(item.level) ? item.level : 0,
             nextReview: Number.isFinite(item.nextReview) ? item.nextReview : 0
           };
         })
         .filter(item => item.caseId.length > 0);
-    } catch(e) {
+    } catch (e) {
       return [];
     }
   }
 
+  function storeFailedCases(list) {
+    SafeStore.set(FAILED_KEY, JSON.stringify(list));
+  }
+
   function getDueFailedCases() {
-    const failed = getFailedCases();
     const now = Date.now();
-    return failed.filter(item => !item.nextReview || item.nextReview <= now);
+    return getFailedCases().filter(item => !item.nextReview || item.nextReview <= now);
+  }
+
+  // Quita del repaso los casos que ya no existen en el banco. Sin esto, un
+  // caso retirado del dataset quedaba "listo para repasar" para siempre: el
+  // menú prometía N casos y el repaso terminaba al instante.
+  function pruneFailedCases() {
+    if (!CaseDB.isReady()) return;
+    const list = getFailedCases();
+    const kept = list.filter(item => CaseDB.hasCase(item.caseId));
+    if (kept.length !== list.length) storeFailedCases(kept);
   }
 
   function saveFailedCase(caseId) {
-    // Guardar todos los casos del banco para el repaso; excluir solo los sintéticos del generador
+    // Todos los casos del banco entran al repaso; sólo se excluyen los sintéticos del generador.
     if (!caseId || caseId.startsWith("MODULAR_")) return;
-    let failed = getFailedCases();
-    let existing = failed.find(item => item.caseId === caseId);
+    const failed = getFailedCases();
+    const existing = failed.find(item => item.caseId === caseId);
     if (!existing) {
       failed.push({ caseId, level: 0, nextReview: Date.now() });
     } else {
-      // Si ya existía, pero se volvió a fallar, se reinicia el nivel de maestría y se programa inmediato
+      // Volver a fallar reinicia la maestría y lo deja listo de inmediato.
       existing.level = 0;
       existing.nextReview = Date.now();
     }
-    try { localStorage.setItem('psycase_failed_cases', JSON.stringify(failed)); } catch {}
+    storeFailedCases(failed);
   }
 
   function promoteFailedCase(caseId) {
     if (!caseId) return;
-    let failed = getFailedCases();
-    let idx = failed.findIndex(item => item.caseId === caseId);
-    if (idx !== -1) {
-      const item = failed[idx];
-      item.level = (item.level || 0) + 1;
-      if (item.level >= 3) {
-        // Alcanzó el nivel máximo de maestría (3 aciertos espaciados), se borra definitivamente
-        failed.splice(idx, 1);
-      } else {
-        // Reprogramar según el nivel de maestría:
-        // Nivel 1: +24 horas (86400000 ms)
-        // Nivel 2: +72 horas (259200000 ms)
-        const delay = item.level === 1 ? 24 * 3600 * 1000 : 72 * 3600 * 1000;
-        item.nextReview = Date.now() + delay;
-      }
-      try { localStorage.setItem('psycase_failed_cases', JSON.stringify(failed)); } catch {}
+    const failed = getFailedCases();
+    const idx = failed.findIndex(item => item.caseId === caseId);
+    if (idx === -1) return;
+    const item = failed[idx];
+    item.level = (item.level || 0) + 1;
+    if (item.level >= MASTERY_LEVEL) {
+      failed.splice(idx, 1);
+    } else {
+      item.nextReview = Date.now() + REVIEW_DELAYS_MS[item.level];
     }
+    storeFailedCases(failed);
   }
 
   // Separador de oraciones que no corta en decimales ("0.6-1.2 mEq/L")
   const SENTENCE_RE = /(?:[^.!?]|[.!?](?=\d))+(?:[.!?]+|$)/g;
 
   function getBriefFeedback(caseObj, task) {
-    const rationale = caseObj?.explanation?.rationale || task?.rationale || "";
+    const rationale = task?.rationale || caseObj?.explanation?.rationale || "";
     if (!rationale) return "Evalúa el riesgo inmediato y prioriza lo defendible.";
     const sentences = rationale.match(SENTENCE_RE);
     return sentences ? sentences[0].trim() : rationale.slice(0, 160) + "…";
   }
 
+  // En los casos multi-tarea, why_not mezcla los distractores de todas las
+  // preguntas. Mostrarlo entero en la pregunta 2 explicaba opciones que el
+  // jugador nunca vio. Se queda sólo con las de la pregunta en pantalla.
+  function getWhyNotForTask(caseObj, task) {
+    const whyNot = Array.isArray(caseObj?.explanation?.why_not) ? caseObj.explanation.why_not : [];
+    const shown = new Set((Array.isArray(task?.distractors) ? task.distractors : []).map(normalizeCaseText));
+    if (!shown.size) return whyNot;
+    return whyNot.filter(item => shown.has(normalizeCaseText(item.option || "")));
+  }
+
   function getExplanationPayload(caseObj, task, selectedText, ok) {
     const explanation = caseObj?.explanation || {};
-    const rationale = String(explanation.rationale || task?.rationale || "").trim();
+    // Una tarea con rationale propio manda sobre el del caso (que suele
+    // explicar la primera pregunta).
+    const rationale = String(task?.rationale || explanation.rationale || "").trim();
     const takeHome = String(explanation.take_home || "").trim();
-    const whyNot = Array.isArray(explanation.why_not) ? explanation.why_not : [];
+    const whyNot = getWhyNotForTask(caseObj, task);
     let reason = "";
 
     if (!ok && selectedText) {
@@ -751,7 +634,7 @@ const Game = (() => {
         </div>
         <div class="briefing-quote">“${escapeHtml(NARRATIVE.intro)}”</div>
         <div class="briefing-rules">
-          ${NARRATIVE.rules.slice(0, 4).map(r => `<div class="briefing-rule">${escapeHtml(r)}</div>`).join("")}
+          ${NARRATIVE.rules.map(r => `<div class="briefing-rule">${escapeHtml(r.replaceAll("{pase}", GAME_CONFIG.casesPerRound))}</div>`).join("")}
         </div>
         <div class="briefing-sign">${escapeHtml(NARRATIVE.consequence)}</div>
       </div>
@@ -763,38 +646,54 @@ const Game = (() => {
     selectLevel.value = state.filters.educational_level;
     selectDifficulty.value = state.filters.difficulty;
 
+    // Cada opción de dificultad dice cuántos casos tiene con el nivel elegido.
+    // Con 1 solo caso "Difícil" el jugador veía el mismo paciente una y otra
+    // vez sin entender por qué.
+    const labelDifficultyOptions = () => {
+      Array.from(selectDifficulty.options).forEach(opt => {
+        if (!opt.dataset.base) opt.dataset.base = opt.textContent;
+        if (!state.casesReady) { opt.textContent = opt.dataset.base; return; }
+        const n = CaseDB.getPoolSize({ educational_level: selectLevel.value, difficulty: opt.value });
+        opt.textContent = `${opt.dataset.base} (${n})`;
+      });
+    };
+
     const updatePoolInfo = () => {
       const info = $("#poolInfo");
       if (!info) return;
-      if (!state.casesReady) { info.textContent = ""; return; }
+      labelDifficultyOptions();
+      if (!state.casesReady) {
+        info.textContent = "⚠️ Sin conexión con el banco de casos: se jugarán casos sintéticos";
+        info.classList.add("pool-info--warn");
+        return;
+      }
       const n = CaseDB.getPoolSize({
         educational_level: selectLevel.value,
         difficulty: selectDifficulty.value
       });
-      info.textContent = n > 0
+      let msg = n > 0
         ? `${n} caso${n === 1 ? "" : "s"} del banco clínico con estos filtros`
         : "⚠️ Sin casos reales para esta combinación: se jugarán casos sintéticos";
+      if (n > 0 && n < GAME_CONFIG.casesPerRound) msg += " · se repetirán pronto";
+      info.textContent = msg;
       info.classList.toggle("pool-info--warn", n === 0);
     };
     selectLevel.onchange = updatePoolInfo;
     selectDifficulty.onchange = updatePoolInfo;
     ensureCasesLoaded().then(updatePoolInfo);
 
-    $("#btnStart").onclick = () => {
+    // Un solo arranque por clic: antes un doble toque lanzaba dos guardias
+    // superpuestas (dos casos, dos relojes compitiendo por el mismo HUD).
+    const launch = (studyMode, reviewMode) => {
+      root.querySelectorAll(".btn-mode").forEach(b => { b.disabled = true; });
       root.classList.add("fade-out", "screen-transition");
-      setTimeout(() => startTurn(false, false), 400);
+      later(() => startTurn(studyMode, reviewMode), 260);
     };
 
-    $("#btnStudyMode").onclick = () => {
-      root.classList.add("fade-out", "screen-transition");
-      setTimeout(() => startTurn(true, false), 400);
-    };
-
+    $("#btnStart").onclick = () => launch(false, false);
+    $("#btnStudyMode").onclick = () => launch(true, false);
     if (failedList.length > 0) {
-      $("#btnMenuReviewFailed").onclick = () => {
-        root.classList.add("fade-out", "screen-transition");
-        setTimeout(() => startTurn(true, true), 400);
-      };
+      $("#btnMenuReviewFailed").onclick = () => launch(true, true);
     }
   });
 }
@@ -802,11 +701,14 @@ const Game = (() => {
   function renderGameOver() {
     const modal = $("#modalRoot");
 
+    PsyBoot.inShift = false;
     let isRecord = false;
     if (!state.studyMode) {
       isRecord = Economy.registerGame(state.maxStreak, state.shift.cases);
     }
-    Economy.checkAchievements();
+    // registerGame puede desbloquear logros (primer turno, turno largo,
+    // veterano): antes se marcaban en silencio y nadie se enteraba.
+    pushAchievements();
     const unlocked = Economy.getUnlockedAchievements();
     const sh = state.shift;
     const accuracy = sh.answered ? Math.round((sh.correct / sh.answered) * 100) : 0;
@@ -815,12 +717,28 @@ const Game = (() => {
     const dueList = getDueFailedCases();
     const showReviewBtn = failedList.length > 0;
 
+    // Morir sin saber en qué fallaste es perder la guardia dos veces. La
+    // lista convierte el Game Over en la última lección del turno.
+    const mistakes = sh.mistakes.slice(-4).reverse();
+    const mistakesHtml = mistakes.length ? `
+      <div class="shift-mistakes">
+        <div class="stat-label" style="color:var(--miami-pink);">Para repasar</div>
+        ${mistakes.map(m => `
+          <div class="shift-mistake">
+            <div class="shift-mistake-title">${escapeHtml(m.title)}${m.timeout ? " · ⏰" : ""}</div>
+            <div class="shift-mistake-answer">✔ ${escapeHtml(m.answer)}</div>
+            ${m.takeHome ? `<div class="shift-mistake-take">${escapeHtml(m.takeHome)}</div>` : ""}
+          </div>`).join("")}
+      </div>` : "";
+
     modal.innerHTML = `
       <div class="modal">
         <div class="modalCard game-over-card">
-          <div class="game-over-mark" aria-hidden="true">💀</div>
-          <div class="hero-title" style="color:#ff0055;">GUARDIA TERMINADA</div>
-          <div style="color:var(--ink-2);">El servicio ha colapsado.</div>
+          <div class="game-over-mark" aria-hidden="true">🌅</div>
+          <h2 class="hero-title" style="color:#ff0055; margin:0;">GUARDIA TERMINADA</h2>
+          <div style="color:var(--ink-2);">${sh.cases > 0
+            ? `Atendiste a ${sh.cases} ${sh.cases === 1 ? "paciente" : "pacientes"} antes del cambio de turno.`
+            : "El turno se cerró antes del primer paciente."}</div>
 
           ${isRecord && sh.cases > 0 ? `<div class="record-flag">🏅 ¡NUEVO RÉCORD DE GUARDIA!</div>` : ""}
 
@@ -861,6 +779,8 @@ const Game = (() => {
               </div>
             </div>
           ` : ""}
+
+          ${mistakesHtml}
 
           <div class="stat-label">Rango Actual: ${Economy.getRank()}</div>
           
@@ -903,7 +823,7 @@ const Game = (() => {
         <div class="modalCard game-over-card" style="border-color:#39ff14; box-shadow: 0 0 50px rgba(57, 255, 20, 0.25);">
           <div style="font-size:48px;">🏆</div>
           <div class="hero-title" style="color:#39ff14;">¡ERRORES DEPURADOS!</div>
-          <div style="color:rgba(255,255,255,0.7); margin-bottom:10px;">Has repasado y corregido todos tus casos fallados de la base de datos real.</div>
+          <div style="color:rgba(255,255,255,0.7); margin-bottom:10px;">No quedan casos pendientes de repaso por hoy. Los que aún están en maestría volverán cuando les toque.</div>
           <div style="color:var(--miami-cyan); font-weight:700; margin-bottom:20px;">¡Excelente trabajo clínico!</div>
           <div style="display:grid; gap:10px;">
             <button class="btn-action" id="btnSuccessMenu">Volver al Menú</button>
@@ -917,21 +837,26 @@ const Game = (() => {
     };
   }
 
+  // Si el banco no carga, la guardia sigue con el generador; en cada turno
+  // se vuelve a intentar, así que en cuanto vuelve la red regresan los casos
+  // reales (antes el fallo se quedaba pegado toda la sesión).
   async function ensureCasesLoaded() {
     if (state.casesReady) return true;
     try {
       await CaseDB.init();
       state.casesReady = true;
-      state.useGenerator = false;
+      pruneFailedCases();
       return true;
     } catch (err) {
       console.error(err);
-      state.useGenerator = true;
       return false;
     }
   }
 
   async function startTurn(studyMode = false, reviewMode = false) {
+    state.runId++;
+    stopTurnFx();
+    PsyBoot.inShift = true;
     state.studyMode = studyMode;
     state.reviewMode = reviewMode;
     ensureAudio();
@@ -950,8 +875,12 @@ const Game = (() => {
     state.currentTaskIndex = 0;
     state.signed = false;
     state.lastReward = null;
+    state.locked = false;
+    state.caseHadError = false;
+    state.decompensated = false;
+    state.lastTurnSeconds = GAME_CONFIG.baseTurnSeconds;
     state.round = { answered: 0, correct: 0, coins: 0, cases: 0, index: 1 };
-    state.shift = { answered: 0, correct: 0, coins: 0, cases: 0, fast: 0, signed: 0 };
+    state.shift = newShift();
 
     // Read filters — review mode ignores filters to avoid excluding valid failed cases
     if (reviewMode) {
@@ -965,10 +894,8 @@ const Game = (() => {
       if (selectDifficulty) state.filters.difficulty = selectDifficulty.value;
     }
 
-    // Reset visual effects
-    document.body.classList.remove("hot-zone-active", "time-critical");
-
     $("#hudRoot").innerHTML = "";
+    $("#modalRoot").innerHTML = "";
     await ensureCasesLoaded();
     await nextCase();
 
@@ -984,9 +911,9 @@ const Game = (() => {
     const hud = $("#hudRoot");
     if (!hud) return;
 
-    const isEduDoc = state.current?.case_type === "documento_educativo";
-    const untimed = state.studyMode || isEduDoc;
+    const untimed = isUntimed();
     const coins = Economy.getCoins();
+    const costs = GAME_CONFIG.costs;
     const res = state.resident || ROSTER[0];
 
     // Vidas: los corazones se leen de un vistazo, pero sin número no se sabe
@@ -1043,6 +970,12 @@ const Game = (() => {
       title: `Para gastar en ayudas · rango ${Economy.getRank()}`
     });
 
+    // La barra arranca donde va el reloj: repintar el HUD (comprar una pista,
+    // silenciar el sonido) ya no la devuelve al 100 % durante un instante.
+    const timePct = state.turnSeconds
+      ? Math.max(0, Math.min(100, (state.timeLeft / state.turnSeconds) * 100))
+      : 100;
+
     const statsHtml = statCells.map(cell => `
       <div class="hud-stat ${cell.cls}" title="${escapeHtml(cell.title)}">
         <span class="hud-stat-label">${escapeHtml(cell.label)}</span>
@@ -1051,25 +984,31 @@ const Game = (() => {
 
     // Cada ayuda dice qué hace y por qué está bloqueada. Un botón apagado con
     // sólo un emoji y un número no explica nada al que lo necesita.
+    // Con la pregunta ya decidida ninguna ayuda sirve: se bloquean todas.
+    const lockedReason = state.locked ? "La decisión ya está tomada" : "";
     const helpers = [
       {
-        id: "btnHint", icon: "💡", label: "Pista", cost: 50,
+        id: "btnHint", icon: "💡", label: "Pista", cost: costs.hint,
         desc: "Descarta una opción incorrecta",
-        blocked: state.hintUsedInTurn ? "Ya usaste la pista en este caso" : "",
-        blockedShort: "Ya usada"
+        blocked: lockedReason || (state.hintUsedInTurn ? "Ya usaste la pista en esta pregunta" : ""),
+        blockedShort: state.locked ? "Decidido" : "Ya usada"
       },
-      {
-        id: "btnBuyLife", icon: "❤️", label: "Vida", cost: 100,
-        desc: "Recupera una vida perdida",
-        blocked: state.lives >= GAME_CONFIG.maxLives ? "Ya tienes todas tus vidas" : "",
-        blockedShort: "Al máximo"
-      },
-      {
-        id: "btnBuyTime", icon: "⏱️", label: "+30s", cost: 30,
-        desc: "Suma 30 segundos al reloj",
-        blocked: untimed ? "Este caso no tiene reloj" : "",
-        blockedShort: "Sin reloj"
-      }
+      // En modo estudio no hay vidas ni reloj que comprar: los botones sólo
+      // ocupaban sitio con un "Al máximo" que no significaba nada.
+      ...(state.studyMode ? [] : [
+        {
+          id: "btnBuyLife", icon: "❤️", label: "Vida", cost: costs.life,
+          desc: "Recupera una vida perdida",
+          blocked: state.lives >= GAME_CONFIG.maxLives ? "Ya tienes todas tus vidas" : "",
+          blockedShort: "Al máximo"
+        },
+        {
+          id: "btnBuyTime", icon: "⏱️", label: `+${GAME_CONFIG.timeBoostSeconds}s`, cost: costs.time,
+          desc: `Suma ${GAME_CONFIG.timeBoostSeconds} segundos al reloj`,
+          blocked: untimed ? "Este caso no tiene reloj" : lockedReason,
+          blockedShort: untimed ? "Sin reloj" : "Decidido"
+        }
+      ])
     ];
 
     const helperButtons = helpers.map(h => {
@@ -1094,8 +1033,8 @@ const Game = (() => {
     hud.innerHTML = `
       <div class="miami-card hud-card">
         ${untimed ? "" : `
-        <div class="hud-progress" role="progressbar" aria-label="Tiempo restante">
-          <div class="hud-progress-bar" id="tBar" style="width:100%"></div>
+        <div class="hud-progress ${state.timeLeft <= 5 && !state.locked ? "hud-progress--danger" : ""}" role="progressbar" aria-label="Tiempo restante">
+          <div class="hud-progress-bar" id="tBar" style="width:${timePct}%"></div>
         </div>`}
         <div class="hudRow">
           <div class="hudBox">
@@ -1158,7 +1097,7 @@ const Game = (() => {
     if (soundBtn) {
       soundBtn.onclick = () => {
         state.soundEnabled = !state.soundEnabled;
-        localStorage.setItem('psy_pref_sound', state.soundEnabled);
+        SafeStore.set('psy_pref_sound', state.soundEnabled);
         renderHUD();
         playTone(660, 0.05);
       };
@@ -1168,7 +1107,7 @@ const Game = (() => {
     if (autoBtn) {
       autoBtn.onclick = () => {
         state.autoAdvance = !state.autoAdvance;
-        localStorage.setItem('psy_pref_autoadvance', state.autoAdvance);
+        SafeStore.set('psy_pref_autoadvance', state.autoAdvance);
         renderHUD();
         playTone(660, 0.05);
       };
@@ -1176,43 +1115,39 @@ const Game = (() => {
 
     const menuBtn = $("#btnMenuFromGame");
     if (menuBtn) {
-      menuBtn.onclick = () => {
-        clearInterval(state.timer);
-        clearTimeout(state.recentFeedbackTimer);
-        document.body.classList.remove("hot-zone-active", "time-critical");
-        ScreenManager.showMenu();
-      };
+      menuBtn.onclick = () => ScreenManager.showMenu();
     }
   }
 
   function useHint() {
-    if (state.hintUsedInTurn || !Economy.spend(50)) return;
-    state.hintUsedInTurn = true;
-    
+    if (state.locked || state.hintUsedInTurn) return;
     const distractors = document.querySelectorAll('.option-btn[data-ok="0"]:not(.hint-used)');
-    if (distractors.length > 0) {
-      const target = distractors[Math.floor(Math.random() * distractors.length)];
-      target.classList.add("hint-used");
-      target.disabled = true;
-      playTone(600, 0.05);
-    }
+    // Cobrar sólo si de verdad hay algo que descartar.
+    if (!distractors.length || !Economy.spend(GAME_CONFIG.costs.hint)) return;
+    state.hintUsedInTurn = true;
+
+    const target = distractors[Math.floor(Math.random() * distractors.length)];
+    target.classList.add("hint-used");
+    target.disabled = true;
+    target.setAttribute("aria-label", "Descartada por la pista");
+    playTone(600, 0.05);
     renderHUD(); // Update buttons and coins
   }
 
   function buyLife() {
-    if (state.lives >= GAME_CONFIG.maxLives || !Economy.spend(100)) return;
+    if (state.studyMode || state.lives >= GAME_CONFIG.maxLives || !Economy.spend(GAME_CONFIG.costs.life)) return;
     state.lives++;
     playTone(880, 0.1);
     renderHUD();
   }
 
   function buyTime() {
-    if (isUntimed() || !Economy.spend(30)) return;
+    if (state.locked || isUntimed() || !Economy.spend(GAME_CONFIG.costs.time)) return;
     // El tick recalcula timeLeft desde timerStart, así que sumar segundos al
     // marcador no servía de nada. Y topar la compra contra el reloj original
     // la volvía una estafa: en un turno de 34s ya empezado devolvía 3s.
     // Se alarga el turno completo: 30 segundos comprados son 30 segundos.
-    state.turnSeconds += 30;
+    state.turnSeconds += GAME_CONFIG.timeBoostSeconds;
     state.timeLeft = Math.max(0, state.turnSeconds - (Date.now() - state.timerStart) / 1000);
     playTone(880, 0.1);
     renderHUD();
@@ -1220,11 +1155,11 @@ const Game = (() => {
 
   function pickTask(caseObj, index = 0) {
     const t = (caseObj?.tasks && caseObj.tasks[index]) ? caseObj.tasks[index] : null;
+    // Sin rationale por defecto: un texto genérico aquí taparía el del caso.
     const base = {
       instruction: "Analiza el caso y responde.",
       expected_answer: "Conducta adecuada",
-      distractors: ["Opción A", "Opción B", "Opción C"],
-      rationale: "Justificación clínica."
+      distractors: ["Opción A", "Opción B", "Opción C"]
     };
     
     if (!t) return base;
@@ -1275,6 +1210,9 @@ const Game = (() => {
     const { summary, details } = splitCaseText(bodyText);
     const questionText = normalizeCaseText(task.question || task.instruction);
     const consequenceText = state.streak >= 3 && !state.studyMode ? NARRATIVE.consequence : "";
+    // "Basado en el texto…" con la historia plegada obligaba a responder a
+    // ciegas: si la pregunta alude al texto, la historia se abre sola.
+    const refersToText = /\b(texto|lectura|fragmento)\b/i.test(questionText);
 
     const options = [
       { t: task.expected_answer, ok: true },
@@ -1286,15 +1224,14 @@ const Game = (() => {
       [options[i], options[j]] = [options[j], options[i]];
     }
 
-    // Badge showing case / task progress or Educational Doc
+    // Badge: número de paciente y, si el caso tiene varias, de pregunta.
     const tasksCount = c.tasks ? c.tasks.length : 1;
     let progressBadge = "";
     if (c.case_type === "documento_educativo") {
       progressBadge = "Lectura Didáctica";
     } else {
-      progressBadge = tasksCount > 1
-        ? `Pregunta ${state.currentTaskIndex + 1}/${tasksCount}`
-        : `Caso ${state.solvedCasesCount + 1}`;
+      progressBadge = `Caso ${state.solvedCasesCount + 1}` +
+        (tasksCount > 1 ? ` · ${state.currentTaskIndex + 1}/${tasksCount}` : "");
     }
     // Transparencia: avisar cuando el caso no proviene del banco clínico real
     const isSynthetic = c.metadata?.is_real_data === false || String(c.case_id || "").startsWith("MODULAR_");
@@ -1346,7 +1283,7 @@ const Game = (() => {
             </span>
           </div>` : ""}
         
-        <details class="caseDetails">
+        <details class="caseDetails" ${refersToText ? "open" : ""}>
           <summary>📋 Ver Historia Clínica</summary>
           <div class="caseBody" style="margin-top: 12px;">
             ${escapeHtml(summary)}
@@ -1378,7 +1315,7 @@ const Game = (() => {
           </button>
         `).join("")}
       </div>
-      <div class="options-hint">Atajos: 1-4</div>
+      <div class="options-hint">Atajos: 1-${options.length}${canSign ? " · F firma" : ""} · Enter avanza</div>
     `;
 
     root.querySelectorAll(".option-btn").forEach(btn => {
@@ -1406,20 +1343,48 @@ const Game = (() => {
     if (state.soundEnabled) playTone(state.signed ? 740 : 420, 0.07);
   }
 
-  function startTimer() {
-    clearInterval(state.timer);
-    
-    // Si el caso actual es un documento educativo, no iniciamos temporizador
-    if (state.current?.case_type === "documento_educativo") {
-      const b = $("#tBar");
-      if (b) b.style.width = "100%";
-      document.body.classList.remove("hot-zone-active", "time-critical");
-      return;
+  // Arranca una pregunta: desbloquea ayudas, pinta HUD y caso, y pone (o no)
+  // el reloj. Antes este bloque estaba copiado en nextCase y advanceNext.
+  function beginTask() {
+    state.locked = false;
+    state.hintUsedInTurn = false;
+    if (isUntimed()) {
+      clearInterval(state.timer);
+      state.timeLeft = state.turnSeconds;
+    } else {
+      prepareTimer();
     }
+    renderHUD();
+    renderCase();
+    if (isUntimed()) {
+      setUrgency(false, false);
+    } else {
+      startTimer();
+    }
+  }
 
-    // Dificultad Logarítmica: más fluido y natural
+  // Calcula la duración del turno antes de pintar el HUD, para que la cifra
+  // del reloj salga bien desde el primer fotograma.
+  function prepareTimer() {
+    // Dificultad logarítmica: cada acierto seguido recorta el reloj un poco menos.
     const reduction = Math.floor(Math.log2(state.streak + 1) * GAME_CONFIG.difficultyScale);
     state.turnSeconds = Math.max(GAME_CONFIG.minTurnSeconds, GAME_CONFIG.baseTurnSeconds - reduction);
+    state.timeLeft = state.turnSeconds;
+  }
+
+  function startTimer() {
+    clearInterval(state.timer);
+
+    // La presión de la racha era invisible: el reloj se acortaba sin que nadie
+    // lo dijera. Se anuncia cuando el recorte acumulado llega a 3 s (avisar de
+    // cada segundo era ruido); si la racha se rompe, el reloj vuelve a crecer
+    // y la cuenta se reinicia en silencio.
+    if (state.turnSeconds > state.lastTurnSeconds) {
+      state.lastTurnSeconds = state.turnSeconds;
+    } else if (state.lastTurnSeconds - state.turnSeconds >= 3) {
+      floatReward(`⏱️ ${state.turnSeconds}s · la racha aprieta`, "clock");
+      state.lastTurnSeconds = state.turnSeconds;
+    }
 
     state.timeLeft = state.turnSeconds;
     state.timerStart = Date.now();
@@ -1433,14 +1398,14 @@ const Game = (() => {
       const b = $("#tBar");
       if (b) b.style.width = pct + "%";
 
-      // Los segundos van en su propia línea, fuera de la barra: dentro no
-      // cabían y el texto se cortaba a media palabra.
       const value = $("#tValue");
-      if (value && !state.studyMode) value.textContent = `${Math.ceil(state.timeLeft)}s`;
+      if (value) value.textContent = `${Math.ceil(state.timeLeft)}s`;
 
-      // Hot Zone: Efecto visual sutil cuando queda < 20%
-      const isHot = (pct <= 20);
-      document.body.classList.toggle("hot-zone-active", isHot);
+      // Zona caliente (< 20 %) y crítica (≤ 5 s): sólo cambian clases; la capa
+      // .urgency-fx hace el resto con opacidad, sin repintar la página.
+      const isHot = pct <= 20;
+      const isCritical = state.timeLeft <= 5;
+      setUrgency(isHot, isCritical);
 
       // El residente se pone nervioso al entrar en la zona caliente y se
       // recompone si compras tiempo. Sólo se escribe en la transición: el
@@ -1451,51 +1416,78 @@ const Game = (() => {
         Avatars.setMood($("#resBox"), state.residentMood);
       }
 
-      // Parpadeo de fondo rojo cuando quedan ≤ 5 segundos
-      const isCritical = (state.timeLeft <= 5);
-      document.body.classList.toggle("time-critical", isCritical);
-
       const track = b ? b.parentElement : null;
       if (track) track.classList.toggle("hud-progress--danger", isCritical);
 
       if (state.timeLeft <= 0) {
         clearInterval(state.timer);
-        document.body.classList.remove("hot-zone-active", "time-critical");
-
-        if (!state.studyMode) {
-          state.lives -= 1;
-          state.streak = 0; // Timeout rompe racha igual que error
-          saveFailedCase(state.current?.case_id);
-          // No decidir también cuenta como decisión fallida en el bloque.
-          state.round.answered++;
-          state.shift.answered++;
-          state.signed = false;
-          Economy.recordAnswer({ correct: false });
-        }
-
-        // Agotar el reloj no es equivocarse: el residente se queda preocupado,
-        // no en shock, y el adscrito no se enoja por una decisión concreta.
-        state.residentMood = "worried";
-        state.residentWorried = true;
-
-        // Resaltar respuesta correcta visualmente
-        document.querySelectorAll(".option-btn").forEach(b => {
-          b.disabled = true;
-          if (b.dataset.ok === "1") b.classList.add("correct");
-        });
-
-        renderHUD();
-        // Mostrar siempre la respuesta correcta y su explicación breve;
-        // nextCase() dispara el Game Over si ya no quedan vidas.
-        showTimeoutFeedback();
+        setUrgency(false, false);
+        resolveTimeout();
       }
     }, 100);
   }
 
+  // Agotar el reloj cuenta como decisión fallida y sigue el mismo camino que
+  // un error: si al caso le quedan preguntas, el paciente se descompensa y la
+  // guardia continúa con ellas. Antes saltaba al caso siguiente, descartaba
+  // las tareas pendientes, no contaba al paciente y auto-avanzaba siempre,
+  // aunque el jugador hubiera elegido avance manual.
+  function resolveTimeout() {
+    if (state.locked) return;
+    state.locked = true;
+    const task = pickTask(state.current, state.currentTaskIndex);
+
+    if (!state.studyMode) {
+      state.lives -= 1;
+      state.streak = 0;
+      state.round.answered++;
+      state.shift.answered++;
+      Economy.recordAnswer({ correct: false });
+    }
+    state.signed = false;
+    state.lastReward = null;
+    state.caseHadError = true;
+    state.justRescued = false;
+    saveFailedCase(state.current?.case_id);
+    recordMistake(task, true);
+    if (hasMoreTasks()) state.decompensated = true;
+
+    // No decidir no es equivocarse: el residente se queda preocupado, no en
+    // shock, y el adscrito no se enoja por una decisión concreta.
+    state.residentMood = "worried";
+    state.residentWorried = true;
+
+    document.querySelectorAll(".option-btn").forEach(b => {
+      b.disabled = true;
+      if (b.dataset.ok === "1") b.classList.add("correct");
+    });
+    const signBtn = $("#btnSignNote");
+    if (signBtn) signBtn.disabled = true;
+
+    if (state.soundEnabled) playSequence([440, 349, 262], 0.1, 0.18);
+    renderHUD();
+    showTimeoutFeedback(task);
+  }
+
+  function hasMoreTasks() {
+    const tasks = state.current?.tasks;
+    return Array.isArray(tasks) && state.currentTaskIndex + 1 < tasks.length;
+  }
+
+  // Lo que se lista en el Game Over como "Para repasar".
+  function recordMistake(task, timeout = false) {
+    if (state.studyMode) return;
+    state.shift.mistakes.push({
+      title: getCaseTitle(state.current),
+      answer: String(task?.expected_answer || ""),
+      takeHome: String(state.current?.explanation?.take_home || ""),
+      timeout
+    });
+  }
+
   async function nextCase() {
     if (state.lives <= 0) return handleDeath();
-    
-    // Cleanup feedback if exists
+
     clearTimeout(state.recentFeedbackTimer);
     const overlay = $("#modalRoot");
     if (overlay) overlay.innerHTML = "";
@@ -1506,9 +1498,12 @@ const Game = (() => {
     state.residentMood = "speaking";
     state.bossMood = null; // vuelve al estado derivado de vidas y racha
     state.justRescued = false;
-    state.hintUsedInTurn = false;
-    state.currentTaskIndex = 0; // Reset index for new case
-    state.decompensated = false; // Reset descompensación para el nuevo caso
+    state.currentTaskIndex = 0;
+    state.decompensated = false;
+    state.caseHadError = false;
+
+    const run = state.runId;
+    await ensureCasesLoaded();
 
     if (state.reviewMode) {
       const activeFailed = getDueFailedCases();
@@ -1520,6 +1515,7 @@ const Game = (() => {
     }
 
     try {
+      if (!state.casesReady) throw new Error("Banco de casos no disponible");
       const queryFilters = {
         excludeCaseIds: state.reviewMode ? [] : state.recentCases,
         ...state.filters
@@ -1527,81 +1523,61 @@ const Game = (() => {
       if (state.reviewMode) {
         queryFilters.includeCaseIds = state.failedCaseIds;
       }
-      state.current = state.useGenerator ? Generator.createCase(state.filters) : await CaseDB.pickRandomCase(queryFilters);
-    } catch(err) {
+      state.current = await CaseDB.pickRandomCase(queryFilters);
+    } catch (err) {
       if (state.reviewMode) {
         showReviewSuccess();
         return;
       }
-      // Pool agotado por las exclusiones recientes: reintentar permitiendo repetir casos
       try {
+        // Pool agotado por las exclusiones recientes: reintentar permitiendo repetir.
+        if (!state.casesReady) throw err;
         state.current = await CaseDB.pickRandomCase({ ...state.filters });
         state.recentCases = [];
-      } catch(err2) {
-        // No existe ningún caso real con estos filtros: usar el generador SOLO para este turno,
-        // sin cambiar state.useGenerator (el banco real sigue disponible para otros filtros).
-        console.warn("Sin casos reales para los filtros actuales, generando caso sintético:", err2);
+      } catch (err2) {
+        // Ni un caso real disponible: el generador cubre SOLO este turno.
+        console.warn("Sin casos reales disponibles, generando caso sintético:", err2);
         state.current = Generator.createCase(state.filters);
       }
     }
+
+    // Mientras se cargaba un pack el jugador pudo salir al menú.
+    if (run !== state.runId) return;
 
     if (state.current?.case_id) {
       state.recentCases.unshift(state.current.case_id);
       if (state.recentCases.length > 30) state.recentCases.length = 30;
     }
 
-    renderHUD();
-    renderCase();
-    
-    if (!state.studyMode && state.current?.case_type !== "documento_educativo") {
-      startTimer();
-    } else {
-      clearInterval(state.timer);
-      const b = $("#tBar");
-      if (b) b.style.width = "100%";
-      document.body.classList.remove("hot-zone-active", "time-critical");
-    }
+    beginTask();
   }
 
   async function advanceNext() {
     if (state.lives <= 0) return handleDeath();
 
-    // Check if there is another task in current case
-    state.currentTaskIndex++;
-    if (state.current && state.current.tasks && state.currentTaskIndex < state.current.tasks.length) {
-      state.hintUsedInTurn = false;
-      renderHUD();
-      renderCase();
-      if (!state.studyMode && state.current?.case_type !== "documento_educativo") {
-        startTimer();
-      } else {
-        clearInterval(state.timer);
-        const b = $("#tBar");
-        if (b) b.style.width = "100%";
-        document.body.classList.remove("hot-zone-active", "time-critical");
-      }
-    } else {
-      // Go to next case
-      state.solvedCasesCount++;
-      state.round.cases++;
-      state.shift.cases++;
-      // Cada bloque de pacientes cierra con el pase de visita del adscrito:
-      // la guardia deja de ser una fila infinita de preguntas y adquiere ritmo.
-      if (!state.studyMode && state.round.cases >= GAME_CONFIG.casesPerRound) {
-        showRoundReview();
-        return;
-      }
-      await nextCase();
+    if (hasMoreTasks()) {
+      state.currentTaskIndex++;
+      beginTask();
+      return;
     }
+
+    state.solvedCasesCount++;
+    state.round.cases++;
+    state.shift.cases++;
+    // Cada bloque de pacientes cierra con el pase de visita del adscrito:
+    // la guardia deja de ser una fila infinita de preguntas y adquiere ritmo.
+    if (!state.studyMode && state.round.cases >= GAME_CONFIG.casesPerRound) {
+      showRoundReview();
+      return;
+    }
+    await nextCase();
   }
 
   // Pase de visita: el Dr. Celada evalúa el bloque, paga bono y, si fue
   // impecable, devuelve una vida. Es el único momento en que se recupera vida
   // sin pasar por la caja.
   function showRoundReview() {
-    clearInterval(state.timer);
-    clearTimeout(state.recentFeedbackTimer);
-    document.body.classList.remove("hot-zone-active", "time-critical");
+    stopTurnFx();
 
     const r = state.round;
     const answered = Math.max(1, r.answered);
@@ -1666,21 +1642,90 @@ const Game = (() => {
 
     pushAchievements();
 
-    $("#btnRoundContinue").onclick = () => {
+    const continueBtn = $("#btnRoundContinue");
+    try { continueBtn.focus({ preventScroll: true }); } catch { /* navegadores viejos */ }
+    continueBtn.onclick = () => {
+      if (continueBtn.disabled) return; // Enter repetido no abre dos bloques
+      continueBtn.disabled = true;
       modal.innerHTML = "";
       state.round = { answered: 0, correct: 0, coins: 0, cases: 0, index: r.index + 1 };
       nextCase();
     };
   }
 
+  // Botones "Siguiente" / "Ver explicación" y auto-avance, comunes al
+  // feedback de respuesta y al de tiempo agotado.
+  function bindFeedbackControls(root) {
+    const timerBar = $("#feedbackTimerBar");
+    const panel = root.querySelector(".feedback-overlay");
+    let done = false;
+
+    // Un solo avance por panel: Enter repetido o doble toque saltaban una
+    // pregunta entera.
+    const advance = () => {
+      if (done) return;
+      done = true;
+      clearTimeout(state.recentFeedbackTimer);
+      if (panel) panel.classList.add("leaving");
+      later(() => {
+        root.innerHTML = "";
+        advanceNext();
+      }, 180);
+    };
+
+    const useAutoAdvance = state.autoAdvance && !isUntimed();
+    if (timerBar) {
+      if (useAutoAdvance) timerBar.style.setProperty("--advance-ms", `${GAME_CONFIG.advanceDelayMs}ms`);
+      else timerBar.style.display = "none";
+    }
+
+    const nextBtn = $("#btnNextFeedback");
+    nextBtn.onclick = advance;
+    // Foco al botón principal: teclado y lector de pantalla llegan directo.
+    try { nextBtn.focus({ preventScroll: true }); } catch { /* navegadores viejos */ }
+
+    const showMoreBtn = $("#btnShowMoreFeedback");
+    if (showMoreBtn) {
+      showMoreBtn.onclick = (e) => {
+        e.stopPropagation();
+        // Leer la explicación detiene el auto-avance: nadie lee con prisa.
+        clearTimeout(state.recentFeedbackTimer);
+        if (timerBar) timerBar.style.display = "none";
+        $("#expandedFeedback").hidden = false;
+        showMoreBtn.remove();
+      };
+    }
+
+    if (useAutoAdvance) {
+      state.recentFeedbackTimer = later(advance, GAME_CONFIG.advanceDelayMs);
+    }
+  }
+
+  // Bloque desplegable común: rationale completo, take-home y "¿por qué no?".
+  function renderExpandedFeedback(details, whyNotList) {
+    return `
+      <div id="expandedFeedback" hidden>
+        ${details.rationale && details.rationale !== details.reason ? `<div class="modalFeedback feedback-rationale">${escapeHtml(details.rationale)}</div>` : ""}
+        ${details.takeHome ? `<div class="feedback-take-home">💡 Para recordar: ${escapeHtml(details.takeHome)}</div>` : ""}
+        ${whyNotList.length ? `
+          <div class="feedback-why-not">
+            <div class="modalSectionTitle feedback-why-not-title">¿Por qué otras opciones no?</div>
+            ${whyNotList.map(w => `
+              <div class="feedback-why-not-item">
+                <strong>${escapeHtml(w.option)}</strong>: ${escapeHtml(w.reason)}
+              </div>
+            `).join("")}
+          </div>
+        ` : ""}
+      </div>`;
+  }
+
   function showSmartFeedback(ok, task, selectedText) {
     const root = $("#modalRoot");
     const brief = getBriefFeedback(state.current, task);
     const details = getExplanationPayload(state.current, task, selectedText, ok);
-    const hasExplanation = !!state.current?.explanation;
-
-    const whyNotList = state.current?.explanation?.why_not || [];
-    const takeHomeText = details.takeHome;
+    const whyNotList = getWhyNotForTask(state.current, task);
+    const hasMore = (details.rationale && details.rationale !== details.reason) || details.takeHome || whyNotList.length;
 
     // Reacción del residente al resultado (racha alta tiene frases propias).
     // Un rescate tiene voz propia: no es un acierto más.
@@ -1717,11 +1762,7 @@ const Game = (() => {
 
     // Consecuencia visible del error: el jugador tiene que ver que el paciente
     // empeoró, no descubrirlo en la siguiente pregunta.
-    const consequenceNote = state.decompensated
-      ? `<div class="feedback-consequence">🚨 <strong>El paciente se descompensó.</strong> La siguiente decisión es de rescate.</div>`
-      : (state.justRescued
-        ? `<div class="feedback-consequence feedback-consequence--good">💚 <strong>Paciente estabilizado.</strong> Lo sacaste de la descompensación.</div>`
-        : "");
+    const consequenceNote = consequenceHtml();
 
     let headerIcon = "⚠️";
     let headerText = "ERROR CLÍNICO";
@@ -1731,126 +1772,109 @@ const Game = (() => {
     else if (ok) { headerIcon = "💎"; headerText = "EXCELENTE"; }
     else if (wasSigned) { headerIcon = "🖊️"; headerText = "NOTA FIRMADA… Y ERRADA"; }
 
+    const tone = ok ? "good" : "bad";
     root.innerHTML = `
-      <div class="feedback-overlay show" style="border-color:${ok ? "rgba(57,255,20,0.4)" : "rgba(255,0,85,0.4)"}; cursor: default;">
+      <div class="feedback-overlay feedback-overlay--${tone} show" role="status" aria-live="assertive">
         <div class="feedback-header">
-          <div style="font-size:32px;">${headerIcon}</div>
-          <div class="feedback-status" style="color:${ok ? "#39ff14" : "#ff0055"}">
-            ${headerText}
-          </div>
+          <div class="feedback-icon" aria-hidden="true">${headerIcon}</div>
+          <div class="feedback-status feedback-status--${tone}">${headerText}</div>
         </div>
         ${consequenceNote}
         ${rewardStrip}
         ${reactLine ? `<div class="feedback-resident">${escapeHtml(res.title)} ${escapeHtml(res.name)}: “${escapeHtml(reactLine)}”</div>` : ""}
-        <div class="modalFeedback" style="margin:0; font-size:14px;">${escapeHtml(details.reason || brief)}</div>
-        
-        <div id="expandedFeedback" style="display:none;">
-          ${details.rationale && details.rationale !== details.reason ? `<div class="modalFeedback" style="margin-top:10px; font-size:13px; background:rgba(255,255,255,0.02); border-color:rgba(255,255,255,0.1);">${escapeHtml(details.rationale)}</div>` : ""}
-          ${takeHomeText ? `<div class="feedback-take-home">💡 Para recordar: ${escapeHtml(takeHomeText)}</div>` : ""}
-          ${whyNotList.length ? `
-            <div style="margin-top:12px;">
-              <div class="modalSectionTitle" style="font-size:11px; color:#ff00ff; font-weight:800; letter-spacing:1px; text-transform:uppercase;">¿POR QUÉ OTRAS OPCIONES NO?</div>
-              ${whyNotList.map(w => `
-                <div class="feedback-why-not-item">
-                  <strong>${escapeHtml(w.option)}</strong>: ${escapeHtml(w.reason)}
-                </div>
-              `).join("")}
-            </div>
-          ` : ""}
-        </div>
+        <div class="modalFeedback feedback-reason">${escapeHtml(details.reason || brief)}</div>
+        ${renderExpandedFeedback(details, whyNotList)}
 
         <div class="feedback-controls" id="feedbackControls">
-          ${hasExplanation ? `<button class="btn-powerup" id="btnShowMoreFeedback">📖 Ver explicación</button>` : ""}
-          <button class="btn-powerup btn-powerup--primary" id="btnNextFeedback">Siguiente</button>
+          ${hasMore ? `<button class="btn-powerup" id="btnShowMoreFeedback">📖 Ver explicación</button>` : ""}
+          <button class="btn-powerup btn-powerup--primary" id="btnNextFeedback">${nextLabel()}</button>
         </div>
 
-        <div class="feedback-timer-bar animate-timer" id="feedbackTimerBar" style="background:${ok ? "#39ff14" : "#ff0055"}"></div>
+        <div class="feedback-timer-bar feedback-timer-bar--${tone} animate-timer" id="feedbackTimerBar"></div>
       </div>
     `;
 
-    const timerBar = $("#feedbackTimerBar");
-
-    const advance = () => {
-      clearTimeout(state.recentFeedbackTimer);
-      root.innerHTML = "";
-      advanceNext();
-    };
-
-    // If auto-advance is disabled, or we are in study mode, or we are in a time-free document, hide the timer bar
-    const useAutoAdvance = state.autoAdvance && !state.studyMode && state.current?.case_type !== "documento_educativo";
-    if (!useAutoAdvance) {
-      if (timerBar) timerBar.style.display = "none";
-    }
-
-    $("#btnNextFeedback").onclick = advance;
-
-    const showMoreBtn = $("#btnShowMoreFeedback");
-    if (showMoreBtn) {
-      showMoreBtn.onclick = (e) => {
-        e.stopPropagation();
-        clearTimeout(state.recentFeedbackTimer);
-        if (timerBar) timerBar.style.display = "none";
-        $("#expandedFeedback").style.display = "block";
-        showMoreBtn.style.display = "none";
-      };
-    }
-
-    if (useAutoAdvance) {
-      state.recentFeedbackTimer = setTimeout(() => {
-        advance();
-      }, GAME_CONFIG.advanceDelayMs);
-    }
+    bindFeedbackControls(root);
   }
 
-  function showTimeoutFeedback() {
-    const task = pickTask(state.current, state.currentTaskIndex);
-    const brief = getBriefFeedback(state.current, task);
+  function consequenceHtml() {
+    if (state.decompensated) {
+      return `<div class="feedback-consequence">🚨 <strong>El paciente se descompensó.</strong> La siguiente decisión es de rescate.</div>`;
+    }
+    if (state.justRescued) {
+      return `<div class="feedback-consequence feedback-consequence--good">💚 <strong>Paciente estabilizado.</strong> Lo sacaste de la descompensación.</div>`;
+    }
+    return "";
+  }
+
+  // El botón dice adónde lleva: otra pregunta del mismo paciente, el pase de
+  // visita, el final de la guardia o el siguiente paciente.
+  function nextLabel() {
+    if (state.lives <= 0) return "Cerrar la guardia";
+    if (hasMoreTasks()) return "Siguiente pregunta";
+    if (!state.studyMode && state.round.cases + 1 >= GAME_CONFIG.casesPerRound) return "Pase de visita";
+    return "Siguiente paciente";
+  }
+
+  function showTimeoutFeedback(task) {
     const root = $("#modalRoot");
+    const brief = getBriefFeedback(state.current, task);
+    const details = getExplanationPayload(state.current, task, "", true);
+    const whyNotList = getWhyNotForTask(state.current, task);
+    const hasMore = (details.rationale && details.rationale !== brief) || details.takeHome || whyNotList.length;
 
     const res = state.resident || ROSTER[0];
     const timeoutLine = pickLine("timeout");
 
     root.innerHTML = `
-      <div class="feedback-overlay show" style="border-color:rgba(255,165,0,0.4);">
+      <div class="feedback-overlay feedback-overlay--timeout show" role="status" aria-live="assertive">
         <div class="feedback-header">
-          <div style="font-size:32px;">⏰</div>
-          <div class="feedback-status" style="color:#ffa500;">TIEMPO AGOTADO</div>
+          <div class="feedback-icon" aria-hidden="true">⏰</div>
+          <div class="feedback-status feedback-status--timeout">TIEMPO AGOTADO</div>
         </div>
+        ${consequenceHtml()}
         ${timeoutLine ? `<div class="feedback-resident">${escapeHtml(res.title)} ${escapeHtml(res.name)}: “${escapeHtml(timeoutLine)}”</div>` : ""}
-        <div style="font-size:12px; text-transform:uppercase; letter-spacing:1px; color:rgba(255,255,255,0.5); margin-bottom:4px;">Respuesta correcta</div>
-        <div class="modalFeedback" style="margin:0; font-size:14px; border-color:rgba(57,255,20,0.3); color:#caffbf;">${escapeHtml(task.expected_answer)}</div>
-        <div class="modalFeedback" style="margin-top:8px; font-size:13px; background:rgba(255,255,255,0.02); border-color:rgba(255,255,255,0.08);">${escapeHtml(brief)}</div>
-        <div class="feedback-timer-bar animate-timer" style="background:#ffa500;"></div>
+        <div class="feedback-label">Respuesta correcta</div>
+        <div class="modalFeedback feedback-answer">${escapeHtml(task.expected_answer)}</div>
+        <div class="modalFeedback feedback-rationale">${escapeHtml(brief)}</div>
+        ${renderExpandedFeedback({ ...details, reason: brief }, whyNotList)}
+
+        <div class="feedback-controls" id="feedbackControls">
+          ${hasMore ? `<button class="btn-powerup" id="btnShowMoreFeedback">📖 Ver explicación</button>` : ""}
+          <button class="btn-powerup btn-powerup--primary" id="btnNextFeedback">${nextLabel()}</button>
+        </div>
+
+        <div class="feedback-timer-bar feedback-timer-bar--timeout animate-timer" id="feedbackTimerBar"></div>
       </div>
     `;
 
-    state.recentFeedbackTimer = setTimeout(() => {
-      root.innerHTML = "";
-      nextCase();
-    }, GAME_CONFIG.advanceDelayMs);
+    bindFeedbackControls(root);
   }
 
   function handleDeath() {
-    clearInterval(state.timer);
-    document.body.classList.remove("time-critical");
+    stopTurnFx();
+    PsyBoot.inShift = false;
     if (state.soundEnabled) playTone(150, 0.4);
-    // Wait a sec then show Game Over
-    setTimeout(() => renderGameOver(), 600);
+    later(() => renderGameOver(), 600);
   }
 
   function checkAnswer(btn, ok, task) {
+    // Una sola respuesta por pregunta: una tecla y un toque en el mismo
+    // instante ya no pueden puntuar dos veces.
+    if (state.locked) return;
+    state.locked = true;
     clearInterval(state.timer);
+    setUrgency(false, false);
     document.querySelectorAll(".option-btn").forEach(b => b.disabled = true);
     const signBtn = $("#btnSignNote");
     if (signBtn) signBtn.disabled = true;
-    document.body.classList.remove("time-critical");
 
-    const isEduDoc = state.current?.case_type === "documento_educativo";
     // Sólo puntúa lo que tiene consecuencias: el modo estudio y las lecturas
     // didácticas no mueven monedas, rachas ni estadísticas de carrera.
-    const scores = !state.studyMode && !isEduDoc;
+    const scores = !isUntimed();
     const signed = scores && state.signed;
     const speed = getSpeedInfo();
+    const lastTask = !hasMoreTasks();
     state.lastReward = null;
 
     if (ok) {
@@ -1892,16 +1916,18 @@ const Game = (() => {
         playSequence([660, 880, 1175], 0.06, 0.12);
       }
 
-      // En racha la cara acompaña a la frase: el residente ya decía "hoy estás
-      // en modo intratable" con el mismo gesto de un acierto cualquiera.
+      // En racha la cara acompaña a la frase.
       state.residentMood = state.streak >= 3 ? "streak" : "ok";
 
-      // Promocionar nivel de maestría en repaso espaciado al responder bien
-      promoteFailedCase(state.current?.case_id);
+      // Repaso espaciado: sólo asciende un caso resuelto ENTERO sin fallos.
+      // Antes, fallar la pregunta 1 y acertar la 2 lo guardaba y lo
+      // ascendía en el mismo minuto, mandándolo a +24 h sin haberlo dominado.
+      if (lastTask && !state.caseHadError) promoteFailedCase(state.current?.case_id);
+
       // Rescate: si el paciente venía descompensado, estabilizarlo es un
       // acontecimiento y se anuncia, no un flag que se apaga en silencio.
       state.justRescued = state.decompensated;
-      state.decompensated = false; // ¡El paciente ha sido estabilizado!
+      state.decompensated = false;
       if (state.justRescued && state.soundEnabled) playTone(1320, 0.18);
 
       if (scores) Economy.recordAnswer({ correct: true, fast: speed.fast, signed, rescue: state.justRescued });
@@ -1930,15 +1956,14 @@ const Game = (() => {
       state.residentMood = "shock";
       state.bossMood = "angry";
       state.justRescued = false;
+      state.caseHadError = true;
       if (state.soundEnabled) playSequence([320, 250, 190], 0.09, 0.2);
 
-      // Guardar caso real en la lista de fallados al errar
       saveFailedCase(state.current?.case_id);
+      recordMistake(task);
 
-      // Si tiene más tareas el caso actual, marcar como descompensado para la siguiente tarea
-      if (state.current && state.current.tasks && state.currentTaskIndex + 1 < state.current.tasks.length) {
-        state.decompensated = true;
-      }
+      // Si al caso le quedan preguntas, la siguiente es de rescate.
+      if (!lastTask) state.decompensated = true;
     }
 
     if (scores) pushAchievements();
@@ -1947,25 +1972,29 @@ const Game = (() => {
     // Mostrar la retroalimentación SIEMPRE, incluso al perder la última vida:
     // es el caso con mayor valor didáctico. advanceNext() dispara el Game Over
     // al avanzar (manual o auto) cuando lives <= 0.
-    const selectedTextEl = btn.querySelector('.option-text');
-    const selectedText = selectedTextEl ? selectedTextEl.innerText : btn.innerText;
-    setTimeout(() => showSmartFeedback(ok, task, selectedText), GAME_CONFIG.modalDelayMs);
+    const selectedTextEl = btn.querySelector(".option-text");
+    const selectedText = selectedTextEl ? selectedTextEl.textContent : btn.textContent;
+    later(() => showSmartFeedback(ok, task, selectedText), GAME_CONFIG.modalDelayMs);
   }
 
   function init() {
     ScreenManager.showMenu();
     window.addEventListener("keydown", (e) => {
-      if (e.key === "d") return; // debug
+      // Ctrl+1 cambia de pestaña, no responde un caso. Y una tecla mantenida
+      // no debe saltar feedback y pase de visita de un tirón.
+      if (e.ctrlKey || e.metaKey || e.altKey || e.repeat) return;
+      const tag = e.target && e.target.tagName;
+      if (tag === "SELECT" || tag === "INPUT" || tag === "TEXTAREA") return;
 
-      // Enter/Espacio avanza la retroalimentación o cierra el pase de visita:
-      // en escritorio nadie quiere ir al ratón entre caso y caso.
+      // Enter/Espacio avanza la retroalimentación o cierra el pase de visita.
+      // Si el foco está en otro botón (p. ej. "Ver explicación"), manda ese.
       if (e.key === "Enter" || e.key === " ") {
         const advanceBtn = document.querySelector("#btnRoundContinue, #btnNextFeedback");
-        if (advanceBtn) {
+        if (advanceBtn && !(tag === "BUTTON" && e.target !== advanceBtn)) {
           e.preventDefault();
           advanceBtn.click();
-          return;
         }
+        return;
       }
 
       // F firma la nota antes de responder.
@@ -1978,9 +2007,8 @@ const Game = (() => {
         return;
       }
 
-      const idx = parseInt(e.key);
-      if (!isNaN(idx)) {
-        const b = document.querySelector(`.option-btn[data-index="${idx}"]`);
+      if (/^[1-9]$/.test(e.key)) {
+        const b = document.querySelector(`.option-btn[data-index="${e.key}"]`);
         if (b && !b.disabled) b.click();
       }
     });
@@ -1993,20 +2021,39 @@ const Game = (() => {
     notes.forEach((f, i) => setTimeout(() => playTone(f, dur), i * step * 1000));
   }
 
-  let audioCtx;
-  function ensureAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); }
+  let audioCtx = null;
+  function ensureAudio() {
+    try {
+      if (!audioCtx) {
+        const Ctx = window.AudioContext || window.webkitAudioContext;
+        if (!Ctx) return;
+        audioCtx = new Ctx();
+      }
+      // iOS/Chrome crean el contexto suspendido hasta un gesto del usuario.
+      if (audioCtx.state === "suspended") audioCtx.resume().catch(() => {});
+    } catch {
+      audioCtx = null;
+    }
+  }
+
   function playTone(f, d = 0.1) {
     if (!state.soundEnabled) return;
-    if (!audioCtx) ensureAudio();
+    ensureAudio();
     if (!audioCtx) return;
+    const t = audioCtx.currentTime;
     const o = audioCtx.createOscillator();
     const g = audioCtx.createGain();
+    o.type = "triangle";
     o.frequency.value = f;
+    // Ataque corto y volumen contenido: antes el tono salía a ganancia 1
+    // (volumen máximo) con un chasquido al empezar.
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(0.18, t + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + d);
     o.connect(g);
     g.connect(audioCtx.destination);
-    o.start();
-    g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + d);
-    o.stop(audioCtx.currentTime + d + 0.1);
+    o.start(t);
+    o.stop(t + d + 0.05);
   }
 
   return { init };

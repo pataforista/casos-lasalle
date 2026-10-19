@@ -1,8 +1,9 @@
 const Economy = (() => {
   const STORAGE_KEY = 'psy_miami_save_v2';
 
+  // Monedas iniciales: se editan en EDITAR_JUEGO.md (GAME_CONFIG.startCoins).
   const defaultData = {
-    coins: 150,
+    coins: (typeof GAME_CONFIG !== 'undefined' && Number.isFinite(GAME_CONFIG.startCoins)) ? GAME_CONFIG.startCoins : 150,
     xp: 0,
     maxStreak: 0,
     gamesPlayed: 0,
@@ -66,8 +67,7 @@ const Economy = (() => {
   };
 
   return {
-    init: () => { data = load(); }, // Ensure fresh load
-    load: () => { data = load(); }, // Alias for compatibility
+    init: () => { data = load(); }, // relee el guardado (otra pestaña pudo cambiarlo)
     getCoins: () => data.coins,
     getXP: () => data.xp,
     getStats: () => ({ ...data }), // Read-only copy

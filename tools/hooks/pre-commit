@@ -1,0 +1,9 @@
+#!/bin/sh
+# Antes de cada commit: aplica EDITAR_JUEGO.md y regenera docs/MAPA_APP.md,
+# e incluye lo generado en el commit. Se activa una vez por clon con:
+#   npm run hooks
+# Si el documento tiene errores o la app perdería su modo offline, el commit
+# se detiene con el motivo.
+node tools/editDoc.js apply || exit 1
+node tools/buildAppMap.js || exit 1
+git add EDITAR_JUEGO.md js/content.js sw.js data docs/MAPA_APP.md

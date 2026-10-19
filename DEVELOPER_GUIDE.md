@@ -48,7 +48,7 @@ El sistema de personajes utiliza sprites al estilo retro. El proceso para crear 
 
 ```mermaid
 graph LR
-    A[assets/sprites_src/*.png] -->|python pixelate_and_keyout.py| B(Sprites procesados y pixelados)
+    A[assets/sprites_src/*.png] -->|python tools/pixelate_and_keyout.py| B(Sprites procesados y pixelados)
     B -->|python normalize_sprites.py| C(Atlas generados)
     C -->|js/game.js| D(Registro de personajes)
 ```
@@ -64,7 +64,9 @@ python tools/pixelate_and_keyout.py
 # 3. Normalizar y generar atlas (cuadricula 5x2)
 python tools/normalize_sprites.py
 
-# 4. Registrar en js/game.js (definir el nuevo personaje en el objeto Avatars)
+# 4. Registrar el residente en EDITAR_JUEGO.md (sección 3: copia un bloque y pon su sprite)
+# 5. Añadir assets/sprites/<nombre>_atlas.png a APP_SHELL en sw.js y subir CACHE_VERSION
+#    (npm run check falla si se olvida)
 ```
 
 > **Nota:** Las hojas de sprites (Atlas) deben ser una rejilla de **5 columnas × 2 filas** (10 poses). El orden esperado por el CSS y JS es:
@@ -94,13 +96,22 @@ assets/
 └── sprites/                # Sprites procesados (output de los scripts python)
 
 js/
+├── boot.js                 # Utilidades globales, errores y registro del Service Worker
+├── economy.js              # Monedas, XP, logros, récord
+├── caseLoader.js           # Carga manifest + packs y filtra casos
+├── generator.js            # Casos sintéticos de respaldo (sin red o sin casos)
 └── game.js                 # Lógica principal del juego e interfaz
 ```
 
+El mapa completo, con cada función y su línea, está en `docs/MAPA_APP.md`
+(se regenera con `npm run map`).
+
 ## 4. Dinámica de Juego (Ajuste Fino)
 
-Toda la economía de la partida vive en `GAME_CONFIG` (`js/game.js`). Cambiar un
-número ahí reequilibra el juego entero sin tocar la lógica.
+Toda la economía de la partida vive en `GAME_CONFIG`, que se edita en
+**`EDITAR_JUEGO.md`** (sección 1) y se genera en `js/content.js` con
+`npm run apply`. No edites `js/content.js` a mano: se sobrescribe. La tabla de
+abajo dice qué clave interna corresponde a cada etiqueta del documento.
 
 | Parámetro | Qué controla |
 |---|---|
@@ -110,6 +121,8 @@ número ahí reequilibra el juego entero sin tocar la lógica.
 | `streakStep` / `maxMultiplier` | Cada cuántos aciertos sube el multiplicador y hasta dónde |
 | `signFine` | Multa por firmar una nota equivocada |
 | `casesPerRound` | Pacientes por bloque antes del pase de visita |
+| `costs.hint` / `costs.life` / `costs.time` | Precio de pista, vida y tiempo extra (el HUD lee los mismos valores) |
+| `timeBoostSeconds` | Segundos que compra el botón de tiempo |
 
 ### Las cuatro capas de recompensa
 
@@ -185,7 +198,7 @@ papel de quien aparece:
 
 El tono del paciente lo decide `getPatientEcgClass()`, el mismo que colorea la
 traza del monitor: retrato y ECG nunca se contradicen. Para añadir un
-residente basta con su sprite y su firma en `ROSTER` — ya no hay que inventarle
+residente basta con su sprite y su frase propia en `EDITAR_JUEGO.md` (sección 3) — ya no hay que inventarle
 un color, porque su cara y su nombre son lo que lo distingue.
 
 ### Reglas de jerarquía
@@ -204,3 +217,6 @@ un color, porque su cara y su nombre son lo que lo distingue.
 - `npm run validate:packs` → `node tools/validateAllPacks.js ./data/manifest_v1.json`
 - `npm run enhance` → `node tools/enhanceCases.js data/cases_v1_validated.json data/cases_v1.json`
 - `npm run split` → `node tools/splitPacks.js`
+- `npm run map` → regenera el bloque automático de `docs/MAPA_APP.md`
+- `npm run check` → `validate:packs` + mapa al día + coherencia offline (lo mismo que corre la CI)
+- `npm run hooks` → activa el gancho de pre-commit que mantiene el mapa al día

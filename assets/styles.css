@@ -7,153 +7,35 @@ html {
   touch-action: manipulation;
 }
 
-/* Kawaii avatar styles */
-@keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-5px);
-  }
-}
-
-@keyframes shake {
-  0% {
-    transform: translate(1px, 1px) rotate(0deg);
-  }
-
-  10% {
-    transform: translate(-1px, -2px) rotate(-1deg);
-  }
-
-  20% {
-    transform: translate(-3px, 0px) rotate(1deg);
-  }
-
-  30% {
-    transform: translate(3px, 2px) rotate(0deg);
-  }
-
-  40% {
-    transform: translate(1px, -1px) rotate(1deg);
-  }
-
-  50% {
-    transform: translate(-1px, 2px) rotate(-1deg);
-  }
-
-  60% {
-    transform: translate(-3px, 1px) rotate(0deg);
-  }
-
-  70% {
-    transform: translate(3px, 1px) rotate(-1deg);
-  }
-
-  80% {
-    transform: translate(-1px, -1px) rotate(1deg);
-  }
-
-  90% {
-    transform: translate(1px, 2px) rotate(0deg);
-  }
-
-  100% {
-    transform: translate(1px, -2px) rotate(-1deg);
-  }
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
 }
 
 @keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.1);
-  }
-
-  100% {
-    transform: scale(1);
-  }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
-@keyframes bounce {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-/* Animation Utility Classes */
-.float {
-  animation-name: float;
-}
-
-.pulse {
-  animation-name: pulse;
-}
-
-.shake {
-  animation-name: shake;
-}
-
-/* Transitions */
+/* Transiciones de pantalla. Una sola definición: antes había dos bloques
+   .screen-transition y el segundo (con `animation:` abreviado) pisaba el
+   nombre de .fade-out, así que "desvanecer" en realidad volvía a aparecer. */
 .screen-transition {
-  animation-duration: 0.5s;
+  animation-duration: 0.4s;
   animation-fill-mode: both;
-  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+  animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.fade-in {
-  animation-name: fadeIn;
-}
-
+.fade-in,
 .slide-up {
-  animation-name: slideUp;
+  animation-name: fade-in-up;
 }
 
 .fade-out {
-  animation-name: fadeOut;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  animation-name: fade-out;
+  animation-duration: 0.25s;
+  animation-timing-function: ease-in;
+  pointer-events: none;
 }
 
 /* Game Over Screen */
@@ -231,8 +113,6 @@ html {
   overflow: hidden;
 }
 
-
-
 :root {
   --bg-dark: #050510;
   --miami-cyan: #00f3ff;
@@ -274,22 +154,58 @@ body {
   color: var(--text-main);
   min-height: 100vh;
   overflow-x: clip;
+  background-image: radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.04) 0%, rgba(0, 0, 0, 0) 80%);
+  background-attachment: fixed;
+}
+
+/* La rejilla synthwave vive en una capa fija propia y se mueve con
+   transform. Antes se animaba background-position del <body>: un repintado de
+   pantalla completa a 60 fps durante toda la partida, que en gama baja se
+   notaba justo cuando el reloj apretaba. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: -40px 0 0 -40px;
+  z-index: -1;
+  pointer-events: none;
   background-image:
     linear-gradient(rgba(157, 0, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(157, 0, 255, 0.035) 1px, transparent 1px),
-    radial-gradient(circle at 50% 50%, rgba(0, 243, 255, 0.04) 0%, rgba(0, 0, 0, 0) 80%);
-  background-size: 40px 40px, 40px 40px, 100% 100%;
-  background-attachment: fixed;
+    linear-gradient(90deg, rgba(157, 0, 255, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
   animation: bg-scroll 20s linear infinite;
+  will-change: transform;
 }
 
 @keyframes bg-scroll {
-  0% { background-position: 0 0, 0 0, center; }
-  100% { background-position: 0 40px, 40px 0, center; }
+  from { transform: translate(0, 0); }
+  to { transform: translate(40px, 40px); }
 }
 
-.hud-font {
-  font-family: "Chakra Petch", sans-serif;
+/* Capa de urgencia del reloj. Sustituye a los filtros que se aplicaban sobre
+   <body>: un `filter` en el body crea un nuevo bloque contenedor y los paneles
+   position:fixed (retroalimentación, avisos) dejaban de anclarse a la
+   pantalla justo en los últimos segundos. Aquí sólo cambia la opacidad. */
+.urgency-fx {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background: radial-gradient(ellipse at center, rgba(255, 0, 85, 0) 55%, rgba(255, 0, 85, 0.22) 100%);
+}
+
+body.hot-zone-active .urgency-fx {
+  opacity: 0.55;
+}
+
+body.time-critical .urgency-fx {
+  animation: urgency-pulse 1s ease-in-out infinite;
+}
+
+@keyframes urgency-pulse {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
 }
 
 .miami-card {
@@ -424,21 +340,6 @@ body {
   content: "▲";
 }
 
-.welcome-title {
-  color: rgba(255, 255, 255, 0.95);
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.welcome-subtitle {
-  margin-top: 8px;
-  color: rgba(0, 243, 255, 0.8);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
 /* Briefing del adscrito en el menú: mismas reglas, dichas por un personaje */
 .briefing-card {
   display: flex;
@@ -503,15 +404,6 @@ body {
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 2px;
-}
-
-
-.narrative-footer {
-  margin-top: 12px;
-  color: rgba(255, 255, 255, 0.6);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
 }
 
 .caseAside {
@@ -611,6 +503,19 @@ body {
   .hero-title {
     font-size: 24px;
   }
+}
+
+/* Texto sólo para lectores de pantalla. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 /* Contenedor principal (antes clases Tailwind: max-w-2xl mx-auto p-4 min-h-screen flex flex-col justify-center) */
@@ -959,14 +864,6 @@ body.time-critical .hud-stat--timer .hud-stat-value {
 
 }
 
-.modalNote {
-  margin-top: 8px;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.7);
-}
-
 .modal {
   position: fixed;
   inset: 0;
@@ -999,13 +896,6 @@ body.time-critical .hud-stat--timer .hud-stat-value {
   backdrop-filter: blur(20px);
 }
 
-.modalContent {
-  overflow: auto;
-  padding-right: 6px;
-  display: grid;
-  gap: 10px;
-}
-
 .modalSection {
   display: grid;
   gap: 6px;
@@ -1028,43 +918,6 @@ body.time-critical .hud-stat--timer .hud-stat-value {
   border: 1px solid rgba(0, 243, 255, 0.2);
   padding: 10px 12px;
   border-radius: 14px;
-}
-
-.modalDetails {
-  margin-top: 12px;
-  padding: 10px 12px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.78);
-}
-
-.modalDetails summary {
-  cursor: pointer;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.85);
-  list-style: none;
-}
-
-.modalDetails summary::-webkit-details-marker {
-  display: none;
-}
-
-.modalDetails summary::after {
-  content: "▼";
-  font-size: 12px;
-  margin-left: 8px;
-  color: rgba(0, 243, 255, 0.8);
-}
-
-.modalDetails[open] summary::after {
-  content: "▲";
-}
-
-.modalFull {
-  margin-top: 8px;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.8);
 }
 
 .take-home {
@@ -1306,7 +1159,6 @@ body.time-critical .hud-stat--timer .hud-stat-value {
   filter: grayscale(0.5);
 }
 
-
 .shake {
   animation: shake 0.4s ease-in-out;
 }
@@ -1384,19 +1236,6 @@ body.time-critical .hud-stat--timer .hud-stat-value {
   overflow: auto;
 }
 
-/* --- NUEVAS MEJORAS DE AUDITORIA --- */
-
-/* Zona Caliente (Sutil) */
-.hot-zone-active {
-  animation: hot-pulse 2s infinite ease-in-out;
-}
-
-@keyframes hot-pulse {
-  0% { filter: contrast(1) saturate(1); }
-  50% { filter: contrast(1.1) saturate(1.2) sepia(0.1); }
-  100% { filter: contrast(1) saturate(1); }
-}
-
 /* Botones de la barra de retroalimentación (Ver explicación / Siguiente) */
 .btn-powerup {
   background: rgba(157, 0, 255, 0.15);
@@ -1458,6 +1297,24 @@ body.time-critical .hud-stat--timer .hud-stat-value {
 .feedback-overlay.show {
   transform: translateX(-50%) translateY(0);
   pointer-events: auto;
+  /* El panel se pinta ya con .show, así que la transición nunca arrancaba:
+     entraba de golpe. Una animación sí se reproduce al insertarse. */
+  animation: feedback-in 0.42s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes feedback-in {
+  from { transform: translateX(-50%) translateY(120px); opacity: 0; }
+  to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+
+/* Al cerrarse, el panel baja en vez de desaparecer en seco. */
+.feedback-overlay.leaving {
+  animation: feedback-out 0.2s ease-in forwards;
+  pointer-events: none;
+}
+
+@keyframes feedback-out {
+  to { transform: translateX(-50%) translateY(60px); opacity: 0; }
 }
 
 .feedback-header {
@@ -1482,8 +1339,10 @@ body.time-critical .hud-stat--timer .hud-stat-value {
   transform-origin: left;
 }
 
+/* La duración la fija game.js con --advance-ms (GAME_CONFIG.advanceDelayMs):
+   antes iba escrita a mano y se desincronizaba al cambiar la configuración. */
 .animate-timer {
-  animation: feedback-timer 3.5s linear forwards;
+  animation: feedback-timer var(--advance-ms, 3500ms) linear forwards;
 }
 
 @keyframes feedback-timer {
@@ -1525,32 +1384,6 @@ body.time-critical .hud-stat--timer .hud-stat-value {
 .miami-select option {
   background-color: #0d0a21;
   color: var(--text-main);
-}
-
-@keyframes red-flash {
-  0%, 100% {
-    background-color: var(--bg-dark);
-    box-shadow: inset 0 0 0px rgba(255, 0, 85, 0);
-  }
-  50% {
-    background-color: rgba(255, 0, 85, 0.06);
-    box-shadow: inset 0 0 40px rgba(255, 0, 85, 0.2);
-  }
-}
-.time-critical {
-  animation: red-flash 1s infinite ease-in-out !important;
-}
-
-.feedback-details-container {
-  margin-top: 12px;
-  padding: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
-  max-height: 250px;
-  overflow-y: auto;
-  text-align: left;
-  animation: fadeIn 0.3s ease-out;
 }
 
 .feedback-why-not-item {
@@ -1763,9 +1596,14 @@ body.time-critical .hud-stat--timer .hud-stat-value {
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.58); /* 0.3 no llegaba al contraste AA */
   font-weight: 600;
   margin-top: 6px;
+}
+
+/* En pantallas táctiles los atajos de teclado sólo roban altura. */
+@media (hover: none) and (pointer: coarse) {
+  .options-hint { display: none; }
 }
 
 /* Sprite frame inside avatar containers.
@@ -1791,8 +1629,19 @@ body.time-critical .hud-stat--timer .hud-stat-value {
   50% { transform: translateY(-2px) scaleY(1.02); }
 }
 
-/* Accessibility: Support reduced motion settings */
+/* Accesibilidad: movimiento reducido. Además de acortar todo, se apagan los
+   bucles que no informan de nada (rejilla, scanline, respiración del sprite)
+   y el parpadeo rojo del reloj queda fijo en vez de latir. */
 @media (prefers-reduced-motion: reduce) {
+  body::before,
+  .scanline,
+  .sprite-frame {
+    animation: none !important;
+  }
+  body.time-critical .urgency-fx {
+    animation: none !important;
+    opacity: 0.8;
+  }
   *, ::before, ::after {
     animation-delay: -1ms !important;
     animation-duration: 1ms !important;
@@ -1836,11 +1685,6 @@ body.time-critical .hud-stat--timer .hud-stat-value {
   100% { opacity: 0; }
 }
 
-/* Screen Transitions */
-.screen-transition {
-  animation: fade-in-up 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
 @keyframes fade-in-up {
   0% { opacity: 0; transform: translateY(15px) scale(0.98); }
   100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -1876,7 +1720,6 @@ body.time-critical .hud-stat--timer .hud-stat-value {
   0% { opacity: 0; transform: translateX(20px); }
   100% { opacity: 1; transform: translateX(0); }
 }
-
 
 /* ============================================================================
    Dinámica de juego: multiplicador, firma de nota, pase de visita y feedback
@@ -2517,3 +2360,117 @@ a:focus-visible {
 }
 
 .game-over-actions .btn-action--review { font-size: 14px; }
+
+/* ============================================================================
+   Retroalimentación: variantes por resultado (antes eran estilos en línea
+   repetidos en cada plantilla de game.js) y lista de errores del Game Over.
+   ============================================================================ */
+.feedback-overlay--good { border-color: rgba(57, 255, 20, 0.4); }
+.feedback-overlay--bad { border-color: rgba(255, 0, 85, 0.4); }
+.feedback-overlay--timeout { border-color: rgba(255, 165, 0, 0.4); }
+
+.feedback-icon { font-size: 32px; line-height: 1; }
+
+.feedback-status--good { color: #39ff14; }
+.feedback-status--bad { color: #ff0055; }
+.feedback-status--timeout { color: #ffa500; }
+
+.feedback-timer-bar--good { background: #39ff14; }
+.feedback-timer-bar--bad { background: #ff0055; }
+.feedback-timer-bar--timeout { background: #ffa500; }
+
+.feedback-reason {
+  margin: 0;
+  font-size: 14px;
+}
+
+.feedback-rationale {
+  margin-top: 10px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.02);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.feedback-label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+}
+
+.feedback-answer {
+  margin: 0;
+  font-size: 14px;
+  border-color: rgba(57, 255, 20, 0.3);
+  color: #caffbf;
+}
+
+.feedback-why-not { margin-top: 12px; }
+
+.feedback-why-not-title {
+  font-size: 11px;
+  color: var(--miami-pink);
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+#expandedFeedback:not([hidden]) {
+  animation: fade-in-up 0.3s ease-out;
+}
+
+/* Aviso de que la racha acortó el reloj: discreto, arriba, sin tapar la pregunta. */
+.float-reward--clock {
+  top: 12%;
+  font-size: 15px;
+  color: var(--miami-cyan);
+  text-shadow: 0 0 10px rgba(0, 243, 255, 0.6), 0 2px 6px rgba(0, 0, 0, 0.8);
+}
+
+.shift-mistakes {
+  text-align: left;
+  display: grid;
+  gap: 8px;
+  margin: 6px 0 4px;
+}
+
+.shift-mistake {
+  background: var(--surface-1);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--miami-pink);
+  border-radius: var(--r-sm);
+  padding: 8px 10px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.shift-mistake-title {
+  color: var(--ink-2);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.shift-mistake-answer {
+  color: #caffbf;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.shift-mistake-take {
+  color: var(--ink-2);
+  margin-top: 2px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Foco visible para teclado en todos los controles. */
+button:focus-visible,
+select:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--miami-cyan);
+  outline-offset: 2px;
+}
